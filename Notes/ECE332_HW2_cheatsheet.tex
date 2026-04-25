@@ -1,0 +1,360 @@
+\documentclass[6pt,letterpaper]{article}
+\usepackage[margin=0.25in, top=0.3in, bottom=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+
+% ── Colors (identical to HW1 sheet) ──
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{gray}{HTML}{444441}\definecolor{graybg}{HTML}{F1EFE8}
+\definecolor{pink}{HTML}{72243E}\definecolor{pinkbg}{HTML}{FBEAF0}
+\definecolor{rowB}{HTML}{F2F2EF}
+
+\newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
+  innertopmargin=2pt,innerbottommargin=2pt,skipabove=1pt,skipbelow=1pt]{ebox}
+
+\newcommand{\shead}[3]{%
+  \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+  {\color{#2}\bfseries\fontsize{6}{7}\selectfont #3}}\vspace{0.5pt}}
+
+\newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\setlength{\columnsep}{5pt}\setlength{\multicolsep}{1pt}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 — HW2 Equation Sheet}}
+\fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
+
+\begin{document}
+\fontsize{6}{7.5}\selectfont
+\begin{multicols}{3}
+
+%──────────────────────────────────────
+\shead{purplebg}{purple}{PLANE WAVE PARAMETERS (LOSSLESS)}
+\begin{ebox}
+\eq{Angular frequency}{}
+\[\omega = 2\pi f \qquad f = \frac{\omega}{2\pi}\]
+
+\eq{Phase velocity}{nonmagnetic: $\mu_r=1$}
+\[u_p = \frac{c}{\sqrt{\varepsilon_r}} \qquad c = 3\times10^8\;\text{m/s}\]
+
+\eq{Wavenumber $k$}{rad/m}
+\[k = \frac{\omega}{u_p} = \frac{2\pi}{\lambda} = \frac{\omega\sqrt{\varepsilon_r}}{c}\]
+
+\eq{Wavelength}{}
+\[\lambda = \frac{u_p}{f} = \frac{2\pi}{k}\]
+
+\eq{Intrinsic impedance}{nonmagnetic: $\mu=\mu_0$}
+\[\eta = \frac{\eta_0}{\sqrt{\varepsilon_r}} \qquad \eta_0 = 377\;\Omega\]
+
+\textit{\color{coral}All five: start from $\omega$ and $\varepsilon_r$, compute in order $u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{LOSSLESS PLANE WAVE — $\mathbf{E}$ AND $\mathbf{H}$}
+\begin{ebox}
+\eq{General $\mathbf{E}$ field}{$\hat{e}$: polarization direction, $E_0$: peak (V/m)}
+\[\mathbf{E}(\mathbf{r},t) = E_0\cos(\omega t - k\,\hat{k}\cdot\mathbf{r} + \phi_0)\,\hat{e}\]
+
+\eq{$\mathbf{H}$ from $\mathbf{E}$}{always: $\hat{k}$, $\hat{E}$, $\hat{H}$ right-hand set}
+\[\mathbf{H} = \frac{1}{\eta}\,(\hat{k}\times\mathbf{E})\]
+
+\eq{Find initial phase $\phi_0$}{given $|\mathbf{E}|=E_1$ at $t=0$, position $r_0$}
+\[E_0\cos(-k\,r_0+\phi_0) = E_1 \;\Rightarrow\; \phi_0 = \cos^{-1}\!\!\left(\frac{E_1}{E_0}\right)+k\,r_0\]
+\textit{\color{coral}$\cos^{-1}$ returns $[0,\pi]$; both $\pm$ values are valid — pick $\phi_0\in[0,\pi]$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{DIRECTION OF PROPAGATION}
+\begin{ebox}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Argument contains & Direction $\hat{k}$\\
+\midrule
+\rowcolor{rowB}$\omega t - kz$ & $+\hat{z}$\\
+$\omega t + kz$ & $-\hat{z}$\\
+\rowcolor{rowB}$\omega t - ky$ & $+\hat{y}$\\
+$\omega t + ky$ & $-\hat{y}$\\
+\rowcolor{rowB}$\omega t - kx$ & $+\hat{x}$\\
+$\omega t + kx$ & $-\hat{x}$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Rule: minus sign before $k\cdot\text{axis}$ $\Rightarrow$ wave goes in $+$ direction. Plus sign $\Rightarrow$ $-$ direction.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ TABLE — FIND $\hat{H}$ DIRECTION}
+\begin{ebox}
+\begin{tabular}{@{}lll@{}}
+\toprule
+$\hat{k}$ & $\hat{E}$ & $\hat{H}=\hat{k}\times\hat{E}$\\
+\midrule
+\rowcolor{rowB}$+\hat{z}$ & $\hat{x}$ & $+\hat{y}$\\
+$+\hat{z}$ & $\hat{y}$ & $-\hat{x}$\\
+\rowcolor{rowB}$+\hat{y}$ & $\hat{x}$ & $-\hat{z}$\\
+$+\hat{y}$ & $\hat{z}$ & $+\hat{x}$\\
+\rowcolor{rowB}$+\hat{x}$ & $\hat{y}$ & $+\hat{z}$\\
+$+\hat{x}$ & $\hat{z}$ & $-\hat{y}$\\
+\rowcolor{rowB}$-\hat{x}$ & $\hat{y}$ & $-\hat{z}$\\
+$-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
+\rowcolor{rowB}$-\hat{y}$ & $\hat{x}$ & $+\hat{z}$\\
+$-\hat{z}$ & $\hat{x}$ & $-\hat{y}$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Cyclic rule: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$,\ $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$,\ $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$.
+Reverse order flips sign.}
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{tealbg}{teal}{POLARIZATION — GENERAL WAVE}
+\begin{ebox}
+\[\mathbf{E}(z,t)=a_x\cos(\omega t\!-\!kz)\,\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\,\hat{y}\]
+
+\eq{Tilt angle $\gamma$ (major axis from $\hat{x}$)}{$\gamma\in[0°,180°)$}
+\[\tan(2\gamma)=\frac{2a_xa_y\cos\delta}{a_x^2-a_y^2}\]
+
+\eq{Ellipticity angle $\chi$}{$\chi\in[-45°,45°]$}
+\[\sin(2\chi)=\frac{2a_xa_y\sin\delta}{a_x^2+a_y^2}\]
+
+\eq{Linear amplitude}{only when $\delta=0$ or $\pi$}
+\[|\mathbf{E}|_\text{peak}=\sqrt{a_x^2+a_y^2}\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{POLARIZATION TYPE — QUICK LOOKUP}
+\begin{ebox}
+\begin{tabular}{@{}p{0.27\linewidth}p{0.38\linewidth}p{0.24\linewidth}@{}}
+\toprule
+Type & Condition & $\chi$\\
+\midrule
+\rowcolor{rowB}Linear & $\delta=0$ or $\pi$ (any $a_x,a_y$) & $0°$\\
+Circ.\ RHC & $a_x=a_y$,\ $\delta=+\pi/2$ & $+45°$\\
+\rowcolor{rowB}Circ.\ LHC & $a_x=a_y$,\ $\delta=-\pi/2$ & $-45°$\\
+Ellip.\ RH & $\chi\in(0°,45°)$ & $>0$\\
+\rowcolor{rowB}Ellip.\ LH & $\chi\in(-45°,0°)$ & $<0$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{$\chi>0 \Rightarrow$ RH (right-hand around $+\hat{k}$). $\chi<0 \Rightarrow$ LH.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\gamma)$}
+\begin{ebox}
+Let $N=2a_xa_y\cos\delta$ and $D=a_x^2-a_y^2$:\\[2pt]
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$N$ & $D$ & $2\gamma$ in & Formula\\
+\midrule
+\rowcolor{rowB}$+$ & $+$ & Q1 & $\arctan(N/D)$\\
+$+$ & $-$ & Q2 & $180°-\arctan|N/D|$\\
+\rowcolor{rowB}$-$ & $-$ & Q3 & $180°+\arctan|N/D|$\\
+$-$ & $+$ & Q4 & $360°-\arctan|N/D|$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Then $\gamma=2\gamma/2$.
+Special case: $D=0 \Rightarrow 2\gamma=90° \Rightarrow \gamma=45°$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{RHC / LHC PHASORS ($+\hat{z}$ PROPAGATION)}
+\begin{ebox}
+\eq{RHC phasor}{}
+\[\tilde{\mathbf{E}}_R = a_R(\hat{x}+e^{-j\pi/2}\hat{y})e^{-jkz} = a_R(\hat{x}-j\hat{y})e^{-jkz}\]
+
+\eq{LHC phasor}{}
+\[\tilde{\mathbf{E}}_L = a_L(\hat{x}+e^{+j\pi/2}\hat{y})e^{-jkz} = a_L(\hat{x}+j\hat{y})e^{-jkz}\]
+
+\eq{Linear $=$ RHC $+$ LHC}{match $\hat{x}$ and $\hat{y}$ components}
+\[a_x e^{-jkz}\hat{x}=\tilde{\mathbf{E}}_R+\tilde{\mathbf{E}}_L \;\Longrightarrow\; \boxed{a_R=a_L=\tfrac{a_x}{2}}\]
+
+\textit{Proof: $(a_R\!+\!a_L)\hat{x}+j(-a_R\!+\!a_L)\hat{y}=a_x\hat{x}$.
+$\hat{y}$ coeff $=0\Rightarrow a_R=a_L$; $\hat{x}$ coeff $\Rightarrow a_R=a_x/2$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
+\begin{ebox}
+\begin{tabular}{@{}p{0.42\linewidth}p{0.5\linewidth}@{}}
+\toprule
+Phasor coeff (×$e^{-j\beta z}$) & Time domain (×$e^{-\alpha z}$)\\
+\midrule
+\rowcolor{rowB}$A$ (real, positive) & $A\cos(\omega t-\beta z)$\\
+$-jA$ & $A\sin(\omega t-\beta z)$\\
+\rowcolor{rowB}$+jA$ & $-A\sin(\omega t-\beta z)$\\
+$Ae^{j\phi}$ & $A\cos(\omega t-\beta z+\phi)$\\
+\rowcolor{rowB}$A+jB$ & $|Z|\cos(\omega t-\beta z+\theta)$\\
+\bottomrule
+\end{tabular}\\[2pt]
+where $|Z|=\sqrt{A^2+B^2}$,\; $\theta=\arctan(B/A)$ (check quadrant!)
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{coralbg}{coral}{LOSSY MEDIA — CLASSIFICATION}
+\begin{ebox}
+\eq{Loss tangent (ratio to check first)}{}
+\[\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
+
+\begin{tabular}{@{}p{0.27\linewidth}p{0.35\linewidth}p{0.28\linewidth}@{}}
+\toprule
+$\varepsilon''/\varepsilon'$ & Material type & Formulas\\
+\midrule
+\rowcolor{rowB}$>100$ & Good conductor & GC approx\\
+$[10^{-2},100]$ & Quasi-conductor & Exact\\
+\rowcolor{rowB}$<10^{-2}$ & Low-loss dielectric & LD approx\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Dry soil ($\varepsilon_r\!=\!2.5$, $\sigma\!=\!10^{-4}$): $\varepsilon''/\varepsilon' = (7.193\!\times\!10^5)/f$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{EXACT FORMULAS (QUASI-CONDUCTOR)}
+\begin{ebox}
+\eq{Let $X=\sqrt{1+(\sigma/\omega\varepsilon)^2}$}{}
+
+\eq{Attenuation $\alpha$}{Np/m}
+\[\alpha=\omega\sqrt{\tfrac{\mu\varepsilon}{2}}\,\sqrt{X-1}\]
+
+\eq{Phase constant $\beta$}{rad/m}
+\[\beta=\omega\sqrt{\tfrac{\mu\varepsilon}{2}}\,\sqrt{X+1}\]
+
+\eq{Wavelength \& velocity}{}
+\[\lambda=\frac{2\pi}{\beta}\qquad u_p=\frac{\omega}{\beta}\]
+
+\eq{Complex impedance}{polar form}
+\[\eta_c=\frac{\eta}{\sqrt{1-j(\sigma/\omega\varepsilon)}}=|\eta_c|\angle\theta_\eta\]
+\[|\eta_c|=\frac{\eta}{X^{1/2}}\qquad\theta_\eta=\tfrac{1}{2}\arctan\!\left(\tfrac{\sigma}{\omega\varepsilon}\right)\]
+where $\eta=\eta_0/\sqrt{\varepsilon_r}$ (lossless impedance baseline).
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{GOOD CONDUCTOR APPROX ($\sigma/\omega\varepsilon\gg1$)}
+\begin{ebox}
+\[\alpha\approx\beta\approx\sqrt{\pi f\mu_0\sigma}\]
+\[u_p=\frac{\omega}{\beta}=\sqrt{\frac{4\pi f}{\mu_0\sigma}}\qquad\lambda=\frac{2\pi}{\beta}\]
+\[\eta_c\approx(1+j)\frac{\alpha}{\sigma}=(1+j)\sqrt{\frac{\pi f\mu_0}{\sigma}}\quad(\angle 45°)\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{LOW-LOSS DIELECTRIC APPROX ($\sigma/\omega\varepsilon\ll1$)}
+\begin{ebox}
+\[\alpha\approx\frac{\sigma}{2}\sqrt{\frac{\mu}{\varepsilon}}=\frac{\sigma\,\eta}{2}\]
+\[\beta\approx\omega\sqrt{\mu\varepsilon}=\frac{\omega\sqrt{\varepsilon_r}}{c}\qquad u_p\approx\frac{c}{\sqrt{\varepsilon_r}}\]
+\[\lambda\approx\frac{2\pi}{\beta}\qquad\eta_c\approx\eta=\frac{\eta_0}{\sqrt{\varepsilon_r}}\quad(\angle\approx0°)\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
+\begin{ebox}
+\eq{Step 1 — read $\alpha$, $\beta$ from exponents}{}
+\[\tilde{\mathbf{H}}\propto e^{-\alpha y}e^{-j\beta y}\;\Rightarrow\;\gamma=\alpha+j\beta\]
+
+\eq{Step 2 — compute $\eta_c$}{$\mu_r=1$ (nonmagnetic)}
+\[\eta_c=\frac{j\omega\mu_0}{\gamma}=\frac{j\omega\mu_0(\alpha-j\beta)}{\alpha^2+\beta^2}=\frac{\omega\mu_0(\beta+j\alpha)}{\alpha^2+\beta^2}\]
+
+\eq{Step 3 — find $\tilde{\mathbf{E}}$}{propagation in $+\hat{k}$}
+\[\tilde{\mathbf{E}}=-\eta_c\,(\hat{k}\times\tilde{\mathbf{H}})\]
+
+\eq{Step 4 — time domain}{}
+\[\mathbf{E}(t)=\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\};\quad
+  Ae^{j\phi}e^{-\alpha y}\!\to\!Ae^{-\alpha y}\cos(\omega t\!-\!\beta y\!+\!\phi)\]
+\textit{\color{coral}Multiply $\eta_c \times$ each phasor component. Convert result $A+jB$ to $|Z|\angle\theta$ before taking Re$\{\cdot\}$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General formula}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\frac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+
+\eq{Lossless plane wave shortcut}{all components of $E_0$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\qquad|E_0|^2=a_x^2+a_y^2+a_z^2\]
+
+\textit{$\hat{k}$ is the propagation direction. $\mathbf{S}_\text{av}$ always points with $\hat{k}$.\\
+If $\hat{k}=-\hat{x}$: $\mathbf{S}_\text{av}$ is in $-\hat{x}$, i.e., a negative $x$-component.}
+\end{ebox}
+
+\end{multicols}
+
+\vfill
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{WAVE PARAMETERS}
+\begin{ebox}
+$\omega=2\pi f$ — ang.\ freq (rad/s)\\
+$k=\omega\sqrt{\varepsilon_r}/c$ — wavenumber\\
+$\lambda=2\pi/k$ — wavelength (m)\\
+$u_p=c/\sqrt{\varepsilon_r}$ — phase vel.\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ — impedance\\
+$\phi_0$ — initial phase (rad)\\
+$c=3\times10^8$ m/s,\;$\eta_0=377\,\Omega$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{tealbg}{teal}{POLARIZATION}
+\begin{ebox}
+$a_x,a_y$ — amplitudes (V/m)\\
+$\delta$ — phase difference (rad)\\
+$\gamma\in[0°,180°)$ — tilt angle\\
+$\chi\in[-45°,45°]$ — ellipticity\\
+$\chi>0$: RHEP;\; $\chi<0$: LHEP\\
+$|\chi|=45°$: circular\\
+$\chi=0$: linear polarization
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{coralbg}{coral}{LOSSY MEDIA}
+\begin{ebox}
+$\alpha$ — atten.\ const (Np/m)\\
+$\beta$ — phase const (rad/m)\\
+$\gamma=\alpha+j\beta$ — prop.\ const\\
+$\eta_c$ — complex impedance ($\Omega$)\\
+$\varepsilon'=\varepsilon_r\varepsilon_0$;\; $\varepsilon''=\sigma/\omega$\\
+$\sigma/\omega\varepsilon$ — loss tangent\\
+$\delta_s=1/\alpha$ — skin depth (m)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{amberbg}{amber}{CIRCULAR WAVES}
+\begin{ebox}
+$a_R,a_L$ — RHC/LHC amplitudes\\
+$\tilde{\mathbf{E}}_R=a_R(\hat{x}-j\hat{y})e^{-jkz}$\\
+$\tilde{\mathbf{E}}_L=a_L(\hat{x}+j\hat{y})e^{-jkz}$\\
+Linear $\Rightarrow a_R=a_L=a_x/2$\\[2pt]
+$-j=e^{-j\pi/2}$: cos$\to$sin in time\\
+$+j=e^{+j\pi/2}$: cos$\to{-}$sin
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{bluebg}{blue}{USEFUL NUMBERS}
+\begin{ebox}
+$\sqrt{2.56}=1.6$;\;$\sqrt{9}=3$\\
+$\sqrt{2.5}\approx1.581$;\;$\sqrt{2}\approx1.414$\\
+$32\pi\approx100.5$;\;$20\pi\approx62.8$\\
+$\arccos(2/3)\approx48.2°\approx0.84\;\text{rad}$\\
+$\arctan(4/3)\approx53.1°$\\
+$\arctan(3/4)\approx36.9°$\\
+$\arctan(24/7)\approx73.7°$
+\end{ebox}
+\end{minipage}
+
+\end{document}
