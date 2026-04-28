@@ -146,7 +146,8 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 \vspace{1pt}
 \shead{tealbg}{teal}{POLARIZATION TYPE --- QUICK LOOKUP}
 \begin{ebox}
-{\centering\begin{tabular}{@{}p{0.27\linewidth}p{0.4\linewidth}p{0.22\linewidth}@{}}
+\textit{\color{coral}$\delta$ gatekeeper: $\delta\!=\!0,\pi\Rightarrow$\textbf{linear};\enspace$\delta\!=\!\pm\pi/2$\,\&\,$a_x\!=\!a_y\Rightarrow$\textbf{circular};\enspace else \textbf{elliptical}.}\\[0.5pt]
+{\centering\begin{tabular}{@{}p{0.22\linewidth}p{0.42\linewidth}p{0.22\linewidth}@{}}
 \toprule
 Type & Condition & $\chi$\\
 \midrule
@@ -157,7 +158,8 @@ RHEP & $\chi\in(0^\circ,45^\circ)$ & $>0$\\
 \rowcolor{rowB}LHEP & $\chi\in(-45^\circ,0^\circ)$ & $<0$\\
 \bottomrule
 \end{tabular}\par}\vspace{1pt}
-\textit{$\chi>0$: RH rotation around $+\hat{k}$. $\chi<0$: LH.}
+\textit{$\chi>0$: RH/CW.\enspace$\chi<0$: LH/CCW.\enspace$|\chi|=45^\circ$: circ.\enspace$\chi=0$: linear.}\\
+\textit{$\gamma$ tilt: $0\!=\!\to$;\enspace$\pi/4\!=\!45°$;\enspace$\pi/2\!=\!\uparrow$;\enspace$(0,\pi/4)$: horiz side;\enspace$(\pi/4,\pi/2)$: vert side. Same sign as $\cos\delta$.}
 \end{ebox}
 
 \vspace{1pt}
@@ -180,13 +182,8 @@ $-$ & $+$ & Q4 & $360^\circ-\arctan|N/D|$\\
 \vspace{1pt}
 \shead{amberbg}{amber}{RHC / LHC PHASORS ($+\hat{z}$ PROPAGATION)}
 \begin{ebox}
-\[\tilde{\mathbf{E}}_R = a_R(\hat{x}+e^{-j\pi/2}\hat{y})e^{-jkz} = a_R(\hat{x}-j\hat{y})e^{-jkz}\]
-\[\tilde{\mathbf{E}}_L = a_L(\hat{x}+e^{+j\pi/2}\hat{y})e^{-jkz} = a_L(\hat{x}+j\hat{y})e^{-jkz}\]
-
-\eq{Linear $=$ RHC $+$ LHC}{}
-\[a_x e^{-jkz}\hat{x}=\tilde{\mathbf{E}}_R+\tilde{\mathbf{E}}_L\;\Longrightarrow\;\boxed{a_R=a_L=\tfrac{a_x}{2}}\]
-
-\textit{Match components: $\hat{y}$ gives $a_R\!=\!a_L$; $\hat{x}$ gives $a_R\!=\!a_x/2$.}
+\[\tilde{\mathbf{E}}_R = a_R(\hat{x}-j\hat{y})e^{-jkz}\quad\tilde{\mathbf{E}}_L = a_L(\hat{x}+j\hat{y})e^{-jkz}\]
+\textit{Linear $\Rightarrow$ $a_R=a_L=a_x/2$.\enspace$-j=e^{-j\pi/2}$: cos$\to$sin;\enspace$+j$: cos$\to{-}$sin.}
 \end{ebox}
 
 \vspace{1pt}
