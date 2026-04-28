@@ -1,0 +1,53 @@
+Now I have everything I need. Here's the complete HW2 question-to-slide mapping:
+
+---
+
+## HW2 Question → Lecture Slide Mapping
+
+### Q1 — Lossless plane wave (+y direction, ε_r = 9, 1 GHz, E along x̂)
+**Lecture 5, slides 26–43**
+- Slides 26–30: Derivation of k, intrinsic impedance η = √(μ/ε) = η₀/√ε_r, H from E using Faraday's law
+- Slides 31–35: Phase velocity u_p = c/√ε_r, wavelength λ = u_p/f, wavenumber k
+- Slides 41–43: General formula H = (1/η)k̂ × E — needed because propagation is in ŷ, not ẑ
+
+---
+
+### Q2 — Read-a-wave (E = 20cos((6π×10⁹)t − kz)ŷ, ε_r = 2.56; find f, u_p, λ, k, η, H)
+**Lecture 5, slides 26–43** (same lossless wave formulas)
+- Read ω = 6π×10⁹ → f = ω/2π; apply u_p = c/√ε_r, k = ω/u_p, η = η₀/√ε_r, then H = (1/η)ẑ × E
+
+---
+
+### Q3 — Find polarization angles ψ and χ (4 sub-cases)
+**Lecture 6, slides 14–35**
+- Slides 14–18: Linear polarization (δ = 0 or δ = π) — covers sub-cases (a) and (b)
+- Slides 27–30: Elliptical polarization — axial ratio R, ellipticity angle χ, rotation angle γ
+  - **Slide 30**: Key formulas — `tan 2γ = (tan 2ψ₀)cos δ`, `sin 2χ = (sin 2ψ₀)sin δ`, `ψ₀ = arctan(aᵧ/aₓ)` — covers sub-cases (c) and (d)
+- Slides 31–34: Fully worked example showing the exact procedure
+
+**Lecture 7, slides 1–11** — second pass through the same formulas (good review source)
+
+---
+
+### Q4 — Express linear x̂ wave as sum of RHC + LHC
+**Lecture 6, slides 19–21**
+- Slide 19: LHC phasor form: Ẽ(z) = a(x̂ + jŷ)e^{−jkz}
+- Slide 21: RHC phasor form: Ẽ(z) = a(x̂ − jŷ)e^{−jkz}
+- Write aₓx̂ = a_R(x̂ − jŷ) + a_L(x̂ + jŷ) and match real/imaginary components to solve for a_R, a_L
+
+---
+
+### Q5 — Dry soil: classify medium, find α, β, λ, u_p, η_c at 60 Hz and 1 kHz
+**Lecture 7, slides 12–24**
+- Slide 12–13: Lossy wave equation, exact formulas for α and β
+- Slide 15: Intrinsic impedance η_c = √(μ/ε_c)
+- **Slide 17**: Classification by ε''/ε' = σ/(ωε'): ≪1 → low-loss dielectric, ≫100 → good conductor, 0.01–100 → quasi-conductor
+- Slides 18–21: Low-loss dielectric approximations for α, β, η_c (likely applies at 1 kHz)
+- Slides 22–24: Good conductor approximations (check if applies at 60 Hz)
+
+---
+
+### Q6 — Lossy media H̃ phasor → time-domain E and H
+**Lecture 7, slides 12–28**
+- Slides 14–16: Ẽ(z) = E_x0 e^{−αz} e^{−jβz} x̂ and H̃ = (E_x0/η_c) e^{−αz} e^{−jβz} ŷ; since η_c is complex, E and H are out of phase
+- **Slides 23–28**: Fully worked seawater example — starts from given H(0,t), finds E_x0 and φ₀, then writes E(z,t) and H(z,t) in time domain — this is exactly the same type of problem as Q6
