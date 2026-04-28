@@ -22,7 +22,7 @@
 \definecolor{rowB}{HTML}{F2F2EF}
 
 \newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
-  innertopmargin=1pt,innerbottommargin=1pt,skipabove=1pt,skipbelow=1pt]{ebox}
+  innertopmargin=0.5pt,innerbottommargin=0.5pt,skipabove=0.5pt,skipbelow=0.5pt]{ebox}
 
 \newcommand{\shead}[3]{%
   \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
@@ -31,7 +31,7 @@
 \newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
 
 \setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
-\setlength{\abovedisplayskip}{0.5pt}\setlength{\belowdisplayskip}{1pt}
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0.5pt}
 \setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
 \setlength{\columnsep}{5pt}\setlength{\multicolsep}{1pt}
 
@@ -62,7 +62,7 @@
 \textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.}
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{purplebg}{purple}{LOSSLESS PLANE WAVE — $\mathbf{E}$ AND $\mathbf{H}$}
 \begin{ebox}
 \eq{General $\mathbf{E}$}{}
@@ -81,7 +81,7 @@
 \textit{\color{coral}$\cos^{-1}$ gives $[0,\pi]$; take $\phi_0$ in that range.}
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{purplebg}{purple}{DIRECTION OF PROPAGATION}
 \begin{ebox}
 \makebox[0.92\linewidth][c]{\begin{tabular}{@{}ll@{\quad}ll@{}}
@@ -96,7 +96,7 @@ $\omega t-ky$ & $+\hat{y}$ & $\omega t+ky$ & $-\hat{y}$\\
 \textit{Minus before $k$-axis $\Rightarrow$ $+$ direction. Plus $\Rightarrow$ $-$ direction.}
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ — FIND $\hat{H}$ DIRECTION}
 \begin{ebox}
 \makebox[0.92\linewidth][c]{\begin{tabular}{@{}lll@{\quad}lll@{}}
@@ -113,7 +113,7 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 \textit{Cyclic: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$, $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$, $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$. Reverse $\Rightarrow$ flip sign.}
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{graybg}{gray}{READ A WAVE EQUATION — QUICK STEPS}
 \begin{ebox}
 \textbf{E.g.}\;$\mathbf{E}=20\cos(\omega t - kz)\,\hat{y}$\\[1pt]
@@ -138,12 +138,9 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 
 \eq{Ellipticity angle $\chi$}{$\chi\in[-45^\circ,45^\circ]$}
 \[\sin(2\chi)=\frac{2a_xa_y\sin\delta}{a_x^2+a_y^2}\]
-
-\eq{Linear peak amplitude}{only when $\delta=0$ or $\pi$}
-\[|\mathbf{E}|_\text{peak}=\sqrt{a_x^2+a_y^2}\]
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{tealbg}{teal}{$\psi$ ORIENTATION \& POLARIZATION TYPE}
 \begin{ebox}
 \textit{\color{coral}$\delta$ gatekeeper: $\delta\!=\!0,\pi\Rightarrow$\textbf{linear};\enspace$\delta\!=\!\pm\pi/2$\,\&\,$a_x\!=\!a_y\Rightarrow$\textbf{circular};\enspace else \textbf{elliptical}.}\\[0.5pt]
@@ -153,16 +150,31 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 $\psi$ (rad) & Ellipse Orientation\\
 \midrule
 \rowcolor{rowB}$0$ & Horizontal ($\rightarrow$), aligned with $\hat{x}$\\
-$(0,\,\pi/4)$ & Tilted — horiz side\\
 \rowcolor{rowB}$\pi/4$ & 45° diagonal\\
-$(\pi/4,\,\pi/2)$ & Tilted — vert side\\
-\rowcolor{rowB}$\pi/2$ & Vertical ($\uparrow$), aligned with $\hat{y}$\\
+$\pi/2$ & Vertical ($\uparrow$), aligned with $\hat{y}$\\
 \bottomrule
-\end{tabular}\par}\vspace{1pt}
-\textit{$\chi>0$: RH/CW.\enspace$\chi<0$: LH/CCW.\enspace$|\chi|=\pi/4$: circ.\enspace$\chi=0$: linear.}
+\end{tabular}\par}\vspace{0.5pt}
+\textit{$(0,\pi/4)$: tilted horiz side;\enspace$(\pi/4,\pi/2)$: tilted vert side.}\\[-0.5pt]
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\chi$ SHAPE \& HANDEDNESS}
+\begin{ebox}
+\textit{$\chi$ describes the shape of the ellipse and handedness (rotation direction).}\\[1pt]
+{\centering\begin{tabular}{@{}p{0.22\linewidth}p{0.32\linewidth}p{0.32\linewidth}@{}}
+\toprule
+$\chi$ (rad) & Polarization Type & Handedness\\
+\midrule
+\rowcolor{rowB}$0$ & Linear & None\\
+$(0,\,\pi/4)$ & RHEP & RH (CW)\\
+\rowcolor{rowB}$\pi/4$ & RHC & RH (CW)\\
+$-\pi/4$ & LHC & LH (CCW)\\
+\rowcolor{rowB}$(-\pi/4,\,0)$ & LHEP & LH (CCW)\\
+\bottomrule
+\end{tabular}\par}
+\end{ebox}
+
+\vspace{0.3pt}
 \shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\gamma)$}
 \begin{ebox}
 $N=2a_xa_y\cos\delta$,\quad $D=a_x^2-a_y^2$:\\[1pt]
@@ -180,14 +192,7 @@ $-$ & $+$ & $360^\circ-\arctan|N/D|$ & $2\pi-\arctan|N/D|$\\
 \textit{Convert: $\theta_\text{rad}=\theta_\circ\times\tfrac{\pi}{180}$;\enspace$\theta_\circ=\theta_\text{rad}\times\tfrac{180}{\pi}$.}
 \end{ebox}
 
-\vspace{1pt}
-\shead{amberbg}{amber}{RHC / LHC PHASORS ($+\hat{z}$ PROPAGATION)}
-\begin{ebox}
-\[\tilde{\mathbf{E}}_R = a_R(\hat{x}-j\hat{y})e^{-jkz}\quad\tilde{\mathbf{E}}_L = a_L(\hat{x}+j\hat{y})e^{-jkz}\]
-\textit{Linear $\Rightarrow$ $a_R=a_L=a_x/2$.\enspace$-j=e^{-j\pi/2}$: cos$\to$sin;\enspace$+j$: cos$\to{-}$sin.}
-\end{ebox}
-
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
 \begin{ebox}
 {\centering\begin{tabular}{@{}p{0.4\linewidth}p{0.52\linewidth}@{}}
@@ -202,18 +207,6 @@ $Ae^{j\phi}$ & $A\cos(\omega t-\beta z+\phi)$\\
 \bottomrule
 \end{tabular}\par}\vspace{1pt}
 $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
-\end{ebox}
-
-\vspace{1pt}
-\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
-\begin{ebox}
-\eq{General}{W/m$^2$}
-\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
-
-\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
-\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
-
-\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
 \end{ebox}
 
 \columnbreak
@@ -236,7 +229,7 @@ $0.01<\varepsilon''/\varepsilon'<100$ & Quasi-conductor & Exact eqs\\
 \textit{Dry soil ($\varepsilon_r\!=\!2.5$, $\sigma\!=\!10^{-4}$): $\varepsilon''/\varepsilon'=(7.193\!\times\!10^5)/f$.}
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{coralbg}{coral}{EXACT FORMULAS (QUASI-CONDUCTOR)}
 \begin{ebox}
 \eq{Let $X=\sqrt{1+(\sigma/\omega\varepsilon)^2}=\sqrt{1+(\varepsilon''/\varepsilon')^2}$, $\;\varepsilon''=\sigma/\omega$, $\;\varepsilon=\varepsilon_r\varepsilon_0$, $\;\mu=\mu_0$}{}
@@ -250,7 +243,7 @@ $0.01<\varepsilon''/\varepsilon'<100$ & Quasi-conductor & Exact eqs\\
 where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{coralbg}{coral}{GOOD CONDUCTOR ($\sigma/\omega\varepsilon\gg 100$)}
 \begin{ebox}
 \[\alpha\approx\omega\sqrt{\tfrac{\mu_0\varepsilon''}{2}}=\omega\sqrt{\tfrac{\mu_0\sigma}{2\omega}}=\sqrt{\pi f\mu_0\sigma}\quad\text{(Np/m)}\]
@@ -259,7 +252,7 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \[\eta_c\approx\sqrt{j\tfrac{\mu_0}{\varepsilon''}}=(1+j)\sqrt{\tfrac{\pi f\mu_0}{\sigma}}\approx(1+j)\tfrac{\alpha}{\sigma}\quad(\Omega)\]
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{coralbg}{coral}{LOW-LOSS DIELECTRIC ($\sigma/\omega\varepsilon\ll 0.01$)}
 \begin{ebox}
 \[\alpha\approx\tfrac{\omega\varepsilon''}{2}\sqrt{\tfrac{\mu_0}{\varepsilon'}}=\tfrac{\sigma}{2}\sqrt{\tfrac{\mu_0}{\varepsilon}}=\tfrac{\sigma\eta}{2}\;\text{(Np/m)}\]
@@ -267,7 +260,7 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \[\eta_c\approx\sqrt{\tfrac{\mu_0}{\varepsilon}}=\eta\;(\Omega,\;\angle\approx0^\circ)\]
 \end{ebox}
 
-\vspace{1pt}
+\vspace{0.3pt}
 \shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
 \begin{ebox}
 \eq{Step 1 — read $\alpha$, $\beta$}{}
@@ -284,6 +277,17 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
 \end{ebox}
 
+\vspace{0.3pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+
+\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+
+\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
+\end{ebox}
 
 \end{multicols}
 
