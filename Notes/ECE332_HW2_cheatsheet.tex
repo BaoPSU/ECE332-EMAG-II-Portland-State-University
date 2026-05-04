@@ -9,6 +9,7 @@
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{array}
+\usepackage{graphicx}
 
 % ── Colors (identical to HW1 sheet) ──
 \definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
@@ -132,33 +133,20 @@ $\sin(\theta{-}\pi/2)$ & $-\cos\theta$ & $\cos(\theta{-}\pi/2)$ & $\sin\theta$\\
 %──────────────────────────────────────
 \shead{tealbg}{teal}{POLARIZATION --- GENERAL WAVE}
 \begin{ebox}
-\[\mathbf{E}(z,t)=a_x\cos(\omega t\!-\!kz)\,\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\,\hat{y}\quad\text{(V/m)}\]
+{\centering\includegraphics[width=0.50\linewidth,keepaspectratio]{pol_ellipse}\par}\vspace{0.5pt}
+\[\mathbf{E}=a_x\cos(\omega t\!-\!kz)\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\hat{y}\]
+\textit{$a_x,a_y$: bounding box half-widths (V/m);\enspace$\delta$: phase diff (rad)}
 
-\eq{Tilt angle $\psi$ (major axis from $\hat{x}$)}{$\psi\in[0,\pi)$ rad}
-\[\tan(2\psi)=\frac{2a_xa_y\cos\delta}{a_x^2-a_y^2}\quad(\psi\text{ in rad})\]
+\eq{Auxiliary angle}{$\psi_0=\arctan(a_y/a_x)\in(0,\pi/2)$}
 
-\eq{Ellipticity angle $\chi$}{$\chi\in[-\pi/4,\,\pi/4]$ rad}
-\[\sin(2\chi)=\frac{2a_xa_y\sin\delta}{a_x^2+a_y^2}\quad(\chi\text{ in rad})\]
+\eq{Rotation angle $\gamma$ (major axis from $\hat{x}$)}{$\gamma\in[0,\pi)$}
+\[\tan(2\gamma)=\tan(2\psi_0)\cos\delta\]
+\textit{\color{coral}If sign$(\gamma)\!\neq\!$sign$(\delta)$: $\gamma\leftarrow\gamma\pm\tfrac{\pi}{2}$.}
 
-\eq{Peak amplitude $|\mathbf{E}|_\text{peak}$}{V/m, linear pol.\ only}
-\[|\mathbf{E}|_\text{peak}=\sqrt{a_x^2+a_y^2}\;\text{(V/m)}\]
-\end{ebox}
+\eq{Ellipticity angle $\chi$}{$\chi\in[-\pi/4,\pi/4]$}
+\[\sin(2\chi)=\sin(2\psi_0)\sin\delta\]
 
-\vspace{0.3pt}
-\shead{tealbg}{teal}{$\psi$ ORIENT. \& POL. TYPE}
-\begin{ebox}
-\textit{$\psi$ = orientation angle of the ellipse.}\\[1pt]
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.40\linewidth}p{0.55\linewidth}@{}}
-\toprule
-$\psi$ (rad) & Ellipse Orientation\\
-\midrule
-\rowcolor{rowB}$0$ & Horizontal ($\rightarrow$), aligned with $\hat{x}$\\
-$(0,\,\pi/4)$ & Tilted --- horiz side\\
-\rowcolor{rowB}$\pi/4$ & 45° diagonal\\
-$(\pi/4,\,\pi/2)$ & Tilted --- vert side\\
-\rowcolor{rowB}$\pi/2$ & Vertical ($\uparrow$), aligned with $\hat{y}$\\
-\bottomrule
-\end{tabular}}}\par}
+\eq{Axial ratio $R=1/\tan|\chi|$}{major axis $=R\times$ minor;\enspace$R\geq1$}
 \end{ebox}
 
 \vspace{0.3pt}
@@ -179,12 +167,12 @@ $-\pi/4$ & LHC & LH (CW)\\
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\psi)$}
+\shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\gamma)$}
 \begin{ebox}
-$N=2a_xa_y\cos\delta$,\quad $D=a_x^2-a_y^2$:\\[1pt]
+$N=\sin(2\psi_0)\cos\delta$,\quad $D=\cos(2\psi_0)$:\\[1pt]
 {\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ccll@{}}
 \toprule
-$N$ & $D$ & $2\psi$ (deg) & $2\psi$ (rad)\\
+$N$ & $D$ & $2\gamma$ (deg) & $2\gamma$ (rad)\\
 \midrule
 \rowcolor{rowB}$+$ & $+$ & $\arctan(N/D)$ & $\arctan(N/D)$\\
 $+$ & $-$ & $180^\circ-\arctan|N/D|$ & $\pi-\arctan|N/D|$\\
@@ -192,7 +180,7 @@ $+$ & $-$ & $180^\circ-\arctan|N/D|$ & $\pi-\arctan|N/D|$\\
 $-$ & $+$ & $360^\circ-\arctan|N/D|$ & $2\pi-\arctan|N/D|$\\
 \bottomrule
 \end{tabular}}\par}\vspace{1pt}
-\textit{$\psi=2\psi/2$.\quad $D=0\Rightarrow2\psi=\tfrac{\pi}{2}\Rightarrow\psi=\tfrac{\pi}{4}$.}\\[0.5pt]
+\textit{$\gamma=(2\gamma)/2$.\quad $D=0\Rightarrow2\gamma=\tfrac{\pi}{2}\Rightarrow\gamma=\tfrac{\pi}{4}$.}\\[0.5pt]
 \textit{Convert: $\theta_\text{rad}=\theta_\circ\times\tfrac{\pi}{180}$;\enspace$\theta_\circ=\theta_\text{rad}\times\tfrac{180}{\pi}$.}
 \end{ebox}
 
@@ -311,12 +299,12 @@ $c=3\times10^8$ m/s\\
 \begin{minipage}[t]{0.19\linewidth}
 \shead{tealbg}{teal}{POLARIZATION}
 \begin{ebox}
-$a_x,a_y$ --- amplitudes (V/m)\\
+$a_x,a_y$ --- bounding box half-widths (V/m)\\
 $\delta$ --- phase difference (rad)\\
-$\psi\in[0,\pi)$ --- tilt angle\\
-$\chi\in[-45^\circ,45^\circ]$ --- ellipticity\\
-$\chi>0$: RHEP;\;$\chi<0$: LHEP\\
-$|\chi|=45^\circ$: circular;\;$\chi=0$: linear
+$\psi_0=\arctan(a_y/a_x)$ --- auxiliary angle\\
+$\gamma\in[0,\pi)$ --- rotation/tilt angle\\
+$\chi\in[-\pi/4,\pi/4]$ --- ellipticity angle\\
+$\chi>0$: RHEP (CCW);\;$\chi<0$: LHEP (CW)
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
