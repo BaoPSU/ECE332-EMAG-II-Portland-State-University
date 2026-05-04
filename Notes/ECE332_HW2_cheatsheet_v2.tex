@@ -1,0 +1,389 @@
+\documentclass[6pt,letterpaper]{article}
+\usepackage[margin=0.25in, top=0.3in, bottom=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{graphicx}
+
+% ── Colors (identical to HW1 sheet) ──
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{gray}{HTML}{444441}\definecolor{graybg}{HTML}{F1EFE8}
+\definecolor{pink}{HTML}{72243E}\definecolor{pinkbg}{HTML}{FBEAF0}
+\definecolor{rowB}{HTML}{F2F2EF}
+
+\newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
+  innertopmargin=0.5pt,innerbottommargin=0.5pt,skipabove=0.5pt,skipbelow=0.5pt]{ebox}
+
+\newcommand{\shead}[3]{%
+  \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+  {\color{#2}\bfseries\fontsize{6}{7}\selectfont #3}}\vspace{0.5pt}}
+
+\newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\setlength{\columnsep}{5pt}\setlength{\multicolsep}{1pt}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 --- HW2 Equation Sheet (v2)}}
+\fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
+
+\begin{document}
+\fontsize{6}{7}\selectfont
+\begin{multicols}{3}
+
+%──────────────────────────────────────
+\shead{purplebg}{purple}{PLANE WAVE PARAMETERS (LOSSLESS)}
+\begin{ebox}
+\eq{Angular frequency}{$\omega$: rad/s;\enspace$f$: Hz}
+\[\omega = 2\pi f \qquad f = \frac{\omega}{2\pi}\]
+
+\eq{Phase velocity}{m/s;\enspace nonmagnetic: $\mu_r=1$}
+\[u_p = \frac{c}{\sqrt{\varepsilon_r}} \qquad c = 3\times10^8\;\text{m/s}\]
+
+\eq{Wavenumber $k$}{rad/m}
+\[k = \frac{\omega}{u_p} = \frac{2\pi}{\lambda} = \frac{\omega\sqrt{\varepsilon_r}}{c}\]
+
+\eq{Wavelength \& impedance}{m \& $\Omega$}
+\[\lambda = \frac{u_p}{f} = \frac{2\pi}{k}\;\text{(m)} \qquad \eta = \frac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega),\;\eta_0=377\,\Omega\]
+
+\textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.\enspace Base: $\mathbf{E}\!=\!E_0\cos(\omega t\pm kx+\phi_0)\hat{e}$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{purplebg}{purple}{LOSSLESS PLANE WAVE --- $\mathbf{E}$ AND $\mathbf{H}$}
+\begin{ebox}
+\eq{General $\mathbf{E}$}{}
+\[\mathbf{E} = E_0\cos(\omega t - k\,\hat{k}\cdot\mathbf{r} + \phi_0)\,\hat{e}\]
+\textit{$\hat{k}$ = direction of travel (unit vector), e.g.\ $+y\Rightarrow\hat{k}=\hat{y}$.}\\
+\textit{$k$ = wavenumber (rad/m): how fast phase changes in space; $k=\omega\sqrt{\varepsilon_r}/c=2\pi/\lambda$.}\\
+\textit{$\phi_0$ = initial phase constant (rad): shift set by given condition at known $t$, position.}\\
+\textit{$\hat{e}$ = polarization direction of $\mathbf{E}$ (unit vector), e.g.\ E along $x\Rightarrow\hat{e}=\hat{x}$.}\\
+\textit{$\mathbf{r}=x\hat{x}+y\hat{y}+z\hat{z}$, so $\hat{k}\cdot\mathbf{r}$ picks the axis, e.g.\ $\hat{k}=\hat{y}\Rightarrow\hat{k}\cdot\mathbf{r}=y$.}
+
+\eq{$\mathbf{H}$ from $\mathbf{E}$}{$\hat{k}$, $\hat{E}$, $\hat{H}$ form right-hand set}
+\[\mathbf{H} = \frac{1}{\eta}\,(\hat{k}\times\mathbf{E})\]
+
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{purplebg}{purple}{DIRECTION OF PROPAGATION}
+\begin{ebox}
+\makebox[0.92\linewidth][c]{\begin{tabular}{@{}ll@{\quad}ll@{}}
+\toprule
+Arg.\ contains & $\hat{k}$ & Arg.\ contains & $\hat{k}$\\
+\midrule
+\rowcolor{rowB}$\omega t-kz$ & $+\hat{z}$ & $\omega t+kz$ & $-\hat{z}$\\
+$\omega t-ky$ & $+\hat{y}$ & $\omega t+ky$ & $-\hat{y}$\\
+\rowcolor{rowB}$\omega t-kx$ & $+\hat{x}$ & $\omega t+kx$ & $-\hat{x}$\\
+\bottomrule
+\end{tabular}}\\[1pt]
+\textit{Minus before $k$-axis $\Rightarrow$ $+$ direction. Plus $\Rightarrow$ $-$ direction.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ --- FIND $\hat{H}$ DIRECTION}
+\begin{ebox}
+\makebox[0.92\linewidth][c]{\begin{tabular}{@{}lll@{\quad}lll@{}}
+\toprule
+$\hat{k}$ & $\hat{E}$ & $\hat{H}$ & $\hat{k}$ & $\hat{E}$ & $\hat{H}$\\
+\midrule
+\rowcolor{rowB}$+\hat{z}$ & $\hat{x}$ & $+\hat{y}$ & $+\hat{z}$ & $\hat{y}$ & $-\hat{x}$\\
+$+\hat{y}$ & $\hat{x}$ & $-\hat{z}$ & $+\hat{y}$ & $\hat{z}$ & $+\hat{x}$\\
+\rowcolor{rowB}$+\hat{x}$ & $\hat{y}$ & $+\hat{z}$ & $+\hat{x}$ & $\hat{z}$ & $-\hat{y}$\\
+$-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
+\rowcolor{rowB}$-\hat{y}$ & $\hat{x}$ & $+\hat{z}$ & $-\hat{z}$ & $\hat{x}$ & $-\hat{y}$\\
+\bottomrule
+\end{tabular}}\\[1pt]
+\textit{Cyclic: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$, $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$, $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$. Reverse $\Rightarrow$ flip sign.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{TRIG PHASE SHIFTS \textnormal{\textit{($\theta\!\equiv\!\omega t\!-\!kz$)}}}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.18\linewidth}p{0.25\linewidth}p{0.18\linewidth}@{}}
+\toprule
+Input & Result & Input & Result\\
+\midrule
+\rowcolor{rowB}$\sin(\theta{+}\pi/2)$ & $\cos\theta$ & $\cos(\theta{+}\pi/2)$ & $-\sin\theta$\\
+$\sin(\theta{-}\pi/2)$ & $-\cos\theta$ & $\cos(\theta{-}\pi/2)$ & $\sin\theta$\\
+\rowcolor{rowB}$\sin(\theta{\pm}\pi)$ & $-\sin\theta$ & $\cos(\theta{\pm}\pi)$ & $-\cos\theta$\\
+\bottomrule
+\end{tabular}}}\par}
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{tealbg}{teal}{POLARIZATION --- GENERAL WAVE}
+\begin{ebox}
+{\centering\includegraphics[width=\linewidth,keepaspectratio]{pol_ellipse.jpg}\par}
+\[\mathbf{E}=a_x\cos(\omega t\!-\!kz)\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\hat{y}\]
+\textit{$a_x,a_y$: bounding box half-widths (V/m);\enspace$\delta$: phase diff (rad)}\\[-1pt]
+\textit{\color{gray}$\delta=0$ or $\pi\Rightarrow$ \textbf{linear} pol.\enspace($\chi=0$, no ellipse)}
+\eq{Auxiliary angle}{$\psi_0=\arctan(a_y/a_x)\in(0,\pi/2)$}
+\eq{Rotation angle $\gamma$ (major axis from $\hat{x}$)}{$\gamma\in[0,\pi)$}
+\[\tan(2\gamma)=\tan(2\psi_0)\cos\delta\]
+\textit{\color{coral}If sign$(\gamma)\!\neq\!$sign$(\delta)$: $\gamma\leftarrow\gamma\pm\tfrac{\pi}{2}$.}
+\eq{Ellipticity angle $\chi$}{$\chi\in[-\pi/4,\pi/4]$}
+\[\sin(2\chi)=\sin(2\psi_0)\sin\delta\]
+\eq{Axial ratio $R=1/\tan|\chi|$}{major axis $=R\times$ minor;\enspace$R\geq1$}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\chi$ SHAPE \& HANDEDNESS}
+\begin{ebox}
+\textit{$\chi$ describes the shape of the ellipse and rotation direction.}\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.30\linewidth}p{0.33\linewidth}p{0.30\linewidth}@{}}
+\toprule
+$\chi$ (rad) & Polarization Type & Handedness\\
+\midrule
+\rowcolor{rowB}$0$ & Linear & None\\
+$(0,\,\pi/4)$ & RHEP & RH (CCW)\\
+\rowcolor{rowB}$\pi/4$ & RHC & RH (CCW)\\
+$-\pi/4$ & LHC & LH (CW)\\
+\rowcolor{rowB}$(-\pi/4,\,0)$ & LHEP & LH (CW)\\
+\bottomrule
+\end{tabular}}}\par}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\gamma)$}
+\begin{ebox}
+$N=\sin(2\psi_0)\cos\delta$,\quad $D=\cos(2\psi_0)$:\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ccll@{}}
+\toprule
+$N$ & $D$ & $2\gamma$ (deg) & $2\gamma$ (rad)\\
+\midrule
+\rowcolor{rowB}$+$ & $+$ & $\arctan(N/D)$ & $\arctan(N/D)$\\
+$+$ & $-$ & $180^\circ-\arctan|N/D|$ & $\pi-\arctan|N/D|$\\
+\rowcolor{rowB}$-$ & $-$ & $180^\circ+\arctan|N/D|$ & $\pi+\arctan|N/D|$\\
+$-$ & $+$ & $360^\circ-\arctan|N/D|$ & $2\pi-\arctan|N/D|$\\
+\bottomrule
+\end{tabular}}\par}\vspace{1pt}
+\textit{$\gamma=(2\gamma)/2$.\quad $D=0\Rightarrow2\gamma=\tfrac{\pi}{2}\Rightarrow\gamma=\tfrac{\pi}{4}$.}\\[0.5pt]
+\textit{Convert: $\theta_\text{rad}=\theta_\circ\times\tfrac{\pi}{180}$;\enspace$\theta_\circ=\theta_\text{rad}\times\tfrac{180}{\pi}$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.44\linewidth}p{0.51\linewidth}@{}}
+\toprule
+Phasor coeff & Time domain (add $e^{-\alpha z}$)\\
+\midrule
+\rowcolor{rowB}$A$ (real) & $A\cos(\omega t-\beta z)$\\
+$-jA$ & $A\sin(\omega t-\beta z)$\\
+\rowcolor{rowB}$+jA$ & $-A\sin(\omega t-\beta z)$\\
+$Ae^{j\phi}$ & $A\cos(\omega t-\beta z+\phi)$\\
+\rowcolor{rowB}$A+jB$ & $|Z|\cos(\omega t-\beta z+\theta)$\\
+\bottomrule
+\end{tabular}}}\par}\vspace{1pt}
+$|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{coralbg}{coral}{LOSSY MEDIA --- CLASSIFICATION}
+\begin{ebox}
+\eq{Loss tangent}{}
+\[\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
+
+{\centering\begin{tabular}{@{}p{0.25\linewidth}p{0.36\linewidth}p{0.3\linewidth}@{}}
+\toprule
+$\varepsilon''/\varepsilon'$ & Type & Use\\
+\midrule
+\rowcolor{rowB}$>100$ & Good conductor & GC approx\\
+$0.01$ to $100$ & Quasi-conductor & Exact eqs\\
+\rowcolor{rowB}$<0.01$ & Low-loss dielectric & LD approx\\
+\bottomrule
+\end{tabular}\par}
+\textit{Non-magnetic ($\mu_r\!=\!1$): $\mu\!=\!\mu_0$.\quad $\varepsilon'\!=\!\varepsilon_r\varepsilon_0$ ($\varepsilon_r\!=\!1$: vacuum/air).}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+
+\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+
+\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
+\begin{ebox}
+\eq{Step 1 --- read $\alpha$, $\beta$}{}
+\[\tilde{\mathbf{H}}\propto e^{-\alpha y}e^{-j\beta y}\;\Rightarrow\;\gamma=\alpha+j\beta\]
+
+\eq{Step 2 --- $\eta_c$ (nonmagnetic: $\mu_r\!=\!1$)}{}
+\[\eta_c=\frac{j\omega\mu_0}{\gamma}=\frac{\omega\mu_0(\beta+j\alpha)}{\alpha^2+\beta^2}\]
+
+\eq{Step 3 --- find $\tilde{\mathbf{E}}$}{}
+\[\tilde{\mathbf{E}}=-\eta_c\,(\hat{k}\times\tilde{\mathbf{H}})\]
+
+\eq{Step 4 --- time domain}{}
+\[Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)\]
+\textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
+\end{ebox}
+
+\end{multicols}
+
+%──────────────────────────────────────
+% TABLE 7-1: full-width, replaces EXACT FORMULAS / GOOD CONDUCTOR / LOW-LOSS DIELECTRIC
+%──────────────────────────────────────
+\vspace{2pt}
+{\fontsize{5.3}{6.8}\selectfont
+\noindent{\centering\textbf{Table~7-1}\enspace
+  Expressions for $\alpha$, $\beta$, $\eta_c$, $u_p$, and $\lambda$ for various types of media.\par}
+\vspace{1.5pt}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\noindent\makebox[\textwidth][c]{%
+\begin{tabular}{@{}
+  >{\bfseries}l
+  >{\centering\arraybackslash}m{0.295\textwidth}
+  >{\centering\arraybackslash}m{0.115\textwidth}
+  >{\centering\arraybackslash}m{0.195\textwidth}
+  >{\centering\arraybackslash}m{0.195\textwidth}
+  l
+@{}}
+\toprule
+\rowcolor{bluebg}
+ & \multicolumn{1}{c}{\color{blue}\bfseries Any Medium}
+ & \color{blue}\bfseries Lossless Medium
+ & \color{blue}\bfseries Low-loss Medium
+ & \color{blue}\bfseries Good Conductor
+ & \\[-2pt]
+\rowcolor{bluebg}
+ &
+ & \color{blue}($\sigma=0$)
+ & \color{blue}($\varepsilon''/\varepsilon'\ll 1$)
+ & \color{blue}($\varepsilon''/\varepsilon'\gg 1$)
+ & \color{blue}\bfseries Units \\
+\midrule
+$\alpha=$ &
+  $\omega\!\left[\dfrac{\mu\varepsilon'}{2}\!\left(\sqrt{1\!+\!\left(\dfrac{\varepsilon''}{\varepsilon'}\right)^{\!2}}\!-\!1\right)\right]^{\!1/2}$ &
+  $0$ &
+  $\approx\dfrac{\sigma}{2}\sqrt{\dfrac{\mu}{\varepsilon'}}$ &
+  $\approx\sqrt{\pi f\mu\sigma}$ &
+  (Np/m) \\[4pt]
+\rowcolor{rowB}
+$\beta=$ &
+  $\omega\!\left[\dfrac{\mu\varepsilon'}{2}\!\left(\sqrt{1\!+\!\left(\dfrac{\varepsilon''}{\varepsilon'}\right)^{\!2}}\!+\!1\right)\right]^{\!1/2}$ &
+  $\omega\sqrt{\mu\varepsilon}$ &
+  $\approx\omega\sqrt{\mu\varepsilon'}$ &
+  $\approx\sqrt{\pi f\mu\sigma}$ &
+  (rad/m) \\[4pt]
+$\eta_c=$ &
+  $\sqrt{\dfrac{\mu}{\varepsilon'}}\!\left(1\!-\!j\dfrac{\varepsilon''}{\varepsilon'}\right)^{\!-1/2}$\newline
+  \textit{or:}\enspace$\eta/X^{1/2}\angle\theta_\eta$,\;$\theta_\eta\!=\!\tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}$ &
+  $\sqrt{\dfrac{\mu}{\varepsilon}}$ &
+  $\approx\sqrt{\dfrac{\mu}{\varepsilon'}}$ &
+  $\approx(1\!+\!j)\dfrac{\alpha}{\sigma}$ &
+  ($\Omega$) \\[4pt]
+\rowcolor{rowB}
+$u_p=$ &
+  $\omega/\beta$ &
+  $1/\sqrt{\mu\varepsilon}$ &
+  $\approx 1/\sqrt{\mu\varepsilon'}$ &
+  $\approx\sqrt{4\pi f/\mu\sigma}$ &
+  (m/s) \\
+$\lambda=$ &
+  $2\pi/\beta = u_p/f$ &
+  $u_p/f$ &
+  $\approx u_p/f$ &
+  $\approx u_p/f$ &
+  (m) \\
+\bottomrule
+\multicolumn{6}{@{}l@{}}{\textit{Notes:
+  $\varepsilon'=\varepsilon_r\varepsilon_0$;\enspace
+  $\varepsilon''=\sigma/\omega$;\enspace
+  $X=\sqrt{1+(\varepsilon''/\varepsilon')^2}$;\enspace
+  $\eta=\eta_0/\sqrt{\varepsilon_r}$;\enspace
+  in free space $\varepsilon=\varepsilon_0$, $\mu=\mu_0$;\enspace
+  low-loss: $\varepsilon''/\varepsilon'<0.01$;\enspace
+  GC: $\varepsilon''/\varepsilon'>100$.}}\\
+\end{tabular}%
+}
+}
+
+\vfill
+\noindent
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{WAVE PARAMS}
+\begin{ebox}
+$\omega=2\pi f$ --- ang.\ freq (rad/s)\\
+$k=\omega\sqrt{\varepsilon_r}/c$ --- wavenumber (rad/m)\\
+$\lambda=2\pi/k$ --- wavelength (m)\\
+$u_p=c/\sqrt{\varepsilon_r}$ --- phase vel.\ (m/s)\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ --- impedance ($\Omega$)\\
+$c=3\times10^8$ m/s\\
+\textbf{$\eta_0=377\,\Omega$} (free space)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{LOSSLESS MEDIA}
+\begin{ebox}
+$\sigma=0$ (vacuum, air, ideal dielectric)\\
+$\varepsilon''=\sigma/\omega=0\;\Rightarrow\;\varepsilon=\varepsilon'$ (real)\\
+$\alpha=0$;\enspace no attenuation\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ real ($\Omega$)\\
+$\eta_0=377\,\Omega$ (free space)\\
+$\mathbf{E}$ and $\mathbf{H}$ in phase ($\theta_\eta=0$)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{coralbg}{coral}{LOSSY MEDIA}
+\begin{ebox}
+$\alpha$ --- atten.\ const (Np/m)\\
+$\beta$ --- phase const (rad/m)\\
+$\gamma=\alpha+j\beta$ --- prop.\ const (m$^{-1}$)\\
+$\eta_c$ --- complex impedance ($\Omega$)\\
+$\varepsilon'=\varepsilon_r\varepsilon_0$;\;$\varepsilon''=\sigma/\omega$ (F/m)\\
+$\mu_r$ --- rel.\ permeability ($\mu_r=1$: nonmagnetic)\\
+$\mu=\mu_r\mu_0$;\;$\mu_0=4\pi\times10^{-7}$ H/m\\
+$\delta_s=1/\alpha$ --- skin depth (m)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{amberbg}{amber}{CIRCULAR WAVES}
+\begin{ebox}
+$\tilde{\mathbf{E}}_R=a_R(\hat{x}+e^{-j\pi/2}\hat{y})e^{-jkz}=a_R(\hat{x}-j\hat{y})e^{-jkz}$\\
+$\tilde{\mathbf{E}}_L=a_L(\hat{x}+e^{+j\pi/2}\hat{y})e^{-jkz}=a_L(\hat{x}+j\hat{y})e^{-jkz}$\\
+$a_R,a_L,a_x$ in V/m;\;$k$ in rad/m\\
+Linear: $a_R=a_L=a_x/2$\\
+$-j=e^{-j\pi/2}$: cos$\to$sin\\
+$+j=e^{+j\pi/2}$: cos$\to{-}$sin
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{bluebg}{blue}{USEFUL NUMBERS}
+\begin{ebox}
+$\sqrt{2.56}=1.6$;\;$\sqrt{9}=3$\\
+$\sqrt{2.5}\approx1.581$;\;$\sqrt{2}\approx1.414$\\
+$\arccos(2/3)\approx48.2^\circ=0.84\;\text{rad}$\\
+$\arctan(4/3)\approx53.1^\circ=0.927$ rad\\
+$\arctan(3/4)\approx36.9^\circ=0.644$ rad\\
+$\arctan(24/7)\approx73.7^\circ=1.287$ rad
+\end{ebox}
+\end{minipage}
+
+\end{document}
