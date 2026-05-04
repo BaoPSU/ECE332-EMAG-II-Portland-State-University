@@ -198,6 +198,18 @@ $Ae^{j\phi}$ & $A\cos(\omega t-\beta z+\phi)$\\
 $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
 \end{ebox}
 
+\vspace{0.3pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+
+\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+
+\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
+\end{ebox}
+
 \columnbreak
 
 %──────────────────────────────────────
@@ -219,15 +231,15 @@ $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{coralbg}{coral}{EXACT FORMULAS (QUASI-CONDUCTOR)}
+\shead{coralbg}{coral}{EXACT FORMULAS (ANY MEDIUM)}
 \begin{ebox}
-\eq{Let $X=\sqrt{1+(\sigma/\omega\varepsilon)^2}=\sqrt{1+(\varepsilon''/\varepsilon')^2}$, $\;\varepsilon''=\sigma/\omega$, $\;\varepsilon=\varepsilon_r\varepsilon_0$, $\;\mu=\mu_0$}{}
+\eq{Let $X=\sqrt{1+(\sigma/\omega\varepsilon')^2}=\sqrt{1+(\varepsilon''/\varepsilon')^2}$,\;$\varepsilon''=\sigma/\omega$,\;$\varepsilon'=\varepsilon_r\varepsilon_0$}{}
 
 \eq{$\alpha$ and $\beta$}{}
-\[\alpha=\omega\sqrt{\tfrac{\mu\varepsilon}{2}}\sqrt{X-1}\;\text{(Np/m)},\quad\beta=\omega\sqrt{\tfrac{\mu\varepsilon}{2}}\sqrt{X+1}\;\text{(rad/m)}\]
+\[\alpha=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X\!-\!1}\,\text{Np/m},\enspace\beta=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X\!+\!1}\,\text{rad/m}\]
 
 \[\lambda=\frac{2\pi}{\beta}\;\text{(m)},\quad u_p=\frac{\omega}{\beta}\;\text{(m/s)}\]
-\[\eta_c=\frac{\eta}{X^{1/2}}\angle\theta_\eta\;(\Omega),\quad\theta_\eta=\tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon}\;\text{(deg)}\]
+\[\eta_c=\frac{\eta}{X^{1/2}}\angle\theta_\eta\;(\Omega),\quad\theta_\eta=\tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}\;\text{(rad)}\]
 where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \end{ebox}
 
@@ -236,7 +248,7 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \begin{ebox}
 \[\alpha\approx\omega\sqrt{\tfrac{\mu\varepsilon''}{2}}=\omega\sqrt{\tfrac{\mu\sigma}{2\omega}}=\sqrt{\pi f\mu\sigma}\quad\text{(Np/m)}\]
 \[\beta\approx\alpha\approx\sqrt{\pi f\mu\sigma}\quad\text{(rad/m)}\]
-\[u_p=\omega/\beta\;\text{(m/s)},\quad\lambda=2\pi/\beta\;\text{(m)}\]
+\[u_p\approx\sqrt{4\pi f/\mu\sigma}\;\text{(m/s)},\quad\lambda\approx u_p/f\;\text{(m)}\]
 \[\eta_c\approx\sqrt{j\tfrac{\mu}{\varepsilon''}}=(1+j)\sqrt{\tfrac{\pi f\mu}{\sigma}}\approx(1+j)\tfrac{\alpha}{\sigma}\quad(\Omega)\]
 \end{ebox}
 
@@ -263,18 +275,6 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \eq{Step 4 --- time domain}{}
 \[Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)\]
 \textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
-\begin{ebox}
-\eq{General}{W/m$^2$}
-\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
-
-\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
-\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
-
-\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
 \end{ebox}
 
 \end{multicols}
