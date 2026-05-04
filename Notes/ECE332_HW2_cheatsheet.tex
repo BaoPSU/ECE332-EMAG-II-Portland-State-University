@@ -47,23 +47,26 @@
 %──────────────────────────────────────
 \shead{purplebg}{purple}{PLANE WAVE PARAMETERS (LOSSLESS)}
 \begin{ebox}
-\eq{Angular frequency}{}
+\eq{Angular frequency}{$\omega$: rad/s;\enspace$f$: Hz}
 \[\omega = 2\pi f \qquad f = \frac{\omega}{2\pi}\]
 
-\eq{Phase velocity}{nonmagnetic: $\mu_r=1$}
+\eq{Phase velocity}{m/s;\enspace nonmagnetic: $\mu_r=1$}
 \[u_p = \frac{c}{\sqrt{\varepsilon_r}} \qquad c = 3\times10^8\;\text{m/s}\]
 
 \eq{Wavenumber $k$}{rad/m}
 \[k = \frac{\omega}{u_p} = \frac{2\pi}{\lambda} = \frac{\omega\sqrt{\varepsilon_r}}{c}\]
 
-\eq{Wavelength \& impedance}{}
-\[\lambda = \frac{u_p}{f} = \frac{2\pi}{k} \qquad \eta = \frac{\eta_0}{\sqrt{\varepsilon_r}},\;\eta_0=377\,\Omega\]
+\eq{Wavelength \& impedance}{m \& $\Omega$}
+\[\lambda = \frac{u_p}{f} = \frac{2\pi}{k}\;\text{(m)} \qquad \eta = \frac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega),\;\eta_0=377\,\Omega\]
+
+\eq{Lossless base wave}{$\sigma=0\Rightarrow\alpha=0$, no decay}
+\[\mathbf{E}(x,t)=E_0\cos(\omega t\pm kx+\phi_0)\,\hat{e}\quad\text{(V/m)}\]
 
 \textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{purplebg}{purple}{LOSSLESS PLANE WAVE — $\mathbf{E}$ AND $\mathbf{H}$}
+\shead{purplebg}{purple}{LOSSLESS PLANE WAVE --- $\mathbf{E}$ AND $\mathbf{H}$}
 \begin{ebox}
 \eq{General $\mathbf{E}$}{}
 \[\mathbf{E} = E_0\cos(\omega t - k\,\hat{k}\cdot\mathbf{r} + \phi_0)\,\hat{e}\]
@@ -97,7 +100,7 @@ $\omega t-ky$ & $+\hat{y}$ & $\omega t+ky$ & $-\hat{y}$\\
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ — FIND $\hat{H}$ DIRECTION}
+\shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ --- FIND $\hat{H}$ DIRECTION}
 \begin{ebox}
 \makebox[0.92\linewidth][c]{\begin{tabular}{@{}lll@{\quad}lll@{}}
 \toprule
@@ -111,19 +114,6 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 \bottomrule
 \end{tabular}}\\[1pt]
 \textit{Cyclic: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$, $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$, $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$. Reverse $\Rightarrow$ flip sign.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{graybg}{gray}{READ A WAVE EQUATION — QUICK STEPS}
-\begin{ebox}
-\textbf{E.g.}\;$\mathbf{E}=20\cos(\omega t - kz)\,\hat{y}$\\[1pt]
-\begin{tabular}{@{}cl@{}}
-1. & Phase arg $\omega t - k\mathbf{z}$ $\Rightarrow$ $\hat{k}=+\hat{z}$ \textit{(table above)}\\
-2. & Unit vec after $\cos(\cdots)$ $=\hat{y}$ $=$ pol.\ dir.\ $\hat{e}$\\
-3. & $\eta=\eta_0/\sqrt{\varepsilon_r}$, where $\eta_0=377\,\Omega$\\
-4. & $\mathbf{H}=\tfrac{1}{\eta}(\hat{k}\times\mathbf{E})$; look up $\hat{k}\times\hat{e}$ above\\
-\end{tabular}\\[1pt]
-\textit{\color{coral}$\phi_0$ only needed when an initial condition is given (see box above).}
 \end{ebox}
 
 \columnbreak
@@ -152,9 +142,9 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 $\psi$ (rad) & Ellipse Orientation\\
 \midrule
 \rowcolor{rowB}$0$ & Horizontal ($\rightarrow$), aligned with $\hat{x}$\\
-$(0,\,\pi/4)$ & Tilted — horiz side\\
+$(0,\,\pi/4)$ & Tilted --- horiz side\\
 \rowcolor{rowB}$\pi/4$ & 45° diagonal\\
-$(\pi/4,\,\pi/2)$ & Tilted — vert side\\
+$(\pi/4,\,\pi/2)$ & Tilted --- vert side\\
 \rowcolor{rowB}$\pi/2$ & Vertical ($\uparrow$), aligned with $\hat{y}$\\
 \bottomrule
 \end{tabular}}}\par}
@@ -229,7 +219,16 @@ $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \rowcolor{rowB}$<0.01$ & Low-loss dielectric & LD approx\\
 \bottomrule
 \end{tabular}\par}
-\textit{Non-magnetic ($\mu_r\!=\!1$): $\mu\!=\!\mu_0$.\quad $\varepsilon'\!=\!\varepsilon_r\varepsilon_0$ ($\varepsilon_r\!=\!1$: vacuum/air).}
+\textit{Non-magnetic ($\mu_r\!=\!1$): $\mu\!=\!\mu_0$.\quad $\varepsilon'\!=\!\varepsilon_r\varepsilon_0$ ($\varepsilon_r\!=\!1$: vacuum/air).}\\
+\textit{\color{coral}$\sigma=0\Rightarrow$ lossless ($\alpha\!=\!0$, $\beta\!=\!k$).\enspace$\sigma>0\Rightarrow$ lossy ($\alpha>0$, wave decays).}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{coralbg}{coral}{LOSSY WAVE --- GENERAL FORM}
+\begin{ebox}
+\eq{Lossy wave}{decays as $e^{-\alpha x}$;\enspace$\alpha>0$ (Np/m)}
+\[\mathbf{E}(x,t)=E_0\,e^{-\alpha x}\cos(\omega t-\beta x+\phi_0)\,\hat{e}\quad\text{(V/m)}\]
+\textit{$\beta$ = phase const (rad/m).\enspace Lossless: set $\alpha\!=\!0$, $\beta\!=\!k$, drop $e^{-\alpha x}$.}
 \end{ebox}
 
 \vspace{0.3pt}
@@ -265,16 +264,16 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \vspace{0.3pt}
 \shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
 \begin{ebox}
-\eq{Step 1 — read $\alpha$, $\beta$}{}
+\eq{Step 1 --- read $\alpha$, $\beta$}{}
 \[\tilde{\mathbf{H}}\propto e^{-\alpha y}e^{-j\beta y}\;\Rightarrow\;\gamma=\alpha+j\beta\]
 
-\eq{Step 2 — $\eta_c$ (nonmagnetic: $\mu_r\!=\!1$)}{}
+\eq{Step 2 --- $\eta_c$ (nonmagnetic: $\mu_r\!=\!1$)}{}
 \[\eta_c=\frac{j\omega\mu_0}{\gamma}=\frac{\omega\mu_0(\beta+j\alpha)}{\alpha^2+\beta^2}\]
 
-\eq{Step 3 — find $\tilde{\mathbf{E}}$}{}
+\eq{Step 3 --- find $\tilde{\mathbf{E}}$}{}
 \[\tilde{\mathbf{E}}=-\eta_c\,(\hat{k}\times\tilde{\mathbf{H}})\]
 
-\eq{Step 4 — time domain}{}
+\eq{Step 4 --- time domain}{}
 \[Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)\]
 \textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
 \end{ebox}
@@ -291,6 +290,25 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
 \end{ebox}
 
+\vspace{0.3pt}
+\shead{graybg}{gray}{TRIG PHASE SHIFT IDENTITIES}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.52\linewidth}p{0.43\linewidth}@{}}
+\toprule
+Input & Result\\
+\midrule
+\rowcolor{rowB}$\sin(\omega t\!-\!kz+\tfrac{\pi}{2})$ & $\phantom{-}\cos(\omega t\!-\!kz)$\\
+$\sin(\omega t\!-\!kz-\tfrac{\pi}{2})$ & $-\cos(\omega t\!-\!kz)$\\
+\rowcolor{rowB}$\sin(\omega t\!-\!kz+\pi)$ & $-\sin(\omega t\!-\!kz)$\\
+$\sin(\omega t\!-\!kz-\pi)$ & $-\sin(\omega t\!-\!kz)$\\
+\rowcolor{rowB}$\cos(\omega t\!-\!kz+\tfrac{\pi}{2})$ & $-\sin(\omega t\!-\!kz)$\\
+$\cos(\omega t\!-\!kz-\tfrac{\pi}{2})$ & $\phantom{-}\sin(\omega t\!-\!kz)$\\
+\rowcolor{rowB}$\cos(\omega t\!-\!kz+\pi)$ & $-\cos(\omega t\!-\!kz)$\\
+$\cos(\omega t\!-\!kz-\pi)$ & $-\cos(\omega t\!-\!kz)$\\
+\bottomrule
+\end{tabular}}}\par}
+\end{ebox}
+
 \end{multicols}
 
 \vfill
@@ -298,11 +316,11 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \begin{minipage}[t]{0.19\linewidth}
 \shead{purplebg}{purple}{WAVE PARAMS}
 \begin{ebox}
-$\omega=2\pi f$ — ang.\ freq (rad/s)\\
-$k=\omega\sqrt{\varepsilon_r}/c$ — wavenumber (rad/m)\\
-$\lambda=2\pi/k$ — wavelength (m)\\
-$u_p=c/\sqrt{\varepsilon_r}$ — phase vel.\ (m/s)\\
-$\eta=\eta_0/\sqrt{\varepsilon_r}$ — impedance ($\Omega$)\\
+$\omega=2\pi f$ --- ang.\ freq (rad/s)\\
+$k=\omega\sqrt{\varepsilon_r}/c$ --- wavenumber (rad/m)\\
+$\lambda=2\pi/k$ --- wavelength (m)\\
+$u_p=c/\sqrt{\varepsilon_r}$ --- phase vel.\ (m/s)\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ --- impedance ($\Omega$)\\
 $c=3\times10^8$ m/s\\
 \textbf{$\eta_0=377\,\Omega$} (free space)
 \end{ebox}
@@ -310,10 +328,10 @@ $c=3\times10^8$ m/s\\
 \begin{minipage}[t]{0.19\linewidth}
 \shead{tealbg}{teal}{POLARIZATION}
 \begin{ebox}
-$a_x,a_y$ — amplitudes (V/m)\\
-$\delta$ — phase difference (rad)\\
-$\gamma\in[0^\circ,180^\circ)$ — tilt angle\\
-$\chi\in[-45^\circ,45^\circ]$ — ellipticity\\
+$a_x,a_y$ --- amplitudes (V/m)\\
+$\delta$ --- phase difference (rad)\\
+$\gamma\in[0^\circ,180^\circ)$ --- tilt angle\\
+$\chi\in[-45^\circ,45^\circ]$ --- ellipticity\\
 $\chi>0$: RHEP;\;$\chi<0$: LHEP\\
 $|\chi|=45^\circ$: circular;\;$\chi=0$: linear
 \end{ebox}
@@ -321,14 +339,14 @@ $|\chi|=45^\circ$: circular;\;$\chi=0$: linear
 \begin{minipage}[t]{0.19\linewidth}
 \shead{coralbg}{coral}{LOSSY MEDIA}
 \begin{ebox}
-$\alpha$ — atten.\ const (Np/m)\\
-$\beta$ — phase const (rad/m)\\
-$\gamma=\alpha+j\beta$ — prop.\ const (m$^{-1}$)\\
-$\eta_c$ — complex impedance ($\Omega$)\\
+$\alpha$ --- atten.\ const (Np/m)\\
+$\beta$ --- phase const (rad/m)\\
+$\gamma=\alpha+j\beta$ --- prop.\ const (m$^{-1}$)\\
+$\eta_c$ --- complex impedance ($\Omega$)\\
 $\varepsilon'=\varepsilon_r\varepsilon_0$;\;$\varepsilon''=\sigma/\omega$ (F/m)\\
-$\mu_r$ — rel.\ permeability ($\mu_r=1$: nonmagnetic)\\
+$\mu_r$ --- rel.\ permeability ($\mu_r=1$: nonmagnetic)\\
 $\mu=\mu_r\mu_0$;\;$\mu_0=4\pi\times10^{-7}$ H/m\\
-$\delta_s=1/\alpha$ — skin depth (m)
+$\delta_s=1/\alpha$ --- skin depth (m)
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
