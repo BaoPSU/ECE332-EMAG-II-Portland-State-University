@@ -59,10 +59,7 @@
 \eq{Wavelength \& impedance}{m \& $\Omega$}
 \[\lambda = \frac{u_p}{f} = \frac{2\pi}{k}\;\text{(m)} \qquad \eta = \frac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega),\;\eta_0=377\,\Omega\]
 
-\eq{Lossless base wave}{$\sigma=0\Rightarrow\alpha=0$, no decay}
-\[\mathbf{E}(x,t)=E_0\cos(\omega t\pm kx+\phi_0)\,\hat{e}\quad\text{(V/m)}\]
-
-\textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.}
+\textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.\enspace Base: $\mathbf{E}\!=\!E_0\cos(\omega t\pm kx+\phi_0)\hat{e}$.}
 \end{ebox}
 
 \vspace{0.3pt}
@@ -114,6 +111,20 @@ $-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
 \bottomrule
 \end{tabular}}\\[1pt]
 \textit{Cyclic: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$, $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$, $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$. Reverse $\Rightarrow$ flip sign.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{TRIG PHASE SHIFTS \textnormal{\textit{($\theta\!\equiv\!\omega t\!-\!kz$)}}}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.18\linewidth}p{0.25\linewidth}p{0.18\linewidth}@{}}
+\toprule
+Input & Result & Input & Result\\
+\midrule
+\rowcolor{rowB}$\sin(\theta{+}\pi/2)$ & $\cos\theta$ & $\cos(\theta{+}\pi/2)$ & $-\sin\theta$\\
+$\sin(\theta{-}\pi/2)$ & $-\cos\theta$ & $\cos(\theta{-}\pi/2)$ & $\sin\theta$\\
+\rowcolor{rowB}$\sin(\theta{\pm}\pi)$ & $-\sin\theta$ & $\cos(\theta{\pm}\pi)$ & $-\cos\theta$\\
+\bottomrule
+\end{tabular}}}\par}
 \end{ebox}
 
 \columnbreak
@@ -219,16 +230,7 @@ $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \rowcolor{rowB}$<0.01$ & Low-loss dielectric & LD approx\\
 \bottomrule
 \end{tabular}\par}
-\textit{Non-magnetic ($\mu_r\!=\!1$): $\mu\!=\!\mu_0$.\quad $\varepsilon'\!=\!\varepsilon_r\varepsilon_0$ ($\varepsilon_r\!=\!1$: vacuum/air).}\\
-\textit{\color{coral}$\sigma=0\Rightarrow$ lossless ($\alpha\!=\!0$, $\beta\!=\!k$).\enspace$\sigma>0\Rightarrow$ lossy ($\alpha>0$, wave decays).}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{coralbg}{coral}{LOSSY WAVE --- GENERAL FORM}
-\begin{ebox}
-\eq{Lossy wave}{decays as $e^{-\alpha x}$;\enspace$\alpha>0$ (Np/m)}
-\[\mathbf{E}(x,t)=E_0\,e^{-\alpha x}\cos(\omega t-\beta x+\phi_0)\,\hat{e}\quad\text{(V/m)}\]
-\textit{$\beta$ = phase const (rad/m).\enspace Lossless: set $\alpha\!=\!0$, $\beta\!=\!k$, drop $e^{-\alpha x}$.}
+\textit{Non-magnetic ($\mu_r\!=\!1$): $\mu\!=\!\mu_0$.\quad $\varepsilon'\!=\!\varepsilon_r\varepsilon_0$ ($\varepsilon_r\!=\!1$: vacuum/air).}
 \end{ebox}
 
 \vspace{0.3pt}
@@ -288,25 +290,6 @@ where $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
 
 \textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{graybg}{gray}{TRIG PHASE SHIFT IDENTITIES}
-\begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.52\linewidth}p{0.43\linewidth}@{}}
-\toprule
-Input & Result\\
-\midrule
-\rowcolor{rowB}$\sin(\omega t\!-\!kz+\tfrac{\pi}{2})$ & $\phantom{-}\cos(\omega t\!-\!kz)$\\
-$\sin(\omega t\!-\!kz-\tfrac{\pi}{2})$ & $-\cos(\omega t\!-\!kz)$\\
-\rowcolor{rowB}$\sin(\omega t\!-\!kz+\pi)$ & $-\sin(\omega t\!-\!kz)$\\
-$\sin(\omega t\!-\!kz-\pi)$ & $-\sin(\omega t\!-\!kz)$\\
-\rowcolor{rowB}$\cos(\omega t\!-\!kz+\tfrac{\pi}{2})$ & $-\sin(\omega t\!-\!kz)$\\
-$\cos(\omega t\!-\!kz-\tfrac{\pi}{2})$ & $\phantom{-}\sin(\omega t\!-\!kz)$\\
-\rowcolor{rowB}$\cos(\omega t\!-\!kz+\pi)$ & $-\cos(\omega t\!-\!kz)$\\
-$\cos(\omega t\!-\!kz-\pi)$ & $-\cos(\omega t\!-\!kz)$\\
-\bottomrule
-\end{tabular}}}\par}
 \end{ebox}
 
 \end{multicols}
