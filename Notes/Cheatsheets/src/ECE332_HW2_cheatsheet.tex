@@ -91,11 +91,15 @@
 \midrule
 \rowcolor{rowB}Impedance & $\eta=\sqrt{\mu/\varepsilon}$ \textit{(real)} & $\eta_c=|\eta_c|e^{j\theta_\eta}$ \textit{(cmplx)}\\
 Prop.\ factor & $e^{-jkz}$ & $e^{-\alpha z}e^{-j\beta z}$\\
-\rowcolor{rowB}$\mathbf{E}(t)$ & $\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$ & $\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$\\
-$\mathbf{H}(t)$ & $\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$ & $\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$\\
+\rowcolor{rowB}$\mathbf{E}(t)$ & \multicolumn{2}{l}{$\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$ \quad (same for both)}\\
+$\mathbf{H}(t)$ & \multicolumn{2}{l}{$\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$ \quad (same for both)}\\
 \rowcolor{rowB}$\tilde{\mathbf{H}}$ from $\tilde{\mathbf{E}}$ & $\tfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$ & $\tfrac{1}{\eta_c}(\hat{k}\times\tilde{\mathbf{E}})$\\
 $\tilde{\mathbf{E}}$ from $\tilde{\mathbf{H}}$ & $-\eta(\hat{k}\times\tilde{\mathbf{H}})$ & $-\eta_c(\hat{k}\times\tilde{\mathbf{H}})$\\
 \rowcolor{rowB}E,\,H phase & in phase & H lags E by $\theta_\eta$\\
+\midrule
+\multicolumn{3}{l}{\textit{Lossless shortcuts (wave in $+z$, $\mathbf{E}$ along $\hat{e}$, amplitude $E_0$):}}\\
+\rowcolor{rowB}$\mathbf{E}(t)$ & \multicolumn{2}{l}{$E_0\cos(\omega t-kz+\phi)\,\hat{e}$}\\
+$\mathbf{H}(t)$ & \multicolumn{2}{l}{$\tfrac{E_0}{\eta}\cos(\omega t-kz+\phi)\,(\hat{k}\times\hat{e})$}\\
 \bottomrule
 \end{tabular}}}\par}
 \end{ebox}
