@@ -658,20 +658,15 @@ $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
+\vspace{0.3pt}
+\shead{coralbg}{coral}{SURFACE RESISTANCE (GOOD CONDUCTOR)}
 \begin{ebox}
-\eq{Step 1 --- read $\alpha$, $\beta$}{}
-\[\tilde{\mathbf{H}}\propto e^{-\alpha y}e^{-j\beta y}\;\Rightarrow\;\gamma=\alpha+j\beta\]
-
-\eq{Step 2 --- $\eta_c$ (nonmagnetic: $\mu_r\!=\!1$)}{}
-\[\eta_c=\frac{j\omega\mu_0}{\gamma}=\frac{\omega\mu_0(\beta+j\alpha)}{\alpha^2+\beta^2}\]
-
-\eq{Step 3 --- find $\tilde{\mathbf{E}}$}{}
-\[\tilde{\mathbf{E}}=-\eta_c\,(\hat{k}\times\tilde{\mathbf{H}})\]
-
-\eq{Step 4 --- time domain}{}
-\[Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)\]
-\textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
+{\centering\includegraphics[width=0.55\linewidth,keepaspectratio]{conductor_3d.png}\par}
+$J_0=\sigma E_0$ — current density at surface (z=0)\\
+$\tilde{\mathbf{J}}(z)=J_0 e^{-(1+j)z/\delta_s}\hat{x}$ — decays with depth\\[1pt]
+$R_s=\sqrt{\pi f\mu/\sigma}=1/(\sigma\delta_s)\;(\Omega)$\\
+$Z_s=(1+j)R_s$ — surface impedance\\
+$R_\text{AC}=R_s\,\ell/w$ — AC resistance of slab
 \end{ebox}
 
 \vspace{0.3pt}
