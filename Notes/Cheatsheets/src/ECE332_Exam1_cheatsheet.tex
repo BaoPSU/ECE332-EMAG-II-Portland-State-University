@@ -563,16 +563,16 @@ $-$ & $+$ & $360^\circ-\arctan|N/D|$ & $2\pi-\arctan|N/D|$\\
 \vspace{0.3pt}
 \shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
 \begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.47\linewidth}p{0.48\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.24\linewidth}p{0.36\linewidth}p{0.33\linewidth}@{}}
 \toprule
-Phasor coeff & $\operatorname{Re}\{(\cdot)\,e^{j\omega t}e^{-\alpha z}e^{-j\beta z}\}$\\
+Phasor coeff & $\operatorname{Re}\{(\cdot)\,e^{j\omega t}e^{-j\beta z}\}$ & Result\\
 \midrule
-\rowcolor{rowB}$A$\enspace$(=\!Ae^{j\cdot0})$ & $A\cos(\omega t-\beta z)$\\
-$-jA$\enspace$(=\!Ae^{-j\pi/2})$ & $A\sin(\omega t-\beta z)$\\
-\rowcolor{rowB}$+jA$\enspace$(=\!Ae^{+j\pi/2})$ & $-A\sin(\omega t-\beta z)$\\
-$-A$\enspace$(=\!Ae^{\pm j\pi})$ & $-A\cos(\omega t-\beta z)$\\
-\rowcolor{rowB}$Ae^{j\phi}$ (general) & $A\cos(\omega t-\beta z+\phi)$\\
-$A+jB$\enspace$(=\!|Z|e^{j\theta})$ & $|Z|\cos(\omega t-\beta z+\theta)$\\
+\rowcolor{rowB}$A$ & $\operatorname{Re}\{Ae^{j(\omega t-\beta z)}\}$ & $A\cos(\omega t\!-\!\beta z)$\\
+$-jA$ & $\operatorname{Re}\{Ae^{j(\omega t-\beta z-\pi/2)}\}$ & $A\sin(\omega t\!-\!\beta z)$\\
+\rowcolor{rowB}$+jA$ & $\operatorname{Re}\{Ae^{j(\omega t-\beta z+\pi/2)}\}$ & $-A\sin(\omega t\!-\!\beta z)$\\
+$-A$ & $\operatorname{Re}\{Ae^{j(\omega t-\beta z\pm\pi)}\}$ & $-A\cos(\omega t\!-\!\beta z)$\\
+\rowcolor{rowB}$Ae^{j\phi}$ & $\operatorname{Re}\{Ae^{j(\omega t-\beta z+\phi)}\}$ & $A\cos(\omega t\!-\!\beta z\!+\!\phi)$\\
+$A+jB$ & $\operatorname{Re}\{|Z|e^{j(\omega t-\beta z+\theta)}\}$ & $|Z|\cos(\omega t\!-\!\beta z\!+\!\theta)$\\
 \bottomrule
 \end{tabular}}}\par}\vspace{1pt}
 $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
