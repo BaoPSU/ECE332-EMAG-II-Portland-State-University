@@ -147,7 +147,7 @@ E_x & E_y & E_z
 \vspace{2pt}
 \shead{tealbg}{teal}{$\partial B/\partial t$ TABLE}
 \begin{ebox}
-\begin{tabular}{@{}p{0.46\linewidth}p{0.46\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.46\linewidth}p{0.46\linewidth}@{}}
 \toprule
 $B(t)$ & $\partial B/\partial t$\\
 \midrule
@@ -156,13 +156,13 @@ $B_0\cos(\omega t)$ & $-B_0\omega\sin(\omega t)$\\
 \rowcolor{rowB}$B_0 e^{-\alpha t}$ & $-\alpha B_0 e^{-\alpha t}$\\
 $B_0$ (const) & $0$\\
 \bottomrule
-\end{tabular}
+\end{tabular}}}\par}
 \end{ebox}
 
 \vspace{2pt}
 \shead{tealbg}{teal}{SIGN $\to$ CURRENT DIRECTION}
 \begin{ebox}
-\begin{tabular}{@{}p{0.26\linewidth}p{0.34\linewidth}p{0.28\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.26\linewidth}p{0.34\linewidth}p{0.28\linewidth}@{}}
 \toprule
 $V_\text{emf}$ & Inside source & $I$ dir.\\
 \midrule
@@ -170,7 +170,7 @@ $V_\text{emf}$ & Inside source & $I$ dir.\\
 $> 0$ & $+\;\to\;-$ terminal & $+\hat{\phi}$ (CCW)\\
 \rowcolor{rowB}$= 0$ & --- & none\\
 \bottomrule
-\end{tabular}\\[2pt]
+\end{tabular}}}\par}
 \textit{Lenz: induced $I$ always opposes the change in $\Phi$.}
 \end{ebox}
 
@@ -465,12 +465,12 @@ $\sin(\theta{-}\pi/2)$ & $-\cos\theta$ & $\cos(\theta{-}\pi/2)$ & $\sin\theta$\\
 \begin{ebox}
 {\centering\includegraphics[width=\linewidth,keepaspectratio]{pol_ellipse.jpg}\par}
 \[\mathbf{E}=a_x\cos(\omega t\!-\!kz)\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\hat{y}\]
-\textit{$a_x,a_y$: bounding box half-widths (V/m);\enspace$\delta$: phase diff (rad)}\\[-1pt]
-\textit{\color{gray}$\delta=0$ or $\pi\Rightarrow$ \textbf{linear} pol.\enspace($\chi=0$, no ellipse)}
-\eq{Auxiliary angle}{$\psi_0=\arctan(a_y/a_x)\in(0,\pi/2)$}
+\textit{$a_x,a_y$: bounding box half-widths (V/m);\enspace$\delta$: phase diff (rad)}\\
+\textit{\color{gray}$\delta=0$ or $\pi\Rightarrow$ \textbf{linear} pol.\enspace($\chi=0$, no ellipse)}\\
+\eq{Auxiliary angle}{$\psi_0=\arctan(a_y/a_x)\in(0,\pi/2)$}\\
 \eq{Rotation angle $\gamma$ (major axis from $\hat{x}$)}{$\gamma\in[0,\pi)$}
 \[\tan(2\gamma)=\tan(2\psi_0)\cos\delta\]
-\textit{\color{coral}If sign$(\gamma)\!\neq\!$sign$(\delta)$: $\gamma\leftarrow\gamma\pm\tfrac{\pi}{2}$.}
+\textit{\color{coral}If sign$(\gamma)\!\neq\!$sign$(\delta)$: $\gamma\leftarrow\gamma\pm\tfrac{\pi}{2}$.}\\
 \eq{Ellipticity angle $\chi$}{$\chi\in[-\pi/4,\pi/4]$}
 \[\sin(2\chi)=\sin(2\psi_0)\sin\delta\]
 \eq{Axial ratio $R=1/\tan|\chi|$}{major axis $=R\times$ minor;\enspace$R\geq1$}
@@ -548,7 +548,7 @@ $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
 \eq{Loss tangent}{}
 \[\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
 
-{\centering\begin{tabular}{@{}p{0.25\linewidth}p{0.36\linewidth}p{0.3\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.36\linewidth}p{0.3\linewidth}@{}}
 \toprule
 $\varepsilon''/\varepsilon'$ & Type & Use\\
 \midrule
@@ -556,7 +556,7 @@ $\varepsilon''/\varepsilon'$ & Type & Use\\
 $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \rowcolor{rowB}$<0.01$ & Low-loss dielectric & LD approx\\
 \bottomrule
-\end{tabular}\par}
+\end{tabular}}}\par}
 \textit{$\varepsilon'=\varepsilon_r\varepsilon_0$;\;$\varepsilon''=\sigma/\omega$;\;nonmag.: $\mu=\mu_0$;\;free space: $\varepsilon_r=\mu_r=1$.}
 \end{ebox}
 
