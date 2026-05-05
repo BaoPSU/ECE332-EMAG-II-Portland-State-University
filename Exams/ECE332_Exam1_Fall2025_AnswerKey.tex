@@ -1,0 +1,299 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[top=0.9in,bottom=0.9in,left=1in,right=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tikz}
+
+% ── Color scheme matching cheat sheets ──
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{warnyellow}{HTML}{7A5700}
+
+% Source tag: which cheat sheet section
+\newcommand{\cs}[1]{\textcolor{teal}{\footnotesize[CS#1]}}
+% Missing formula warning
+\newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!40,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=4pt,innerbottommargin=4pt,
+  skipabove=4pt,skipbelow=4pt]{missing}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\begin{center}
+  {\Large\textbf{ECE 332 Fall 2025 — Exam 1 Answer Key}}\\[4pt]
+  {\small Based on CS1 (HW1 cheat sheet) and CS2 (HW2 cheat sheet).
+  \textcolor{teal}{[CS\#: Section]} tags show which sheet each formula comes from.}
+\end{center}
+
+\begin{missing}
+\textbf{\textcolor{coral}{Note on equilateral triangle area}} (needed Q1): $A=\tfrac{\sqrt{3}}{4}a^2$ is \textbf{not in either cheat sheet}. It is derived from the exam cover page:
+height of equilateral triangle $= \tfrac{\sqrt{3}}{2}a$ (30-60-90 triangle, hyp $= a$, long leg $= \tfrac{\sqrt{3}}{2}a$),
+then $A = \tfrac{1}{2}bh = \tfrac{1}{2}\cdot a\cdot\tfrac{\sqrt{3}}{2}a = \tfrac{\sqrt{3}}{4}a^2$.
+Add this formula to your next cheat sheet.
+\end{missing}
+
+\vspace{6pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{purplebg}{\textbf{\color{purple}\large Question 1 — Triangular Loop (20 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+\textbf{Setup.} Loop in $y$-$z$ plane, $N$ turns, side $a$, $\mathbf{B}(t)=B_0(-2\hat{x}+3\hat{y})\sin(\omega t)$.
+
+\cs{1 Surface Element $d\mathbf{s}$}: loop in $y$-$z$ plane $\Rightarrow$ $d\mathbf{s}=\hat{x}\,da$.
+
+\cs{1 Dot Products}: $\hat{x}\cdot\hat{x}=1$, $\hat{y}\cdot\hat{x}=0$ $\Rightarrow$ only the $-2\hat{x}$ component of $\mathbf{B}$ contributes.
+$$\mathbf{B}\cdot d\mathbf{s} = B_0(-2\underbrace{\hat{x}\cdot\hat{x}}_{=1}+3\underbrace{\hat{y}\cdot\hat{x}}_{=0})\sin(\omega t)\,da = -2B_0\sin(\omega t)\,da$$
+
+\textbf{(a)} \cs{1 General flux form} $\Phi=\int_S\mathbf{B}\cdot d\mathbf{s}$. $\mathbf{B}$ is uniform $\Rightarrow$ \cs{1 Uniform $B$ shortcut}: multiply by area.
+Area (from exam cover, \textit{not in cheat sheet}): $A_\triangle = \tfrac{\sqrt{3}}{4}a^2$.
+\[
+\boxed{\Phi = -2B_0\sin(\omega t)\cdot\frac{\sqrt{3}}{4}a^2 = -\frac{\sqrt{3}}{2}B_0 a^2\sin(\omega t)}
+\]
+
+\textbf{(b)} \cs{1 $N$-turn coil}: $V_\text{emf}=-N\dfrac{d\Phi}{dt}$.
+\cs{1 $\partial B/\partial t$ table}: $\dfrac{d}{dt}[\sin(\omega t)]=\omega\cos(\omega t)$.
+\[
+V_\text{emf} = -N\,\frac{d}{dt}\!\left[-\frac{\sqrt{3}}{2}B_0 a^2\sin(\omega t)\right]
+= \boxed{\frac{\sqrt{3}}{2}\,N B_0\,\omega\,a^2\cos(\omega t)}
+\]
+
+\textbf{(c)} $N=10$, $a=0.08$ m, $B_0=0.02$ T, $\omega=2\times10^6$ rad/s, $\omega t=\pi/4$.\\
+\cs{1 Unit Circle}: $\cos(\pi/4)=\tfrac{\sqrt{2}}{2}\approx 0.707$.
+\cs{1 SI Prefixes}: MHz $=10^6$.
+\begin{align*}
+|V_\text{emf}| &= \frac{\sqrt{3}}{2}\cdot10\cdot0.02\cdot(2\times10^6)\cdot(0.08)^2\cdot0.707\\
+               &= 0.00554\times10\times0.02\times2\times10^6\times0.707 \approx 1568\text{ V}
+\end{align*}
+\[
+\boxed{I = \frac{V_\text{emf}}{R} = \frac{1568}{1000} \approx 1.57\text{ A}}
+\]
+
+\vspace{8pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{purplebg}{\textbf{\color{purple}\large Question 2 — Moving Wire (12 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+Wire along $\hat{y}$, $a=0.15$ m, $\mathbf{u}=12\hat{x}$ cm/s $=0.12\hat{x}$ m/s, $\mathbf{B}=(0.1\hat{x}-0.05\hat{z})$ T.
+
+\cs{1 Motional EMF}: $V_\text{emf}=\displaystyle\int(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}$.
+
+\cs{1 Cross Product (determinant)}:
+\[
+\mathbf{u}\times\mathbf{B}=
+\begin{vmatrix}\hat{x}&\hat{y}&\hat{z}\\0.12&0&0\\0.1&0&-0.05\end{vmatrix}
+=\hat{x}(0)-\hat{y}(0.12\times{-0.05}-0)+\hat{z}(0)
+= 0.006\hat{y}\ \text{V/m}
+\]
+
+Wire is along $\hat{y}$ so $d\mathbf{l}=\hat{y}\,dy$:
+\[
+V_\text{emf}=\int_0^{0.15}0.006\hat{y}\cdot\hat{y}\,dy = 0.006\times0.15
+\]
+\[
+\boxed{V_\text{emf} = 9\times10^{-4}\text{ V} = 0.9\text{ mV}}
+\]
+\textit{Common mistake: forgetting to convert cm/s $\to$ m/s (factor of 100 error).}
+
+\vspace{8pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{coralbg}{\textbf{\color{coral}\large Question 3 — Conduction \& Displacement Current (12 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+$I_c=2\sin(\omega t)\ \mu$A, cross-section $A$, $\sigma=10^{-4}$ S/m, $\varepsilon_r\approx26\pi$.
+
+\textbf{(a)} \cs{1 Displacement \& Conduction Current}: $J_c=I_c/A$, then $J_c=\sigma E\Rightarrow E=J_c/\sigma$:
+\[
+E = \frac{J_c}{\sigma} = \frac{I_c/A}{\sigma} = \frac{2\times10^{-6}\sin(\omega t)}{10^{-4}\cdot A}
+\]
+\[
+\boxed{E(t) = \frac{2\times10^{-2}}{A}\sin(\omega t)\ \text{V/m}}
+\]
+\textit{The area $A$ is unknown and cannot be cancelled — it must stay in the answer.}
+
+\textbf{(b)} \cs{1 Displacement \& Conduction Current}: $J_d=\varepsilon_r\varepsilon_0\,\partial E/\partial t$, $I_d=J_d\cdot A$ (the $A$ cancels here).\\
+\cs{1 $\partial B/\partial t$ table} (same rule): $\partial[\sin(\omega t)]/\partial t = \omega\cos(\omega t)$.\\
+$\omega=10^9$ rad/s, $\omega t=\pi/3$. \cs{1 Unit Circle}: $\cos(\pi/3)=1/2$.
+
+\[
+I_d = \varepsilon_r\varepsilon_0\cdot\frac{2\times10^{-2}}{A}\cdot\omega\cos(\omega t)\cdot A
+    = 26\pi\cdot\frac{1}{36\pi}\times10^{-9}\cdot2\times10^{-2}\cdot10^9\cdot\frac{1}{2}
+\]
+\[
+= \frac{26}{36}\times10^{-9}\times2\times10^{-2}\times10^9\times\frac{1}{2}
+= \frac{13}{18}\times10^{-2} = \frac{13}{1800}
+\]
+\[
+\boxed{I_d \approx 7.22\text{ mA}}
+\]
+
+\vspace{8pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{coralbg}{\textbf{\color{coral}\large Question 4 — Charge Relaxation (10 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+$\sigma=10^{-4}$ S/m, $\varepsilon_r\approx26\pi$.
+
+\textbf{(a)} \cs{1 Charge Relaxation}: $\tau_r=\varepsilon_r\varepsilon_0/\sigma$.
+\[
+\tau_r = \frac{26\pi\cdot\tfrac{1}{36\pi}\times10^{-9}}{10^{-4}}
+= \frac{\tfrac{26}{36}\times10^{-9}}{10^{-4}}
+= \frac{13}{18}\times10^{-5}
+\]
+\[
+\boxed{\tau_r \approx 7.22\times10^{-6}\text{ s} = 7.22\ \mu\text{s}}
+\]
+
+\textbf{(b)} \cs{1 Charge Relaxation}: $\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}$.
+Set $\rho_v/\rho_{v0}=e^{-3}$:
+\[
+e^{-t/\tau_r}=e^{-3}\;\Rightarrow\;\frac{t}{\tau_r}=3\;\Rightarrow\;t=3\tau_r
+\]
+\[
+\boxed{t = 3\times7.22\times10^{-6} \approx 2.17\times10^{-5}\text{ s} = 21.7\ \mu\text{s}}
+\]
+
+\vspace{8pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{purplebg}{\textbf{\color{purple}\large Question 5 — Lossless EM Wave (30 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+$\mathbf{E}(z,t)=4\cos\!\bigl((6\pi\times10^8)\,t-kz-\pi/6\bigr)\hat{y}$ V/m. $\varepsilon_r=6$, $\mu_r=1$.
+
+\textbf{(a)} \cs{2 Plane Wave Parameters (Lossless)}: read $\omega$ directly from argument, then chain.
+
+\cs{2 Order: $\omega\to u_p\to k\to\lambda\to\eta$}
+\begin{align*}
+\omega &= 6\pi\times10^8\ \text{rad/s}\\[2pt]
+u_p &= \frac{c}{\sqrt{\varepsilon_r}} = \frac{3\times10^8}{\sqrt{6}} \approx 1.225\times10^8\ \text{m/s}
+\qquad\cs{2 }u_p=c/\sqrt{\varepsilon_r}\\[2pt]
+k &= \frac{\omega\sqrt{\varepsilon_r}}{c} = \frac{6\pi\times10^8\cdot\sqrt{6}}{3\times10^8} = 2\pi\sqrt{6} \approx 15.4\ \text{rad/m}
+\qquad\cs{2 }k=\omega\sqrt{\varepsilon_r}/c\\[2pt]
+\lambda &= \frac{2\pi}{k} = \frac{2\pi}{2\pi\sqrt{6}} = \frac{1}{\sqrt{6}} \approx 0.408\ \text{m}
+\qquad\cs{2 }\lambda=2\pi/k\\[2pt]
+\eta &= \frac{\eta_0}{\sqrt{\varepsilon_r}} = \frac{120\pi}{\sqrt{6}} \approx 153.9\ \Omega
+\qquad\cs{2 }\eta=\eta_0/\sqrt{\varepsilon_r}
+\end{align*}
+\[
+\boxed{\omega=6\pi\times10^8\ \text{rad/s},\quad k=2\pi\sqrt{6}\ \text{rad/m},\quad
+       \lambda=\tfrac{1}{\sqrt{6}}\approx0.408\ \text{m},\quad \eta\approx153.9\ \Omega}
+\]
+
+\textbf{(b)} \cs{1 Phasor Method}: $\mathbf{E}(z,t)=\operatorname{Re}\{\tilde{\mathbf{E}}(z)\,e^{j\omega t}\}$.
+Strip $e^{j\omega t}$, keep the rest:
+\[
+\tilde{\mathbf{E}}(z) = 4e^{-jkz}e^{-j\pi/6}\,\hat{y}
+\]
+\[
+\boxed{\tilde{\mathbf{E}}(z) = 4e^{-j(kz+\pi/6)}\hat{y}\ \text{V/m}}
+\]
+
+\textbf{(c)} \cs{2 Direction of Propagation table}: argument contains $-kz$ $\Rightarrow$ $\hat{k}=+\hat{z}$.\\
+\cs{2 $\hat{k}\times\hat{E}$ table}: $\hat{k}=+\hat{z}$, $\hat{E}=\hat{y}$ $\Rightarrow$ $\hat{H}=-\hat{x}$.\\
+\cs{2 Lossless Plane Wave $\mathbf{H}$ from $\mathbf{E}$}: $\tilde{\mathbf{H}}=\dfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$.
+\[
+\hat{k}\times\tilde{\mathbf{E}} = \hat{z}\times\bigl(4e^{-j(kz+\pi/6)}\hat{y}\bigr) = 4e^{-j(kz+\pi/6)}(\hat{z}\times\hat{y}) = -4e^{-j(kz+\pi/6)}\hat{x}
+\]
+\[
+\boxed{\tilde{\mathbf{H}}(z) = \frac{-4}{\eta}\,e^{-j(kz+\pi/6)}\hat{x}
+= -\frac{\sqrt{6}}{30\pi}\,e^{-j(kz+\pi/6)}\hat{x}\ \text{A/m} \approx -0.026\,e^{-j(kz+\pi/6)}\hat{x}\ \text{A/m}}
+\]
+
+\textbf{(d)} \cs{2 Phasor $\leftrightarrow$ Time Domain table}: real phasor coeff $A\to A\cos(\omega t-\beta z)$.
+\[
+\boxed{\mathbf{H}(z,t) = -\frac{4}{\eta}\cos\!\bigl(6\pi\times10^8\,t - 2\pi\sqrt{6}\,z - \tfrac{\pi}{6}\bigr)\hat{x}
+\approx -0.026\cos\!\bigl(6\pi\times10^8\,t - 2\pi\sqrt{6}\,z - \tfrac{\pi}{6}\bigr)\hat{x}\ \text{A/m}}
+\]
+
+\textbf{(e)} \cs{2 Average Power Density (Poynting) lossless shortcut}: $\mathbf{S}_\text{av}=\dfrac{|E_0|^2}{2\eta}\,\hat{k}$.\\
+$|E_0|=4$ V/m, $\hat{k}=+\hat{z}$:
+\[
+\mathbf{S}_\text{av} = \frac{4^2}{2\times153.9}\,\hat{z} = \frac{16}{307.8}\,\hat{z}
+\]
+\[
+\boxed{\mathbf{S}_\text{av} \approx 0.052\,\hat{z}\ \text{W/m}^2}
+\]
+
+\vspace{8pt}
+
+% ══════════════════════════════════════════════════════════════════
+\colorbox{coralbg}{\textbf{\color{coral}\large Question 6 — EM Wave in Distilled Water (16 pts)}}
+% ══════════════════════════════════════════════════════════════════
+
+\vspace{4pt}
+$f=\tfrac{2}{\pi}$ GHz, $\sigma=10^{-4}$ S/m, $\varepsilon_r=26\pi$, $\mu_r=1$.
+
+\cs{2 Plane Wave Parameters}: $\omega=2\pi f=2\pi\cdot\dfrac{2}{\pi}\times10^9=4\times10^9$ rad/s.
+
+\textbf{(a)} \cs{2 Lossy Media — Classification, loss tangent}:
+$\dfrac{\varepsilon''}{\varepsilon'}=\dfrac{\sigma}{\omega\varepsilon_r\varepsilon_0}$.
+
+$\varepsilon_r\varepsilon_0 = 26\pi\cdot\tfrac{1}{36\pi}\times10^{-9} = \tfrac{13}{18}\times10^{-9}$ F/m.
+\[
+\frac{\varepsilon''}{\varepsilon'} = \frac{10^{-4}}{4\times10^9\times\tfrac{13}{18}\times10^{-9}}
+= \frac{10^{-4}}{\tfrac{52}{18}} = \frac{10^{-4}\times18}{52} = \frac{18}{52}\times10^{-4}
+\]
+\[
+\boxed{\frac{\varepsilon''}{\varepsilon'} = \frac{9}{26}\times10^{-4} \approx 3.46\times10^{-5}}
+\]
+
+\textbf{(b)} \cs{2 Lossy Media — Classification table}:
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+$\varepsilon''/\varepsilon'$ & Type & \\
+\midrule
+$>100$ & Good conductor & \\
+$0.01$ to $100$ & Quasi-conductor & \\
+$<0.01$ & Low-loss dielectric & $\leftarrow$ \textbf{here: $3.46\times10^{-5}\ll0.01$}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\[
+\boxed{\text{Distilled water at this frequency is a \textbf{low-loss dielectric}.}}
+\]
+
+\textbf{(c)} Since low-loss dielectric, use \cs{2 Low-Loss Medium} approximation:
+$\alpha\approx\dfrac{\sigma}{2}\sqrt{\dfrac{\mu}{\varepsilon'}}=\dfrac{\sigma\eta}{2}$.
+
+First find $\eta$ (\cs{2 Lossless params}, valid for low-loss):
+\[
+\eta = \frac{\eta_0}{\sqrt{\varepsilon_r}} = \frac{120\pi}{\sqrt{26\pi}}\approx\frac{376.99}{9.04}\approx41.7\ \Omega
+\]
+\[
+\alpha \approx \frac{\sigma\eta}{2} = \frac{10^{-4}\times41.7}{2} \approx 2.09\times10^{-3}\ \text{Np/m}
+\]
+\cs{2 Lossy Media (bottom strip)}: $\delta_s=1/\alpha$:
+\[
+\boxed{\delta_s = \frac{1}{\alpha} \approx \frac{1}{2.09\times10^{-3}} \approx 479\ \text{m}}
+\]
+
+\vspace{10pt}
+\hrule
+\vspace{6pt}
+
+\begin{center}
+{\small\textbf{Score summary (if perfect):} Q1: 20/20, Q2: 12/12, Q3: 12/12, Q4: 10/10, Q5: 30/30, Q6: 16/16 = \textbf{100/100}}
+\end{center}
+
+\end{document}
