@@ -315,7 +315,7 @@ $R\parallel C$ across $V(t)$:\quad $I = I_c + I_d = \dfrac{V}{R} + C\dfrac{dV}{d
 $\cos(\omega t-kz)=\operatorname{Re}\{e^{j(\omega t-kz)}\}=\operatorname{Re}\{e^{j\omega t}\cdot e^{-jkz}\}\to e^{-jkz}$\\
 $\sin(\omega t-kz)=\cos(\omega t-kz-\tfrac{\pi}{2})=\operatorname{Re}\{e^{j(\omega t-kz-\pi/2)}\}=\operatorname{Re}\{e^{-j\pi/2}\cdot e^{j\omega t}\cdot e^{-jkz}\}\to -j\,e^{-jkz}$\\[3pt]
 \textbf{\color{pink}4. Faraday in phasor domain} \quad (plane wave: only $\partial/\partial z$ survives)
-\[\tilde{\mathbf{H}} = -\frac{1}{j\omega\mu}\nabla\times\tilde{\mathbf{E}}\]
+\[\tilde{\mathbf{H}} = -\frac{1}{j\omega\mu}\nabla\times\tilde{\mathbf{E}} \qquad \tilde{\mathbf{E}} = \frac{1}{j\omega\varepsilon}\nabla\times\tilde{\mathbf{H}}\]
 \textbf{\color{pink}5. Phasor $\to$ time domain} \quad $\mathbf{H}(z,t)=\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$\\
 $\operatorname{Re}\{e^{j(\omega t-kz)}\}=\cos(\omega t-kz)$\\
 $\operatorname{Re}\{-j\,e^{j(\omega t-kz)}\}=\sin(\omega t-kz)$
@@ -595,6 +595,15 @@ $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
 \[\mathbf{E}(z,t)=a\bigl[\cos(\omega t\!-\!kz)\,\hat{x}+\sin(\omega t\!-\!kz)\,\hat{y}\bigr]\]
 \eq{LHC}{$\delta=+\pi/2$;\enspace$\tilde{\mathbf{E}}=a(\hat{x}+j\hat{y})e^{-jkz}$}
 \[\mathbf{E}(z,t)=a\bigl[\cos(\omega t\!-\!kz)\,\hat{x}-\sin(\omega t\!-\!kz)\,\hat{y}\bigr]\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{RETARDED POTENTIALS}
+\begin{ebox}
+\[\mathbf{B}=\nabla\times\mathbf{A} \qquad \mathbf{E}=-\nabla V-\frac{\partial\mathbf{A}}{\partial t}\]
+\[V(\mathbf{R},t)=\frac{1}{4\pi\varepsilon}\int_{V'}\frac{\rho_v\!\left(\mathbf{R}_i,\,t-R'/u_p\right)}{R'}\,dV'\]
+\[A(\mathbf{R},t)=\frac{\mu}{4\pi}\int_{V'}\frac{\mathbf{J}\!\left(\mathbf{R}_i,\,t-R'/u_p\right)}{R'}\,dV'\]
+\textit{$R'=|\mathbf{R}-\mathbf{R}_i|$;\enspace effects propagate at $u_p\approx c$}
 \end{ebox}
 
 \columnbreak
