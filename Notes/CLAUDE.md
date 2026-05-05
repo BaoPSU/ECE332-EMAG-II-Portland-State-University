@@ -5,13 +5,22 @@ This project maintains LaTeX cheat sheets for ECE332 (Electromagnetics II) at Po
 
 **Repo:** `BaoPSU/ECE332-EMAG-II-Portland-State-University`
 
-**Primary files:**
-- `Notes/Cheatsheets/src/ECE332_Exam1_cheatsheet.tex` — Exam 1 cheat sheet source (2 pages)
-- `Notes/Cheatsheets/ECE332_Exam1_cheatsheet.pdf` — compiled Exam 1 output
-- `Notes/Cheatsheets/src/ECE332_HW1_cheatsheet.tex` — HW1 cheat sheet source
-- `Notes/Cheatsheets/src/ECE332_HW2_cheatsheet.tex` — HW2 cheat sheet source
+**Folder structure:**
+```
+Notes/Cheatsheets/
+├── Midterm1/
+│   ├── ECE332_Exam1_cheatsheet.pdf
+│   ├── ECE332_HW1_cheatsheet.pdf
+│   ├── ECE332_HW2_cheatsheet.pdf
+│   └── src/
+│       ├── ECE332_Exam1_cheatsheet.tex
+│       ├── ECE332_HW1_cheatsheet.tex
+│       └── ECE332_HW2_cheatsheet.tex
+└── Final/
+    └── src/          ← drop final cheat sheet .tex files here
+```
 
-**Always compile from `Notes/Cheatsheets/src/`** — images use `\graphicspath{{../../}}` which resolves to `Notes/`. Compiling from `/tmp` will silently drop figures.
+**Always compile from the `src/` subfolder** — images use `\graphicspath{{../../}}` which resolves to `Notes/`. Compiling from `/tmp` will silently drop figures.
 
 ---
 
@@ -20,8 +29,13 @@ This project maintains LaTeX cheat sheets for ECE332 (Electromagnetics II) at Po
 ### Midterm 1 — May 7, 2026
 - **Lectures:** 1–10
 - **Homeworks:** HW1, HW2
-- **Cheat sheet:** `ECE332_Exam1_cheatsheet` (2-sided, 1 page = 2 PDF pages)
+- **Cheat sheet:** `Midterm1/ECE332_Exam1_cheatsheet` (2-sided, 1 page = 2 PDF pages)
 - **Topics:** Faraday's & Ampère's laws, charge-current continuity, EM & time-harmonic potentials, plane-wave propagation (lossless & lossy), polarization, current flow in conductors, EM power density
+
+### Final — TBD
+- **Lectures:** TBD
+- **Homeworks:** TBD
+- **Cheat sheet:** `Final/` (to be created)
 
 ---
 
