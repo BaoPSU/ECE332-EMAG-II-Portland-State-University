@@ -40,8 +40,8 @@
 \fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 --- Exam 1 Cheat Sheet (HW1 + HW2)}}
 \fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
 
-% image path for pol_ellipse.jpg (lives two levels up from src/)
-\graphicspath{{../../}}
+% images live in Midterm1/img/
+\graphicspath{{../img/}}
 
 \begin{document}
 
@@ -95,7 +95,7 @@ Gauss\,(B) & $\nabla\!\cdot\!\mathbf{B}=0$\\
 \shead{purplebg}{purple}{SURFACE ELEMENT $d\mathbf{s}$}
 \begin{ebox}
 $d\mathbf{s} = \hat{n}\,da$ \quad (\textit{RHR gives $\hat{n}$: curl fingers in loop direction, thumb $= \hat{n}$})\\[2pt]
-\begin{tabular}{@{}ll@{}}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ll@{}}
 \toprule
 Loop plane & $d\mathbf{s}$\\
 \midrule
@@ -104,7 +104,7 @@ $y$-$z$ & $\hat{x}\,dy\,dz$\\
 \rowcolor{rowB}$x$-$z$ & $\hat{y}\,dx\,dz$\\
 coplanar / toroid & $\hat{\phi}\,dr\,dz$\\
 \bottomrule
-\end{tabular}\\[2pt]
+\end{tabular}}\par}
 \textit{Uniform $B$: $\iint da = A$ (just the loop area)}
 \end{ebox}
 
@@ -112,7 +112,7 @@ coplanar / toroid & $\hat{\phi}\,dr\,dz$\\
 \shead{purplebg}{purple}{DOT PRODUCTS $\hat{a}\cdot\hat{b}$}
 \begin{ebox}
 Same direction $= 1$;\quad perpendicular $= 0$\\[2pt]
-\begin{tabular}{@{}cccccc@{}}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}cccccc@{}}
 \toprule
 & $\hat{x}$ & $\hat{y}$ & $\hat{z}$ & $\hat{r}$ & $\hat{\phi}$\\
 \midrule
@@ -121,7 +121,7 @@ $\hat{y}$ & 0 & 1 & 0 & 0 & 0\\
 \rowcolor{rowB}$\hat{z}$ & 0 & 0 & 1 & 0 & 0\\
 $\hat{\phi}$ & 0 & 0 & 0 & 0 & 1\\
 \bottomrule
-\end{tabular}
+\end{tabular}}\par}
 \end{ebox}
 
 \vspace{2pt}
@@ -230,8 +230,7 @@ Equil.\ triangle (side $a$) & $\tfrac{\sqrt{3}}{4}a^2$\\
 \vspace{2pt}
 \shead{graybg}{gray}{SI PREFIXES}
 \begin{ebox}
-\centering
-\begin{tabular}{lll@{\quad}lll}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lll@{\quad}lll@{}}
 \toprule
 Prefix & Sym & Value & Prefix & Sym & Value\\
 \midrule
@@ -240,14 +239,13 @@ nano & n & $10^{-9}$ & mega & M & $10^{6}$\\
 \rowcolor{rowB}micro & $\mu$ & $10^{-6}$ & giga & G & $10^{9}$\\
 milli & m & $10^{-3}$ & tera & T & $10^{12}$\\
 \bottomrule
-\end{tabular}
+\end{tabular}}\par}
 \end{ebox}
 
 \vspace{2pt}
 \shead{pinkbg}{pink}{$j$ IDENTITIES}
 \begin{ebox}
-\centering
-\begin{tabular}{ll@{\quad}ll}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ll@{\quad}ll@{}}
 \toprule
 Expression & Result & Expression & Result\\
 \midrule
@@ -257,7 +255,7 @@ $1/j$ & $-j$ & $-1/j$ & $j$\\
 $e^{-j\pi/2}$ & $-j$ & $e^{j\pi/2}$ & $j$\\
 \rowcolor{rowB}$e^{j\pi}$ & $-1$ & $e^{j2\pi}$ & $1$\\
 \bottomrule
-\end{tabular}
+\end{tabular}}\par}
 \end{ebox}
 
 \vspace{2pt}
