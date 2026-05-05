@@ -1,0 +1,464 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+
+\definecolor{ref}{HTML}{0C447C}
+\definecolor{ans}{HTML}{0F6E56}
+\definecolor{note}{HTML}{993C1D}
+
+\newcommand{\refbox}[1]{\textcolor{ref}{\textit{[Suppl: #1]}}}
+\newcommand{\ansbox}[1]{\colorbox{green!12}{\textbf{#1}}}
+\newcommand{\ptag}[1]{\hfill\textit{(#1 pts)}}
+\newcommand{\step}[1]{\medskip\noindent\textbf{Step #1.}\enspace}
+\newcommand{\note}[1]{\par\noindent\textcolor{note}{\textit{Note: #1}}}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\textbf{ECE332 --- Exam 1 Fall 2025 --- Answer Key}}
+\fancyhead[R]{Bao Nguyen}
+\fancyfoot[C]{\thepage}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries ECE332 Exam 1 --- Full Answer Key}\\[4pt]
+{\large Fall 2025 $\cdot$ Step-by-Step with Supplement References}
+\end{center}
+
+\noindent\rule{\linewidth}{0.6pt}
+
+%%%===========================================================
+\section*{Problem 1 (20 pts) --- Transformer EMF, Triangular Loop}
+%%%===========================================================
+
+\textbf{Given:} Equilateral triangular loop, $N$ turns, side $a$, in $y$-$z$ plane with normal
+$d\mathbf{s}=\hat{x}\,ds$. Magnetic field $\mathbf{B}(t)=B_0(-2\hat{x}+3\hat{y})\sin(\omega t)$.
+
+\medskip
+
+\textbf{(a) Flux through one turn.}\ptag{6}
+
+\refbox{p.1 col 1: SURFACE ELEMENT $d\mathbf{s}$; DOT PRODUCTS; p.1 col 3: EMF \& FARADAY'S LAW}
+
+\step{1} Find the area of the equilateral triangle.
+From the exam cover: $A = \tfrac{1}{2}bh$.
+For an equilateral triangle with side $a$: base $b=a$, height $h=\tfrac{\sqrt{3}}{2}a$.
+\[
+A = \tfrac{1}{2}\cdot a\cdot\tfrac{\sqrt{3}}{2}a = \tfrac{\sqrt{3}}{4}a^2
+\]
+
+\step{2} Compute flux. The loop is in the $y$-$z$ plane, so $d\mathbf{s}=\hat{x}\,ds$.
+\[
+\Phi = \iint_S \mathbf{B}\cdot d\mathbf{s}
+= \iint B_0(-2\hat{x}+3\hat{y})\sin(\omega t)\cdot\hat{x}\,ds
+\]
+Use DOT PRODUCTS table: $\hat{x}\cdot\hat{x}=1$, $\hat{y}\cdot\hat{x}=0$.
+\[
+\Phi = B_0(-2)(1)\sin(\omega t)\iint ds + B_0(3)(0)\sin(\omega t)\iint ds
+= -2B_0\sin(\omega t)\cdot A
+\]
+\[
+\boxed{\Phi = -\frac{\sqrt{3}}{2}\,B_0\,a^2\sin(\omega t)\;\text{Wb}}
+\]
+
+\medskip
+
+\textbf{(b) EMF induced in the loop.}\ptag{6}
+
+\refbox{p.1 col 3: $V_\text{emf}=-N\,d\Phi/dt$; $\partial B/\partial t$ TABLE}
+
+\step{1} Differentiate $\Phi$ with respect to $t$.
+\[
+\frac{d\Phi}{dt} = -\frac{\sqrt{3}}{2}\,B_0\,a^2\,\omega\cos(\omega t)
+\quad\text{(from } \partial_t\sin(\omega t)=\omega\cos(\omega t)\text{ in }\partial B/\partial t\text{ table)}
+\]
+
+\step{2} Apply Faraday: $V_\text{emf}=-N\,d\Phi/dt$.
+\[
+V_\text{emf} = -N\left(-\frac{\sqrt{3}}{2}\,B_0\,a^2\,\omega\cos(\omega t)\right)
+\]
+\[
+\boxed{V_\text{emf} = \frac{\sqrt{3}}{2}\,N\,B_0\,a^2\,\omega\cos(\omega t)\;\text{V}}
+\]
+
+\medskip
+
+\textbf{(c) Current through 1\,k$\Omega$ resistor at given values.}\ptag{8}
+
+\refbox{p.1 col 3: Equivalent circuit $I=V_\text{emf}/R$; p.1 col 2: UNIT CIRCLE $\cos(\pi/4)=\sqrt{2}/2$}
+
+Plug in $N=10$, $a=0.08\,\text{m}$, $B_0=0.02\,\text{T}$, $\omega=2\times10^6\,\text{rad/s}$,
+$\omega t=\pi/4$, $R=1\,\text{k}\Omega=10^3\,\Omega$.
+
+\step{1} Combine $\cos(\pi/4)=\sqrt{2}/2$ with the $\sqrt{3}/2$ factor:
+$\tfrac{\sqrt{3}}{2}\cdot\tfrac{\sqrt{2}}{2}=\tfrac{\sqrt{6}}{4}$. Then:
+\[
+V_\text{emf}
+= \frac{\sqrt{6}}{4}\cdot N\cdot B_0\cdot a^2\cdot\omega
+= \frac{\sqrt{6}}{4}\cdot 10\cdot 0.02\cdot(0.08)^2\cdot 2\times10^6
+\]
+Numeric bracket step by step:
+\[
+(0.08)^2=6.4\times10^{-3},\quad
+0.02\times6.4\times10^{-3}=1.28\times10^{-4},\quad
+1.28\times10^{-4}\times2\times10^6=256,\quad
+10\times256=2560
+\]
+\[
+V_\text{emf} = \tfrac{\sqrt{6}}{4}\times2560 = 640\sqrt{6}\approx 1568\;\text{V}
+\]
+
+\step{2} Since loop resistance is negligible ($R_i=0$), from EQUIVALENT CIRCUIT:
+\[
+I = \frac{V_\text{emf}}{R} = \frac{640\sqrt{6}}{10^3}
+\]
+\[
+\boxed{I = 0.64\sqrt{6}\approx 1.57\;\text{A}}
+\]
+
+%%%===========================================================
+\section*{Problem 2 (12 pts) --- Motional EMF, Moving Wire}
+%%%===========================================================
+
+\textbf{Given:} Wire of length $a=15\,\text{cm}=0.15\,\text{m}$ along $\hat{y}$.
+Velocity $\mathbf{u}=12\hat{x}\,\text{cm/s}=0.12\hat{x}\,\text{m/s}$.
+Field $\mathbf{B}=(0.1\hat{x}-0.05\hat{z})\,\text{T}$.
+
+\refbox{p.1 col 3: Motional EMF $V^\text{m}=\oint(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}$;
+p.1 bottom: CROSS PROD CYCLE}
+
+\step{1} Compute $\mathbf{u}\times\mathbf{B}$.
+\[
+\mathbf{u}\times\mathbf{B} = 0.12\hat{x}\times(0.1\hat{x}-0.05\hat{z})
+= 0.012\underbrace{(\hat{x}\times\hat{x})}_{=\,0} - 0.006\underbrace{(\hat{x}\times\hat{z})}_{=\,-\hat{y}}
+= 0 - 0.006(-\hat{y}) = 0.006\hat{y}\;\text{V/m}
+\]
+
+(From CROSS PROD CYCLE: $\hat{x}\times\hat{z}=-(\hat{z}\times\hat{x})=-\hat{y}$.)
+
+\step{2} Integrate along the wire. Wire lies along $\hat{y}$, so $d\mathbf{l}=\hat{y}\,dy$.
+\[
+V_\text{emf} = \int_0^{0.15}(0.006\hat{y})\cdot(\hat{y}\,dy)
+= 0.006\times 0.15
+\]
+\[
+\boxed{V_\text{emf} = 9\times10^{-4}\;\text{V} = 0.9\;\text{mV}}
+\]
+
+\note{Only the $-0.05\hat{z}$ component of $\mathbf{B}$ contributes: $\hat{x}\times\hat{x}=0$
+eliminates the $\hat{x}$ component entirely.}
+
+%%%===========================================================
+\section*{Problem 3 (12 pts) --- Conduction vs.\ Displacement Current}
+%%%===========================================================
+
+\textbf{Given:} $I_c=2\sin(\omega t)\,\mu\text{A}=2\times10^{-6}\sin(\omega t)\,\text{A}$ through area $A$.
+Distilled water: $\sigma=10^{-4}\,\text{S/m}$, $\varepsilon_r=26\pi$,
+$\varepsilon_0=\tfrac{1}{36\pi}\times10^{-9}\,\text{F/m}$.
+
+\medskip
+
+\textbf{(a) Electric field $E$.}\ptag{6}
+
+\refbox{p.2 col 1: CONDUCTION vs.\ DISPLACEMENT CURRENT; $J_c=\sigma E$, $I_c=J_c A$}
+
+\step{1} Current density: $J_c = I_c/A$.
+\step{2} Ohm's law: $J_c=\sigma E$ $\Rightarrow$ $E=J_c/\sigma = I_c/(\sigma A)$.
+\[
+E = \frac{2\times10^{-6}\sin(\omega t)}{10^{-4}\cdot A}
+\]
+\[
+\boxed{E = \frac{0.02}{A}\sin(\omega t)\;\text{V/m}}
+\]
+
+\medskip
+
+\textbf{(b) Displacement current $I_d$ at $\omega=10^9\,\text{rad/s}$, $\omega t=\pi/3$.}\ptag{6}
+
+\refbox{p.2 col 1: $J_d=\varepsilon\,\partial E/\partial t$, $I_d=J_d A$; UNIT CIRCLE: $\cos(\pi/3)=1/2$}
+
+\step{1} Compute $\varepsilon=\varepsilon_r\varepsilon_0$.
+\[
+\varepsilon = 26\pi\cdot\frac{1}{36\pi}\times10^{-9} = \frac{26}{36}\times10^{-9}
+= \frac{13}{18}\times10^{-9}\;\text{F/m}
+\]
+
+\step{2} $I_d = \varepsilon A\,\partial E/\partial t = \varepsilon A\cdot\frac{0.02}{A}\cdot\omega\cos(\omega t)
+= \varepsilon\cdot 0.02\cdot\omega\cos(\omega t)$.
+
+At $\omega t=\pi/3$:
+\[
+I_d = \frac{13}{18}\times10^{-9}\times 0.02\times10^9\times\frac{1}{2}
+= \frac{13}{18}\times 0.02\times 0.5
+= \frac{13}{1800}
+\]
+\[
+\boxed{I_d = \frac{13}{1800}\approx 7.22\;\text{mA}}
+\]
+
+\note{$I_d\approx 7.22\,\text{mA}\gg I_c=2\,\mu\text{A}$. The water stores energy
+capacitively ($\varepsilon_r=26\pi\approx82$) much more than it dissipates resistively at GHz.}
+
+%%%===========================================================
+\section*{Problem 4 (10 pts) --- Charge Relaxation in Distilled Water}
+%%%===========================================================
+
+\textbf{Given:} $\sigma\approx10^{-4}\,\text{S/m}$, $\varepsilon_r\approx26\pi$.
+
+\medskip
+
+\textbf{(a) Relaxation time constant.}\ptag{5}
+
+\refbox{p.2 col 1: CHARGE RELAXATION $\tau_r=\varepsilon/\sigma$}
+
+\[
+\tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}
+= \frac{\tfrac{13}{18}\times10^{-9}}{10^{-4}}
+= \frac{13}{18}\times10^{-5}\;\text{s}
+\]
+\[
+\boxed{\tau_r = \frac{13}{18}\times10^{-5}\approx 7.22\;\mu\text{s}}
+\]
+
+\medskip
+
+\textbf{(b) Time for $\rho_v$ to reach $e^{-3}$ of initial value.}\ptag{5}
+
+\refbox{p.2 col 1: $\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}$}
+
+\step{1} Set up equation:
+\[
+\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}=\rho_{v0}\,e^{-3}
+\quad\Rightarrow\quad \frac{t}{\tau_r}=3 \quad\Rightarrow\quad t=3\tau_r
+\]
+
+\step{2} Compute:
+\[
+t = 3\times 7.22\;\mu\text{s}
+\]
+\[
+\boxed{t = 3\tau_r\approx 21.7\;\mu\text{s}}
+\]
+
+%%%===========================================================
+\section*{Problem 5 (30 pts) --- Lossless Plane Wave}
+%%%===========================================================
+
+\textbf{Given:} Nonconducting ($\sigma=0$) medium, $\varepsilon_r=6$, $\mu_r=1$.
+\[
+\mathbf{E}(z,t)=4\cos\!\left(6\pi\times10^8\,t - kz - \frac{\pi}{6}\right)\hat{y}\;\text{V/m}
+\]
+
+\medskip
+
+\textbf{(a) Find $\omega$, $k$, $\lambda$, $\eta$.}\ptag{10}
+
+\refbox{p.2 bottom: WAVE PARAMS; $k=\omega\sqrt{\mu\varepsilon}$, $\eta=\sqrt{\mu/\varepsilon}$, $\lambda=2\pi/k$}
+
+\textbf{Read $\omega$ directly:}
+\[
+\boxed{\omega = 6\pi\times10^8\;\text{rad/s}}
+\]
+
+\textbf{Compute $k$:}
+\[
+k = \omega\sqrt{\mu_r\mu_0\,\varepsilon_r\varepsilon_0}
+= \frac{\omega}{c}\sqrt{\mu_r\varepsilon_r}
+= \frac{6\pi\times10^8}{3\times10^8}\sqrt{1\times6}
+= 2\pi\sqrt{6}
+\]
+\[
+\boxed{k = 2\pi\sqrt{6}\approx 15.4\;\text{rad/m}}
+\]
+
+\textbf{Compute $\lambda$:}
+\[
+\lambda = \frac{2\pi}{k} = \frac{2\pi}{2\pi\sqrt{6}} = \frac{1}{\sqrt{6}}
+\]
+\[
+\boxed{\lambda = \frac{1}{\sqrt{6}}\approx 0.408\;\text{m}}
+\]
+
+\textbf{Compute $\eta$:}
+\[
+\eta = \sqrt{\frac{\mu}{\varepsilon}}
+= \eta_0\sqrt{\frac{\mu_r}{\varepsilon_r}}
+= 120\pi\sqrt{\frac{1}{6}}
+= \frac{120\pi}{\sqrt{6}}
+= 20\pi\sqrt{6}
+\]
+\[
+\boxed{\eta = 20\pi\sqrt{6}\approx 154\;\Omega}
+\]
+
+\medskip
+
+\textbf{(b) Find $\tilde{\mathbf{E}}(z)$.}\ptag{5}
+
+\refbox{p.2 col 2: PHASOR METHOD step 2: $\cos(\omega t-kz+\phi)\to e^{j\phi}e^{-jkz}$}
+
+Strip the $e^{j\omega t}$ factor. From $\mathbf{E}(z,t)=4\cos(\omega t-kz-\pi/6)\hat{y}$:
+\[
+\cos(\omega t - kz - \pi/6) \;\longleftrightarrow\; e^{-j\pi/6}e^{-jkz}
+\]
+\[
+\boxed{\tilde{\mathbf{E}}(z) = 4\,e^{-j\pi/6}\,e^{-jkz}\,\hat{y}
+= 4\,e^{-j(kz+\pi/6)}\,\hat{y}\;\text{V/m}}
+\]
+(with $k=2\pi\sqrt{6}$\,rad/m)
+
+\medskip
+
+\textbf{(c) Find $\tilde{\mathbf{H}}(z)$.}\ptag{5}
+
+\refbox{p.2 col 2: DIRECTION RELATION $\tilde{\mathbf{H}}=\frac{1}{\eta}\hat{k}\times\tilde{\mathbf{E}}$;
+table row: $\hat{k}=+\hat{z}$, $\hat{E}=+\hat{y}$ $\Rightarrow$ $\hat{H}=\hat{z}\times\hat{y}=-\hat{x}$}
+
+\[
+\tilde{\mathbf{H}} = \frac{1}{\eta}\hat{k}\times\tilde{\mathbf{E}}
+= \frac{1}{\eta}\,\hat{z}\times\bigl(4e^{-j(kz+\pi/6)}\hat{y}\bigr)
+= \frac{4}{\eta}\,e^{-j(kz+\pi/6)}\,(\hat{z}\times\hat{y})
+= \frac{4}{\eta}\,e^{-j(kz+\pi/6)}\,(-\hat{x})
+\]
+
+With $\eta=20\pi\sqrt{6}$: $\tfrac{4}{\eta}=\tfrac{4}{20\pi\sqrt{6}}=\tfrac{1}{5\pi\sqrt{6}}$.
+\[
+\boxed{\tilde{\mathbf{H}}(z) = -\frac{1}{5\pi\sqrt{6}}\,e^{-j(kz+\pi/6)}\,\hat{x}\;\text{A/m}}
+\]
+
+\medskip
+
+\textbf{(d) Find $\mathbf{H}(z,t)$.}\ptag{5}
+
+\refbox{p.2 col 2: step 4: $\mathbf{H}=\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$}
+
+\[
+\mathbf{H}(z,t) = \operatorname{Re}\!\left\{-\frac{1}{5\pi\sqrt{6}}\,e^{-j(kz+\pi/6)}\,e^{j\omega t}\,\hat{x}\right\}
+\]
+\[
+\boxed{\mathbf{H}(z,t)
+= -\frac{1}{5\pi\sqrt{6}}\cos\!\left(6\pi\times10^8\,t - 2\pi\sqrt{6}\,z - \frac{\pi}{6}\right)\hat{x}\;\text{A/m}}
+\]
+
+\medskip
+
+\textbf{(e) Average power density.}\ptag{5}
+
+\refbox{p.2 col 3: POYNTING \& POWER (lossless): $\mathbf{S}_\text{av}=|E_0|^2/(2\eta)\,\hat{k}$}
+
+\[
+\mathbf{S}_\text{av} = \frac{|E_0|^2}{2\eta}\,\hat{k}
+= \frac{4^2}{2\times 20\pi\sqrt{6}}\,\hat{z}
+= \frac{16}{40\pi\sqrt{6}}\,\hat{z}
+= \frac{2}{5\pi\sqrt{6}}\,\hat{z}
+\]
+
+Simplify: $\dfrac{2}{5\pi\sqrt{6}}\cdot\dfrac{\sqrt{6}}{\sqrt{6}}=\dfrac{2\sqrt{6}}{30\pi}=\dfrac{\sqrt{6}}{15\pi}$.
+\[
+\boxed{\mathbf{S}_\text{av} = \frac{\sqrt{6}}{15\pi}\,\hat{z}\approx 0.052\;\hat{z}\;\text{W/m}^2}
+\]
+
+%%%===========================================================
+\section*{Problem 6 (16 pts) --- Lossy EM Wave in Distilled Water}
+%%%===========================================================
+
+\textbf{Given:} $f=\tfrac{2}{5}\,\text{GHz}=0.4\times10^9\,\text{Hz}$, $\sigma\approx10^{-4}\,\text{S/m}$,
+$\varepsilon_r\approx26\pi$, $\mu_r=1$, wave in $+\hat{z}$, $|E(0)|=4\,\text{V/m}$.
+
+Useful intermediate values (compute once, use everywhere):
+\[
+\omega = 2\pi f = 2\pi\times4\times10^8 = 8\pi\times10^8\;\text{rad/s}
+\]
+\[
+\varepsilon' = \varepsilon_r\varepsilon_0
+= 26\pi\cdot\frac{1}{36\pi}\times10^{-9}
+= \frac{13}{18}\times10^{-9}\approx7.22\times10^{-10}\;\text{F/m}
+\]
+
+\medskip
+
+\textbf{(a) Find $\varepsilon''/\varepsilon'$.}\ptag{6}
+
+\refbox{p.2 col 3: MEDIUM TYPES; $\varepsilon''=\sigma/\omega$, $\varepsilon'=\varepsilon_r\varepsilon_0$}
+
+\[
+\varepsilon'' = \frac{\sigma}{\omega} = \frac{10^{-4}}{8\pi\times10^8}
+= \frac{1}{8\pi}\times10^{-12}\;\text{F/m}
+\]
+\[
+\frac{\varepsilon''}{\varepsilon'} = \frac{\sigma}{\omega\,\varepsilon_r\varepsilon_0}
+= \frac{10^{-4}}{8\pi\times10^8\times\frac{13}{18}\times10^{-9}}
+= \frac{10^{-4}}{\frac{104\pi}{18}\times10^{-1}}
+= \frac{10^{-4}\times18}{104\pi\times10^{-1}}
+= \frac{18}{104\pi}\times10^{-3}
+= \frac{9}{52\pi}\times10^{-3}
+\]
+\[
+\boxed{\frac{\varepsilon''}{\varepsilon'} = \frac{9}{52\pi}\times10^{-3}\approx 5.5\times10^{-5}}
+\]
+
+\medskip
+
+\textbf{(b) What type of medium is distilled water at this frequency?}\ptag{5}
+
+\refbox{p.2 col 3: MEDIUM TYPES table; threshold $\varepsilon''/\varepsilon'\ll 1$ (i.e.\ $<0.01$)}
+
+\[
+\frac{\varepsilon''}{\varepsilon'} \approx 5.5\times10^{-5} \;\ll\; 1
+\]
+
+\[
+\boxed{\text{Low-loss dielectric}\quad\left(\frac{\varepsilon''}{\varepsilon'}\ll1\right)}
+\]
+
+Justification: the ratio is $\approx10^{-4}$, far below the $10^{-2}$ threshold for quasi-conductor
+and far below 100 for good conductor.
+
+\medskip
+
+\textbf{(c) Find the skin depth.}\ptag{5}
+
+\refbox{p.2 col 3: MEDIUM TYPES, low-loss row: $\alpha\approx\tfrac{\sigma}{2}\sqrt{\mu/\varepsilon'}$;
+$\delta_s=1/\alpha$}
+
+\step{1} Compute $\eta'=\sqrt{\mu_0/\varepsilon'}$ (intrinsic impedance).
+\[
+\eta' = \frac{\eta_0}{\sqrt{\varepsilon_r}}
+= \frac{120\pi}{\sqrt{26\pi}}
+\approx \frac{376.99}{9.04}
+\approx 41.7\;\Omega
+\]
+
+\step{2} Apply low-loss approximation $\alpha\approx(\sigma/2)\,\eta'$:
+\[
+\alpha \approx \frac{\sigma}{2}\cdot\eta'
+= \frac{10^{-4}}{2}\times41.7
+= 2.085\times10^{-3}\;\text{Np/m}
+\]
+
+\step{3} Skin depth $\delta_s=1/\alpha$:
+\[
+\delta_s = \frac{1}{2.085\times10^{-3}}
+\]
+\[
+\boxed{\delta_s \approx 480\;\text{m}}
+\]
+
+\note{480\,m skin depth confirms this is a near-lossless medium at $0.4$\,GHz with $\sigma=10^{-4}$\,S/m.
+The wave barely attenuates --- it can travel hundreds of meters before losing a factor of $e$.}
+
+\bigskip
+\noindent\rule{\linewidth}{0.6pt}
+\begin{center}
+\textit{Blue labels \refbox{...} point to the exact section of the Exam 1 Supplement to look up.}
+\end{center}
+
+\end{document}
