@@ -594,25 +594,13 @@ $|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\shead{amberbg}{amber}{CIRCULAR POLARIZATION --- TIME DOMAIN}
 \begin{ebox}
-\eq{General}{W/m$^2$}
-\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
-
-\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
-\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
-
-\eq{Lossy medium}{$\eta_c=|\eta_c|e^{j\theta_\eta}$; wave in $+\hat{z}$}
-\[\mathbf{S}_\text{av}=\frac{|\tilde{\mathbf{E}}(0)|^2}{2|\eta_c|}e^{-2\alpha z}\cos\theta_\eta\;\hat{z}\]
-
-\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{greenbg}{green}{DECIBELS \& ATTENUATION}
-\begin{ebox}
-$G=10\log(P_1/P_2)=20\log(|E_1|/|E_2|)$ (dB)\\
-$A=-8.69\,\alpha\,z$ (dB);\enspace$\alpha\,\text{(dB/m)}\equiv8.69\,\alpha\,\text{(Np/m)}$
+\textit{$a_x=a_y=a$, wave in $+\hat{z}$}\\
+\eq{RHC}{$\delta=-\pi/2$;\enspace$\tilde{\mathbf{E}}=a(\hat{x}-j\hat{y})e^{-jkz}$}
+\[\mathbf{E}(z,t)=a\bigl[\cos(\omega t\!-\!kz)\,\hat{x}+\sin(\omega t\!-\!kz)\,\hat{y}\bigr]\]
+\eq{LHC}{$\delta=+\pi/2$;\enspace$\tilde{\mathbf{E}}=a(\hat{x}+j\hat{y})e^{-jkz}$}
+\[\mathbf{E}(z,t)=a\bigl[\cos(\omega t\!-\!kz)\,\hat{x}-\sin(\omega t\!-\!kz)\,\hat{y}\bigr]\]
 \end{ebox}
 
 \columnbreak
@@ -684,6 +672,28 @@ $0.01$ to $100$ & Quasi-conductor & Exact eqs\\
 \eq{Step 4 --- time domain}{}
 \[Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)\]
 \textit{\color{coral}Convert each component $A\!+\!jB\to|Z|\angle\theta$ first.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+
+\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+
+\eq{Lossy medium}{$\eta_c=|\eta_c|e^{j\theta_\eta}$; wave in $+\hat{z}$}
+\[\mathbf{S}_\text{av}=\frac{|\tilde{\mathbf{E}}(0)|^2}{2|\eta_c|}e^{-2\alpha z}\cos\theta_\eta\;\hat{z}\]
+
+\textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{greenbg}{green}{DECIBELS \& ATTENUATION}
+\begin{ebox}
+$G=10\log(P_1/P_2)=20\log(|E_1|/|E_2|)$ (dB)\\
+$A=-8.69\,\alpha\,z$ (dB);\enspace$\alpha\,\text{(dB/m)}\equiv8.69\,\alpha\,\text{(Np/m)}$
 \end{ebox}
 
 \end{multicols}
