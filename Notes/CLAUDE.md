@@ -125,6 +125,58 @@ The inner `\linewidth` inside an ebox is approximately **182.7 pt** (column widt
 
 ---
 
+## Spacing Controls (Tight vs. Readable)
+
+These are the key knobs for how dense the sheet looks:
+
+### Box padding (`innertopmargin` / `innerbottommargin` / `skipabove` / `skipbelow`)
+| Style | Settings | When to use |
+|-------|----------|-------------|
+| **Ultra-tight** | `innertopmargin=0.5pt, innerbottommargin=0.5pt, skipabove=0.5pt, skipbelow=0.5pt` | Max content, very compact look |
+| **Readable** | `innertopmargin=2pt, innerbottommargin=2pt, skipabove=1pt, skipbelow=1pt` | Slightly more breathing room |
+
+### Line spacing (`\fontsize{size}{baselineskip}`)
+- `\fontsize{6}{7}\selectfont` — tighter line spacing (letters closer together)
+- `\fontsize{6}{7.5}\selectfont` — slightly looser, easier to read
+
+### Math equation spacing
+```latex
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0.5pt}   % ultra-tight
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1.5pt}   % readable
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+```
+
+### Changing spacing mid-document (multi-page sheets)
+You can reset any of the above with `\setlength` after `\newpage` to apply different density per page:
+```latex
+\newpage
+\fontsize{6}{7}\selectfont
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0.5pt}
+```
+
+---
+
+## microtype Fix for Sub-6pt Fonts
+
+If you get `pdfTeX error (font expansion): auto expansion is only possible with scalable fonts`, use:
+```latex
+\usepackage[expansion=false]{microtype}
+```
+This happens when `\eq{}{}` renders labels at 5.5–5.8pt and the CM bitmap font is hit. Disabling expansion fixes it with no visible quality loss.
+
+---
+
+## Images in Subdirectories
+
+If the `.tex` is in `src/` but images live two levels up (e.g., `Notes/pol_ellipse.jpg`), add to the preamble:
+```latex
+\usepackage{graphicx}
+\graphicspath{{../../}}
+```
+Then reference the image by filename only: `\includegraphics[width=\linewidth]{pol_ellipse.jpg}`
+
+---
+
 ## Page Length Control
 The sheet must fit on **1 page**. If it overflows, try (in order of impact):
 1. Remove or shorten a section
