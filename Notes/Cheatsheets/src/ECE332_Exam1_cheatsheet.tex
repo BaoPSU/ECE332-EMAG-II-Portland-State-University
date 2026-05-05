@@ -4,11 +4,12 @@
 \usepackage{multicol}
 \usepackage{xcolor}
 \usepackage{mdframed}
-\usepackage{microtype}
+\usepackage[expansion=false]{microtype}
 \usepackage{fancyhdr}
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{array}
+\usepackage{graphicx}
 
 \definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
 \definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
@@ -36,149 +37,221 @@
 
 \pagestyle{fancy}\fancyhf{}
 \renewcommand{\headrulewidth}{0.3pt}
-\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 --- Exam 1 Cheat Sheet (Ch.\,6 \& Ch.\,7)}}
+\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 --- Exam 1 Cheat Sheet (HW1 + HW2)}}
 \fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
 
 \begin{document}
 \fontsize{6}{7}\selectfont
 
 %%=============================================================
-%% PAGE 1
+%% PAGE 1 — HW1 CONTENT
 %%=============================================================
 \begin{multicols}{3}
 
-%────── COL 1: FARADAY & EMF ──────
-\shead{amberbg}{amber}{MAGNETIC FLUX \& FARADAY'S LAW}
+%────── COL 1 ──────
+\shead{purplebg}{purple}{EMF \& FARADAY'S LAW}
 \begin{ebox}
-\eq{Flux}{Wb}
-\[\Phi=\iint_S\mathbf{B}\cdot d\mathbf{s}\]
-\eq{Faraday's law}{$N$ turns; $N\!=\!1$ for single loop}
-\[V_\text{emf}=-N\frac{d\Phi}{dt}\quad\text{(V)}\]
-\textit{Lenz's law: $\mathbf{B}$ increasing $\Rightarrow\mathbf{B}_\text{ind}$ \textbf{opposes} $\mathbf{B}$;\enspace$\mathbf{B}$ decreasing $\Rightarrow\mathbf{B}_\text{ind}$ same dir.}
+\eq{Transformer EMF}{stationary loop, $B$ changes}
+\[V_\text{emf}=-\int_S\frac{\partial\mathbf{B}}{\partial t}\cdot d\mathbf{s}\]
+\eq{Motional EMF}{loop moves, $B$ static}
+\[V_\text{emf}=\oint(\mathbf{v}\times\mathbf{B})\cdot d\mathbf{l}\]
+\eq{General (flux form)}{always works}
+\[V_\text{emf}=-\frac{d\Phi}{dt}\qquad\Phi=\int_S\mathbf{B}\cdot d\mathbf{s}\]
+\eq{$N$-turn coil}{transformer, $N$ turns}
+\[V_\text{emf}=-N\frac{d\Phi}{dt}=-\frac{d\lambda}{dt}\quad\lambda=N\Phi\]
+\eq{Uniform $B$ shortcut}{$B$ same everywhere on loop}
+\[V_\text{emf}=-\frac{\partial B}{\partial t}\cdot A\]
+\eq{Long wire + rect loop}{wire near loop, $r$: $a\to b$, height $c$}
+\[V_\text{emf}=-\int_0^c\!\int_a^b\frac{\partial}{\partial t}\!\left(\frac{\mu_0 I}{2\pi r}\right)dr\,dz\]
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{amberbg}{amber}{TRANSFORMER \& MOTIONAL EMF}
+\shead{purplebg}{purple}{SURFACE ELEMENT $d\mathbf{s}$}
 \begin{ebox}
-\eq{Transformer EMF}{stationary loop, $\mathbf{B}$ changes}
-\[V_\text{emf}^\text{tr}=-N\iint_S\frac{\partial\mathbf{B}}{\partial t}\cdot d\mathbf{s}\]
-\eq{Motional EMF}{moving loop, static $\mathbf{B}$}
-\[V_\text{emf}^\text{m}=\oint_C(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}\]
-\eq{Total (general)}{both loop moves and $\mathbf{B}$ varies}
-\[V_\text{emf}=-\frac{d\Phi}{dt}=V_\text{emf}^\text{tr}+V_\text{emf}^\text{m}\]
-\textit{If $\mathbf{u}\!\parallel\!d\mathbf{l}$ or $\mathbf{B}\!\parallel\!d\mathbf{l}$: that segment contributes 0 to $V_\text{emf}^\text{m}$.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{amberbg}{amber}{AC GENERATOR}
-\begin{ebox}
-\textit{Loop area $A$, $N$ turns, angular vel.\ $\omega$, initial angle $C_0$, field $B_0$:}
-\[\Phi=AB_0\cos(\omega t+C_0),\qquad V_\text{emf}=NA\omega B_0\sin(\omega t+C_0)\]
-\textit{Peak $V_0=NA\omega B_0$.\enspace To increase: $\uparrow N,\,A,\,\omega,\,B_0$.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{tealbg}{teal}{IDEAL TRANSFORMER}
-\begin{ebox}
-\[\frac{V_1}{V_2}=\frac{N_1}{N_2},\qquad\frac{I_1}{I_2}=\frac{N_2}{N_1}\]
-\[Z_\text{in}=\!\left(\!\frac{N_1}{N_2}\!\right)^{\!2}\!Z_L,\quad R_\text{in}=\!\left(\!\frac{N_1}{N_2}\!\right)^{\!2}\!R_L\]
-\textit{Inductor in changing $\mathbf{B}$: $I=V_\text{emf}^\text{tr}/(R+R_i)\approx V_\text{emf}^\text{tr}/R$ when $R_i\!\ll\!R$.}
-\end{ebox}
-
-\columnbreak
-
-%────── COL 2: MAXWELL + CONTINUITY + POTENTIALS ──────
-\shead{bluebg}{blue}{MAXWELL'S EQUATIONS}
-\begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.15\linewidth}p{0.38\linewidth}p{0.38\linewidth}@{}}
+$d\mathbf{s}=\hat{n}\,da$\quad\textit{RHR: curl fingers in loop dir., thumb $=\hat{n}$}\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ll@{}}
 \toprule
-Law & Differential & Integral\\
+Loop plane & $d\mathbf{s}$\\
 \midrule
-\rowcolor{rowB}Gauss $\mathbf{E}$ & $\nabla\cdot\mathbf{D}=\rho_v$ & $\oint\mathbf{D}\cdot d\mathbf{s}=Q$\\
-Gauss $\mathbf{B}$ & $\nabla\cdot\mathbf{B}=0$ & $\oint\mathbf{B}\cdot d\mathbf{s}=0$\\
-\rowcolor{rowB}Faraday & $\nabla\!\times\!\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t}$ & $\oint\mathbf{E}\cdot d\mathbf{l}=-\frac{d\Phi}{dt}$\\
-Amp\`{e}re & $\nabla\!\times\!\mathbf{H}=\mathbf{J}+\frac{\partial\mathbf{D}}{\partial t}$ & $\oint\mathbf{H}\cdot d\mathbf{l}=I_c+I_d$\\
+\rowcolor{rowB}$x$-$y$ & $\hat{z}\,dx\,dy$ or $\hat{z}\,r\,dr\,d\phi$\\
+$y$-$z$ & $\hat{x}\,dy\,dz$\\
+\rowcolor{rowB}$x$-$z$ & $\hat{y}\,dx\,dz$\\
+coplanar/toroid & $\hat{\phi}\,dr\,dz$\\
 \bottomrule
-\end{tabular}}}\par}
-\textit{$\mathbf{D}\!=\!\varepsilon\mathbf{E}$;\;$\mathbf{B}\!=\!\mu\mathbf{H}$;\;$\mathbf{J}\!=\!\sigma\mathbf{E}$;\;$I_d\!=\!\iint\tfrac{\partial\mathbf{D}}{\partial t}\!\cdot\!d\mathbf{s}$;\;$I_c\!=\!\iint\mathbf{J}\!\cdot\!d\mathbf{s}$.}\\
-\textit{Phasor: $\nabla\!\times\!\tilde{\mathbf{E}}\!=\!-j\omega\mu\tilde{\mathbf{H}}$;\;$\nabla\!\times\!\tilde{\mathbf{H}}\!=\!j\omega\varepsilon_c\tilde{\mathbf{E}}$;\;$\varepsilon_c\!=\!\varepsilon'\!-\!j\sigma/\omega$.}
+\end{tabular}}\par}
+\textit{Uniform $B$: $\iint da=A$ (just the loop area)}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{bluebg}{blue}{DISPLACEMENT CURRENT}
+\shead{purplebg}{purple}{DOT PRODUCTS $\hat{a}\cdot\hat{b}$}
 \begin{ebox}
-\[\mathbf{J}_d=\frac{\partial\mathbf{D}}{\partial t}=\varepsilon\frac{\partial\mathbf{E}}{\partial t}\;\text{(A/m}^2\text{)},\qquad I_d=\iint_S\mathbf{J}_d\cdot d\mathbf{s}\;\text{(A)}\]
-\textit{Phasor: $\tilde{\mathbf{J}}_d=j\omega\varepsilon\tilde{\mathbf{E}}$.\enspace Makes total current $I=I_c+I_d$ continuous.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{coralbg}{coral}{CHARGE CONTINUITY \& RELAXATION}
-\begin{ebox}
-\[\nabla\cdot\mathbf{J}=-\frac{\partial\rho_v}{\partial t}\;\Longrightarrow\;\oint_S\mathbf{J}\cdot d\mathbf{s}=0\;\text{(KCL)}\]
-\[\tau_r=\frac{\varepsilon}{\sigma}\;\text{(s)},\qquad\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}\;\text{(C/m}^3\text{)}\]
-\textit{Cu: $\tau_r\!\approx\!10^{-19}$\,s;\enspace mica: $\tau_r\!\approx\!10^{4}$\,s.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{bluebg}{blue}{DYNAMIC EM POTENTIALS}
-\begin{ebox}
-\[\mathbf{B}=\nabla\times\mathbf{A},\qquad\mathbf{E}=-\nabla V-\frac{\partial\mathbf{A}}{\partial t}\]
-\eq{Retarded potentials}{effects propagate at speed $u_p$, $R'=|\mathbf{R}-\mathbf{R}_i|$}
-\[V(\mathbf{R},t)=\frac{1}{4\pi\varepsilon}\int\frac{\rho_v(\mathbf{R}_i,\,t-R'/u_p)}{R'}\,d\mathcal{V}'\]
-\[\mathbf{A}(\mathbf{R},t)=\frac{\mu}{4\pi}\int\frac{\mathbf{J}(\mathbf{R}_i,\,t-R'/u_p)}{R'}\,d\mathcal{V}'\]
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{pinkbg}{pink}{TIME-HARMONIC POTENTIALS \& PHASORS}
-\begin{ebox}
-\textit{$k=\omega/u_p$ (wavenumber);\enspace $e^{j\omega t}$ factor stripped to get phasor.}
-\[\tilde{V}(\mathbf{R})=\frac{1}{4\pi\varepsilon}\int\frac{\tilde{\rho}_v(\mathbf{R}_i)e^{-jkR'}}{R'}\,d\mathcal{V}'\]
-\[\tilde{\mathbf{H}}=\frac{1}{\mu}\nabla\times\tilde{\mathbf{A}},\qquad\tilde{\mathbf{A}}=\frac{\mu}{4\pi}\int\frac{\tilde{\mathbf{J}}(\mathbf{R}_i)e^{-jkR'}}{R'}\,d\mathcal{V}'\]
-\textit{Given $\tilde{\mathbf{E}}$: apply $\tilde{\mathbf{H}}=-\frac{1}{j\omega\mu}\nabla\times\tilde{\mathbf{E}}$ (Faraday in phasor domain).}
-\end{ebox}
-
-\columnbreak
-
-%────── COL 3: LOSSLESS PLANE WAVE ──────
-\shead{purplebg}{purple}{LOSSLESS PLANE WAVE}
-\begin{ebox}
-\eq{Wave equation (phasor, source-free, $\sigma=0$)}{}
-\[\nabla^2\tilde{\mathbf{E}}+k^2\tilde{\mathbf{E}}=0,\qquad k=\omega\sqrt{\mu\varepsilon}\;\text{(rad/m)}\]
-\eq{Intrinsic impedance}{}
-\[\eta=\sqrt{\frac{\mu}{\varepsilon}}\;(\Omega),\qquad\eta_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}\approx377\;\Omega\approx120\pi\;\Omega\]
-\eq{Phase velocity \& wavelength}{}
-\[u_p=\frac{1}{\sqrt{\mu\varepsilon}}=\frac{\omega}{k}\;\text{(m/s)},\qquad\lambda=\frac{2\pi}{k}=\frac{u_p}{f}\;\text{(m)}\]
-\eq{Fields (wave in $+\hat{z}$, $\mathbf{E}$ in $\hat{x}$)}{}
-\[\tilde{\mathbf{E}}(z)=E_{x0}^+e^{-jkz}\hat{x},\qquad\tilde{\mathbf{H}}(z)=\frac{E_{x0}^+}{\eta}e^{-jkz}\hat{y}\]
-\[\mathbf{E}(z,t)=|E_{x0}^+|\cos(\omega t-kz+\phi^+)\hat{x}\]
-\[\mathbf{H}(z,t)=\frac{|E_{x0}^+|}{\eta}\cos(\omega t-kz+\phi^+)\hat{y}\]
-\textit{TEM: $\tilde{\mathbf{E}}\perp\tilde{\mathbf{H}}\perp\hat{k}$.\enspace In lossless medium $\mathbf{E}$ and $\mathbf{H}$ are \textbf{in phase}.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{purplebg}{purple}{DIRECTION RELATIONS}
-\begin{ebox}
-\[\tilde{\mathbf{H}}=\frac{1}{\eta}\hat{k}\times\tilde{\mathbf{E}},\qquad\tilde{\mathbf{E}}=-\eta\,\hat{k}\times\tilde{\mathbf{H}}\]
-{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ccll@{}}
+Same dir.$=1$;\quad perpendicular$=0$\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}cccccc@{}}
 \toprule
-$\hat{k}$ & $\hat{E}$ & $\hat{H}=\hat{k}\times\hat{E}$ & Example $\tilde{\mathbf{E}}$\\
+& $\hat{x}$ & $\hat{y}$ & $\hat{z}$ & $\hat{r}$ & $\hat{\phi}$\\
 \midrule
-\rowcolor{rowB}$+\hat{z}$ & $+\hat{x}$ & $+\hat{y}$ & $E_0e^{-jkz}\hat{x}$\\
-$+\hat{z}$ & $+\hat{y}$ & $-\hat{x}$ & $E_0e^{-jkz}\hat{y}$\\
-\rowcolor{rowB}$-\hat{z}$ & $+\hat{x}$ & $-\hat{y}$ & $E_0e^{+jkz}\hat{x}$\\
-$+\hat{x}$ & $+\hat{y}$ & $+\hat{z}$ & $E_0e^{-jkx}\hat{y}$\\
+\rowcolor{rowB}$\hat{x}$ & 1 & 0 & 0 & 0 & 0\\
+$\hat{y}$ & 0 & 1 & 0 & 0 & 0\\
+\rowcolor{rowB}$\hat{z}$ & 0 & 0 & 1 & 0 & 0\\
+$\hat{\phi}$ & 0 & 0 & 0 & 0 & 1\\
 \bottomrule
 \end{tabular}}\par}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
+\shead{purplebg}{purple}{CROSS PRODUCT $\mathbf{A}\times\mathbf{B}$}
 \begin{ebox}
-$\cos(\omega t-kz)\;\longleftrightarrow\;e^{-jkz}$\\
-$\cos(\omega t-kz+\phi)\;\longleftrightarrow\;e^{j\phi}e^{-jkz}$\\
-$\sin(\omega t-kz)\;\longleftrightarrow\;-je^{-jkz}$\\
-$\partial/\partial t\;\longleftrightarrow\;j\omega$\quad\textit{(phasor domain)}\\
-\textit{Back to time: $\mathbf{E}(z,t)=\operatorname{Re}\!\left\{\tilde{\mathbf{E}}(z)e^{j\omega t}\right\}$}
+\[\mathbf{A}\times\mathbf{B}=\begin{vmatrix}\hat{x}&\hat{y}&\hat{z}\\A_x&A_y&A_z\\B_x&B_y&B_z\end{vmatrix}\]
+\[=(A_yB_z-A_zB_y)\hat{x}-(A_xB_z-A_zB_x)\hat{y}+(A_xB_y-A_yB_x)\hat{z}\]
+\textit{Plane wave ($\partial_x=\partial_y=0$): only $\partial_z$ survives in curl.}
+\end{ebox}
+
+\columnbreak
+
+%────── COL 2 ──────
+\shead{tealbg}{teal}{$\mathbf{B}$ FIELDS}
+\begin{ebox}
+\eq{Infinite wire}{single wire, $N=1$}
+\[\mathbf{B}=\hat{\phi}\,\frac{\mu_0 I}{2\pi r}\]
+\eq{Inside toroid}{$N$-turn coil}
+\[\mathbf{B}=\hat{\phi}\,\frac{\mu N I}{2\pi r}\qquad\mu=\mu_r\mu_0\]
+\textit{\color{coral}$N$ in $\mathbf{B}$ only if the \textbf{source} is multi-turn. In $V_\text{emf}=-Nd\Phi/dt$, $N$ is the \textbf{receiver} turns.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\partial B/\partial t$ TABLE}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.46\linewidth}p{0.46\linewidth}@{}}
+\toprule
+$B(t)$ & $\partial B/\partial t$\\
+\midrule
+\rowcolor{rowB}$B_0\sin(\omega t)$ & $B_0\omega\cos(\omega t)$\\
+$B_0\cos(\omega t)$ & $-B_0\omega\sin(\omega t)$\\
+\rowcolor{rowB}$B_0 e^{-\alpha t}$ & $-\alpha B_0 e^{-\alpha t}$\\
+$B_0$ (const) & $0$\\
+\bottomrule
+\end{tabular}}}\par}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{SIGN $\to$ CURRENT DIRECTION}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.26\linewidth}p{0.34\linewidth}p{0.28\linewidth}@{}}
+\toprule
+$V_\text{emf}$ & Inside source & $I$ dir.\\
+\midrule
+\rowcolor{rowB}$<0$ & $-\;\to\;+$ terminal & $-\hat{\phi}$ (CW)\\
+$>0$ & $+\;\to\;-$ terminal & $+\hat{\phi}$ (CCW)\\
+\rowcolor{rowB}$=0$ & --- & none\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{Lenz: induced $I$ opposes the change in $\Phi$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\ln$ INTEGRAL}
+\begin{ebox}
+\eq{}{$B\propto1/r$, loop spans $r=a$ to $r=b$}
+\[\int_a^b\frac{dr}{r}=\ln\frac{b}{a}=\ln b-\ln a\]
+$\ln 2=0.693\quad\ln 3=1.099\quad\ln 1.2=0.182$
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{amberbg}{amber}{ROTATING LOOP --- GENERATOR}
+\begin{ebox}
+\[\Phi=AB_0\cos(\omega t+\phi_0)\]
+\[V_\text{emf}=AB_0\omega\sin(\omega t+\phi_0)\]
+\[I_\text{amp}=\frac{AB_0\omega}{R}\qquad\omega=2\pi f=2\pi\frac{\text{rpm}}{60}\]
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{SI PREFIXES}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lll@{\enspace}lll@{}}
+\toprule
+Prefix & Sym & Val & Prefix & Sym & Val\\
+\midrule
+\rowcolor{rowB}pico & p & $10^{-12}$ & kilo & k & $10^3$\\
+nano & n & $10^{-9}$ & mega & M & $10^6$\\
+\rowcolor{rowB}micro & $\mu$ & $10^{-6}$ & giga & G & $10^9$\\
+milli & m & $10^{-3}$ & tera & T & $10^{12}$\\
+\bottomrule
+\end{tabular}}\par}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{pinkbg}{pink}{$j$ IDENTITIES}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ll@{\enspace}ll@{}}
+\toprule
+Expr & Result & Expr & Result\\
+\midrule
+\rowcolor{rowB}$j^2$ & $-1$ & $j\times(-j)$ & $1$\\
+$1/j$ & $-j$ & $-1/j$ & $j$\\
+\rowcolor{rowB}$j^3$ & $-j$ & $j^4$ & $1$\\
+$e^{-j\pi/2}$ & $-j$ & $e^{j\pi/2}$ & $j$\\
+\rowcolor{rowB}$e^{j\pi}$ & $-1$ & $e^{j2\pi}$ & $1$\\
+\bottomrule
+\end{tabular}}\par}
+\end{ebox}
+
+\columnbreak
+
+%────── COL 3 ──────
+\shead{coralbg}{coral}{DISPLACEMENT \& CONDUCTION CURRENT}
+\begin{ebox}
+\eq{Conduction}{resistive, $\sigma\ne0$}
+\[J_c=\sigma E\qquad I_c=J_c\cdot A\qquad R=\frac{d}{\sigma A}\]
+\eq{Displacement}{capacitive, changing $E$}
+\[J_d=\varepsilon\frac{\partial E}{\partial t}\qquad I_d=J_d\cdot A\qquad C=\frac{\varepsilon_r\varepsilon_0 A}{d}\]
+\eq{Lossy cap circuit}{both $\sigma$ and $\varepsilon_r$}
+\[I=I_c+I_d=\frac{V}{R}+C\frac{dV}{dt}\]
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{coralbg}{coral}{CHARGE RELAXATION}
+\begin{ebox}
+\[\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}\qquad\tau_r=\frac{\varepsilon_r\varepsilon_0}{\sigma}\]
+\textit{Larger $\tau_r$ = slower dissipation = better insulator.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{pinkbg}{pink}{PHASOR METHOD ($\mathbf{E}\to\mathbf{H}$)}
+\begin{ebox}
+\textbf{\color{pink}1.} $\mathbf{E}(z,t)=\operatorname{Re}\{\tilde{\mathbf{E}}(z)\,e^{j\omega t}\}$\\
+\textbf{\color{pink}2.} Strip $e^{j\omega t}$, keep $e^{-jkz}$:\\
+$\cos(\omega t-kz)\to e^{-jkz}$\quad$\sin(\omega t-kz)\to-j\,e^{-jkz}$\\
+\textbf{\color{pink}3.} Faraday in phasor (plane wave: only $\partial/\partial z$ survives):
+\[\tilde{\mathbf{H}}=-\frac{1}{j\omega\mu}\nabla\times\tilde{\mathbf{E}}\]
+\textbf{\color{pink}4.} Back to time: $\operatorname{Re}\{Ae^{j\phi}e^{j(\omega t-kz)}\}=A\cos(\omega t-kz+\phi)$
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{UNIT CIRCLE}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lllll@{}}
+\toprule
+Angle & Deg & $\cos$ & $\sin$ & Q\\
+\midrule
+\rowcolor{rowB}$0$ & $0°$ & $1$ & $0$ & ---\\
+$\pi/6$ & $30°$ & $\sqrt{3}/2$ & $1/2$ & 1\\
+\rowcolor{rowB}$\pi/4$ & $45°$ & $\sqrt{2}/2$ & $\sqrt{2}/2$ & 1\\
+$\pi/3$ & $60°$ & $1/2$ & $\sqrt{3}/2$ & 1\\
+\rowcolor{rowB}$\pi/2$ & $90°$ & $0$ & $1$ & ---\\
+$2\pi/3$ & $120°$ & $-1/2$ & $\sqrt{3}/2$ & 2\\
+\rowcolor{rowB}$3\pi/4$ & $135°$ & $-\sqrt{2}/2$ & $\sqrt{2}/2$ & 2\\
+$5\pi/6$ & $150°$ & $-\sqrt{3}/2$ & $1/2$ & 2\\
+\rowcolor{rowB}$\pi$ & $180°$ & $-1$ & $0$ & ---\\
+$7\pi/6$ & $210°$ & $-\sqrt{3}/2$ & $-1/2$ & 3\\
+\rowcolor{rowB}$5\pi/4$ & $225°$ & $-\sqrt{2}/2$ & $-\sqrt{2}/2$ & 3\\
+$4\pi/3$ & $240°$ & $-1/2$ & $-\sqrt{3}/2$ & 3\\
+\rowcolor{rowB}$3\pi/2$ & $270°$ & $0$ & $-1$ & ---\\
+$5\pi/3$ & $300°$ & $1/2$ & $-\sqrt{3}/2$ & 4\\
+\rowcolor{rowB}$7\pi/4$ & $315°$ & $\sqrt{2}/2$ & $-\sqrt{2}/2$ & 4\\
+$11\pi/6$ & $330°$ & $\sqrt{3}/2$ & $-1/2$ & 4\\
+\rowcolor{rowB}$2\pi$ & $360°$ & $1$ & $0$ & ---\\
+\bottomrule
+\end{tabular}}\par}
 \end{ebox}
 
 \end{multicols}
@@ -186,187 +259,288 @@ $\partial/\partial t\;\longleftrightarrow\;j\omega$\quad\textit{(phasor domain)}
 \vfill
 \noindent
 \begin{minipage}[t]{0.19\linewidth}
-\shead{amberbg}{amber}{FARADAY QUICK REF}
+\shead{purplebg}{purple}{FIELDS}
 \begin{ebox}
-$\Phi=\iint\mathbf{B}\cdot d\mathbf{s}$ (Wb)\\
-$V_\text{emf}=-Nd\Phi/dt$\\
-$V^\text{tr}=-N\!\iint\tfrac{\partial\mathbf{B}}{\partial t}\cdot d\mathbf{s}$\\
-$V^\text{m}=\oint(\mathbf{u}\!\times\!\mathbf{B})\cdot d\mathbf{l}$
+$\mathbf{E}$ — electric field (V/m)\\
+$\mathbf{B}$ — mag.\ flux density (T)\\
+$\mathbf{H}$ — mag.\ field (A/m)\\
+$\rho_v$ — charge density (C/m$^3$)\\
+$\Phi=\int_S\mathbf{B}\cdot d\mathbf{s}$ — flux (Wb)\\
+$\lambda=N\Phi$ — flux linkage (Wb)
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
-\shead{tealbg}{teal}{TRANSFORMER}
+\shead{tealbg}{teal}{CURRENTS}
 \begin{ebox}
-$V_1/V_2=N_1/N_2$\\
-$I_1/I_2=N_2/N_1$\\
-$Z_\text{in}=(N_1/N_2)^2Z_L$\\
-Generator: $V_0=NA\omega B_0$
+$J_c=\sigma E$ — cond.\ density (A/m$^2$)\\
+$J_d=\varepsilon\,\partial E/\partial t$ — disp.\ density\\
+$I_c=J_c\cdot A$ — cond.\ current (A)\\
+$I_d=J_d\cdot A$ — disp.\ current (A)\\
+$R=d/(\sigma A)$ — resistance ($\Omega$)\\
+$C=\varepsilon_r\varepsilon_0 A/d$ — capacitance (F)\\
+$\tau_r=\varepsilon_r\varepsilon_0/\sigma$ — relax.\ time (s)
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
-\shead{bluebg}{blue}{MAXWELL PHASORS}
+\shead{coralbg}{coral}{MATERIALS}
 \begin{ebox}
-$\nabla\!\times\!\tilde{\mathbf{E}}=-j\omega\mu\tilde{\mathbf{H}}$\\
-$\nabla\!\times\!\tilde{\mathbf{H}}=j\omega\varepsilon_c\tilde{\mathbf{E}}$\\
-$\varepsilon_c=\varepsilon'-j\sigma/\omega$\\
-$\tilde{\mathbf{J}}_d=j\omega\varepsilon\tilde{\mathbf{E}}$
+$\mu_0=4\pi\!\times\!10^{-7}$ H/m\\
+$\mu_r$ — rel.\ permeability\\
+$\mu=\mu_r\mu_0$ — permeability\\[1pt]
+$\varepsilon_0\approx\frac{1}{36\pi}\!\times\!10^{-9}$ F/m\\
+$\varepsilon_r$ — rel.\ permittivity\\
+$\varepsilon=\varepsilon_r\varepsilon_0$ — permittivity\\[1pt]
+$\sigma$ — conductivity (S/m)
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
-\shead{purplebg}{purple}{WAVE PARAMS}
+\shead{bluebg}{blue}{CIRCUIT \& WAVE}
 \begin{ebox}
-$k=\omega\sqrt{\mu\varepsilon}$ (rad/m)\\
-$\eta=\sqrt{\mu/\varepsilon}$ ($\Omega$)\\
-$u_p=1/\sqrt{\mu\varepsilon}$ (m/s)\\
-$\lambda=2\pi/k=u_p/f$ (m)
+$V$ — voltage (V)\\
+$R$ — resistance ($\Omega$)\\
+$C$ — capacitance (F)\\
+$\omega=2\pi f$ — ang.\ freq (rad/s)\\
+$k=\omega\sqrt{\mu\varepsilon}$ — wavenumber\\
+$\lambda=2\pi/k$ — wavelength (m)\\
+$c=3\!\times\!10^8$ m/s
 \end{ebox}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.19\linewidth}
-\shead{coralbg}{coral}{POTENTIALS \& RELAX}
+\shead{pinkbg}{pink}{PHASOR \& GEOMETRY}
 \begin{ebox}
-$\mathbf{B}=\nabla\times\mathbf{A}$\\
-$\mathbf{E}=-\nabla V-\partial\mathbf{A}/\partial t$\\
-$\tau_r=\varepsilon/\sigma$ (s)\\
-$\rho_v=\rho_{v0}e^{-t/\tau_r}$
+$\eta=\sqrt{\mu/\varepsilon}$ — imp.\ ($\Omega$)\\
+$\eta_0=120\pi\approx377\,\Omega$\\
+$k/(\omega\mu)=1/\eta$\\
+$j^2=-1$;\enspace$\tilde{\mathbf{E}}$: drop $e^{j\omega t}$\\[1pt]
+$A$ — area (m$^2$);\;$d$ — sep.\ (m)\\
+$N$ — turns;\;$r$ — radial (m)
 \end{ebox}
 \end{minipage}
 
 \newpage
 
 %%=============================================================
-%% PAGE 2
+%% PAGE 2 — HW2 CONTENT
 %%=============================================================
 \begin{multicols}{3}
 
-%────── COL 1: POLARIZATION ──────
-\shead{tealbg}{teal}{POLARIZATION}
+%────── COL 1 ──────
+\shead{purplebg}{purple}{PLANE WAVE PARAMETERS (LOSSLESS)}
 \begin{ebox}
-\textit{Polarization = curve traced by $\mathbf{E}$ in plane $\perp\hat{k}$ as $t$ varies.}\\[0.3pt]
-\eq{General phasor (wave in $+\hat{z}$)}{$a_x\!=\!|E_{x0}|$, $a_y\!=\!|E_{y0}|$, $\delta$ = phase diff $E_y$ rel.\ $E_x$}
-\[\tilde{\mathbf{E}}(z)=\bigl(a_x\hat{x}+a_ye^{j\delta}\hat{y}\bigr)e^{-jkz}\]
-\[\mathbf{E}(z,t)=a_x\cos(\omega t-kz)\hat{x}+a_y\cos(\omega t-kz+\delta)\hat{y}\]
+\eq{Angular frequency}{$\omega$: rad/s;\enspace$f$: Hz}
+\[\omega=2\pi f\qquad f=\frac{\omega}{2\pi}\]
+\eq{Phase velocity}{m/s;\enspace nonmagnetic: $\mu_r=1$}
+\[u_p=\frac{c}{\sqrt{\varepsilon_r}}\qquad c=3\times10^8\;\text{m/s}\]
+\eq{Wavenumber $k$}{rad/m}
+\[k=\frac{\omega}{u_p}=\frac{2\pi}{\lambda}=\frac{\omega\sqrt{\varepsilon_r}}{c}\]
+\eq{Wavelength \& impedance}{m \& $\Omega$}
+\[\lambda=\frac{u_p}{f}=\frac{2\pi}{k}\;\text{(m)}\qquad\eta=\frac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega)\]
+\textit{\color{coral}Order: $\omega\!\to\!u_p\!\to\!k\!\to\!\lambda\!\to\!\eta$.}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{tealbg}{teal}{LINEAR POLARIZATION}
+\shead{purplebg}{purple}{LOSSLESS PLANE WAVE --- $\mathbf{E}$ AND $\mathbf{H}$}
 \begin{ebox}
-\textit{Condition: $\delta=0$ or $\delta=\pi$. $E_x$, $E_y$ in/out of phase $\Rightarrow$ straight line.}
-\[\mathbf{E}=(a_x\hat{x}\pm a_y\hat{y})\cos(\omega t-kz),\quad|\mathbf{E}|=\sqrt{a_x^2+a_y^2}\,|\cos(\cdot)|\]
-\[\psi=\tan^{-1}\!\left(\frac{\pm a_y}{a_x}\right)\text{(tilt from $+\hat{x}$)}\]
-\textit{$a_y\!=\!0$: x-pol ($\psi\!=\!0$);\enspace$a_x\!=\!0$: y-pol ($\psi\!=\!\pm\pi/2$).}
+\eq{General $\mathbf{E}$}{}
+\[\mathbf{E}=E_0\cos(\omega t-k\,\hat{k}\cdot\mathbf{r}+\phi_0)\,\hat{e}\]
+\textit{$\hat{k}$: travel dir.;\enspace$\hat{e}$: polarization dir.;\enspace$\hat{k}\cdot\mathbf{r}$ picks the axis.}\\
+\eq{$\mathbf{H}$ from $\mathbf{E}$}{$\hat{k}$, $\hat{E}$, $\hat{H}$ form right-hand set}
+\[\mathbf{H}=\frac{1}{\eta}\,(\hat{k}\times\mathbf{E})\]
+\eq{Phasor form ($+z$ propagation)}{}
+\[\tilde{\mathbf{E}}=E_0 e^{j\phi_0}e^{-jkz}\hat{e}\qquad\tilde{\mathbf{H}}=\frac{1}{\eta}\hat{k}\times\tilde{\mathbf{E}}\]
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{tealbg}{teal}{CIRCULAR POLARIZATION}
+\shead{purplebg}{purple}{DIRECTION OF PROPAGATION}
 \begin{ebox}
-\textit{Condition: $a_x=a_y=a>0$, $\delta=\pm\pi/2$.\enspace $|\mathbf{E}|=a$ = const.}\\[0.3pt]
-\eq{LHC ($\delta=+\pi/2$)}{}
-\[\tilde{\mathbf{E}}=a(\hat{x}+j\hat{y})e^{-jkz},\quad\mathbf{E}=a\bigl[\cos(\omega t-kz)\hat{x}-\sin(\omega t-kz)\hat{y}\bigr]\]
-\eq{RHC ($\delta=-\pi/2$)}{}
-\[\tilde{\mathbf{E}}=a(\hat{x}-j\hat{y})e^{-jkz},\quad\mathbf{E}=a\bigl[\cos(\omega t-kz)\hat{x}+\sin(\omega t-kz)\hat{y}\bigr]\]
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{tealbg}{teal}{ELLIPTICAL POLARIZATION}
-\begin{ebox}
-\textit{General ($a_x\ne a_y$, $\delta\ne0,\pm\pi/2,\pi$): $\mathbf{E}$ traces an ellipse.}
-\[\psi_0=\tan^{-1}\!\!\left(\frac{a_y}{a_x}\right)\!\in\!\left[0,\frac{\pi}{2}\right]\;\text{(auxiliary angle)}\]
-\[\tan 2\gamma=(\tan 2\psi_0)\cos\delta\quad\text{(rotation angle $\gamma$)}\]
-\[\sin 2\chi=(\sin 2\psi_0)\sin\delta\quad\text{(ellipticity angle $\chi$)}\]
-\[R=\frac{a_\xi}{a_\eta}\;\text{(axial ratio)},\qquad\tan\chi=\pm\frac{1}{R}\]
-\textit{$\tan\chi>0$: LH;\enspace$\tan\chi<0$: RH;\enspace$R=1$: circular;\enspace$a_\eta=0$: linear.}
-\end{ebox}
-
-\columnbreak
-
-%────── COL 2: LOSSY MEDIUM ──────
-\shead{coralbg}{coral}{EM WAVES IN LOSSY MEDIUM}
-\begin{ebox}
-\eq{Complex permittivity}{}
-\[\varepsilon_c=\varepsilon'-j\varepsilon''=\varepsilon_r\varepsilon_0-j\frac{\sigma}{\omega},\qquad\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon'}\]
-\eq{Propagation constant $\gamma=\alpha+j\beta$;\quad$\gamma^2=-\omega^2\mu\varepsilon_c$}{}
-\[\alpha=\omega\!\sqrt{\frac{\mu\varepsilon'}{2}}\!\left[\sqrt{1\!+\!\left(\!\frac{\varepsilon''}{\varepsilon'}\!\right)^{\!2}}-1\right]^{\!\frac{1}{2}}\!\!\text{(Np/m)}\]
-\[\beta=\omega\!\sqrt{\frac{\mu\varepsilon'}{2}}\!\left[\sqrt{1\!+\!\left(\!\frac{\varepsilon''}{\varepsilon'}\!\right)^{\!2}}+1\right]^{\!\frac{1}{2}}\!\!\text{(rad/m)}\]
-\eq{Intrinsic impedance}{$\eta_c=|\eta_c|e^{j\theta_\eta}$, \textbf{complex}}
-\[\eta_c=\sqrt{\frac{\mu}{\varepsilon_c}}=\sqrt{\frac{\mu}{\varepsilon'}}\!\left(1-j\frac{\varepsilon''}{\varepsilon'}\right)^{\!-1/2}\]
-\eq{Fields (wave in $+\hat{z}$, $\mathbf{E}\!\parallel\!\hat{x}$)}{}
-\[\tilde{\mathbf{E}}(z)=E_{x0}e^{-\alpha z}e^{-j\beta z}\hat{x},\quad\tilde{\mathbf{H}}(z)=\frac{E_{x0}}{\eta_c}e^{-\alpha z}e^{-j\beta z}\hat{y}\]
-\textit{$\mathbf{E}$, $\mathbf{H}$ \textbf{not in phase} in lossy media (phase diff $\theta_\eta$).}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{coralbg}{coral}{MEDIUM CLASSIFICATION}
-\begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.16\linewidth}p{0.51\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}ll@{\enspace}ll@{}}
 \toprule
-Type & $\varepsilon''/\varepsilon'$ & Approximations\\
+Arg.\ contains & $\hat{k}$ & Arg.\ contains & $\hat{k}$\\
 \midrule
-\rowcolor{rowB}Low-loss diel. & $\ll1$ & $\alpha\!\approx\!\tfrac{\sigma}{2}\!\sqrt{\tfrac{\mu}{\varepsilon'}}$,\;$\beta\!\approx\!\omega\sqrt{\mu\varepsilon'}$,\;$\eta_c\!\approx\!\sqrt{\mu/\varepsilon'}$\\
-Quasi-cond. & $10^{-2}\!-\!10^2$ & Use general $\alpha$, $\beta$\\
-\rowcolor{rowB}Good cond. & $\gg100$ & $\alpha\!\approx\!\beta\!\approx\!\sqrt{\pi f\mu\sigma}$,\;$\eta_c\!\approx\!(1\!+\!j)\!\sqrt{\pi f\mu/\sigma}$\\
+\rowcolor{rowB}$\omega t-kz$ & $+\hat{z}$ & $\omega t+kz$ & $-\hat{z}$\\
+$\omega t-ky$ & $+\hat{y}$ & $\omega t+ky$ & $-\hat{y}$\\
+\rowcolor{rowB}$\omega t-kx$ & $+\hat{x}$ & $\omega t+kx$ & $-\hat{x}$\\
+\bottomrule
+\end{tabular}}\par}
+\textit{Minus before $k$-axis $\Rightarrow+$ direction. Plus $\Rightarrow-$ direction.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{tealbg}{teal}{$\hat{k}\times\hat{E}$ --- FIND $\hat{H}$ DIRECTION}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lll@{\enspace}lll@{}}
+\toprule
+$\hat{k}$ & $\hat{E}$ & $\hat{H}$ & $\hat{k}$ & $\hat{E}$ & $\hat{H}$\\
+\midrule
+\rowcolor{rowB}$+\hat{z}$ & $\hat{x}$ & $+\hat{y}$ & $+\hat{z}$ & $\hat{y}$ & $-\hat{x}$\\
+$+\hat{y}$ & $\hat{x}$ & $-\hat{z}$ & $+\hat{y}$ & $\hat{z}$ & $+\hat{x}$\\
+\rowcolor{rowB}$+\hat{x}$ & $\hat{y}$ & $+\hat{z}$ & $+\hat{x}$ & $\hat{z}$ & $-\hat{y}$\\
+$-\hat{x}$ & $\hat{y}$ & $-\hat{z}$ & $-\hat{x}$ & $\hat{z}$ & $+\hat{y}$\\
+\rowcolor{rowB}$-\hat{y}$ & $\hat{x}$ & $+\hat{z}$ & $-\hat{z}$ & $\hat{x}$ & $-\hat{y}$\\
+\bottomrule
+\end{tabular}}\par}
+\textit{Cyclic: $\hat{x}\!\times\!\hat{y}\!=\!\hat{z}$, $\hat{y}\!\times\!\hat{z}\!=\!\hat{x}$, $\hat{z}\!\times\!\hat{x}\!=\!\hat{y}$. Reverse $\Rightarrow$ flip sign.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{TRIG PHASE SHIFTS \textnormal{\textit{($\theta\equiv\omega t-kz$)}}}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.18\linewidth}p{0.25\linewidth}p{0.18\linewidth}@{}}
+\toprule
+Input & Result & Input & Result\\
+\midrule
+\rowcolor{rowB}$\sin(\theta{+}\pi/2)$ & $\cos\theta$ & $\cos(\theta{+}\pi/2)$ & $-\sin\theta$\\
+$\sin(\theta{-}\pi/2)$ & $-\cos\theta$ & $\cos(\theta{-}\pi/2)$ & $\sin\theta$\\
+\rowcolor{rowB}$\sin(\theta{\pm}\pi)$ & $-\sin\theta$ & $\cos(\theta{\pm}\pi)$ & $-\cos\theta$\\
 \bottomrule
 \end{tabular}}}\par}
-\eq{Skin depth}{$|\mathbf{E}|$ drops to $1/e$ of surface value}
-\[\delta_s=\frac{1}{\alpha}\;\text{(m)},\qquad\delta_s^\text{cond}=\frac{1}{\sqrt{\pi f\mu\sigma}}\;\text{(m)}\]
-\textit{$|\tilde{\mathbf{E}}(z)|=|E_{x0}|e^{-\alpha z}$;\enspace$|\tilde{\mathbf{H}}(z)|=\frac{|E_{x0}|}{|\eta_c|}e^{-\alpha z}$.}
-\end{ebox}
-
-\vspace{0.3pt}
-\shead{coralbg}{coral}{CURRENT IN GOOD CONDUCTOR}
-\begin{ebox}
-\textit{AC current flows near surface; DC current uniform throughout conductor.}
-\eq{Current density at depth $z$}{$J_0=\sigma E_0$, $E_0$ at surface}
-\[\tilde{\mathbf{J}}(z)=J_0\,e^{-(1+j)z/\delta_s}\hat{x}\;\text{(A/m}^2\text{)}\]
-\eq{Total current, slab width $w$ ($y$-dir)}{}
-\[\tilde{I}=\frac{J_0 w\delta_s}{1+j}\;\text{(A)}\]
-\eq{Surface impedance}{}
-\[Z_s=\frac{1+j}{\sigma\delta_s}=R_s(1+j),\qquad R_s=\sqrt{\frac{\pi f\mu}{\sigma}}\;(\Omega)\]
-\eq{AC resistance: slab (width $w$, length $\ell$)}{}
-\[R=R_s\frac{\ell}{w}\;(\Omega),\qquad R'_\text{coax}=\frac{R_s}{2\pi}\!\left(\frac{1}{a}+\frac{1}{b}\right)\;(\Omega/\text{m})\]
 \end{ebox}
 
 \columnbreak
 
-%────── COL 3: POWER + dB ──────
-\shead{greenbg}{green}{EM POWER DENSITY (POYNTING)}
+%────── COL 2 ──────
+\shead{tealbg}{teal}{POLARIZATION --- GENERAL WAVE}
 \begin{ebox}
-\eq{Instantaneous Poynting vector}{W/m$^2$}
-\[\mathbf{S}=\mathbf{E}\times\mathbf{H}\;\text{(W/m}^2\text{)}\]
-\eq{Average power density (time-harmonic)}{}
-\[\mathbf{S}_\text{av}=\frac{1}{2}\operatorname{Re}\!\left\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\right\}\;\text{(W/m}^2\text{)}\]
-\eq{Lossless ($\alpha=0$, $\theta_\eta=0$, $\eta$ real)}{}
-\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\hat{k}\;\text{(W/m}^2\text{)}\]
-\eq{Lossy ($\eta_c=|\eta_c|e^{j\theta_\eta}$, wave in $+\hat{z}$)}{}
-\[\mathbf{S}_\text{av}=\frac{|\tilde{E}(0)|^2}{2|\eta_c|}\,e^{-2\alpha z}\cos\theta_\eta\;\hat{z}\;\text{(W/m}^2\text{)}\]
-\textit{Power $\propto e^{-2\alpha z}$, field $\propto e^{-\alpha z}$: power decays at \textbf{2$\times$} the rate.}\\
-\eq{Power through area $A$, angle $\theta$ to $\hat{n}$}{}
-\[P=S_\text{av}A\cos\theta\;\text{(W)}\]
+\[\mathbf{E}=a_x\cos(\omega t\!-\!kz)\hat{x}+a_y\cos(\omega t\!-\!kz+\delta)\hat{y}\]
+\textit{$a_x,a_y$: bounding box half-widths (V/m);\enspace$\delta$: phase diff (rad)}\\
+\textit{\color{gray}$\delta=0$ or $\pi\Rightarrow$ \textbf{linear};\enspace$a_x=a_y,\,\delta=\pm\pi/2\Rightarrow$ \textbf{circular}}
+\eq{Auxiliary angle}{$\psi_0=\arctan(a_y/a_x)\in(0,\pi/2)$}
+\eq{Rotation angle $\gamma$ (major axis from $\hat{x}$)}{$\gamma\in[0,\pi)$}
+\[\tan(2\gamma)=\tan(2\psi_0)\cos\delta\]
+\textit{\color{coral}If sign$(\gamma)\!\neq\!$sign$(\delta)$: $\gamma\leftarrow\gamma\pm\tfrac{\pi}{2}$.}
+\eq{Ellipticity angle $\chi$}{$\chi\in[-\pi/4,\pi/4]$}
+\[\sin(2\chi)=\sin(2\psi_0)\sin\delta\]
+\eq{Axial ratio $R=1/\tan|\chi|$}{$R\geq1$;\enspace$R=1$: circular;\enspace$R\to\infty$: linear}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{graybg}{gray}{ATTENUATION \& DECIBELS}
+\shead{tealbg}{teal}{$\chi$ SHAPE \& HANDEDNESS}
 \begin{ebox}
-\eq{Unit conversion}{}
-\[\alpha\;\text{(dB/m)}=8.69\,\alpha\;\text{(Np/m)}\]
-\eq{Power attenuation rate from $z=0$}{}
-\[A=10\log\!\left(\frac{S_\text{av}(z)}{S_\text{av}(0)}\right)=-8.69\,\alpha z\;\text{(dB)}\]
-\eq{Field attenuation from $z=0$}{}
-\[A=20\log\!\left(\frac{|E(z)|}{|E(0)|}\right)\;\text{(dB)}\]
-\eq{Power/voltage ratio}{}
-\[G=10\log\!\left(\frac{P_1}{P_2}\right)=20\log\!\left(\frac{V_1}{V_2}\right)\;\text{(dB)}\]
-\textit{$P\!\times\!2\Rightarrow\!+3$\,dB;\enspace$P\!\times\!10\Rightarrow\!+10$\,dB;\enspace$|E|\!\times\!2\Rightarrow\!+6$\,dB.}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.30\linewidth}p{0.33\linewidth}p{0.30\linewidth}@{}}
+\toprule
+$\chi$ (rad) & Polarization Type & Handedness\\
+\midrule
+\rowcolor{rowB}$0$ & Linear & None\\
+$(0,\,\pi/4)$ & RHEP & RH (CCW)\\
+\rowcolor{rowB}$\pi/4$ & RHC & RH (CCW)\\
+$-\pi/4$ & LHC & LH (CW)\\
+\rowcolor{rowB}$(-\pi/4,\,0)$ & LHEP & LH (CW)\\
+\bottomrule
+\end{tabular}}}\par}
 \end{ebox}
 
 \vspace{0.3pt}
-\shead{graybg}{gray}{READ-A-WAVE WORKFLOW}
+\shead{tealbg}{teal}{QUADRANT RULE FOR $\tan(2\gamma)$}
 \begin{ebox}
-\textbf{Given $\mathbf{E}(z,t)=E_0\cos(\omega t-kz+\phi)\hat{a}$:}\\
-1. Read: $\omega$, $k$, $E_0$, $\phi$, dir.\ $\hat{a}$, prop.\ dir.\ $\hat{k}$\\
-2. $f=\omega/2\pi$;\enspace$\lambda=2\pi/k$;\enspace$u_p=\omega/k$\\
-3. $\eta=\sqrt{\mu/\varepsilon}$ (or $\mu u_p$); free space: $\eta_0\approx377\,\Omega$\\
-4. Phasor: $\tilde{\mathbf{E}}=E_0e^{j\phi}e^{-jkz}\hat{a}$\\
-5. $\tilde{\mathbf{H}}=\frac{1}{\eta}\hat{k}\times\tilde{\mathbf{E}}$;\enspace$\mathbf{H}(z,t)=\operatorname{Re}\!\{\tilde{\mathbf{H}}e^{j\omega t}\}$\\
-6. $S_\text{av}=|E_0|^2/(2\eta)$ (W/m$^2$)
+$N=\sin(2\psi_0)\cos\delta$,\quad$D=\cos(2\psi_0)$:\\[0.5pt]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.08\linewidth}p{0.08\linewidth}p{0.37\linewidth}p{0.37\linewidth}@{}}
+\toprule
+$N$ & $D$ & $2\gamma$ (deg) & $2\gamma$ (rad)\\
+\midrule
+\rowcolor{rowB}$+$ & $+$ & $\arctan(N/D)$ & $\arctan(N/D)$\\
+$+$ & $-$ & $180°-\arctan|N/D|$ & $\pi-\arctan|N/D|$\\
+\rowcolor{rowB}$-$ & $-$ & $180°+\arctan|N/D|$ & $\pi+\arctan|N/D|$\\
+$-$ & $+$ & $360°-\arctan|N/D|$ & $2\pi-\arctan|N/D|$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{$\gamma=(2\gamma)/2$.\quad$D=0\Rightarrow2\gamma=\tfrac{\pi}{2}\Rightarrow\gamma=\tfrac{\pi}{4}$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{pinkbg}{pink}{PHASOR $\leftrightarrow$ TIME DOMAIN}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.44\linewidth}p{0.51\linewidth}@{}}
+\toprule
+Phasor coeff & Time domain (×$e^{-\alpha z}$ in lossy)\\
+\midrule
+\rowcolor{rowB}$A$ (real) & $A\cos(\omega t-\beta z)$\\
+$-jA$ & $A\sin(\omega t-\beta z)$\\
+\rowcolor{rowB}$+jA$ & $-A\sin(\omega t-\beta z)$\\
+$Ae^{j\phi}$ & $A\cos(\omega t-\beta z+\phi)$\\
+\rowcolor{rowB}$A+jB$ & $|Z|\cos(\omega t-\beta z+\theta)$\\
+\bottomrule
+\end{tabular}}}\par}
+$|Z|=\sqrt{A^2+B^2}$,\enspace$\theta=\arctan(B/A)$ (check quadrant)
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{greenbg}{green}{AVERAGE POWER DENSITY (POYNTING)}
+\begin{ebox}
+\eq{General}{W/m$^2$}
+\[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
+\eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+\textit{Direction$=\hat{k}$. Lossy: $\mathbf{S}_\text{av}=\frac{|E(0)|^2}{2|\eta_c|}e^{-2\alpha z}\cos\theta_\eta\,\hat{k}$.}
+\end{ebox}
+
+\columnbreak
+
+%────── COL 3 ──────
+\shead{coralbg}{coral}{LOSSY MEDIA --- CLASSIFICATION}
+\begin{ebox}
+\eq{Loss tangent}{}
+\[\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.25\linewidth}p{0.35\linewidth}p{0.30\linewidth}@{}}
+\toprule
+$\varepsilon''/\varepsilon'$ & Type & Use\\
+\midrule
+\rowcolor{rowB}$>100$ & Good conductor & GC approx\\
+$0.01$ to $100$ & Quasi-conductor & Exact eqs\\
+\rowcolor{rowB}$<0.01$ & Low-loss diel. & LD approx\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{$\varepsilon'=\varepsilon_r\varepsilon_0$;\;$\varepsilon''=\sigma/\omega$;\;nonmag.: $\mu=\mu_0$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{coralbg}{coral}{ANY MEDIUM --- EXACT ($X=\sqrt{1+(\varepsilon''/\varepsilon')^2}$)}
+\begin{ebox}
+\[\alpha=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X\!-\!1}\;\text{Np/m},\quad\beta=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X\!+\!1}\;\text{rad/m}\]
+\[\eta_c=\frac{\eta}{X^{1/2}}e^{j\theta_\eta},\quad\theta_\eta=\tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}\;\text{(rad)}\]
+\textit{$\eta=\eta_0/\sqrt{\varepsilon_r}$;\enspace$\lambda=2\pi/\beta$;\enspace$u_p=\omega/\beta$.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{purplebg}{purple}{LOSSLESS ($\sigma=0$)}
+\begin{ebox}
+$\alpha=0$\quad$\beta=k=\omega\sqrt{\mu\varepsilon}$ (rad/m)\\
+$\eta_c=\eta=\sqrt{\mu/\varepsilon}$ ($\Omega$, real;\enspace$\theta_\eta=0$)\\
+$u_p=c/\sqrt{\varepsilon_r}$ (m/s);\enspace$\mathbf{E}$ and $\mathbf{H}$ in phase
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{coralbg}{coral}{LOW-LOSS MEDIUM ($\varepsilon''/\varepsilon'\ll1$)}
+\begin{ebox}
+\[\alpha\approx\tfrac{\sigma}{2}\sqrt{\tfrac{\mu}{\varepsilon'}}=\tfrac{\sigma\eta}{2}\;\text{(Np/m)}\]
+\[\beta\approx\omega\sqrt{\mu\varepsilon'}=\tfrac{\omega\sqrt{\varepsilon_r}}{c}\;\text{(rad/m)}\]
+\[\eta_c\approx\eta=\sqrt{\tfrac{\mu}{\varepsilon'}}\;(\Omega,\;\angle\approx0)\]
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{coralbg}{coral}{GOOD CONDUCTOR ($\varepsilon''/\varepsilon'\gg1$)}
+\begin{ebox}
+\[\alpha\approx\beta\approx\sqrt{\pi f\mu\sigma}\;\text{(Np/m, rad/m)}\]
+\[\eta_c\approx(1+j)\sqrt{\tfrac{\pi f\mu}{\sigma}}\approx(1+j)\tfrac{\alpha}{\sigma}\;(\Omega)\]
+\[\delta_s=\frac{1}{\alpha}=\frac{1}{\sqrt{\pi f\mu\sigma}}\;\text{(m, good cond.)}\]
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{bluebg}{blue}{$\tilde{\mathbf{H}}$ PHASOR $\to$ $\tilde{\mathbf{E}}$ IN LOSSY MEDIA}
+\begin{ebox}
+\eq{Step 1}{read $\alpha$, $\beta$ from $\tilde{\mathbf{H}}\propto e^{-\alpha y}e^{-j\beta y}$}
+\eq{Step 2}{$\eta_c=\frac{j\omega\mu_0}{\gamma}=\frac{\omega\mu_0(\beta+j\alpha)}{\alpha^2+\beta^2}$}
+\eq{Step 3}{$\tilde{\mathbf{E}}=-\eta_c\,(\hat{k}\times\tilde{\mathbf{H}})$}
+\eq{Step 4}{$Ae^{j\phi}e^{-\alpha y}\xrightarrow{\operatorname{Re}\{\cdot e^{j\omega t}\}}Ae^{-\alpha y}\cos(\omega t-\beta y+\phi)$}
+\textit{\color{coral}Convert each $A+jB\to|Z|\angle\theta$ first.}
+\end{ebox}
+
+\vspace{0.3pt}
+\shead{graybg}{gray}{USEFUL NUMBERS}
+\begin{ebox}
+$\sqrt{2}\approx1.414$;\;$\sqrt{3}\approx1.732$;\;$\sqrt{6}\approx2.449$\\
+$\sqrt{2.5}\approx1.581$;\;$\sqrt{2.56}=1.6$;\;$\sqrt{9}=3$\\
+$\arctan(4/3)\approx53.1°$;\;$\arctan(3/4)\approx36.9°$\\
+$\arccos(2/3)\approx48.2°$;\;$\arctan(24/7)\approx73.7°$
 \end{ebox}
 
 \end{multicols}
@@ -374,48 +548,55 @@ Quasi-cond. & $10^{-2}\!-\!10^2$ & Use general $\alpha$, $\beta$\\
 \vfill
 \noindent
 \begin{minipage}[t]{0.19\linewidth}
-\shead{tealbg}{teal}{POLARIZATION TYPES}
+\shead{purplebg}{purple}{WAVE PARAMS}
+\begin{ebox}
+$\omega=2\pi f$ --- ang.\ freq (rad/s)\\
+$k=\omega\sqrt{\varepsilon_r}/c$ --- wavenumber\\
+$\lambda=2\pi/k$ --- wavelength (m)\\
+$u_p=c/\sqrt{\varepsilon_r}$ --- phase vel.\ (m/s)\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ --- impedance ($\Omega$)\\
+$c=3\times10^8$ m/s;\;$\eta_0=377\,\Omega$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{LOSSLESS MEDIA}
+\begin{ebox}
+$\sigma=0$ (ideal dielectric)\\
+$\alpha=0$;\enspace no attenuation\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$ (real, $\Omega$)\\
+$\mathbf{E}$ and $\mathbf{H}$ in phase ($\theta_\eta=0$)\\
+$S_\text{av}=|E_0|^2/(2\eta)$ (W/m$^2$)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{coralbg}{coral}{LOSSY MEDIA}
+\begin{ebox}
+$\alpha$ --- atten.\ const (Np/m)\\
+$\beta$ --- phase const (rad/m)\\
+$\gamma=\alpha+j\beta$ --- prop.\ const\\
+$\eta_c$ --- complex impedance ($\Omega$)\\
+$\delta_s=1/\alpha$ --- skin depth (m)\\
+$\varepsilon'=\varepsilon_r\varepsilon_0$;\;$\varepsilon''=\sigma/\omega$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{amberbg}{amber}{CIRCULAR WAVES}
+\begin{ebox}
+RHC: $\tilde{\mathbf{E}}=a(\hat{x}-j\hat{y})e^{-jkz}$\\
+LHC: $\tilde{\mathbf{E}}=a(\hat{x}+j\hat{y})e^{-jkz}$\\
+Linear: $a_R=a_L=a_x/2$\\
+$-j=e^{-j\pi/2}$: $\cos\to\sin$\\
+$+j=e^{+j\pi/2}$: $\cos\to-\sin$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{tealbg}{teal}{POLARIZATION}
 \begin{ebox}
 Linear: $\delta=0$ or $\pi$\\
 LHC: $a_x\!=\!a_y$, $\delta\!=\!+\pi/2$\\
 RHC: $a_x\!=\!a_y$, $\delta\!=\!-\pi/2$\\
-Ellip.: general $a_x,a_y,\delta$
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{coralbg}{coral}{LOSSY PARAMS}
-\begin{ebox}
-$\varepsilon_c=\varepsilon'-j\sigma/\omega$\\
-$\delta_s=1/\alpha$\;(m, general)\\
-$\delta_s=1/\sqrt{\pi f\mu\sigma}$ (cond.)\\
-$R_s=\sqrt{\pi f\mu/\sigma}$\;($\Omega$)
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{coralbg}{coral}{MEDIUM TYPES}
-\begin{ebox}
-$\varepsilon''/\varepsilon'\ll1$: low-loss diel.\\
-$10^{-2}\!\le\!\varepsilon''/\varepsilon'\!\le\!10^2$: quasi\\
-$\varepsilon''/\varepsilon'\gg100$: good cond.\\
-$\varepsilon''=\sigma/\omega$,\;$\varepsilon'=\varepsilon_r\varepsilon_0$
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{greenbg}{green}{POWER DENSITY}
-\begin{ebox}
-$\mathbf{S}=\mathbf{E}\times\mathbf{H}$ (inst.)\\
-$S_\text{av}=|E_0|^2/(2\eta)$ (lossless)\\
-$S_\text{av}=\frac{|E(0)|^2}{2|\eta_c|}e^{-2\alpha z}\!\cos\theta_\eta$\\
-$P=S_\text{av}A\cos\theta$
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{graybg}{gray}{dB QUICK REF}
-\begin{ebox}
-$\alpha_\text{dB}=8.69\,\alpha_\text{Np}$\\
-$G=10\log(P_1/P_2)$\\
-$A=-8.69\,\alpha z$\;(dB)\\
-$A=20\log(|E(z)|/|E(0)|)$
+$R=1$: circular;\;$R\to\infty$: linear\\
+$\chi>0$: RH;\;$\chi<0$: LH
 \end{ebox}
 \end{minipage}
 
