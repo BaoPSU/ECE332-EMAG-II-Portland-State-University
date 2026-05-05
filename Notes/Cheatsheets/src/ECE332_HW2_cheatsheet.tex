@@ -85,21 +85,23 @@
 \vspace{0.3pt}
 \shead{bluebg}{blue}{LOSSLESS vs.\ LOSSY --- E \& H}
 \begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.19\linewidth}p{0.36\linewidth}p{0.38\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.20\linewidth}|>{\centering\arraybackslash}p{0.35\linewidth}|>{\centering\arraybackslash}p{0.37\linewidth}@{}}
 \toprule
-& Lossless ($\sigma\!=\!0$) & Lossy ($\sigma\!\ne\!0$)\\
+& \textbf{Lossless} ($\sigma\!=\!0$) & \textbf{Lossy} ($\sigma\!\ne\!0$)\\
 \midrule
-\rowcolor{rowB}Impedance & $\eta=\sqrt{\mu/\varepsilon}$ \textit{(real)} & $\eta_c=|\eta_c|e^{j\theta_\eta}$ \textit{(cmplx)}\\
-Prop.\ factor & $e^{-jkz}$ & $e^{-\alpha z}e^{-j\beta z}$\\
-\rowcolor{rowB}$\mathbf{E}(t)$ & \multicolumn{2}{l}{$\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$ \quad (same for both)}\\
-$\mathbf{H}(t)$ & \multicolumn{2}{l}{$\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$ \quad (same for both)}\\
+\rowcolor{rowB}Impedance & $\eta=\sqrt{\mu/\varepsilon}$ & $\eta_c=|\eta_c|e^{j\theta_\eta}$\\
+Prop. & $e^{-jkz}$ & $e^{-\alpha z}e^{-j\beta z}$\\
+\rowcolor{rowB}$\mathbf{E}(t)$ & \multicolumn{2}{c}{$\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$ \textit{(same)}}\\
+$\mathbf{H}(t)$ & \multicolumn{2}{c}{$\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$ \textit{(same)}}\\
 \rowcolor{rowB}$\tilde{\mathbf{H}}$ from $\tilde{\mathbf{E}}$ & $\tfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$ & $\tfrac{1}{\eta_c}(\hat{k}\times\tilde{\mathbf{E}})$\\
 $\tilde{\mathbf{E}}$ from $\tilde{\mathbf{H}}$ & $-\eta(\hat{k}\times\tilde{\mathbf{H}})$ & $-\eta_c(\hat{k}\times\tilde{\mathbf{H}})$\\
-\rowcolor{rowB}E,\,H phase & in phase & H lags E by $\theta_\eta$\\
+\rowcolor{rowB}Phase & in phase & H lags E by $\theta_\eta$\\
 \midrule
-\multicolumn{3}{l}{\textit{Lossless shortcuts (wave in $+z$, $\mathbf{E}$ along $\hat{e}$, amplitude $E_0$):}}\\
-\rowcolor{rowB}$\mathbf{E}(t)$ & \multicolumn{2}{l}{$E_0\cos(\omega t-kz+\phi)\,\hat{e}$}\\
-$\mathbf{H}(t)$ & \multicolumn{2}{l}{$\tfrac{E_0}{\eta}\cos(\omega t-kz+\phi)\,(\hat{k}\times\hat{e})$}\\
+\multicolumn{3}{l}{\textit{Lossless shortcuts (wave in $+z$, $\mathbf{E}$ along $\hat{e}$):}}\\
+\rowcolor{rowB}$\mathbf{E}(z,t)$ & $E_0\cos(\omega t-kz+\phi)\,\hat{e}$ & n/a\\
+$\mathbf{H}(z,t)$ & $\tfrac{E_0}{\eta}\cos(\omega t-kz+\phi)\,(\hat{k}\times\hat{e})$ & n/a\\
+\rowcolor{rowB}$\mathbf{H}(t)$ direct & $\tfrac{1}{\eta}(\hat{k}\times\mathbf{E}(t))$ & n/a\\
+$\mathbf{E}(t)$ direct & $-\eta(\hat{k}\times\mathbf{H}(t))$ & n/a\\
 \bottomrule
 \end{tabular}}}\par}
 \end{ebox}
