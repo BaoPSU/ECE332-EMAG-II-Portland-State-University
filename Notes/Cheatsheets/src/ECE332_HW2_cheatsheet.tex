@@ -83,6 +83,23 @@
 \end{ebox}
 
 \vspace{0.3pt}
+\shead{bluebg}{blue}{LOSSLESS vs.\ LOSSY --- E \& H}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.19\linewidth}p{0.36\linewidth}p{0.38\linewidth}@{}}
+\toprule
+& Lossless ($\sigma\!=\!0$) & Lossy ($\sigma\!\ne\!0$)\\
+\midrule
+\rowcolor{rowB}Impedance & $\eta=\sqrt{\mu/\varepsilon}$ \textit{(real)} & $\eta_c=|\eta_c|e^{j\theta_\eta}$ \textit{(cmplx)}\\
+Prop.\ factor & $e^{-jkz}$ & $e^{-\alpha z}e^{-j\beta z}$\\
+\rowcolor{rowB}$\tilde{\mathbf{H}}$ from $\tilde{\mathbf{E}}$ & $\dfrac{\hat{k}\times\tilde{\mathbf{E}}}{\eta}$ & $\dfrac{\hat{k}\times\tilde{\mathbf{E}}}{\eta_c}$\\[4pt]
+$\tilde{\mathbf{E}}$ from $\tilde{\mathbf{H}}$ & $-\eta(\hat{k}\times\tilde{\mathbf{H}})$ & $-\eta_c(\hat{k}\times\tilde{\mathbf{H}})$\\
+\rowcolor{rowB}E,\,H phase & in phase & H lags E by $\theta_\eta$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{Time domain: $\mathbf{F}(t)=\operatorname{Re}\{\tilde{\mathbf{F}}\,e^{j\omega t}\}$ for both $\mathbf{E}$ and $\mathbf{H}$.}
+\end{ebox}
+
+\vspace{0.3pt}
 \shead{purplebg}{purple}{DIRECTION OF PROPAGATION}
 \begin{ebox}
 \makebox[0.92\linewidth][c]{\begin{tabular}{@{}ll@{\quad}ll@{}}
