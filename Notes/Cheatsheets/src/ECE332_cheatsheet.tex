@@ -1,0 +1,360 @@
+\documentclass[6pt,letterpaper]{article}
+\usepackage[margin=0.25in, top=0.3in, bottom=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+
+% ── Colors ──
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{gray}{HTML}{444441}\definecolor{graybg}{HTML}{F1EFE8}
+\definecolor{pink}{HTML}{72243E}\definecolor{pinkbg}{HTML}{FBEAF0}
+\definecolor{rowB}{HTML}{F2F2EF}
+
+\newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
+  innertopmargin=2pt,innerbottommargin=2pt,skipabove=1pt,skipbelow=1pt]{ebox}
+
+\newcommand{\shead}[3]{%
+  \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+  {\color{#2}\bfseries\fontsize{6}{7}\selectfont #3}}\vspace{0.5pt}}
+
+% label + when-to-use on same line
+\newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\setlength{\columnsep}{5pt}\setlength{\multicolsep}{1pt}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 — Equation Sheet}}
+\fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
+
+\begin{document}
+\fontsize{6}{7.5}\selectfont
+\begin{multicols}{3}
+
+%──────────────────────────────────────
+\shead{purplebg}{purple}{EMF \& FARADAY'S LAW}
+\begin{ebox}
+\eq{Transformer EMF}{stationary loop, $B$ changes}
+\[V_\text{emf} = -\int_S \frac{\partial \mathbf{B}}{\partial t} \cdot d\mathbf{s}\]
+
+\eq{Motional EMF}{loop moves, $B$ static}
+\[V_\text{emf} = \oint (\mathbf{v} \times \mathbf{B}) \cdot d\mathbf{l}\]
+
+\eq{General (flux form)}{always works}
+\[V_\text{emf} = -\frac{d\Phi}{dt} \qquad \Phi = \int_S \mathbf{B} \cdot d\mathbf{s}\]
+
+\eq{$N$-turn coil}{transformer, $N$ turns}
+\[V_\text{emf} = -N\frac{d\Phi}{dt} = -\frac{d\lambda}{dt} \quad \lambda=N\Phi\]
+
+\eq{Uniform $B$ shortcut}{$B$ same everywhere on loop}
+\[V_\text{emf} = -\frac{\partial B}{\partial t} \cdot A\]
+
+\eq{Long wire + rect loop}{wire near loop, $r$: $a\to b$, height $c$}
+\[V_\text{emf} = -\int_0^c\!\int_a^b \frac{\partial \mathbf{B}}{\partial t} \cdot d\mathbf{s} = -\int_0^c\!\int_a^b \frac{\partial}{\partial t}\!\left(\frac{\mu_0 I}{2\pi r}\right)dr\,dz\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{SURFACE ELEMENT $d\mathbf{s}$}
+\begin{ebox}
+$d\mathbf{s} = \hat{n}\,da$ \quad (\textit{RHR gives $\hat{n}$: curl fingers in loop direction, thumb $= \hat{n}$})\\[2pt]
+\begin{tabular}{@{}ll@{}}
+\toprule
+Loop plane & $d\mathbf{s}$\\
+\midrule
+\rowcolor{rowB}$x$-$y$ & $\hat{z}\,dx\,dy$ or $\hat{z}\,r\,dr\,d\phi$\\
+$y$-$z$ & $\hat{x}\,dy\,dz$\\
+\rowcolor{rowB}$x$-$z$ & $\hat{y}\,dx\,dz$\\
+coplanar / toroid & $\hat{\phi}\,dr\,dz$\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Uniform $B$: $\iint da = A$ (just the loop area)}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{DOT PRODUCTS $\hat{a}\cdot\hat{b}$}
+\begin{ebox}
+Same direction $= 1$;\quad perpendicular $= 0$\\[2pt]
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+& $\hat{x}$ & $\hat{y}$ & $\hat{z}$ & $\hat{r}$ & $\hat{\phi}$\\
+\midrule
+\rowcolor{rowB}$\hat{x}$ & 1 & 0 & 0 & 0 & 0\\
+$\hat{y}$ & 0 & 1 & 0 & 0 & 0\\
+\rowcolor{rowB}$\hat{z}$ & 0 & 0 & 1 & 0 & 0\\
+$\hat{\phi}$ & 0 & 0 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{CROSS PRODUCT $\mathbf{A}\times\mathbf{B}$ (determinant)}
+\begin{ebox}
+\[
+\mathbf{A}\times\mathbf{B}=
+\begin{vmatrix}
+\hat{x} & \hat{y} & \hat{z}\\
+A_x & A_y & A_z\\
+B_x & B_y & B_z
+\end{vmatrix}
+\]
+\[=(A_yB_z-A_zB_y)\hat{x}-(A_xB_z-A_zB_x)\hat{y}+(A_xB_y-A_yB_x)\hat{z}\]
+\textit{Also used for curl:}
+\[\nabla\times\mathbf{E}=
+\begin{vmatrix}
+\hat{x} & \hat{y} & \hat{z}\\
+\partial_x & \partial_y & \partial_z\\
+E_x & E_y & E_z
+\end{vmatrix}\]
+\textit{Plane wave ($\partial_x=\partial_y=0$): only $\partial_z$ row survives.}
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{tealbg}{teal}{$\mathbf{B}$ FIELDS}
+\begin{ebox}
+\eq{Infinite wire}{single wire carrying $I$, $N=1$}
+\[\mathbf{B} = \hat{\phi}\,\frac{\mu_0 I}{2\pi r}\]
+
+\eq{Inside toroid}{coil of $N$ turns carrying $I$}
+\[\mathbf{B} = \hat{\phi}\,\frac{\mu N I}{2\pi r} \qquad \mu=\mu_r\mu_0\]
+
+\textit{\color{coral}$N$ in $\mathbf{B}$ only if the \textbf{source} (current-carrying thing) is a multi-turn coil. Single wire $\Rightarrow N=1$, drop it. $N$ in $V_\text{emf}=-Nd\Phi/dt$ is the \textbf{receiver} coil turns.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{$\partial B/\partial t$ TABLE}
+\begin{ebox}
+\begin{tabular}{@{}p{0.46\linewidth}p{0.46\linewidth}@{}}
+\toprule
+$B(t)$ & $\partial B/\partial t$\\
+\midrule
+\rowcolor{rowB}$B_0\sin(\omega t)$ & $B_0\omega\cos(\omega t)$\\
+$B_0\cos(\omega t)$ & $-B_0\omega\sin(\omega t)$\\
+\rowcolor{rowB}$B_0 e^{-\alpha t}$ & $-\alpha B_0 e^{-\alpha t}$\\
+$B_0$ (const) & $0$\\
+\bottomrule
+\end{tabular}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{SIGN $\to$ CURRENT DIRECTION}
+\begin{ebox}
+\begin{tabular}{@{}p{0.26\linewidth}p{0.34\linewidth}p{0.28\linewidth}@{}}
+\toprule
+$V_\text{emf}$ & Inside source & $I$ dir.\\
+\midrule
+\rowcolor{rowB}$< 0$ & $-\;\to\;+$ terminal & $-\hat{\phi}$ (CW)\\
+$> 0$ & $+\;\to\;-$ terminal & $+\hat{\phi}$ (CCW)\\
+\rowcolor{rowB}$= 0$ & --- & none\\
+\bottomrule
+\end{tabular}\\[2pt]
+\textit{Lenz: induced $I$ always opposes the change in $\Phi$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{$\ln$ INTEGRAL}
+\begin{ebox}
+\eq{}{$B \propto 1/r$, loop spans $r=a$ to $r=b$}
+\[\int_a^b \frac{dr}{r} = \ln\frac{b}{a} = \ln b - \ln a\]
+$\ln\dfrac{b}{a} = \ln b - \ln a$\\[2pt]
+$\ln 2=0.693\quad\ln 3=1.099\quad\ln 1.2=0.182$
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{ROTATING LOOP — GENERATOR}
+\begin{ebox}
+\[\Phi = AB_0\cos(\omega t + \phi_0)\]
+\[V_\text{emf} = AB_0\omega\sin(\omega t + \phi_0)\]
+\[I_\text{amp} = \frac{AB_0\omega}{R} \qquad \omega = 2\pi f = 2\pi\frac{\text{rpm}}{60}\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{graybg}{gray}{SI PREFIXES}
+\begin{ebox}
+\centering
+\begin{tabular}{lll@{\quad}lll}
+\toprule
+Prefix & Sym & Value & Prefix & Sym & Value\\
+\midrule
+\rowcolor{rowB}pico & p & $10^{-12}$ & kilo & k & $10^{3}$\\
+nano & n & $10^{-9}$ & mega & M & $10^{6}$\\
+\rowcolor{rowB}micro & $\mu$ & $10^{-6}$ & giga & G & $10^{9}$\\
+milli & m & $10^{-3}$ & tera & T & $10^{12}$\\
+\bottomrule
+\end{tabular}
+\end{ebox}
+
+\vspace{2pt}
+\shead{pinkbg}{pink}{$j$ IDENTITIES}
+\begin{ebox}
+\centering
+\begin{tabular}{ll@{\quad}ll}
+\toprule
+Expression & Result & Expression & Result\\
+\midrule
+\rowcolor{rowB}$j^2$ & $-1$ & $j\times(-j)$ & $1$\\
+$1/j$ & $-j$ & $-1/j$ & $j$\\
+\rowcolor{rowB}$j^3$ & $-j$ & $j^4$ & $1$\\
+$e^{-j\pi/2}$ & $-j$ & $e^{j\pi/2}$ & $j$\\
+\rowcolor{rowB}$e^{j\pi}$ & $-1$ & $e^{j2\pi}$ & $1$\\
+\bottomrule
+\end{tabular}
+\end{ebox}
+
+\columnbreak
+
+%──────────────────────────────────────
+\shead{coralbg}{coral}{DISPLACEMENT \& CONDUCTION CURRENT}
+\begin{ebox}
+\eq{Conduction}{resistive, $\sigma\ne0$}
+\[E = \frac{V(t)}{d} \qquad J_c = \sigma E \qquad I_c = J_c \cdot A = \frac{\sigma A}{d}V(t)\]
+\[I_c = \underbrace{\frac{\sigma A}{d}}_{1/R}V(t) \;\longleftrightarrow\; I=\frac{V}{R} \;\Rightarrow\; R=\frac{d}{\sigma A}\]
+\textit{Current proportional to $V$ directly $\to$ behaves like a resistor.}
+
+\eq{Displacement}{capacitive, changing $E$}
+\[J_d = \varepsilon\frac{\partial E}{\partial t} \qquad I_d = J_d \cdot A = \frac{\varepsilon_r\varepsilon_0 A}{d}\frac{dV}{dt}\]
+\[I_d = \underbrace{\frac{\varepsilon_r\varepsilon_0 A}{d}}_{C}\frac{dV}{dt} \;\longleftrightarrow\; I=C\frac{dV}{dt} \;\Rightarrow\; C=\frac{\varepsilon_r\varepsilon_0 A}{d}\]
+\textit{Current proportional to $dV/dt$ $\to$ behaves like a capacitor.}
+
+\eq{Lossy cap circuit}{both $\sigma$ and $\varepsilon_r$ present}\\
+$R\parallel C$ across $V(t)$:\quad $I = I_c + I_d = \dfrac{V}{R} + C\dfrac{dV}{dt}$
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{CHARGE RELAXATION}
+\begin{ebox}
+\eq{Decay}{charge injected at $t=0$}
+\[\rho_v(t) = \rho_{v0}\,e^{-t/\tau_r} \qquad \tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}\]
+
+\eq{Find $\sigma$ from decay data}{}
+\[\sigma = \frac{-\ln\!\left(\rho_v/\rho_{v0}\right)\cdot\varepsilon_r\varepsilon_0}{t_1}\]
+
+\textit{Larger $\tau_r$ = slower dissipation = better insulator.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{pinkbg}{pink}{PHASOR METHOD ($\mathbf{E}\to\mathbf{H}$)}
+\begin{ebox}
+\textbf{\color{pink}1. Key relation} \quad $\mathbf{E}(z,t)=\operatorname{Re}\{\tilde{\mathbf{E}}(z)\,e^{j\omega t}\}$\\
+\textbf{\color{pink}2. Euler split} \quad $e^{j(\omega t-kz)}=e^{j\omega t}\cdot e^{-jkz}$ \quad strip $e^{j\omega t}$, keep $e^{-jkz}$\\[3pt]
+\textbf{\color{pink}3. Time $\to$ phasor conversions}\\
+$\cos(\omega t-kz)=\operatorname{Re}\{e^{j(\omega t-kz)}\}=\operatorname{Re}\{e^{j\omega t}\cdot e^{-jkz}\}\to e^{-jkz}$\\
+$\sin(\omega t-kz)=\cos(\omega t-kz-\tfrac{\pi}{2})=\operatorname{Re}\{e^{j(\omega t-kz-\pi/2)}\}=\operatorname{Re}\{e^{-j\pi/2}\cdot e^{j\omega t}\cdot e^{-jkz}\}\to -j\,e^{-jkz}$\\[3pt]
+\textbf{\color{pink}4. Faraday in phasor domain} \quad (plane wave: only $\partial/\partial z$ survives)
+\[\tilde{\mathbf{H}} = -\frac{1}{j\omega\mu}\nabla\times\tilde{\mathbf{E}}\]
+\textbf{\color{pink}5. Phasor $\to$ time domain} \quad $\mathbf{H}(z,t)=\operatorname{Re}\{\tilde{\mathbf{H}}\,e^{j\omega t}\}$\\
+$\operatorname{Re}\{e^{j(\omega t-kz)}\}=\cos(\omega t-kz)$\\
+$\operatorname{Re}\{-j\,e^{j(\omega t-kz)}\}=\sin(\omega t-kz)$
+\end{ebox}
+
+\vspace{2pt}
+\shead{graybg}{gray}{UNIT CIRCLE}
+\begin{ebox}
+\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Angle & Deg & $\cos$ & $\sin$ & Q\\
+\midrule
+\rowcolor{rowB}$0$ & $0°$ & $1$ & $0$ & —\\
+$\pi/6$ & $30°$ & $\sqrt{3}/2$ & $1/2$ & 1\\
+\rowcolor{rowB}$\pi/4$ & $45°$ & $\sqrt{2}/2$ & $\sqrt{2}/2$ & 1\\
+$\pi/3$ & $60°$ & $1/2$ & $\sqrt{3}/2$ & 1\\
+\rowcolor{rowB}$\pi/2$ & $90°$ & $0$ & $1$ & —\\
+$2\pi/3$ & $120°$ & $-1/2$ & $\sqrt{3}/2$ & 2\\
+\rowcolor{rowB}$3\pi/4$ & $135°$ & $-\sqrt{2}/2$ & $\sqrt{2}/2$ & 2\\
+$5\pi/6$ & $150°$ & $-\sqrt{3}/2$ & $1/2$ & 2\\
+\rowcolor{rowB}$\pi$ & $180°$ & $-1$ & $0$ & —\\
+$7\pi/6$ & $210°$ & $-\sqrt{3}/2$ & $-1/2$ & 3\\
+\rowcolor{rowB}$5\pi/4$ & $225°$ & $-\sqrt{2}/2$ & $-\sqrt{2}/2$ & 3\\
+$4\pi/3$ & $240°$ & $-1/2$ & $-\sqrt{3}/2$ & 3\\
+\rowcolor{rowB}$3\pi/2$ & $270°$ & $0$ & $-1$ & —\\
+$5\pi/3$ & $300°$ & $1/2$ & $-\sqrt{3}/2$ & 4\\
+\rowcolor{rowB}$7\pi/4$ & $315°$ & $\sqrt{2}/2$ & $-\sqrt{2}/2$ & 4\\
+$11\pi/6$ & $330°$ & $\sqrt{3}/2$ & $-1/2$ & 4\\
+\rowcolor{rowB}$2\pi$ & $360°$ & $1$ & $0$ & —\\
+\bottomrule
+\end{tabular}
+\end{ebox}
+
+\end{multicols}
+
+\vfill
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{FIELDS}
+\begin{ebox}
+$\mathbf{E}$ — electric field (V/m)\\
+$\mathbf{B}$ — mag.\ flux density (T)\\
+$\mathbf{H}$ — mag.\ field intensity (A/m)\\
+$\rho_v$ — charge density (C/m$^3$)\\
+$\rho_{v0}$ — initial charge density\\
+$\Phi=\int_S\mathbf{B}\cdot d\mathbf{s}$ — flux (Wb)\\
+$\lambda=N\Phi$ — flux linkage (Wb)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{tealbg}{teal}{CURRENTS}
+\begin{ebox}
+$J_c=\sigma E$ — cond.\ density (A/m$^2$)\\
+$J_d=\varepsilon\,\partial E/\partial t$ — disp.\ density\\
+$I_c=J_c\cdot A$ — cond.\ current (A)\\
+$I_d=J_d\cdot A$ — disp.\ current (A)\\
+$R=d/(\sigma A)$ — resistance ($\Omega$)\\
+$C=\varepsilon_r\varepsilon_0 A/d$ — capacitance (F)\\
+$\tau_r=\varepsilon_r\varepsilon_0/\sigma$ — relax.\ time (s)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{coralbg}{coral}{MATERIALS}
+\begin{ebox}
+$\mu_0=4\pi\!\times\!10^{-7}$ H/m\\
+$\mu_r$ — relative permeability\\
+$\mu=\mu_r\mu_0$ — permeability\\[2pt]
+$\varepsilon_0=8.85\!\times\!10^{-12}$ F/m\\
+$\varepsilon_r$ — relative permittivity\\
+$\varepsilon=\varepsilon_r\varepsilon_0$ — permittivity\\[2pt]
+$\sigma$ — conductivity (S/m)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{bluebg}{blue}{CIRCUIT \& WAVE}
+\begin{ebox}
+$V$ — voltage (V)\\
+$R$ — resistance ($\Omega$)\\
+$C$ — capacitance (F)\\
+$\omega=2\pi f$ — angular freq (rad/s)\\
+$k=\omega\sqrt{\mu\varepsilon}$ — wave number (m$^{-1}$)\\
+$\lambda=2\pi/k$ — wavelength (m)\\
+$c=3\!\times\!10^8$ m/s — speed of light
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{pinkbg}{pink}{PHASOR \& GEOMETRY}
+\begin{ebox}
+$\eta=\sqrt{\mu/\varepsilon}$ — intrinsic imp.\ ($\Omega$)\\
+$\eta_0=120\pi\approx377\,\Omega$ (free space)\\
+$k/(\omega\mu)=1/\eta$\\
+$j$ — imaginary unit ($j^2=-1$)\\
+$\tilde{\mathbf{E}}$ — phasor (drop $e^{j\omega t}$)\\[2pt]
+$A$ — area (m$^2$);\quad $d$ — sep.\ (m)\\
+$N$ — turns;\quad $r$ — radial dist.\ (m)
+\end{ebox}
+\end{minipage}
+
+\end{document}
