@@ -7,27 +7,33 @@
 \usepackage{fancyhdr}
 \usepackage{cancel}
 \usepackage{array}
+\usepackage{tikz}
 
-% ── Colors matching cheat sheet ──
+% ── Colors ──
 \definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
 \definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
 \definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
-\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
 
 % Cheat-sheet reference tag
 \newcommand{\cs}[1]{\textcolor{teal}{\footnotesize[CS\,#1]}}
 
-% Warning / correction box
+% Question text box (gray)
+\newmdenv[linewidth=0.6pt,linecolor=black!35,backgroundcolor=black!4,
+  innerleftmargin=8pt,innerrightmargin=8pt,
+  innertopmargin=6pt,innerbottommargin=6pt,
+  skipabove=5pt,skipbelow=5pt]{qbox}
+
+% Cheat-sheet snippet box (teal)
+\newmdenv[linewidth=1pt,linecolor=teal,backgroundcolor=tealbg!30,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=5pt,innerbottommargin=5pt,
+  skipabove=5pt,skipbelow=5pt]{cssnip}
+
+% Warning box (coral)
 \newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!40,
   innerleftmargin=6pt,innerrightmargin=6pt,
   innertopmargin=4pt,innerbottommargin=4pt,
   skipabove=4pt,skipbelow=4pt]{notebox}
-
-% Cheat-sheet snippet box
-\newmdenv[linewidth=1pt,linecolor=teal,backgroundcolor=tealbg!30,
-  innerleftmargin=6pt,innerrightmargin=6pt,
-  innertopmargin=5pt,innerbottommargin=5pt,
-  skipabove=6pt,skipbelow=6pt]{cssnip}
 
 \pagestyle{fancy}\fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
@@ -41,27 +47,27 @@
 \begin{document}
 
 %══════════════════════════════════════════════════════════════════════
-% COVER PAGE
+% COVER
 %══════════════════════════════════════════════════════════════════════
 \begin{center}
-  {\Large\textbf{ECE 332 Fall 2025 --- Exam 1 Answer Key}}\\[6pt]
-  {\small\textcolor{teal}{[CS\,p.1: SECTION]} = page 1 of cheat sheet \quad
-         \textcolor{teal}{[CS\,p.2: SECTION]} = page 2}
+{\Large\textbf{ECE 332 Fall 2025 --- Exam 1 Answer Key}}\\[6pt]
+{\small\textcolor{teal}{[CS\,p.1]} = page 1 of cheat sheet \quad
+       \textcolor{teal}{[CS\,p.2]} = page 2}
 \end{center}
 
-\vspace{6pt}
-
+\vspace{4pt}
 \begin{notebox}
 \textbf{\textcolor{coral}{Two corrected errors from prior keys:}}\\[2pt]
-\textbf{(1) Q1(c):} Exam writes ``$\omega=2\,\text{MHz}$'' but MHz is a \emph{frequency} unit. Must convert:
-$\omega = 2\pi f = 2\pi\times2\times10^6 = 4\pi\times10^6\,\text{rad/s}$.\\[2pt]
+\textbf{(1) Q1(c):} Exam writes ``$\omega=2\,\text{MHz}$'' but MHz is a frequency unit.
+Must convert: $\omega=2\pi f=2\pi\times2\times10^6=4\pi\times10^6\,\text{rad/s}$.\\[2pt]
 \textbf{(2) Q6:} Exam gives $f=\tfrac{2}{\pi}\,\text{GHz}$ (not $\tfrac{2}{5}$\,GHz).
-$\omega = 2\pi f = 2\pi\cdot\tfrac{2}{\pi}\times10^9 = 4\times10^9\,\text{rad/s}$.
+$\omega=2\pi f=2\pi\cdot\tfrac{2}{\pi}\times10^9=4\times10^9\,\text{rad/s}$.
 \end{notebox}
 
+\vspace{6pt}
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
-\begin{tabular}{@{}lcccc@{}}
+\begin{tabular}{@{}lccc@{}}
 \toprule
 Question & Topic & Points & Page\\
 \midrule
@@ -70,9 +76,9 @@ Q2 & Moving wire (motional EMF) & 12 & 3\\
 Q3 & Conduction \& displacement current & 12 & 4\\
 Q4 & Charge relaxation & 10 & 5\\
 Q5 & Lossless plane wave & 30 & 6\\
-Q6 & Lossy wave in distilled water & 16 & 7\\
+Q6 & Lossy wave in distilled water & 16 & 8\\
 \midrule
- & \textbf{Total} & \textbf{100} & \\
+ & \textbf{Total} & \textbf{100} &\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -83,67 +89,58 @@ Q6 & Lossy wave in distilled water & 16 & 7\\
 %══════════════════════════════════════════════════════════════════════
 \colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{purple}\large\textbf{Question 1 --- Triangular Loop \hfill 20 pts}}}
 
-\vspace{4pt}
-Equilateral loop in $y$-$z$ plane, $N$ turns, side $a$.\quad
-$\mathbf{B}(t)=B_0(-2\hat{x}+3\hat{y})\sin(\omega t)$.
+\begin{qbox}
+Suppose an equilateral triangular conducting loop of $N$ turns with sides of length $a$ is located in the $y$-$z$ plane with normal $d\mathbf{s}=\hat{x}\,ds$, as shown below, in a magnetic field
+\[
+\mathbf{B}(t)=B_0(-2\hat{x}+3\hat{y})\sin(\omega t).
+\]
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+\draw[->] (0,0,0) -- (1.8,0,0) node[right]{$y$};
+\draw[->] (0,0,0) -- (0,1.8,0) node[above]{$z$};
+\draw[->] (0,0,0) -- (-0.9,-0.7,0) node[below left]{$x$};
+\draw[thick] (0.7,0.5) -- (1.5,0.5) -- (1.1,1.2) -- cycle;
+\node[below] at (1.1,0.5) {$a$};
+\node[left]  at (0.82,0.88) {$a$};
+\node[right] at (1.35,0.88) {$a$};
+\end{tikzpicture}
+\end{center}
+\textbf{(a)} Find a formula for the magnetic flux through one turn of the loop.\hfill\textit{(6 pts)}\\[3pt]
+\textbf{(b)} Find a formula for the emf induced in the loop at time $t$.\hfill\textit{(6 pts)}\\[3pt]
+\textbf{(c)} Determine the current flowing through a $1\,\text{k}\Omega$ resistor incorporated in the loop when $N=10$, $a=8\,\text{cm}$, $B_0=0.02\,\text{T}$, $\omega=2\,\text{MHz}$, and $\omega t=\pi/4$, assuming that the resistance of the loop material is negligible.\hfill\textit{(8 pts)}
+\end{qbox}
 
 \begin{cssnip}
-\textbf{\small\textcolor{teal}{Cheat Sheet Snippets (all p.1)}}\\[3pt]
+\textbf{\small\textcolor{teal}{Cheat Sheet Snippets (p.1)}}\\[3pt]
 \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
-\textbf{EMF \& FARADAY'S LAW} & \textbf{SURFACE ELEMENT $d\mathbf{s}$}\\
-$V_\text{emf}=-N\dfrac{d\Phi}{dt}$\quad $\Phi=\displaystyle\int_S\mathbf{B}\cdot d\mathbf{s}$ &
-$y$-$z$ plane $\Rightarrow$ $d\mathbf{s}=\hat{x}\,da$\\[6pt]
-\textbf{DOT PRODUCTS} & \textbf{ROTATING LOOP --- areas}\\
-$\hat{x}\cdot\hat{x}=1$,\quad $\hat{y}\cdot\hat{x}=0$ &
-Equil.\ triangle (side $a$): $A=\dfrac{\sqrt{3}}{4}a^2$\\[6pt]
-\textbf{$\partial B/\partial t$ TABLE} & \textbf{CIRCUIT \& WAVE strip}\\
-$\dfrac{d}{dt}\sin(\omega t)=\omega\cos(\omega t)$ & $\omega=2\pi f$\\[6pt]
-\textbf{UNIT CIRCLE} & \\
-$\cos(\pi/4)=\dfrac{\sqrt{2}}{2}$ & \\
+\textbf{EMF \& FARADAY'S LAW} & \textbf{SURFACE ELEMENT}\\
+$V_\text{emf}=-N\dfrac{d\Phi}{dt}$,\; $\Phi=\displaystyle\int_S\mathbf{B}\cdot d\mathbf{s}$ &
+$y$-$z$ plane $\Rightarrow d\mathbf{s}=\hat{x}\,da$\\[5pt]
+\textbf{DOT PRODUCTS} & \textbf{ROTATING LOOP areas}\\
+$\hat{x}\cdot\hat{x}=1$,\quad $\hat{y}\cdot\hat{x}=0$ & Equil.\ tri.\ (side $a$): $A=\dfrac{\sqrt{3}}{4}a^2$\\[5pt]
+\textbf{$\partial B/\partial t$ TABLE} & \textbf{CIRCUIT \& WAVE + UNIT CIRCLE}\\
+$\dfrac{d}{dt}\sin(\omega t)=\omega\cos(\omega t)$ & $\omega=2\pi f$;\quad $\cos(\pi/4)=\dfrac{\sqrt{2}}{2}$\\
 \end{tabular}
 \end{cssnip}
 
-\textbf{(a) Magnetic flux through one turn.} \hfill\textit{(6 pts)}
-
-\begin{align*}
-\Phi &= \int_S \mathbf{B}\cdot d\mathbf{s}
-= \int_S B_0(-2\hat{x}+3\hat{y})\sin(\omega t)\cdot\hat{x}\,da\\
-&= A\!\left(-2\underbrace{(\hat{x}\cdot\hat{x})}_{1}+3\underbrace{(\hat{y}\cdot\hat{x})}_{0}\right)B_0\sin(\omega t)
-= -2\cdot\frac{\sqrt{3}}{4}a^2\cdot B_0\sin(\omega t)
-\end{align*}
+\textbf{(a)}
 \[
-\boxed{\Phi = -\frac{\sqrt{3}}{2}\,B_0\,a^2\sin(\omega t)\;\text{V$\cdot$s}}
+\Phi=\int_S B_0(-2\hat{x}+3\hat{y})\sin(\omega t)\cdot\hat{x}\,da
+=A\!\left(-2(\hat{x}\cdot\hat{x})+3(\hat{y}\cdot\hat{x})\right)B_0\sin(\omega t)
+=-2\cdot\tfrac{\sqrt{3}}{4}a^2 B_0\sin(\omega t)
 \]
+\[\boxed{\Phi=-\tfrac{\sqrt{3}}{2}B_0 a^2\sin(\omega t)\;\text{V$\cdot$s}}\]
 
-\textbf{(b) EMF induced in the loop.} \hfill\textit{(6 pts)}
+\textbf{(b)}
+\[V_\text{emf}=-N\tfrac{d}{dt}\!\left(-\tfrac{\sqrt{3}}{2}a^2 B_0\sin(\omega t)\right)
+\qquad\boxed{V_\text{emf}(t)=\tfrac{\sqrt{3}}{2}a^2 B_0 N\omega\cos(\omega t)\;\text{V}}\]
 
-\[
-V_\text{emf} = -N\frac{d}{dt}\!\left(-\frac{\sqrt{3}}{2}a^2 B_0\sin(\omega t)\right)
-= \frac{\sqrt{3}}{2}\,N a^2 B_0\cdot\omega\cos(\omega t)
-\]
-\[
-\boxed{V_\text{emf}(t) = \frac{\sqrt{3}}{2}\,a^2 B_0\, N\,\omega\cos(\omega t)\;\text{V}}
-\]
-
-\textbf{(c) Current through 1\,k$\Omega$ at given values.} \hfill\textit{(8 pts)}
-
+\textbf{(c)}
 \begin{notebox}
-Exam says ``$\omega=2\,\text{MHz}$'' $\Rightarrow$ convert first \cs{p.1: CIRCUIT \& WAVE}:
-$\quad\omega = 2\pi f = 2\pi(2\times10^6) = 4\pi\times10^6\;\text{rad/s}$
+Exam says ``$\omega=2\,\text{MHz}$'' $\Rightarrow$ convert: $\omega=2\pi f=2\pi(2\times10^6)=4\pi\times10^6\,\text{rad/s}$
 \end{notebox}
-
-$N=10$,\; $a=0.08\,\text{m}$,\; $B_0=0.02\,\text{T}$,\; $\omega=4\pi\times10^6\,\text{rad/s}$,\;
-$\omega t=\pi/4$,\; $R=1000\,\Omega$.
-
-\[
-|V_\text{emf}| = \frac{\sqrt{3}}{2}(0.08)^2(10)(0.02)\bigl(4\pi\times10^6\bigr)
-\underbrace{\cos\!\left(\frac{\pi}{4}\right)}_{\sqrt{2}/2}
-= 9.85\times10^3\;\text{V}
-\]
-\[
-I = \frac{V_\text{emf}}{R} = \frac{9.85\;\text{kV}}{1000\;\Omega}
-\qquad\boxed{I \approx 9.85\;\text{A}}
-\]
+\[|V_\text{emf}|=\tfrac{\sqrt{3}}{2}(0.08)^2(10)(0.02)(4\pi\times10^6)\underbrace{\cos(\pi/4)}_{\sqrt{2}/2}=9.85\times10^3\;\text{V}\]
+\[I=\frac{V_\text{emf}}{R}=\frac{9.85\;\text{kV}}{1000\;\Omega}\qquad\boxed{I\approx9.85\;\text{A}}\]
 
 \newpage
 %══════════════════════════════════════════════════════════════════════
@@ -151,38 +148,29 @@ I = \frac{V_\text{emf}}{R} = \frac{9.85\;\text{kV}}{1000\;\Omega}
 %══════════════════════════════════════════════════════════════════════
 \colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{purple}\large\textbf{Question 2 --- Moving Wire \hfill 12 pts}}}
 
-\vspace{4pt}
-$a=0.15\,\text{m}$ along $\hat{y}$,\quad
-$\mathbf{u}=0.12\hat{x}\,\text{m/s}$,\quad
-$\mathbf{B}=(0.1\hat{x}-0.05\hat{z})\,\text{T}$.
+\begin{qbox}
+A straight conducting wire of length $a=15\,\text{cm}$ lying along the $\hat{y}$ direction moves with velocity $\mathbf{u}=12\hat{x}\,\text{cm/s}$ in a magnetic field
+\[\mathbf{B}=(0.1\hat{x}-0.05\hat{z})\;\text{T}.\]
+Find the emf between the two ends of the wire.\hfill\textit{(12 pts)}
+\end{qbox}
 
 \begin{cssnip}
 \textbf{\small\textcolor{teal}{Cheat Sheet Snippets (p.1)}}\\[3pt]
 \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
 \textbf{EMF \& FARADAY'S LAW (Motional)} & \textbf{CROSS PRODUCT cycle}\\
 $V_\text{emf}=\displaystyle\oint(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}$ &
-$\hat{x}\times\hat{z}=-\hat{y}$\quad(reversed cycle)\\[4pt]
-$d\mathbf{l}=\hat{y}\,dy$ along a $\hat{y}$-wire &
-$\hat{x}\times\hat{x}=0$\quad(same vectors)
+$\hat{x}\times\hat{z}=-\hat{y}$ (reversed cycle)\\
+$d\mathbf{l}=\hat{y}\,dy$ along $\hat{y}$-wire & $\hat{x}\times\hat{x}=0$
 \end{tabular}
 \end{cssnip}
 
-\[
-\mathbf{u}\times\mathbf{B}
-= 0.12\hat{x}\times(0.1\hat{x}-0.05\hat{z})
-= \underbrace{0.12\times0.1}_{}(\hat{x}\times\hat{x})
-  +\underbrace{0.12\times(-0.05)}_{}(\hat{x}\times\hat{z})
-\]
-\[
-= 0 + (-0.006)(-\hat{y}) = 6\times10^{-3}\hat{y}\;\text{V/m}
-\]
-\[
-V_\text{emf} = \int_0^{0.15}(6\times10^{-3}\hat{y})\cdot(\hat{y}\,dy)
-= 6\times10^{-3}(0.15)
-\]
-\[
-\boxed{V_\text{emf} = 900\;\mu\text{V} = 0.9\;\text{mV}}
-\]
+$a=0.15\,\text{m}$,\quad $\mathbf{u}=0.12\hat{x}\,\text{m/s}$.
+
+\[\mathbf{u}\times\mathbf{B}=0.12\hat{x}\times(0.1\hat{x}-0.05\hat{z})
+=0.012\underbrace{(\hat{x}\times\hat{x})}_{0}+(-0.006)\underbrace{(\hat{x}\times\hat{z})}_{-\hat{y}}
+=6\times10^{-3}\hat{y}\;\text{V/m}\]
+\[V_\text{emf}=\int_0^{0.15}6\times10^{-3}\,dy=6\times10^{-3}(0.15)
+\qquad\boxed{V_\text{emf}=900\;\mu\text{V}=0.9\;\text{mV}}\]
 
 \newpage
 %══════════════════════════════════════════════════════════════════════
@@ -190,51 +178,33 @@ V_\text{emf} = \int_0^{0.15}(6\times10^{-3}\hat{y})\cdot(\hat{y}\,dy)
 %══════════════════════════════════════════════════════════════════════
 \colorbox{coralbg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{coral}\large\textbf{Question 3 --- Conduction \& Displacement Current \hfill 12 pts}}}
 
-\vspace{4pt}
-$I_c=2\sin(\omega t)\;\mu\text{A}$,\quad $\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$.
+\begin{qbox}
+Suppose a total conduction current $I_c=2\sin(\omega t)\,\mu\text{A}$ flows through a column of distilled water with cross-sectional area $A$ in a glass tube. Distilled water has conductivity $\sigma\approx10^{-4}\,\text{S/m}$ and relative permittivity $\varepsilon_r\approx26\pi$, and the current flowing through the glass is negligible.\\[4pt]
+\textbf{(a)} Use the relationship between the conduction current, the current density, the cross-sectional area, and Ohm's law to determine the electric field intensity $E$ at a cross-section of the water.\hfill\textit{(6 pts)}\\[3pt]
+\textbf{(b)} Determine the displacement current $I_d$ through the cross-section when the angular frequency of $I_c$ is $\omega=10^9\,\text{rad\,s}^{-1}$ and $\omega t=\pi/3$.\hfill\textit{(6 pts)}
+\end{qbox}
 
 \begin{cssnip}
 \textbf{\small\textcolor{teal}{Cheat Sheet Snippets (p.1)}}\\[3pt]
 \begin{tabular}{@{}p{0.60\linewidth}p{0.35\linewidth}@{}}
 \textbf{DISPLACEMENT \& CONDUCTION CURRENT} & \textbf{UNIT CIRCLE}\\
-$E=V(t)/d$ \quad $I_c=\dfrac{\sigma A}{d}V(t)$ \quad $J_c=\sigma E$ &
-$\cos(\pi/3)=\dfrac{1}{2}$\\[5pt]
-$I_d=C\dfrac{dV}{dt}$ \quad $C=\dfrac{\varepsilon_r\varepsilon_0 A}{d}$ \quad $J_d=\varepsilon\dfrac{\partial E}{\partial t}$ & \\
+$E=V(t)/d$\quad $I_c=\dfrac{\sigma A}{d}V(t)$\quad $J_c=\sigma E$ & $\cos(\pi/3)=\dfrac{1}{2}$\\[4pt]
+$I_d=C\dfrac{dV}{dt}$\quad $C=\dfrac{\varepsilon_r\varepsilon_0 A}{d}$\quad $J_d=\varepsilon\dfrac{\partial E}{\partial t}$ &
 \end{tabular}
 \end{cssnip}
 
-\textbf{(a) Electric field $E$.} \hfill\textit{(6 pts)}
+\textbf{(a)}
+\[E=\frac{V(t)}{d},\qquad I_c=\frac{\sigma A}{d}V(t)\;\Rightarrow\;V(t)=\frac{I_c\,d}{\sigma A}
+\qquad E=\frac{I_c}{\sigma A}=\frac{2\times10^{-6}\sin(\omega t)}{10^{-4}A}
+\qquad\boxed{E=\frac{0.02}{A}\sin(\omega t)\;\text{V/m}}\]
 
-\[
-E = \frac{V(t)}{d},\qquad
-I_c = \frac{\sigma A}{d}V(t)
-\;\Rightarrow\; V(t) = \frac{I_c\,d}{\sigma A}
-\]
-\[
-E = \frac{1}{d}\cdot\frac{I_c\,d}{\sigma A}
-= \frac{I_c}{\sigma A}
-= \frac{2\times10^{-6}\sin(\omega t)}{10^{-4}\cdot A}
-\qquad
-\boxed{E = \frac{0.02}{A}\sin(\omega t)\;\text{V/m}}
-\]
-
-\textbf{(b) Displacement current $I_d$ at $\omega=10^9\,\text{rad/s}$, $\omega t=\pi/3$.} \hfill\textit{(6 pts)}
-
-From (a): $E=V(t)/d \;\Rightarrow\; V(t) = \dfrac{d\cdot0.02}{A}\sin(\omega t)$.
-
-\[
-I_d = \frac{\varepsilon_r\varepsilon_0 A}{d}\cdot\frac{dV}{dt}
-= \frac{\varepsilon_r\varepsilon_0\,\cancel{A}}{\cancel{d}}
-  \cdot\frac{\cancel{d}\cdot0.02}{\cancel{A}}\cdot\omega\cos(\omega t)
-= \varepsilon_r\varepsilon_0\cdot0.02\cdot\omega\cos(\omega t)
-\]
-
+\textbf{(b)} From (a): $V(t)=E\cdot d=\dfrac{d\cdot0.02}{A}\sin(\omega t)$.
+\[I_d=\frac{\varepsilon_r\varepsilon_0 A}{d}\cdot\frac{dV}{dt}
+=\frac{\varepsilon_r\varepsilon_0\cancel{A}}{\cancel{d}}\cdot\frac{\cancel{d}\cdot0.02}{\cancel{A}}\cdot\omega\cos(\omega t)
+=\varepsilon_r\varepsilon_0\cdot0.02\cdot\omega\cos(\omega t)\]
 At $\omega t=\pi/3$, $\cos(\pi/3)=\tfrac{1}{2}$:
-\[
-I_d = (26\pi)(8.85\times10^{-12})(0.02)(10^9)\!\left(\tfrac{1}{2}\right)
-\qquad
-\boxed{I_d \approx 7.23\;\text{mA}}
-\]
+\[I_d=(26\pi)(8.85\times10^{-12})(0.02)(10^9)\!\left(\tfrac{1}{2}\right)
+\qquad\boxed{I_d\approx7.23\;\text{mA}}\]
 
 \newpage
 %══════════════════════════════════════════════════════════════════════
@@ -242,118 +212,87 @@ I_d = (26\pi)(8.85\times10^{-12})(0.02)(10^9)\!\left(\tfrac{1}{2}\right)
 %══════════════════════════════════════════════════════════════════════
 \colorbox{coralbg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{coral}\large\textbf{Question 4 --- Charge Relaxation \hfill 10 pts}}}
 
-\vspace{4pt}
-$\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$.
+\begin{qbox}
+Distilled water has a conductivity $\sigma\approx10^{-4}\,\text{S/m}$ and $\varepsilon_r\approx26\pi$.\\[4pt]
+\textbf{(a)} Find the relaxation time constant for distilled water.\hfill\textit{(5 pts)}\\[3pt]
+\textbf{(b)} How long does it take for an excess charge density in distilled water to decay to $e^{-3}$ times its initial value?\hfill\textit{(5 pts)}
+\end{qbox}
 
 \begin{cssnip}
-\textbf{\small\textcolor{teal}{Cheat Sheet Snippet (p.1 --- CHARGE RELAXATION)}}\\[4pt]
-\[
-\tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}
-\qquad\qquad
-\rho_v(t) = \rho_{v0}\,e^{-t/\tau_r}
-\]
+\textbf{\small\textcolor{teal}{Cheat Sheet Snippet (p.1 --- CHARGE RELAXATION)}}
+\[\tau_r=\frac{\varepsilon_r\varepsilon_0}{\sigma}\qquad\qquad\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}\]
 \end{cssnip}
 
-\textbf{(a) Relaxation time constant.} \hfill\textit{(5 pts)}
+\textbf{(a)}
+\[\tau_r=\frac{\varepsilon_r\varepsilon_0}{\sigma}=\frac{(26\pi)(8.85\times10^{-12})}{10^{-4}}
+\qquad\boxed{\tau_r\approx7.23\;\mu\text{s}}\]
 
-\[
-\tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}
-= \frac{(26\pi)(8.85\times10^{-12})}{10^{-4}}
-\qquad
-\boxed{\tau_r \approx 7.23\;\mu\text{s}}
-\]
-
-\textbf{(b) Time to decay to $e^{-3}$ of initial value.} \hfill\textit{(5 pts)}
-
-Set $\rho_{v0}\,e^{-3} = \rho_{v0}\,e^{-t/\tau_r}$, take $\ln$ both sides:
-\[
-\ln e^{-3} = \frac{-t}{\tau_r}
-\;\Rightarrow\;
-t = -\tau_r\ln(e^{-3})
-\]
-\[
-\boxed{t = 3\times7.23\;\mu\text{s} \approx 21.69\;\mu\text{s}}
-\]
+\textbf{(b)} Set $\rho_{v0}\,e^{-3}=\rho_{v0}\,e^{-t/\tau_r}$ and take $\ln$:
+\[\ln e^{-3}=\frac{-t}{\tau_r}\;\Rightarrow\;t=-\tau_r\ln(e^{-3})=3\tau_r
+\qquad\boxed{t=3\times7.23\;\mu\text{s}\approx21.69\;\mu\text{s}}\]
 
 \newpage
 %══════════════════════════════════════════════════════════════════════
 % QUESTION 5
 %══════════════════════════════════════════════════════════════════════
-\colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{purple}\large\textbf{Question 5 --- Lossless EM Wave \hfill 30 pts}}}
+\colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{purple}\large\textbf{Question 5 --- Lossless Plane Wave \hfill 30 pts}}}
 
-\vspace{4pt}
-$\mathbf{E}(z,t)=4\cos\!\bigl((6\pi\times10^8)\,t-kz-\tfrac{\pi}{6}\bigr)\hat{y}$ V/m.\quad
-$\varepsilon_r=6$,\; $\mu_r=1$.
+\begin{qbox}
+Suppose the electric field intensity of an EM wave in a nonconducting, source-free medium with $\varepsilon_r=6$ and $\mu_r=1$ is
+\[\mathbf{E}(z,t)=4\cos\!\left((6\pi\times10^8\,\text{rad/s})\,t-kz-\frac{\pi}{6}\right)\hat{y}\;\text{V/m}.\]
+\textbf{(a)} Determine $\omega$, $k$, $\lambda$, and $\eta$.\hfill\textit{(10 pts)}\\[2pt]
+\textbf{(b)} Find $\tilde{\mathbf{E}}(z)$.\hfill\textit{(5 pts)}\\[2pt]
+\textbf{(c)} Find $\tilde{\mathbf{H}}(z)$.\hfill\textit{(5 pts)}\\[2pt]
+\textbf{(d)} Determine the magnetic field intensity $\mathbf{H}(z,t)$.\hfill\textit{(5 pts)}\\[2pt]
+\textbf{(e)} Determine the average power density that the EM wave carries.\hfill\textit{(5 pts)}
+\end{qbox}
 
 \begin{cssnip}
 \textbf{\small\textcolor{teal}{Cheat Sheet Snippets}}\\[3pt]
 \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
-\textbf{WAVE PARAMS (p.2 bottom strip)} & \textbf{DIRECTION OF PROP.\ (p.2)}\\
-$k=\omega\sqrt{\mu_r\mu_0\varepsilon_r\varepsilon_0}$,\; $\lambda=\dfrac{2\pi}{k}$ &
-$-kz$ in arg $\Rightarrow$ $\hat{k}=+\hat{z}$\\[3pt]
-$\eta=\dfrac{\eta_0}{\sqrt{\varepsilon_r}}=\dfrac{377}{\sqrt{\varepsilon_r}}$ &
-\textbf{$\hat{k}\times\hat{E}$ TABLE (p.2)}: $+\hat{z}$, $\hat{y}\Rightarrow-\hat{x}$\\[5pt]
+\textbf{WAVE PARAMS (p.2 strip)} & \textbf{DIRECTION OF PROP.\ (p.2)}\\
+$k=\omega\sqrt{\mu_r\mu_0\varepsilon_r\varepsilon_0}$,\; $\lambda=2\pi/k$ &
+$-kz$ in arg $\Rightarrow\hat{k}=+\hat{z}$\\[3pt]
+$\eta=\eta_0/\sqrt{\varepsilon_r}=377/\sqrt{\varepsilon_r}$ &
+\textbf{$\hat{k}\times\hat{E}$ TABLE (p.2):} $+\hat{z}$, $\hat{y}\Rightarrow-\hat{x}$\\[3pt]
 \textbf{PHASOR METHOD (p.1)} & \textbf{LOSSLESS E\,\&\,H (p.2)}\\
 $\mathbf{E}=\operatorname{Re}\!\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$; strip $e^{j\omega t}$ &
-$\tilde{\mathbf{H}}=\dfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$\\[5pt]
+$\tilde{\mathbf{H}}=\tfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$\\[3pt]
 \textbf{PHASOR $\leftrightarrow$ TIME (p.2)} & \textbf{POYNTING lossless (p.2)}\\
 $\operatorname{Re}\!\{Ae^{j(\omega t-\beta z+\phi)}\}=A\cos(\omega t-\beta z+\phi)$ &
-$\mathbf{S}_\text{av}=\dfrac{|E_0|^2}{2\eta}\,\hat{k}$\\
+$\mathbf{S}_\text{av}=\tfrac{|E_0|^2}{2\eta}\hat{k}$\\
 \end{tabular}
 \end{cssnip}
 
-\textbf{(a) $\omega$, $k$, $\lambda$, $\eta$.} \hfill\textit{(10 pts)}
+\textbf{(a)}
+\[\boxed{\omega=6\pi\times10^8\;\text{rad/s}}\qquad
+k=(6\pi\times10^8)\sqrt{(4\pi\times10^{-7})(6)(8.85\times10^{-12})}\quad\boxed{k\approx15.40\;\text{rad/m}}\]
+\[\lambda=\frac{2\pi}{15.40}\quad\boxed{\lambda\approx0.408\;\text{m}}\qquad\qquad
+\eta=\frac{377}{\sqrt{6}}\quad\boxed{\eta\approx153.91\;\Omega}\]
 
-\[
-\boxed{\omega = 6\pi\times10^8\;\text{rad/s}}
-\qquad
-k=(6\pi\times10^8)\sqrt{(4\pi\times10^{-7})(6)(8.85\times10^{-12})}
-\quad\boxed{k\approx15.40\;\text{rad/m}}
-\]
-\[
-\lambda=\frac{2\pi}{15.40}\quad\boxed{\lambda\approx0.408\;\text{m}}
-\qquad\qquad
-\eta=\frac{377}{\sqrt{6}}\quad\boxed{\eta\approx153.91\;\Omega}
-\]
+\textbf{(b)} Let $\phi=\pi/6$. Strip $e^{j\omega t}$: $\tilde{\mathbf{E}}=4\,e^{j(-kz-\phi)}\hat{y}$.
+\[\boxed{\tilde{\mathbf{E}}(z)=4\,e^{-j(15.40\,z+\pi/6)}\hat{y}\;\text{V/m}}\]
 
-\textbf{(b) $\tilde{\mathbf{E}}(z)$.} \hfill\textit{(5 pts)}
+\textbf{(c)} $\hat{k}=+\hat{z}$;\quad $\hat{z}\times\hat{y}=-\hat{x}$:
+\[\tilde{\mathbf{H}}=\tfrac{1}{\eta}(\hat{z}\times\tilde{\mathbf{E}})
+=-\tfrac{4}{153.91}\,e^{-j(15.40z+\pi/6)}\hat{x}
+\qquad\boxed{\tilde{\mathbf{H}}(z)\approx-25.99\times10^{-3}e^{-j(15.40z+\pi/6)}\hat{x}\;\text{A/m}}\]
 
-Let $\phi=\pi/6$. Strip $e^{j\omega t}$: $\tilde{\mathbf{E}}=4\,e^{j(-kz-\phi)}\hat{y}$.
-\[
-\boxed{\tilde{\mathbf{E}}(z)=4\,e^{-j(15.40\,z+\pi/6)}\,\hat{y}\;\text{V/m}}
-\]
+\newpage
 
-\textbf{(c) $\tilde{\mathbf{H}}(z)$.} \hfill\textit{(5 pts)}
+\colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{purple}\large\textbf{Question 5 (continued)}}}
 
-\[
-\tilde{\mathbf{H}}=\frac{1}{\eta}(\hat{z}\times\tilde{\mathbf{E}})
-=\frac{1}{\eta}\bigl(\hat{z}\times4\,e^{-j(15.40z+\pi/6)}\hat{y}\bigr)
-=-\frac{4}{\eta}\,e^{-j(15.40z+\pi/6)}\hat{x}
-=-\frac{4}{153.91}\,e^{-j(15.40z+\pi/6)}\hat{x}
-\]
-\[
-\boxed{\tilde{\mathbf{H}}(z)\approx-25.99\times10^{-3}\,e^{-j(15.40\,z+\pi/6)}\,\hat{x}\;\text{A/m}}
-\]
-
-\textbf{(d) $\mathbf{H}(z,t)$.} \hfill\textit{(5 pts)}
-
+\vspace{6pt}
+\textbf{(d)}
 \begin{align*}
-\mathbf{H}(z,t)
-&=\operatorname{Re}\!\left\{-25.99\times10^{-3}\,e^{-j(15.40z+\pi/6)}\,\hat{x}\cdot e^{j\omega t}\right\}\\
-&=\operatorname{Re}\!\left\{-25.99\times10^{-3}\,e^{j(\omega t-15.40z-\pi/6)}\,\hat{x}\right\}
+\mathbf{H}(z,t)&=\operatorname{Re}\!\left\{-25.99\times10^{-3}e^{-j(15.40z+\pi/6)}\hat{x}\cdot e^{j\omega t}\right\}\\
+&=\operatorname{Re}\!\left\{-25.99\times10^{-3}e^{j(\omega t-15.40z-\pi/6)}\hat{x}\right\}
 \end{align*}
-\[
-\boxed{\mathbf{H}(z,t)=-25.99\times10^{-3}\cos\!\left(6\pi\times10^8\,t-15.40\,z-\frac{\pi}{6}\right)\hat{x}\;\text{A/m}}
-\]
+\[\boxed{\mathbf{H}(z,t)=-25.99\times10^{-3}\cos\!\left(6\pi\times10^8 t-15.40\,z-\tfrac{\pi}{6}\right)\hat{x}\;\text{A/m}}\]
 
-\textbf{(e) Average power density.} \hfill\textit{(5 pts)}
-
-Lossless $\Rightarrow$ $\mathbf{S}_\text{av}=\dfrac{|E_0|^2}{2\eta}\,\hat{k}$:
-\[
-\mathbf{S}_\text{av}=\frac{4^2}{2(153.91)}\,\hat{z}
-\qquad
-\boxed{\mathbf{S}_\text{av}\approx51.98\times10^{-3}\,\hat{z}\;\text{W/m}^2}
-\]
+\textbf{(e)} Lossless $\Rightarrow$
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\hat{z}=\frac{4^2}{2(153.91)}\hat{z}
+\qquad\boxed{\mathbf{S}_\text{av}\approx51.98\times10^{-3}\,\hat{z}\;\text{W/m}^2}\]
 
 \newpage
 %══════════════════════════════════════════════════════════════════════
@@ -361,52 +300,42 @@ Lossless $\Rightarrow$ $\mathbf{S}_\text{av}=\dfrac{|E_0|^2}{2\eta}\,\hat{k}$:
 %══════════════════════════════════════════════════════════════════════
 \colorbox{coralbg}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{coral}\large\textbf{Question 6 --- EM Wave in Distilled Water \hfill 16 pts}}}
 
-\vspace{4pt}
-$f=\tfrac{2}{\pi}\,\text{GHz}$,\quad $\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$,\quad $\mu_r=1$.
+\begin{qbox}
+Consider a $\tfrac{2}{\pi}\,\text{GHz}$ EM wave traveling in distilled water, where $\sigma\approx10^{-4}\,\text{S/m}$, $\varepsilon_r\approx26\pi$, and $\mu_r=1$. The wave travels downward into the water, where the $+z$ direction is down and $z=0$ is just below the surface. The amplitude of the electric field at the surface is $4\,\text{V/m}$.\\[4pt]
+\textbf{(a)} Find $\varepsilon''/\varepsilon'$.\hfill\textit{(6 pts)}\\[2pt]
+\textbf{(b)} What type of medium is distilled water at this frequency? Justify your answer.\hfill\textit{(5 pts)}\\[2pt]
+\textbf{(c)} Find the skin depth for distilled water at this frequency.\hfill\textit{(5 pts)}
+\end{qbox}
 
 \begin{cssnip}
 \textbf{\small\textcolor{teal}{Cheat Sheet Snippets (p.2)}}\\[3pt]
 \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
 \textbf{WAVE PARAMS strip} & \textbf{LOSSY MEDIA --- CLASSIFICATION}\\
-$\omega=2\pi f$ &
-$\dfrac{\varepsilon''}{\varepsilon'}=\dfrac{\sigma}{\omega\varepsilon_r\varepsilon_0}$\\[3pt]
-$\eta=\dfrac{\eta_0}{\sqrt{\varepsilon_r}}=\dfrac{377}{\sqrt{\varepsilon_r}}$ &
-$<0.01$ $\Rightarrow$ low-loss dielectric\\[5pt]
-\textbf{SKIN DEPTH --- LOW-LOSS MEDIUM} & \\
-$\delta_s=\dfrac{2}{\sigma\eta}$ \quad\textit{(from $\alpha=\sigma\eta/2$, $\delta_s=1/\alpha$)} & \\
+$\omega=2\pi f$\quad $\eta=377/\sqrt{\varepsilon_r}$ &
+$\varepsilon''/\varepsilon'=\sigma/(\omega\varepsilon_r\varepsilon_0)$\\[3pt]
+\textbf{SKIN DEPTH --- LOW-LOSS MEDIUM} & $<0.01\Rightarrow$ low-loss dielectric\\
+$\delta_s=2/(\sigma\eta)$ \textit{(from $\alpha=\sigma\eta/2$)} & \\
 \end{tabular}
 \end{cssnip}
 
 \begin{notebox}
-$\omega = 2\pi f = 2\pi\cdot\dfrac{2}{\pi}\times10^9 = 4\times10^9\;\text{rad/s}$
+$\omega=2\pi f=2\pi\cdot\dfrac{2}{\pi}\times10^9=4\times10^9\;\text{rad/s}$
 \end{notebox}
 
-\textbf{(a) Find $\varepsilon''/\varepsilon'$.} \hfill\textit{(6 pts)}
-
-\[
-\frac{\varepsilon''}{\varepsilon'}
-=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}
+\textbf{(a)}
+\[\frac{\varepsilon''}{\varepsilon'}=\frac{\sigma}{\omega\varepsilon_r\varepsilon_0}
 =\frac{10^{-4}}{(4\times10^9)(26\pi)(8.85\times10^{-12})}
+\qquad\boxed{\frac{\varepsilon''}{\varepsilon'}\approx34.58\times10^{-6}}\]
+
+\textbf{(b)} Since $34.58\times10^{-6}\ll0.01$, at this frequency distilled water is a \textbf{low-loss dielectric}.
+
+\textbf{(c)}
+\[\eta=\frac{377}{\sqrt{26\pi}}=\frac{377}{9.038}\approx41.71\;\Omega
 \qquad
-\boxed{\frac{\varepsilon''}{\varepsilon'}\approx34.58\times10^{-6}}
-\]
-
-\textbf{(b) What type of medium?} \hfill\textit{(5 pts)}
-
-Since $34.58\times10^{-6}\ll0.01$, at this frequency distilled water is a \textbf{low-loss dielectric}.
-
-\textbf{(c) Skin depth.} \hfill\textit{(5 pts)}
-
-\[
-\eta=\frac{\eta_0}{\sqrt{\varepsilon_r}}=\frac{377}{\sqrt{26\pi}}=\frac{377}{9.038}\approx41.71\;\Omega
-\]
-\[
 \delta_s=\frac{2}{\sigma\eta}=\frac{2}{(10^{-4})(41.71)}
-\qquad
-\boxed{\delta_s\approx479.5\;\text{m}}
-\]
+\qquad\boxed{\delta_s\approx479.5\;\text{m}}\]
 
-\vspace{16pt}
+\vspace{12pt}
 \hrule
 \vspace{6pt}
 \begin{center}
