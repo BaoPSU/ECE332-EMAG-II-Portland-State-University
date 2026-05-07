@@ -63,10 +63,10 @@
 \[V_\text{emf} = \oint (\mathbf{v} \times \mathbf{B}) \cdot d\mathbf{l}\]
 
 \eq{General (flux form)}{always works}
-\[V_\text{emf} = -\frac{d\Phi}{dt} \qquad \Phi = \int_S \mathbf{B} \cdot d\mathbf{s}\]
+\[V_\text{emf} = -\frac{d\Phi}{dt}\;\text{(V)} \qquad \Phi = \int_S \mathbf{B} \cdot d\mathbf{s}\;\text{(Wb)}\]
 
 \eq{$N$-turn coil}{transformer, $N$ turns}
-\[V_\text{emf} = -N\frac{d\Phi}{dt} = -\frac{d\lambda}{dt} \quad \lambda=N\Phi\]
+\[V_\text{emf} = -N\frac{d\Phi}{dt} = -\frac{d\lambda}{dt}\;\text{(V)} \quad \lambda=N\Phi\;\text{(Wb)}\]
 
 \eq{Uniform $B$ shortcut}{$B$ same everywhere on loop}
 \[V_\text{emf} = -\frac{\partial B}{\partial t} \cdot A\]
@@ -297,7 +297,8 @@ $R\parallel C$ across $V(t)$:\quad $I = I_c + I_d = \dfrac{V}{R} + C\dfrac{dV}{d
 \shead{coralbg}{coral}{CHARGE RELAXATION}
 \begin{ebox}
 \eq{Decay}{charge injected at $t=0$}
-\[\rho_v(t) = \rho_{v0}\,e^{-t/\tau_r} \qquad \tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}\]
+\[\rho_v(t) = \rho_{v0}\,e^{-t/\tau_r}\;\text{(C/m}^3\text{)} \qquad \tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}\;\text{(s)}\]
+\textit{$\rho_{v0}$ (C/m$^3$);\enspace$\sigma$ (S/m);\enspace$\varepsilon_0=8.85\times10^{-12}$ F/m}
 
 \eq{Find $\sigma$ from decay data}{}
 \[\sigma = \frac{-\ln\!\left(\rho_v/\rho_{v0}\right)\cdot\varepsilon_r\varepsilon_0}{t_1}\]
@@ -680,10 +681,10 @@ $R_\text{AC}=R_s\,\ell/w$ — AC resistance of slab
 \[\mathbf{S}_\text{av}=\tfrac{1}{2}\operatorname{Re}\{\tilde{\mathbf{E}}\times\tilde{\mathbf{H}}^*\}\]
 
 \eq{Lossless shortcut}{$|E_0|^2=a_x^2+a_y^2+a_z^2$}
-\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\]
+\[\mathbf{S}_\text{av}=\frac{|E_0|^2}{2\eta}\,\hat{k}\;\text{(W/m}^2\text{)}\]
 
 \eq{Lossy medium}{$\eta_c=|\eta_c|e^{j\theta_\eta}$; wave in $+\hat{z}$}
-\[\mathbf{S}_\text{av}=\frac{|\tilde{\mathbf{E}}(0)|^2}{2|\eta_c|}e^{-2\alpha z}\cos\theta_\eta\;\hat{z}\]
+\[\mathbf{S}_\text{av}=\frac{|\tilde{\mathbf{E}}(0)|^2}{2|\eta_c|}e^{-2\alpha z}\cos\theta_\eta\;\hat{z}\;\text{(W/m}^2\text{)}\]
 
 \textit{Direction = $\hat{k}$. If wave goes in $-\hat{x}$, then $\mathbf{S}_\text{av}$ is a negative $x$-component.}
 \end{ebox}
