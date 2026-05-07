@@ -3,7 +3,6 @@
 \usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage{mdframed}
-\usepackage{enumitem}
 \usepackage{booktabs}
 \usepackage{fancyhdr}
 
@@ -12,13 +11,11 @@
 \definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
 \definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
 \definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
-\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
-\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
 
-% Cheat sheet cross-reference tag — shows which page and section to look up
+% Cheat sheet cross-reference tag
 \newcommand{\cs}[1]{\textcolor{teal}{\footnotesize[CS\,#1]}}
 
-% Highlighted note box
+% Warning box
 \newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!40,
   innerleftmargin=6pt,innerrightmargin=6pt,
   innertopmargin=4pt,innerbottommargin=4pt,
@@ -33,22 +30,19 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
 
-\newcommand{\step}[1]{\medskip\noindent\textbf{Step #1.}\enspace}
-
 \begin{document}
 
 \begin{center}
   {\Large\textbf{ECE 332 Fall 2025 --- Exam 1 Answer Key}}\\[4pt]
-  {\small \textcolor{teal}{[CS\,p.1: SECTION]} = page 1 of cheat sheet;\enspace
+  {\small \textcolor{teal}{[CS\,p.1: SECTION]} = page 1 of cheat sheet;\quad
    \textcolor{teal}{[CS\,p.2: SECTION]} = page 2.}
 \end{center}
 
 \begin{notebox}
 \textbf{\textcolor{coral}{Two corrected errors from prior answer keys:}}\\
-\textbf{(1) Q1(c):} The exam writes ``$\omega=2\,\text{MHz}$'' but MHz is a \emph{frequency} unit.
-Must convert first: $\omega = 2\pi f = 2\pi\times2\times10^6 = 4\pi\times10^6\,\text{rad/s}$.
-Both prior keys skipped this step and used $2\times10^6$ directly.\\
-\textbf{(2) Q6:} The exam gives $f=\tfrac{2}{\pi}\,\text{GHz}$, not $\tfrac{2}{5}\,\text{GHz}$.
+\textbf{(1) Q1(c):} Exam writes ``$\omega=2\,\text{MHz}$'' but MHz is a frequency unit.
+Must convert: $\omega = 2\pi f = 2\pi\times2\times10^6 = 4\pi\times10^6\,\text{rad/s}$.\\
+\textbf{(2) Q6:} Exam gives $f=\tfrac{2}{\pi}\,\text{GHz}$, not $\tfrac{2}{5}\,\text{GHz}$.
 $\omega = 2\pi f = 2\pi\cdot\tfrac{2}{\pi}\times10^9 = 4\times10^9\,\text{rad/s}$.
 \end{notebox}
 
@@ -59,117 +53,67 @@ $\omega = 2\pi f = 2\pi\cdot\tfrac{2}{\pi}\times10^9 = 4\times10^9\,\text{rad/s}
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-\textbf{Setup.} Equilateral loop in $y$-$z$ plane, $N$ turns, side $a$.
+Equilateral loop in $y$-$z$ plane, $N$ turns, side $a$.
 $\mathbf{B}(t)=B_0(-2\hat{x}+3\hat{y})\sin(\omega t)$.
 
 \medskip
-
 \textbf{(a) Magnetic flux through one turn.} \hfill\textit{(6 pts)}
 
-\cs{p.1: SURFACE ELEMENT $d\mathbf{s}$}: loop in $y$-$z$ plane $\Rightarrow$ $d\mathbf{s}=\hat{x}\,da$.\\
-\cs{p.1: DOT PRODUCTS}: $\hat{x}\cdot\hat{x}=1$, $\hat{y}\cdot\hat{x}=0$
-$\Rightarrow$ only the $-2\hat{x}$ component contributes.\\
-\cs{p.1: ROTATING LOOP area table}: equilateral triangle with side $a$: $A=\tfrac{\sqrt{3}}{4}a^2$.
+\cs{p.1: SURFACE ELEMENT $d\mathbf{s}$}: loop in $y$-$z$ plane $\Rightarrow d\mathbf{s}=\hat{x}\,da$.\\
+\cs{p.1: DOT PRODUCTS}: $\hat{x}\cdot\hat{x}=1$, $\hat{y}\cdot\hat{x}=0$.\\
+\cs{p.1: ROTATING LOOP area table}: equilateral triangle, side $a$: $A=\tfrac{\sqrt{3}}{4}a^2$.
 
+\begin{align*}
+\Phi &= \int_S \mathbf{B}\cdot d\mathbf{s} = \int_S B_0(-2\hat{x}+3\hat{y})\sin(\omega t)\cdot\hat{x}\,da\\
+&= A\bigl(-2\underbrace{(\hat{x}\cdot\hat{x})}_{1}+3\underbrace{(\hat{y}\cdot\hat{x})}_{0}\bigr)B_0\sin(\omega t)\\
+&= -2AB_0\sin(\omega t)
+= -2\cdot\frac{\sqrt{3}}{4}a^2\cdot B_0\sin(\omega t)
+\end{align*}
 \[
-\Phi = \int_S \mathbf{B}\cdot d\mathbf{s}
-= B_0(-2\underbrace{\hat{x}\cdot\hat{x}}_{1}+3\underbrace{\hat{y}\cdot\hat{x}}_{0})\sin(\omega t)\cdot A
-\]
-\[
-\boxed{\Phi = -\tfrac{\sqrt{3}}{2}\,B_0\,a^2\sin(\omega t)\;\text{Wb}}
+\boxed{\Phi = -\frac{\sqrt{3}}{2}\,B_0\,a^2\sin(\omega t)\;\text{V$\cdot$s}}
 \]
 
 \medskip
-
 \textbf{(b) EMF induced in the loop.} \hfill\textit{(6 pts)}
 
 \cs{p.1: EMF \& FARADAY'S LAW}: $V_\text{emf}=-N\dfrac{d\Phi}{dt}$.\\
-\cs{p.1: $\partial B/\partial t$ TABLE}: $\dfrac{d}{dt}[\sin(\omega t)]=\omega\cos(\omega t)$.
+\cs{p.1: $\partial B/\partial t$ TABLE}: $\dfrac{d}{dt}\sin(\omega t)=\omega\cos(\omega t)$.
 
 \[
-V_\text{emf} = -N\,\frac{d}{dt}\!\left[-\tfrac{\sqrt{3}}{2}B_0 a^2\sin(\omega t)\right]
+V_\text{emf} = -N\frac{d}{dt}\!\left(-\frac{\sqrt{3}}{2}a^2 B_0\sin(\omega t)\right)
+= \frac{\sqrt{3}}{2}\,N a^2 B_0\cdot\frac{d}{dt}\sin(\omega t)
 \]
 \[
-\boxed{V_\text{emf} = \frac{\sqrt{3}}{2}\,N B_0\,\omega\,a^2\cos(\omega t)\;\text{V}}
+\boxed{V_\text{emf}(t) = \frac{\sqrt{3}}{2}\,a^2 B_0\, N\,\omega\cos(\omega t)\;\text{V}}
 \]
 
 \medskip
-
 \textbf{(c) Current through 1\,k$\Omega$ at given values.} \hfill\textit{(8 pts)}
 
 \begin{notebox}
-\textbf{Unit conversion required.}
-The exam states ``$\omega=2\,\text{MHz}$'', but MHz is a frequency unit (cycles/s).
-\cs{p.1: CIRCUIT \& WAVE strip}: $\omega = 2\pi f$, so
+\cs{p.1: CIRCUIT \& WAVE strip} / \cs{p.1: ROTATING LOOP}: $\omega = 2\pi f$.\\
+Exam says ``$\omega = 2\,\text{MHz}$'' $\Rightarrow$ treat as $f = 2\,\text{MHz}$, convert first:
 \[
-\omega = 2\pi \times 2\times10^6 = 4\pi\times10^6\;\text{rad/s}
+\omega = 2\pi f = 2\pi\bigl(2\times10^6\bigr) = 4\pi\times10^6\;\text{rad/s}
 \]
-\cs{p.1: SI PREFIXES}: $\text{MHz}=10^6$.
 \end{notebox}
 
-Given: $N=10$, $a=0.08\,\text{m}$, $B_0=0.02\,\text{T}$,
-$\omega=4\pi\times10^6\,\text{rad/s}$, $\omega t=\pi/4$, $R=1\,\text{k}\Omega$.
-
-\step{1} Combine trig factors.\\
+Given: $N=10$, $a=0.08\,\text{m}$, $B_0=0.02\,\text{T}$, $\omega=4\pi\times10^6\,\text{rad/s}$,
+$\omega t=\pi/4$, $R=1\,\text{k}\Omega=1000\,\Omega$.\\
 \cs{p.1: UNIT CIRCLE}: $\cos(\pi/4)=\tfrac{\sqrt{2}}{2}$.
+
 \[
-\frac{\sqrt{3}}{2}\cdot\frac{\sqrt{2}}{2} = \frac{\sqrt{6}}{4}
+|V_\text{emf}| = \frac{\sqrt{3}}{2}(0.08)^2(10)(0.02)\bigl(4\pi\times10^6\bigr)\cos\!\left(\frac{\pi}{4}\right)
+= 9.85\times10^3\;\text{V}
 \]
 
-\step{2} Compute $|V_\text{emf}|$ numerically.
-\begin{align*}
-|V_\text{emf}| &= \frac{\sqrt{6}}{4}\cdot N\cdot B_0\cdot\omega\cdot a^2\\
-&= \frac{\sqrt{6}}{4}\cdot10\cdot0.02\cdot(4\pi\times10^6)\cdot(0.08)^2
-\end{align*}
-Bracket step by step:
+\cs{p.1: EMF \& FARADAY'S LAW (equivalent circuit)}: $I = V_\text{emf}/R$.
 \[
-(0.08)^2 = 6.4\times10^{-3},\quad
-0.02\times6.4\times10^{-3} = 1.28\times10^{-3}
+I = \frac{V}{R} = \frac{9.85\,\text{kV}}{1000\,\Omega}
 \]
 \[
-1.28\times10^{-3}\times4\pi\times10^6 = 5.12\pi\times10^3,\quad
-10\times5.12\pi\times10^3 = 5120\pi\times10^1
+\boxed{I \approx 9.85\;\text{A}}
 \]
-Wait, step more carefully:
-\[
-10\times 1.28\times10^{-3}\times4\pi\times10^6
-= 10\times5.12\pi\times10^3
-= 51200\pi
-\]
-\[
-|V_\text{emf}| = \frac{\sqrt{6}}{4}\times 51200\pi = 12800\pi\sqrt{6}
-\approx 12800\times3.1416\times2.449
-\approx 98{,}490\;\text{V}
-\]
-
-Hmm — let me redo carefully:
-\[
-10\times0.02 = 0.2,\quad
-0.2\times(0.08)^2 = 0.2\times6.4\times10^{-3} = 1.28\times10^{-3}
-\]
-\[
-1.28\times10^{-3}\times4\pi\times10^6 = 5120\pi\;\text{(not }5120\pi\times10^1\text{)}
-\]
-\[
-|V_\text{emf}| = \frac{\sqrt{6}}{4}\times5120\pi = 1280\pi\sqrt{6}
-\]
-\[
-1280\times\pi\approx4021,\quad 4021\times\sqrt{6}\approx4021\times2.449\approx9847\;\text{V}
-\]
-\[
-\boxed{|V_\text{emf}| = 1280\pi\sqrt{6}\approx9847\;\text{V}}
-\]
-
-\step{3} Apply Ohm's law \cs{p.1: EMF \& FARADAY'S LAW equivalent circuit}.
-\[
-I = \frac{V_\text{emf}}{R} = \frac{1280\pi\sqrt{6}}{1000} = 1.28\pi\sqrt{6}
-\]
-\[
-\boxed{I = 1.28\pi\sqrt{6}\approx 9.85\;\text{A}}
-\]
-
-\textit{Compare: prior keys got $\approx1.57\,\text{A}$ by omitting the $2\pi$ conversion.
-The factor of $\approx6.28$ difference is exactly $2\pi$.}
 
 \vspace{8pt}
 
@@ -178,34 +122,24 @@ The factor of $\approx6.28$ difference is exactly $2\pi$.}
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-Wire along $\hat{y}$, $a=0.15\,\text{m}$, $\mathbf{u}=0.12\hat{x}\,\text{m/s}$,
+$a=15\,\text{cm}=0.15\,\text{m}$ along $\hat{y}$,\quad $\mathbf{u}=12\hat{x}\,\text{cm/s}=0.12\hat{x}\,\text{m/s}$,\quad
 $\mathbf{B}=(0.1\hat{x}-0.05\hat{z})\,\text{T}$.
 
-\cs{p.1: EMF \& FARADAY'S LAW (Motional EMF)}: $V_\text{emf}=\displaystyle\int(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}$.
+\cs{p.1: EMF \& FARADAY'S LAW (Motional EMF)}: $V_\text{emf}=\displaystyle\oint(\mathbf{u}\times\mathbf{B})\cdot d\mathbf{l}$.\quad
+$d\mathbf{l}=\hat{y}\,dy$.
 
-\step{1} Compute $\mathbf{u}\times\mathbf{B}$ \cs{p.1: CROSS PRODUCT (determinant)}.
-\[
-\mathbf{u}\times\mathbf{B}=
-\begin{vmatrix}\hat{x}&\hat{y}&\hat{z}\\0.12&0&0\\0.1&0&-0.05\end{vmatrix}
-=\hat{x}(0\cdot(-0.05)-0\cdot0)
- -\hat{y}(0.12\cdot(-0.05)-0\cdot0.1)
- +\hat{z}(0.12\cdot0-0\cdot0.1)
-\]
-\[
-= \hat{x}(0) - \hat{y}(-0.006) + \hat{z}(0) = 0.006\hat{y}\;\text{V/m}
-\]
+\cs{p.1: CROSS PRODUCT}: $\hat{x}\times\hat{z}=-\hat{y}$\quad(cyclic rule reversed).
 
-\step{2} Integrate along wire ($d\mathbf{l}=\hat{y}\,dy$).
 \[
-V_\text{emf}=\int_0^{0.15}0.006\,dy = 0.006\times0.15
+\mathbf{u}\times\mathbf{B} = 0.12\hat{x}\times(0.1\hat{x}-0.05\hat{z})
+= -\hat{y}(0.12)(-0.05) = 6\times10^{-3}\hat{y}\;\text{V/m}
 \]
 \[
-\boxed{V_\text{emf} = 9\times10^{-4}\;\text{V} = 0.9\;\text{mV}}
+V_\text{emf} = 6\times10^{-3}\int_0^{0.15}dl = 6\times10^{-3}(0.15)
 \]
-
-\textit{Only the $-0.05\hat{z}$ component of $\mathbf{B}$ contributes;
-the $\hat{x}\times\hat{x}=0$ term drops out.
-Common error: forgetting to convert cm/s $\to$ m/s (factor-of-100 mistake).}
+\[
+\boxed{V_\text{emf} = 900\;\mu\text{V} = 0.9\;\text{mV}}
+\]
 
 \vspace{8pt}
 
@@ -214,48 +148,47 @@ Common error: forgetting to convert cm/s $\to$ m/s (factor-of-100 mistake).}
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-$I_c=2\sin(\omega t)\,\mu\text{A}$, cross-section $A$, $\sigma=10^{-4}\,\text{S/m}$, $\varepsilon_r=26\pi$.
+$I_c=2\sin(\omega t)\,\mu\text{A}=2\times10^{-6}\sin(\omega t)\,\text{A}$,\quad
+$\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$.
 
 \medskip
-
 \textbf{(a) Electric field $E$.} \hfill\textit{(6 pts)}
 
-\cs{p.1: DISPLACEMENT \& CONDUCTION CURRENT}: $J_c=\sigma E$, $I_c=J_c\cdot A$.
+\cs{p.1: DISPLACEMENT \& CONDUCTION CURRENT}: $E=V(t)/d$,\;
+$I_c=\dfrac{\sigma A}{d}V(t)$.
 
 \[
-J_c = \frac{I_c}{A}, \qquad E = \frac{J_c}{\sigma} = \frac{I_c}{\sigma A}
-= \frac{2\times10^{-6}\sin(\omega t)}{10^{-4}\cdot A}
+E = \frac{1}{d}V(t),\qquad
+I_c = \frac{\sigma A}{d}V(t) \;\Rightarrow\; V(t) = \frac{I_c\,d}{\sigma A}
+\]
+\[
+E = \frac{1}{d}\cdot\frac{I_c\,d}{\sigma A}
+= \frac{I_c}{\sigma A}
+= \frac{2\times10^{-6}\sin(\omega t)}{(10^{-4})\,A}
 \]
 \[
 \boxed{E = \frac{0.02}{A}\sin(\omega t)\;\text{V/m}}
 \]
-\textit{Area $A$ remains in the answer — the problem gives no numeric value for it.}
 
 \medskip
-
 \textbf{(b) Displacement current $I_d$ at $\omega=10^9\,\text{rad/s}$, $\omega t=\pi/3$.} \hfill\textit{(6 pts)}
 
-\cs{p.1: DISPLACEMENT \& CONDUCTION CURRENT}: $J_d=\varepsilon\,\partial E/\partial t$, $I_d=J_d\cdot A$.\\
-\cs{p.1: $\partial B/\partial t$ TABLE}: $\partial[\sin(\omega t)]/\partial t=\omega\cos(\omega t)$.\\
+\cs{p.1: DISPLACEMENT \& CONDUCTION CURRENT}: $I_d = C\,\dfrac{dV}{dt}$,\; $C=\dfrac{\varepsilon_r\varepsilon_0 A}{d}$.\\
+From (a): $E=V(t)/d \;\Rightarrow\; V(t)=E\cdot d = \dfrac{d\cdot0.02}{A}\sin(\omega t)$.
+
+\[
+I_d = \frac{\varepsilon_r\varepsilon_0 A}{d}\cdot\frac{dV}{dt}
+= \frac{\varepsilon_r\varepsilon_0 \cancel{A}}{\cancel{d}}
+  \cdot\frac{\cancel{d}\cdot0.02}{\cancel{A}}\cdot\omega\cos(\omega t)
+= \varepsilon_r\varepsilon_0\cdot0.02\cdot\omega\cos(\omega t)
+\]
+
 \cs{p.1: UNIT CIRCLE}: $\cos(\pi/3)=\tfrac{1}{2}$.
-
-\step{1} Compute $\varepsilon=\varepsilon_r\varepsilon_0$.
 \[
-\varepsilon = 26\pi\cdot\frac{1}{36\pi}\times10^{-9}
-= \frac{26}{36}\times10^{-9}
-= \frac{13}{18}\times10^{-9}\;\text{F/m}
-\]
-
-\step{2} $I_d = \varepsilon A\cdot\dfrac{\partial E}{\partial t}
-= \varepsilon A\cdot\dfrac{0.02}{A}\cdot\omega\cos(\omega t)$
-(the $A$ cancels).
-\[
-I_d = \frac{13}{18}\times10^{-9}\times 0.02\times10^9\times\frac{1}{2}
-= \frac{13}{18}\times0.02\times\frac{1}{2}
-= \frac{13}{1800}
+I_d = (26\pi)(8.85\times10^{-12})(0.02)(10^9)\!\left(\frac{1}{2}\right)
 \]
 \[
-\boxed{I_d = \frac{13}{1800}\approx 7.22\;\text{mA}}
+\boxed{I_d \approx 7.23\;\text{mA}}
 \]
 
 \vspace{8pt}
@@ -265,34 +198,33 @@ I_d = \frac{13}{18}\times10^{-9}\times 0.02\times10^9\times\frac{1}{2}
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-$\sigma=10^{-4}\,\text{S/m}$, $\varepsilon_r=26\pi$.
+$\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$.
 
 \medskip
-
 \textbf{(a) Relaxation time constant.} \hfill\textit{(5 pts)}
 
 \cs{p.1: CHARGE RELAXATION}: $\tau_r=\varepsilon_r\varepsilon_0/\sigma$.
 \[
-\tau_r = \frac{26\pi\cdot\tfrac{1}{36\pi}\times10^{-9}}{10^{-4}}
-= \frac{\tfrac{13}{18}\times10^{-9}}{10^{-4}}
-= \frac{13}{18}\times10^{-5}\;\text{s}
+\tau_r = \frac{\varepsilon_r\varepsilon_0}{\sigma}
+= \frac{(26\pi)(8.85\times10^{-12})}{10^{-4}}
 \]
 \[
-\boxed{\tau_r = \frac{13}{18}\times10^{-5}\approx 7.22\;\mu\text{s}}
+\boxed{\tau_r \approx 7.23\;\mu\text{s}}
 \]
 
 \medskip
-
 \textbf{(b) Time to decay to $e^{-3}$ of initial value.} \hfill\textit{(5 pts)}
 
 \cs{p.1: CHARGE RELAXATION}: $\rho_v(t)=\rho_{v0}\,e^{-t/\tau_r}$.
+
+Set $\rho_{v0}\,e^{-3} = \rho_{v0}\,e^{-t/\tau_r}$, then take $\ln$ of both sides:
 \[
-e^{-t/\tau_r}=e^{-3}
-\;\Rightarrow\;\frac{t}{\tau_r}=3
-\;\Rightarrow\;t=3\tau_r
+\ln e^{-3} = \frac{-t}{\tau_r}
+\;\Rightarrow\;
+t = -\tau_r\ln(e^{-3}) = 3\tau_r
 \]
 \[
-\boxed{t = 3\times7.22\;\mu\text{s}\approx 21.7\;\mu\text{s}}
+\boxed{t = 3\times7.23\;\mu\text{s} \approx 21.69\;\mu\text{s}}
 \]
 
 \vspace{8pt}
@@ -302,90 +234,97 @@ e^{-t/\tau_r}=e^{-3}
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-$\mathbf{E}(z,t)=4\cos\!\bigl(6\pi\times10^8\,t-kz-\pi/6\bigr)\hat{y}$ V/m.
-$\varepsilon_r=6$, $\mu_r=1$.
+$\mathbf{E}(z,t)=4\cos\!\bigl((6\pi\times10^8\,\text{rad/s})\,t-kz-\tfrac{\pi}{6}\bigr)\hat{y}$ V/m.\quad
+$\varepsilon_r=6$,\; $\mu_r=1$.
 
 \medskip
-
 \textbf{(a) Find $\omega$, $k$, $\lambda$, $\eta$.} \hfill\textit{(10 pts)}
 
-\cs{p.2: PLANE WAVE PARAMETERS (LOSSLESS)}: read $\omega$ from the cosine argument;
-chain $\omega\to u_p\to k\to\lambda\to\eta$.
+\cs{p.2: PLANE WAVE PARAMETERS (LOSSLESS)}: read $\omega$ from the argument; chain $\omega\!\to\!k\!\to\!\lambda\!\to\!\eta$.
 
 \[
-\omega = 6\pi\times10^8\;\text{rad/s}
+\boxed{\omega = 6\pi\times10^8\;\text{rad/s}}
+\]
+
+\cs{p.2: WAVE PARAMS strip}: $k=\omega\sqrt{\mu_r\mu_0\,\varepsilon_r\varepsilon_0}$.
+\[
+k = \omega\sqrt{\mu_r\mu_0\,\varepsilon_r\varepsilon_0}
+= (6\pi\times10^8)\sqrt{(4\pi\times10^{-7})(6)(8.85\times10^{-12})}
 \]
 \[
-k = \frac{\omega\sqrt{\varepsilon_r}}{c}
-= \frac{6\pi\times10^8\cdot\sqrt{6}}{3\times10^8}
-= 2\pi\sqrt{6}
-\qquad\boxed{k = 2\pi\sqrt{6}\approx15.4\;\text{rad/m}}
+\boxed{k \approx 15.40\;\text{rad/m}}
 \]
+
 \[
-\lambda = \frac{2\pi}{k} = \frac{2\pi}{2\pi\sqrt{6}} = \frac{1}{\sqrt{6}}
-\qquad\boxed{\lambda = \frac{1}{\sqrt{6}}\approx0.408\;\text{m}}
+\lambda = \frac{2\pi}{k} = \frac{2\pi}{15.40}
+\qquad\boxed{\lambda \approx 0.408\;\text{m}}
 \]
+
+\cs{p.2: WAVE PARAMS strip}: $\eta=\eta_0/\sqrt{\varepsilon_r}$.
 \[
-\eta = \frac{\eta_0}{\sqrt{\varepsilon_r}} = \frac{120\pi}{\sqrt{6}}
-= 20\pi\sqrt{6}
-\qquad\boxed{\eta = 20\pi\sqrt{6}\approx154\;\Omega}
+\eta = \frac{377}{\sqrt{6}} = \frac{377}{2.449}
+\qquad\boxed{\eta \approx 153.91\;\Omega\quad\text{(lossless)}}
 \]
 
 \medskip
-
 \textbf{(b) Find $\tilde{\mathbf{E}}(z)$.} \hfill\textit{(5 pts)}
 
-\cs{p.1: PHASOR METHOD}: $\mathbf{E}=\operatorname{Re}\{\tilde{\mathbf{E}}\,e^{j\omega t}\}$; strip $e^{j\omega t}$, keep the rest.\\
-\cs{p.2: PHASOR $\leftrightarrow$ TIME DOMAIN}: $Ae^{j\phi}e^{-j\beta z}\leftrightarrow A\cos(\omega t-\beta z+\phi)$.
+\cs{p.1: PHASOR METHOD}: $\mathbf{E}(z,t)=\operatorname{Re}\!\bigl\{\tilde{\mathbf{E}}(z)\,e^{j\omega t}\bigr\}$.\quad
+Strip $e^{j\omega t}$, keep the spatial/phase part.
+
+Let $\phi=\pi/6$. From $\mathbf{E}=4\cos(\omega t-kz-\phi)\hat{y}$:
 \[
-\boxed{\tilde{\mathbf{E}}(z) = 4\,e^{-j(kz+\pi/6)}\,\hat{y}\;\text{V/m}}
+\tilde{\mathbf{E}}(z) = 4\,e^{j(-kz-\phi)}\hat{y} = 4\,e^{-j(kz+\pi/6)}\hat{y}
+\]
+\[
+\boxed{\tilde{\mathbf{E}}(z) = 4\,e^{-j(15.40\,z\,+\,\pi/6)}\,\hat{y}\;\text{V/m}}
 \]
 
 \medskip
-
 \textbf{(c) Find $\tilde{\mathbf{H}}(z)$.} \hfill\textit{(5 pts)}
 
-\cs{p.2: DIRECTION OF PROPAGATION}: argument contains $-kz$ $\Rightarrow$ $\hat{k}=+\hat{z}$.\\
-\cs{p.2: $\hat{k}\times\hat{E}$ --- FIND $\hat{H}$ DIRECTION}: $\hat{k}=+\hat{z}$, $\hat{E}=\hat{y}$ $\Rightarrow$
-$\hat{z}\times\hat{y}=-\hat{x}$.\\
-\cs{p.2: LOSSLESS vs.\ LOSSY --- E \& H}: $\tilde{\mathbf{H}}=\tfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$.
+\cs{p.2: DIRECTION OF PROPAGATION}: $-kz$ in argument $\Rightarrow$ $\hat{k}=+\hat{z}$.\\
+\cs{p.2: LOSSLESS vs.\ LOSSY --- E \& H}: $\tilde{\mathbf{H}}=\dfrac{1}{\eta}(\hat{k}\times\tilde{\mathbf{E}})$.
+
 \[
-\tilde{\mathbf{H}} = \frac{1}{\eta}\,\hat{z}\times\bigl(4e^{-j(kz+\pi/6)}\hat{y}\bigr)
-= \frac{4}{\eta}\,e^{-j(kz+\pi/6)}\,(\hat{z}\times\hat{y})
+\tilde{\mathbf{H}} = \frac{1}{\eta}\bigl(\hat{z}\times\tilde{\mathbf{E}}\bigr)
+= \frac{1}{\eta}\Bigl(\hat{z}\times4\,e^{-j(15.40\,z+\pi/6)}\hat{y}\Bigr)
 \]
-With $\eta=20\pi\sqrt{6}$: $\tfrac{4}{\eta}=\tfrac{4}{20\pi\sqrt{6}}=\tfrac{1}{5\pi\sqrt{6}}$.
+\cs{p.2: $\hat{k}\times\hat{E}$ table}: $\hat{z}\times\hat{y}=-\hat{x}$.
 \[
-\boxed{\tilde{\mathbf{H}}(z)
-= -\frac{1}{5\pi\sqrt{6}}\,e^{-j(kz+\pi/6)}\,\hat{x}\;\text{A/m}
-\approx -0.026\,e^{-j(kz+\pi/6)}\,\hat{x}\;\text{A/m}}
+= -\frac{4}{\eta}\,e^{-j(15.40\,z+\pi/6)}\hat{x}
+= -\frac{4}{153.91}\,e^{-j(15.40\,z+\pi/6)}\hat{x}
+\]
+\[
+\boxed{\tilde{\mathbf{H}}(z) \approx -25.99\times10^{-3}\,e^{-j(15.40\,z\,+\,\pi/6)}\,\hat{x}\;\text{A/m}}
 \]
 
 \medskip
-
 \textbf{(d) Find $\mathbf{H}(z,t)$.} \hfill\textit{(5 pts)}
 
-\cs{p.2: PHASOR $\leftrightarrow$ TIME DOMAIN}: $\operatorname{Re}\{Ae^{j\phi}e^{j\omega t}e^{-j\beta z}\}
-= A\cos(\omega t-\beta z+\phi)$.
+\cs{p.1: PHASOR METHOD}: $\mathbf{H}(z,t)=\operatorname{Re}\!\bigl\{\tilde{\mathbf{H}}\,e^{j\omega t}\bigr\}$.
+
+\begin{align*}
+\mathbf{H}(z,t)
+&= \operatorname{Re}\!\left\{-25.99\times10^{-3}\,e^{-j(15.40\,z+\pi/6)}\,\hat{x}\cdot e^{j\omega t}\right\}\\
+&= \operatorname{Re}\!\left\{-25.99\times10^{-3}\,e^{j(\omega t-15.40\,z-\pi/6)}\,\hat{x}\right\}
+\end{align*}
 \[
 \boxed{\mathbf{H}(z,t)
-= -\frac{1}{5\pi\sqrt{6}}\cos\!\left(6\pi\times10^8\,t - 2\pi\sqrt{6}\,z - \frac{\pi}{6}\right)\hat{x}
+= -25.99\times10^{-3}\cos\!\left(6\pi\times10^8\,t - 15.40\,z - \frac{\pi}{6}\right)\hat{x}
 \;\text{A/m}}
 \]
 
 \medskip
-
 \textbf{(e) Average power density.} \hfill\textit{(5 pts)}
 
-\cs{p.2: AVERAGE POWER DENSITY (POYNTING) lossless shortcut}: $\mathbf{S}_\text{av}=\tfrac{|E_0|^2}{2\eta}\,\hat{k}$.\\
-$|E_0|=4\,\text{V/m}$, $\hat{k}=+\hat{z}$, $\eta=20\pi\sqrt{6}$:
+Lossless medium. \cs{p.2: AVERAGE POWER DENSITY (POYNTING) lossless shortcut}: $\mathbf{S}_\text{av}=\dfrac{|E_0|^2}{2\eta}\,\hat{k}$.
 \[
-\mathbf{S}_\text{av} = \frac{16}{2\times20\pi\sqrt{6}}\,\hat{z}
-= \frac{16}{40\pi\sqrt{6}}\,\hat{z}
-= \frac{2}{5\pi\sqrt{6}}\,\hat{z}
-= \frac{\sqrt{6}}{15\pi}\,\hat{z}
+\mathbf{S}_\text{av} = \frac{|E_0|^2}{2\eta}\,\hat{z}
+= \frac{4^2}{2(153.91)}\,\hat{z}
 \]
 \[
-\boxed{\mathbf{S}_\text{av} = \frac{\sqrt{6}}{15\pi}\,\hat{z}\approx 0.052\;\hat{z}\;\text{W/m}^2}
+\boxed{\mathbf{S}_\text{av} \approx 51.98\times10^{-3}\;\hat{z}\;\text{W/m}^2}
 \]
 
 \vspace{8pt}
@@ -395,79 +334,48 @@ $|E_0|=4\,\text{V/m}$, $\hat{k}=+\hat{z}$, $\eta=20\pi\sqrt{6}$:
 %──────────────────────────────────────────────────────────────────────
 
 \vspace{4pt}
-\textbf{Given:} $f=\tfrac{2}{\pi}\,\text{GHz}$, $\sigma=10^{-4}\,\text{S/m}$, $\varepsilon_r=26\pi$, $\mu_r=1$.
+$f=\tfrac{2}{\pi}\,\text{GHz}$,\quad $\sigma=10^{-4}\,\text{S/m}$,\quad $\varepsilon_r=26\pi$,\quad $\mu_r=1$.
 
 \begin{notebox}
-\textbf{Compute $\omega$ first \cs{p.2: WAVE PARAMS strip}: $\omega=2\pi f$}
-\[
-\omega = 2\pi\times\frac{2}{\pi}\times10^9 = 4\times10^9\;\text{rad/s}
-\]
-\textbf{Also useful:}
-$\varepsilon' = \varepsilon_r\varepsilon_0
-= 26\pi\cdot\tfrac{1}{36\pi}\times10^{-9}
-= \tfrac{13}{18}\times10^{-9}\,\text{F/m}$
+\cs{p.2: WAVE PARAMS strip}: $\omega = 2\pi f = 2\pi\cdot\dfrac{2}{\pi}\times10^9 = 4\times10^9\;\text{rad/s}$
 \end{notebox}
 
 \medskip
-
 \textbf{(a) Find $\varepsilon''/\varepsilon'$.} \hfill\textit{(6 pts)}
 
-\cs{p.2: LOSSY MEDIA --- CLASSIFICATION}: $\varepsilon''/\varepsilon'=\sigma/(\omega\varepsilon_r\varepsilon_0)$.
+\cs{p.2: LOSSY MEDIA --- CLASSIFICATION}: $\dfrac{\varepsilon''}{\varepsilon'}=\dfrac{\sigma}{\omega\varepsilon_r\varepsilon_0}$.
+
 \[
 \frac{\varepsilon''}{\varepsilon'}
-= \frac{10^{-4}}{4\times10^9\times\tfrac{13}{18}\times10^{-9}}
-= \frac{10^{-4}}{\tfrac{52}{18}}
-= \frac{10^{-4}\times18}{52}
-= \frac{18}{52}\times10^{-4}
-= \frac{9}{26}\times10^{-4}
+= \frac{\sigma}{\omega\varepsilon_r\varepsilon_0}
+= \frac{10^{-4}}{(4\times10^9)(26\pi)(8.85\times10^{-12})}
 \]
 \[
-\boxed{\frac{\varepsilon''}{\varepsilon'} = \frac{9}{26}\times10^{-4}\approx 3.46\times10^{-5}}
+\boxed{\frac{\varepsilon''}{\varepsilon'}\approx 34.58\times10^{-6}}
 \]
 
 \medskip
-
 \textbf{(b) What type of medium?} \hfill\textit{(5 pts)}
 
-\cs{p.2: LOSSY MEDIA --- CLASSIFICATION table}: threshold for low-loss is $\varepsilon''/\varepsilon'<0.01$.
-\[
-\frac{\varepsilon''}{\varepsilon'}\approx3.46\times10^{-5}\;\ll\;0.01
-\]
-\[
-\boxed{\text{Low-loss dielectric.}}
-\]
-Justification: the ratio is far below the $10^{-2}$ threshold.
+\cs{p.2: LOSSY MEDIA --- CLASSIFICATION table}: $\varepsilon''/\varepsilon'<0.01$ $\Rightarrow$ low-loss dielectric.
+
+Since $34.58\times10^{-6}\ll0.01$, at this frequency distilled water is a \textbf{low-loss dielectric}.
 
 \medskip
-
 \textbf{(c) Skin depth.} \hfill\textit{(5 pts)}
 
-\cs{p.2: LOW-LOSS MEDIUM}: $\alpha\approx\tfrac{\sigma}{2}\sqrt{\mu/\varepsilon'}=\tfrac{\sigma\eta}{2}$.\\
-\cs{p.2: SKIN DEPTH}: $\delta_s=1/\alpha$.
+\cs{p.2: LOW-LOSS MEDIUM / SKIN DEPTH}: $\delta_s=\dfrac{2}{\sigma\eta}$.
 
-\step{1} Find $\eta$ \cs{p.2: WAVE PARAMS strip}.
 \[
-\eta = \frac{\eta_0}{\sqrt{\varepsilon_r}}
-= \frac{120\pi}{\sqrt{26\pi}}
-\approx\frac{376.99}{9.04}
-\approx 41.7\;\Omega
-\]
-
-\step{2} Attenuation constant (low-loss approximation).
-\[
-\alpha \approx \frac{\sigma\eta}{2}
-= \frac{10^{-4}\times41.7}{2}
-\approx 2.09\times10^{-3}\;\text{Np/m}
-\]
-
-\step{3} Skin depth.
-\[
-\delta_s = \frac{1}{\alpha} = \frac{1}{2.09\times10^{-3}}
+\eta = \frac{\eta_0}{\sqrt{\varepsilon_r}} = \frac{377}{\sqrt{26\pi}} = \frac{377}{9.038}\approx41.71\;\Omega
 \]
 \[
-\boxed{\delta_s \approx 479\;\text{m}}
+\delta_s = \frac{2}{\sigma\eta}
+= \frac{2}{(10^{-4})(41.71)}
 \]
-\textit{$\approx$\,480\,m confirms this is essentially lossless at $\tfrac{2}{\pi}$\,GHz with $\sigma=10^{-4}$\,S/m.}
+\[
+\boxed{\delta_s\approx 479.5\;\text{m}}
+\]
 
 \vspace{12pt}
 \hrule
