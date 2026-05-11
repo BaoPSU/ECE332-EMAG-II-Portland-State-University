@@ -348,11 +348,19 @@ TE$_{11}$/TM$_{11}$ & $(1,1)$ & $(c/2)\sqrt{1/a^2+1/b^2}$ & 15.98 (4th, not in t
 TM modes need both $m$ and $n \geq 1$, so the lowest TM mode is TM$_{11}$ at 15.98~GHz, which is the 4th mode overall and not in the top three. And since $a/b = 22.92/10.29 = 2.23 \approx 2$, the ordering is the classic X-band setup TE$_{10} <$ TE$_{20} <$ TE$_{01}$.
 
 \textbf{(b)} Only TE$_{10}$ propagates at all three test frequencies. The rule is $f > f_c$, and our operating range is 8.5 to 11~GHz which sits above TE$_{10}$ (6.54~GHz) but below TE$_{20}$ (13.09~GHz).
-\begin{itemize}[leftmargin=*]
-  \item 8.5--11~GHz $>$ 6.54~GHz $\Rightarrow$ TE$_{10}$ propagates
-  \item 8.5--11~GHz $<$ 13.09~GHz $\Rightarrow$ TE$_{20}$ does NOT propagate
-  \item 8.5--11~GHz $<$ 14.58~GHz $\Rightarrow$ TE$_{01}$ does NOT propagate
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+Mode & $f_c$ (GHz) & Operating range (GHz) & Condition & Propagates? \\
+\midrule
+TE$_{10}$ & 6.54  & 8.5--11 & $f > f_c$ & Yes \\
+TE$_{20}$ & 13.09 & 8.5--11 & $f < f_c$ & No  \\
+TE$_{01}$ & 14.58 & 8.5--11 & $f < f_c$ & No  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
 For example at 11~GHz we are at $f/f_c = 1.68$ for TE$_{10}$ which propagates fine, and the same 11~GHz is only 0.84 of the TE$_{20}$ cutoff so that one just dies off without propagating. So the guide stays single-mode the whole time.
 
 \textbf{(c)} Solving $v_p = f\lambda_g = c/\sqrt{1 - (f_c/f)^2}$ for $f_c$:
