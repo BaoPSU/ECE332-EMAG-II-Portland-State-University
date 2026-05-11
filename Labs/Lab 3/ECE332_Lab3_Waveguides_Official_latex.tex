@@ -215,7 +215,7 @@ Distance from the short circuit termination to the nearest detectable minimum (u
 
 \subsection*{Discussion}
 
-From the measurements, the guide wavelength ($\lambda_g$) becomes shorter as the operating frequency increases. For example, $\lambda_g$ decreased from about 55.7~mm at 8.5~GHz to 32.7~mm at 11~GHz. This agrees with waveguide theory, which predicts that higher frequencies produce shorter wavelengths inside the guide. The calculated phase velocities $v_p$ are greater than the speed of light, which is normal for waveguides because phase velocity does not represent the speed of energy flow. Meanwhile, the group velocity $v_g$ (the actual energy transfer speed) remains below $c$ and gets smaller as frequency decreases. This opposite behavior between $v_p$ and $v_g$ satisfies the condition $v_p v_g = c^2$. Overall, the results match the expected behavior of a rectangular waveguide operating in the TE$_{10}$ dominant mode. Minor differences in the measured maxima and minima could be due to probe positioning errors or small inaccuracies in the SWR meter, but the overall trends remain consistent with theory.
+$\lambda_g$ shrinks as the frequency climbs. For example $\lambda_g$ dropped from 55.7~mm at 8.5~GHz down to 32.7~mm at 11~GHz, which matches the prediction that higher frequencies pack shorter wavelengths inside the guide. The phase velocities all came out above $c$, which is normal for a waveguide since $v_p$ tracks the phase front and not energy flow. And the group velocity stayed below $c$ and shrank as the frequency dropped, which is the actual energy speed. For every frequency, $v_p \cdot v_g$ landed right around $c^2$, confirming the $v_p v_g = c^2$ rule. So the data lines up with TE$_{10}$ behavior across the board, and the small spread in the per-pair $\Delta d$ values is probably just probe positioning and SWR meter slop.
 
 \newpage
 
@@ -267,11 +267,7 @@ Oscillator $f$ (GHz) & Measured $f$ (GHz) & $v_g$ (m/s) & $v_p$ (m/s) \\
 Table~2: Resonant cavity frequencies.
 \end{center}
 
-The measured resonance frequencies were slightly lower than the oscillator settings for two of three cases, which is expected due to small losses and calibration limits in the setup. As the operating frequency decreased, the group velocity also decreased, while the phase velocity increased, matching waveguide theory.
-
-The results confirm the relationship $v_p v_g = c^2$, showing that energy travels more slowly near cutoff, while phase velocity becomes greater than the speed of light (without violating physics, since phase velocity does not represent energy flow).
-
-Overall, the measurements matched the expected behavior of the TE$_{10}$ mode, with small variations likely caused by probe alignment or tuning sensitivity.
+The cavity readings stayed within 1\% of the dial across all three frequencies. For example at 11~GHz the cavity read 11.050~GHz and at 8.5~GHz it read 8.515~GHz, which is well within the precision we need for single-mode TE$_{10}$ operation. And as the operating frequency dropped, $v_g$ shrank and $v_p$ grew, which is the $f_c/f$ scaling at work. For every row, $v_p \cdot v_g$ still landed right around $c^2$, which matches the $v_p v_g = c^2$ rule from Part 1. The slight drift between cavity and dial is probably just calibration error and tuning sensitivity, but it does not change the mode picture.
 
 \newpage
 
