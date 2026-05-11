@@ -19,17 +19,33 @@
 \setlength{\parskip}{0.5em}
 \setlength{\parindent}{0pt}
 
-\title{\textbf{ECE332 Lab 3: Waveguides}}
-\author{Bao Nguyen, Nick Stites}
-\date{\textbf{Term:} Spring 2026}
-
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries\scshape Portland State \\[2pt] University \par}
+\vspace{1.5cm}
+{\large\scshape Department of \par}
+{\large\scshape Electrical and Computer Engineering \par}
+\vspace{1.5cm}
+{\LARGE\bfseries ECE332 \par}
+\vspace{0.4cm}
+{\LARGE\scshape Lab 3: Waveguides \par}
+\vfill
+{\large \textbf{Prepared by:} \par}
+{\large Bao Nguyen \par}
+{\large Nick Stites \par}
+\vspace{1cm}
+{\large \textbf{Term:} Spring 2026 \par}
+\vspace{2cm}
+\end{titlepage}
+
 \thispagestyle{empty}
+\tableofcontents
 \newpage
 
-\section*{Pre-lab assignment}
+\section{Pre-lab assignment}
 
 \textbf{1.} Which of the following types of transmission lines does NOT support the propagation of transverse-electromagnetic (TEM) waves? (include all that apply.)
 \begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
@@ -75,13 +91,13 @@
 
 \newpage
 
-\section*{Introduction}
+\section{Introduction}
 
 This lab investigates how electromagnetic waves travel inside rectangular waveguides, with a focus on propagation behavior, cutoff conditions, and the formation of standing wave patterns. Waveguides are hollow metal structures used to guide microwave-frequency signals, and unlike coaxial lines they cannot support TEM modes. Instead, they operate using transverse electric (TE) and transverse magnetic (TM) modes, each with a specific cutoff frequency determined by the waveguide's physical dimensions.
 
 In this experiment, a slotted waveguide was used to visualize standing waves created by reflections from a short-circuit load. By sliding a probe along the slot, we measured changes in the electric field and identified the positions of maxima and minima. These measurements allowed us to determine the guide wavelength $\lambda_g$, as well as calculate phase and group velocities at different operating frequencies. Overall, the lab emphasizes how boundary conditions and waveguide geometry shape wave propagation and how these effects differ from ordinary free-space transmission.
 
-\section*{Part 1: Wavelength Measurements}
+\section{Part 1: Wavelength Measurements}
 
 \subsection*{Objective}
 
@@ -199,7 +215,7 @@ From the measurements, the guide wavelength ($\lambda_g$) becomes shorter as the
 
 \newpage
 
-\section*{Part 2: Frequency Measurements}
+\section{Part 2: Frequency Measurements}
 
 \subsection*{Objective}
 
@@ -255,7 +271,7 @@ Overall, the measurements matched the expected behavior of the TE$_{10}$ mode, w
 
 \newpage
 
-\section*{Part 1 Questions}
+\section{Part 1 Questions}
 
 \subsection*{1) Why are $\lambda$ and $\lambda_g$ different?}
 
@@ -356,7 +372,7 @@ Average back-calculated $f_c = 6.37$~GHz vs geometric $f_c$ (TE$_{10}$) = 6.54~G
 
 \newpage
 
-\section*{Part 2 Questions}
+\section{Part 2 Questions}
 
 \subsection*{Q1}
 \textit{Using the measured values for frequency and wavelength, calculate the phase velocity of the wave: $v_p = \lambda_g f$. How close (i.e. percentage difference) is this to your values from Experiment 3.1? Based on this, how important is it to know the frequency accurately?}
