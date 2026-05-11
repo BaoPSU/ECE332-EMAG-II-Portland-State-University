@@ -8,7 +8,11 @@
 \usepackage{enumitem}
 \usepackage{tabularx}
 \usepackage{titlesec}
+\usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
+
+\definecolor{answerhl}{RGB}{198,239,206}
+\newcommand{\hl}[1]{\colorbox{answerhl}{#1}}
 
 \titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
@@ -25,152 +29,238 @@
 \thispagestyle{empty}
 \newpage
 
-\section*{Pre-Lab Assignment}
+\section*{Pre-lab assignment}
 
-\textbf{Reading:} Sections 8-6 through 8-11 in Ulaby.\\
-\textbf{Equipment:} Systron/Donner 5000 Sweeper/Oscillator and HP 415E SWR Meter.
+\textbf{1.} Which of the following types of transmission lines does NOT support the propagation of transverse-electromagnetic (TEM) waves? (include all that apply.)
+\begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
+  \item \hl{(a) Rectangular Waveguides}
+  \item (b) Coaxial Cable
+  \item (c) Parallel-plate Lines
+  \item \hl{(d) Optical Fiber}
+\end{itemize}
 
-\subsection*{Answers}
+\textbf{2.} What is the dominant mode for transverse magnetic (TM) waves propagating through a waveguide?
+\begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
+  \item (a) TM$_{00}$
+  \item (b) TM$_{10}$
+  \item (c) TM$_{01}$
+  \item \hl{(d) TM$_{11}$}
+  \item (e) None of the above
+\end{itemize}
 
-\textbf{Question 1.} Which transmission lines do NOT support TEM waves? (all that apply)\\
-\textit{Answer:} (a) Rectangular Waveguides and (d) Optical Fiber.
+\textbf{3.} What is the dominant mode for the transverse electric (TE) waves propagating through a waveguide?
+\begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
+  \item (a) TE$_{00}$
+  \item (b) TE$_{01}$
+  \item \hl{(c) TE$_{10}$}
+  \item (d) TE$_{11}$
+  \item (e) None of the above
+\end{itemize}
 
-\textbf{Question 2.} Dominant mode for transverse magnetic (TM) waves?\\
-\textit{Answer:} (d) TM$_{11}$.
+\textbf{4.} What type of filter does a resonant cavity implement?
+\begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
+  \item (a) Low Pass
+  \item (b) High Pass
+  \item (c) Notch
+  \item \hl{(d) Bandpass}
+  \item (e) None of the above
+\end{itemize}
 
-\textbf{Question 3.} Dominant mode for transverse electric (TE) waves?\\
-\textit{Answer:} (b) TE$_{10}$.
-
-\textbf{Question 4.} What type of filter does a resonant cavity implement?\\
-\textit{Answer:} (d) Bandpass.
-
-\textbf{Question 5.} Which instrument measures the Standing Wave Ratio (SWR)?\\
-\textit{Answer:} (b) Hewlett Packard 415E.
+\textbf{5.} Which instrument is used for measuring the Standing Wave Ratio (SWR) if the signal is propagating through a waveguide?
+\begin{itemize}[label={},leftmargin=2em,itemsep=0pt]
+  \item (a) Systron/Donner 5000
+  \item \hl{(b) Hewlett Packard 415E}
+  \item (c) Neither, you made those up!
+\end{itemize}
 
 \newpage
 
-\section*{Experiment 1: Wavelength Measurements}
+\section*{Introduction}
+
+This lab investigates how electromagnetic waves travel inside rectangular waveguides, with a focus on propagation behavior, cutoff conditions, and the formation of standing wave patterns. Waveguides are hollow metal structures used to guide microwave-frequency signals, and unlike coaxial lines they cannot support TEM modes. Instead, they operate using transverse electric (TE) and transverse magnetic (TM) modes, each with a specific cutoff frequency determined by the waveguide's physical dimensions.
+
+In this experiment, a slotted waveguide was used to visualize standing waves created by reflections from a short-circuit load. By sliding a probe along the slot, we measured changes in the electric field and identified the positions of maxima and minima. These measurements allowed us to determine the guide wavelength $\lambda_g$, as well as calculate phase and group velocities at different operating frequencies. Overall, the lab emphasizes how boundary conditions and waveguide geometry shape wave propagation and how these effects differ from ordinary free-space transmission.
+
+\section*{Part 1: Wavelength Measurements}
 
 \subsection*{Objective}
 
-Measure the standing-wave pattern inside a slotted rectangular waveguide at three input frequencies (11~GHz, 9.5~GHz, 8.5~GHz) using a traveling probe and SWR meter. From the minima/maxima positions calculate the waveguide wavelength $\lambda_g$, phase velocity $v_p$, and group velocity $v_g$ for each frequency. Also measure the physical dimensions $a$ and $b$ of the waveguide and use them to compute the cutoff frequencies of the three lowest modes.
+The goal of this experiment is to study how electromagnetic waves travel inside a rectangular waveguide and to measure the guide wavelength ($\lambda_g$) at several microwave frequencies. Using a slotted waveguide and an SWR meter, we observe the standing wave pattern created by a short-circuit termination. From the measured minima spacing, we calculate the guide wavelength, phase velocity ($v_p$), and group velocity ($v_g$) for the dominant TE$_{10}$ mode.
 
 \subsection*{Theory}
 
-In a two-conductor transmission line, the electric field is transverse to the direction of propagation, giving rise to TEM waves. A hollow metallic waveguide has only one conductor, so TEM waves cannot propagate. Instead, TE and TM modes exist, each with a minimum (cutoff) frequency below which the mode is evanescent.
+A rectangular waveguide is a hollow metal structure that carries electromagnetic waves only when the operating frequency is above a certain cutoff value. For the dominant TE$_{10}$ mode, the cutoff wavelength is $\lambda_c = 2a/m$ where $a$ is the wider dimension of the waveguide and $m=1$ for the TE$_{10}$ mode.
 
-For a rectangular waveguide with inner width $a$ (along $x$) and height $b$ (along $y$), the cutoff frequency of the TE$_{mn}$ / TM$_{mn}$ mode is:
-\begin{equation}
-f_c = \frac{1}{2\sqrt{\mu\varepsilon}}\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}
-\end{equation}
+The relationship between the guide wavelength $\lambda_g$, the free-space wavelength $\lambda$, and the cutoff wavelength $\lambda_c$ is:
+\[
+\lambda_g = \frac{\lambda}{\sqrt{1 - (\lambda/\lambda_c)^2}}
+\]
 
-The dominant mode is TE$_{10}$ ($m=1$, $n=0$) with $f_c = c/(2a)$. For propagation to occur, the operating frequency $f$ must exceed $f_c$.
-
-Inside the waveguide the wave bounces at an angle between the walls, producing a standing wave along $z$ when the far end is short-circuited. The waveguide wavelength $\lambda_g$ is longer than the free-space wavelength $\lambda = c/f$:
-\begin{equation}
-\lambda_g = \frac{2\pi}{\beta} = \frac{2\pi}{\sqrt{\omega^2\mu\varepsilon - (m\pi/a)^2 - (n\pi/b)^2}}
-\end{equation}
-
-The phase velocity (speed of the phase front along $z$) is:
-\begin{equation}
-v_p = f\lambda_g = \frac{v_{p0}}{\sqrt{1 - (f_c/f)^2}}
-\end{equation}
-Note $v_p > c$; it carries no information. The group velocity (information/energy speed) is:
-\begin{equation}
-v_g = v_{p0}\sqrt{1 - (f_c/f)^2} = \frac{1}{\sqrt{\mu\varepsilon}}\cdot\frac{\lambda}{\lambda_g}
-\end{equation}
-Note $v_p \cdot v_g = c^2$ (for air-filled guide), so $v_g < c$.
-
-The waveguide wavelength is measured from successive minima/maxima. Each consecutive min--max pair is $\lambda_g/4$ apart:
-\begin{equation}
-\lambda_g = 4\,\Delta d = 4(d_{n+1} - d_n)
-\end{equation}
+Inside the waveguide, the wave travels with a phase velocity and group velocity given by:
+\[
+v_p = \frac{c}{\sqrt{1 - (f_c/f)^2}}, \qquad v_g = c\sqrt{1 - (f_c/f)^2}
+\]
+Here $f_c$ is the cutoff frequency and $f$ is the operating frequency. Their product remains constant: $c^2 = v_p v_g$. This means that as the phase velocity becomes greater than the speed of light, the group velocity (which carries energy) decreases at the same rate, keeping the physics consistent.
 
 \subsection*{Setup}
 
-Equipment used:
-\begin{itemize}[leftmargin=*]
-  \item Systron/Donner 5000 Sweeper/Oscillator with waveguide cables (8--12.4~GHz)
-  \item Slotted waveguide section with traveling probe on carriage (vernier scale)
-  \item Short-circuit termination
-  \item SWR Meter (HP 415E) connected via BNC cable
-  \item Meter stick (for physical dimension measurement)
-\end{itemize}
+The experiment uses a slotted rectangular waveguide connected to a Systron-Donner 5000 oscillator operating from 8--12.4~GHz. A movable probe inside the slotted line detects the electric field intensity, and an HP 415E SWR meter displays the measured signal.
 
-The short-circuit termination was attached to the output of the slotted waveguide. The probe was connected to the SWR meter. The sweeper/oscillator was set to 11~GHz (2F-C knob), RF Level 5--10~mW, ``1~kHz'' switch ON. Probe penetration depth was tuned for mid-scale deflection (RANGE-DB 30--40~dB). Measurements were repeated for 9.5~GHz and 8.5~GHz.
+\textbf{Steps:}
+\begin{enumerate}[leftmargin=*]
+  \item Attach a short-circuit plate to the end of the waveguide.
+  \item Connect the probe output to the SWR meter using a BNC cable.
+  \item Set the oscillator to the desired test frequency (e.g., 11~GHz).
+  \item Adjust the probe depth to get a strong reading without disturbing the field.
+  \item Slide the probe along the slot to find the maxima and minima of the standing wave.
+  \item Record the positions of at least three minima or maxima to calculate $\lambda_g/2$.
+\end{enumerate}
 
 \subsection*{Equations Used}
 
-\begin{itemize}[leftmargin=*]
-  \item $f_c = \dfrac{1}{2\sqrt{\mu\varepsilon}}\sqrt{(m/a)^2 + (n/b)^2}$ -- cutoff frequency (Eq.~1)
-  \item $\lambda_g = 2\pi/\beta$ -- waveguide wavelength (Eq.~2)
-  \item $v_p = f\lambda_g = v_{p0}/\sqrt{1-(f_c/f)^2}$ -- phase velocity (Eq.~3)
-  \item $v_g = v_{p0}\sqrt{1-(f_c/f)^2} = c^2/v_p$ -- group velocity (Eq.~4)
-  \item $\lambda_g = 4\Delta d$ from consecutive min/max positions (Eq.~5)
-\end{itemize}
+Waveguide Wavelength: $\lambda_g = 4\Delta d = 4(d_{n+1} - d_n)$\\[2pt]
+Phase Velocity: $v_p = f\lambda_g$\\[2pt]
+Group Velocity: $v_g = c^2/v_p$, where $c = 3\times10^{8}$~m/s (speed of light in vacuum)
 
-\subsection*{Results / Data}
-
-\textbf{Table 1.} Waveguide SWR minima/maxima positions and calculated quantities. Note: $\lambda_g$, $v_p$, $v_g$ are calculated only for Min rows using $\lambda_g = 4\times|\text{Min}_n - \text{Max}_n|$. The Average row uses all 5 consecutive $\Delta d$ pairs.
+\subsection*{Results}
 
 \begin{center}
 \begin{tabular}{lcccc}
 \toprule
+\multicolumn{5}{c}{\textbf{$f = 11$~GHz}} \\
+\midrule
  & Position (mm) & $\lambda_g$ (mm) & $v_p$ (m/s) & $v_g$ (m/s) \\
 \midrule
-\multicolumn{5}{l}{\textit{$f = 11$~GHz}} \\
 Min 1     & 170.1 & 31.2 & $3.432\times10^{8}$ & $2.622\times10^{8}$ \\
 Max 1     & 162.3 & 36.0 & $3.960\times10^{8}$ & $2.273\times10^{8}$ \\
 Min 2     & 153.3 & 32.4 & $3.564\times10^{8}$ & $2.525\times10^{8}$ \\
 Max 2     & 145.2 & 34.4 & $3.784\times10^{8}$ & $2.378\times10^{8}$ \\
 Min 3     & 136.6 & 29.6 & $3.256\times10^{8}$ & $2.764\times10^{8}$ \\
-Max 3     & 129.2 &      &                     &                     \\
-Average:  &       & 32.7 & $3.599\times10^{8}$ & $2.501\times10^{8}$ \\
+Max 3     & 129.2 & N/A  & N/A                 & N/A                 \\
 \midrule
-\multicolumn{5}{l}{\textit{$f = 9.5$~GHz}} \\
+Avg:      &       & 32.7 & $3.599\times10^{8}$ & $2.501\times10^{8}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\multicolumn{5}{c}{\textbf{$f = 9.5$~GHz}} \\
+\midrule
+ & Position (mm) & $\lambda_g$ (mm) & $v_p$ (m/s) & $v_g$ (m/s) \\
+\midrule
 Min 1     & 174.4 & 44.0 & $4.180\times10^{8}$ & $2.153\times10^{8}$ \\
 Max 1     & 163.4 & 43.6 & $4.142\times10^{8}$ & $2.173\times10^{8}$ \\
 Min 2     & 152.5 & 42.0 & $3.990\times10^{8}$ & $2.256\times10^{8}$ \\
 Max 2     & 142.0 & 42.4 & $4.028\times10^{8}$ & $2.234\times10^{8}$ \\
 Min 3     & 131.4 & 43.6 & $4.142\times10^{8}$ & $2.173\times10^{8}$ \\
-Max 3     & 120.5 &      &                     &                     \\
-Average:  &       & 43.1 & $4.096\times10^{8}$ & $2.197\times10^{8}$ \\
+Max 3     & 120.5 & N/A  & N/A                 & N/A                 \\
 \midrule
-\multicolumn{5}{l}{\textit{$f = 8.5$~GHz}} \\
+Avg:      &       & 43.1 & $4.096\times10^{8}$ & $2.197\times10^{8}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\multicolumn{5}{c}{\textbf{$f = 8.5$~GHz}} \\
+\midrule
+ & Position (mm) & $\lambda_g$ (mm) & $v_p$ (m/s) & $v_g$ (m/s) \\
+\midrule
 Min 1     & 166.4 & 62.4 & $5.304\times10^{8}$ & $1.697\times10^{8}$ \\
 Max 1     & 150.8 & 47.6 & $4.046\times10^{8}$ & $2.224\times10^{8}$ \\
 Min 2     & 138.9 & 64.4 & $5.474\times10^{8}$ & $1.644\times10^{8}$ \\
 Max 2     & 122.8 & 46.0 & $3.910\times10^{8}$ & $2.302\times10^{8}$ \\
 Min 3     & 111.3 & 58.0 & $4.930\times10^{8}$ & $1.826\times10^{8}$ \\
-Max 3     & 96.8  &      &                     &                     \\
-Average:  &       & 55.7 & $4.733\times10^{8}$ & $1.902\times10^{8}$ \\
+Max 3     & 96.8  & N/A  & N/A                 & N/A                 \\
+\midrule
+Avg:      &       & 55.7 & $4.733\times10^{8}$ & $1.902\times10^{8}$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-Measured waveguide dimensions:
-\begin{itemize}[leftmargin=*]
-  \item $a = 22.92$~mm
-  \item $b = 10.29$~mm
-\end{itemize}
+The tables above show the waveguide SWR minimums and maximums.
 
-Distance from short circuit to nearest detectable minimum:
-\begin{itemize}[leftmargin=*]
-  \item 11~GHz: 83.5~mm
-  \item 9.5~GHz: 95.6~mm
-  \item 8.5~GHz: 85.4~mm
-\end{itemize}
+Measured and recorded dimensions of $a$ and $b$ of the waveguide:\\
+$a$ (width) = 22.92~mm, $b$ (height) = 10.29~mm.
 
 \subsection*{Discussion}
 
-\paragraph{Q1. Explain the difference between $\lambda$ and $\lambda_g$.}
-The free-space wavelength $\lambda = c/f$ is the spatial period of the wave if it propagated in a straight line through free space at the speed of light. Inside the waveguide, the TE$_{10}$ mode can be visualized as two plane waves bouncing obliquely between the broad walls. These waves travel at an angle $\theta$ to the $z$-axis, so their axial phase advances more slowly than in free space. The resulting axial period, namely the waveguide wavelength $\lambda_g = \lambda/\sqrt{1-(f_c/f)^2}$, is always greater than $\lambda$ and grows to infinity as $f \to f_c$.
+From the measurements, the guide wavelength ($\lambda_g$) becomes shorter as the operating frequency increases. For example, $\lambda_g$ decreased from about 55.7~mm at 8.5~GHz to 32.7~mm at 11~GHz. This agrees with waveguide theory, which predicts that higher frequencies produce shorter wavelengths inside the guide. The calculated phase velocities $v_p$ are greater than the speed of light, which is normal for waveguides because phase velocity does not represent the speed of energy flow. Meanwhile, the group velocity $v_g$ (the actual energy transfer speed) remains below $c$ and gets smaller as frequency decreases. This opposite behavior between $v_p$ and $v_g$ satisfies the condition $v_p v_g = c^2$. Overall, the results match the expected behavior of a rectangular waveguide operating in the TE$_{10}$ dominant mode. Minor differences in the measured maxima and minima could be due to probe positioning errors or small inaccuracies in the SWR meter, but the overall trends remain consistent with theory.
 
-\paragraph{Q2. Electric field at the short-circuit termination.}
-A short-circuit termination enforces the boundary condition that the tangential electric field is zero at the conducting end wall: $E_\text{tan} = 0$. The probe measures the tangential (transverse) E-field. Therefore, if the probe could be positioned exactly at the short circuit it would read zero signal. The short is a node of the standing wave.
+\newpage
 
-\paragraph{Q3. Expected distance from short circuit to nearest detectable minimum.}
-The short circuit forces $E = 0$ at $z = 0$. Minima repeat every $\lambda_g/2$. The nearest detectable minimum is $n\times(\lambda_g/2)$ from the termination, where $n$ is the smallest integer that places the minimum within probe reach.
+\section*{Part 2: Frequency Measurements}
+
+\subsection*{Objective}
+
+The goal of this part of the experiment is to measure the resonance frequencies of electromagnetic waves in a rectangular waveguide using a tunable cavity. By finding the frequencies at which the cavity resonates, we can identify the operating frequencies of the dominant TE$_{10}$ mode and verify the relationship between frequency, wavelength, and wave propagation velocities.
+
+\subsection*{Theory}
+
+Electromagnetic waves can only propagate through a rectangular waveguide if their frequency is above the cutoff frequency. For the dominant TE$_{10}$ mode, the cutoff frequency is $f_c = c/(2a)$ where $a$ is the larger dimension of the waveguide and $c$ is the speed of light. The phase velocity and group velocity for a wave traveling in the guide are given by:
+\[
+v_p = \frac{c}{\sqrt{1 - (f_c/f)^2}}, \qquad v_g = c\sqrt{1 - (f_c/f)^2}
+\]
+At resonance, the tunable cavity absorbs the most power, which shows up as a sharp dip on the SWR meter. Measuring this resonance frequency allows us to confirm the expected propagation behavior of the waveguide and compare it with theory.
+
+\subsection*{Setup}
+
+This setup is similar to Part 1, but now a tunable cavity (HP X532B frequency meter) is placed between the slotted waveguide carriage and the short-circuit termination.
+
+\textbf{Steps:}
+\begin{enumerate}[leftmargin=*]
+  \item Remove the short-circuit termination from the carriage and attach it to the output of the tunable cavity.
+  \item Connect the frequency meter to the slotted waveguide while keeping the oscillator at 11~GHz.
+  \item Adjust the oscillator frequency and slowly tune the cavity until a sharp dip appears on the SWR meter, indicating resonance.
+  \item Read the resonant frequency directly from the frequency meter scale.
+  \item Repeat the measurements for 9.5~GHz and 8.5~GHz inputs.
+\end{enumerate}
+
+\subsection*{Equations Used}
+
+$f_c = c/(2a)$, where $c = 3\times10^{8}$~m/s (speed of light in vacuum) and $a = 22.92$~mm (width of the waveguide)\\[2pt]
+Phase Velocity: $v_p = \dfrac{c}{\sqrt{1 - (f_c/f_\text{measured})^2}}$\\[2pt]
+Group Velocity: $v_g = c\sqrt{1 - (f_c/f_\text{measured})^2}$ \quad (equivalently $v_g = c^2/v_p$)
+
+\subsection*{Results}
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+Oscillator $f$ (GHz) & Measured $f$ (GHz) & $v_g$ (m/s) & $v_p$ (m/s) \\
+\midrule
+11   & 11.050 & $2.489\times10^{8}$ & $3.616\times10^{8}$ \\
+9.5  & 9.405  & $2.219\times10^{8}$ & $4.055\times10^{8}$ \\
+8.5  & 8.515  & $1.898\times10^{8}$ & $4.741\times10^{8}$ \\
+\bottomrule
+\end{tabular}\\[4pt]
+Table~2: Resonant cavity frequencies.
+\end{center}
+
+The measured resonance frequencies were slightly lower than the oscillator settings for two of three cases, which is expected due to small losses and calibration limits in the setup. As the operating frequency decreased, the group velocity also decreased, while the phase velocity increased, matching waveguide theory.
+
+The results confirm the relationship $v_p v_g = c^2$, showing that energy travels more slowly near cutoff, while phase velocity becomes greater than the speed of light (without violating physics, since phase velocity does not represent energy flow).
+
+Overall, the measurements matched the expected behavior of the TE$_{10}$ mode, with small variations likely caused by probe alignment or tuning sensitivity.
+
+\newpage
+
+\section*{Part 1 Questions}
+
+\subsection*{1) Why are $\lambda$ and $\lambda_g$ different?}
+
+In free space, a wave moves in a straight line, so its wavelength is just $\lambda = c/f$. Inside a waveguide, the wave keeps bouncing off the metal walls and travels in a zig-zag path. Because the wave travels a longer path, its effective wavelength becomes larger. This new wavelength is called the guide wavelength $\lambda_g$, and it is always longer than the free-space wavelength for the same frequency.
+
+\subsection*{2) What electric field would the probe detect at the short-circuit end?}
+
+At the short-circuit end of a waveguide, the electric field must be zero because the metal walls force the tangential electric field to be zero. So if the probe could touch the shorted end, it would measure $\mathbf{E} = \mathbf{0}$. This happens because the boundary condition at a perfect conductor requires the tangential electric field at the surface to be zero.
+
+\subsection*{3) Expected distance to the nearest detectable minimum (and comparison)}
+
+The short circuit forces $E = 0$ at $z = 0$. Minima repeat every $\lambda_g/2$ along the guide. The nearest detectable minimum is $n\times(\lambda_g/2)$ from the termination, where $n$ is the smallest integer that places the minimum within probe reach.
 
 \begin{center}
 \begin{tabular}{cccccc}
@@ -186,8 +276,9 @@ $f$ (GHz) & $\lambda_g/2$ (mm) & $n$ & Expected $d$ (mm) & Measured $d$ (mm) & \
 
 The 11~GHz and 8.5~GHz results agree within about 2\%, consistent with typical vernier scale reading error. The 9.5~GHz result shows a larger discrepancy (about 10\%), likely due to probe alignment or a measurement made to a different minimum than expected.
 
-\paragraph{Q4. Half-wavelengths between nearest detectable minimum and short circuit.}
-$n = d_\text{measured} / (\lambda_g/2)$:
+\subsection*{4) Number of half-wavelengths between the nearest minimum and the short-circuit end}
+
+Using $n = d_\text{measured} / (\lambda_g/2)$:
 
 \begin{center}
 \begin{tabular}{ccccc}
@@ -201,10 +292,18 @@ $f$ (GHz) & Measured $d$ (mm) & $\lambda_g/2$ (mm) & $n = d/(\lambda_g/2)$ & Nea
 \end{tabular}
 \end{center}
 
-\paragraph{Q5. Cutoff frequencies and propagating modes.}
-(a) Using $a = 22.92$~mm, $b = 10.29$~mm, $c = 3\times10^{8}$~m/s (Eq.~1):
+This matches what we expect for the TE$_{10}$ standing-wave pattern, where the electric field is zero at the short and reaches its first minimum a half-wavelength away.
 
-Only TE modes are relevant for the three lowest. TM requires $m \geq 1$ AND $n \geq 1$, so TM$_{11}$ is always higher than the lowest TE modes.
+\subsection*{5) Using $a$ and $b$ to compute cutoff modes}
+
+\textbf{(a)} From the cutoff equation:
+\[
+f_c = f_{mn} = \frac{1}{2\sqrt{\mu\varepsilon}}\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}
+\]
+In free space: $1/\sqrt{\mu\varepsilon} = c = 3\times10^{8}$~m/s. Therefore,
+\[
+f_c = \frac{c}{2}\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2} = \frac{3\times10^{8}}{2}\sqrt{\left(\frac{m}{22.92~\text{mm}}\right)^2 + \left(\frac{n}{10.29~\text{mm}}\right)^2}
+\]
 
 \begin{center}
 \begin{tabular}{cccl}
@@ -221,11 +320,18 @@ TE$_{11}$/TM$_{11}$ & $(1,1)$ & $(c/2)\sqrt{1/a^2+1/b^2}$ & 15.98 (4th, not in t
 
 Three lowest: TE$_{10}$ (6.54~GHz) $<$ TE$_{20}$ (13.09~GHz) $<$ TE$_{01}$ (14.58~GHz). Note $a/b = 22.92/10.29 = 2.23 \approx 2$, confirming standard X-band ordering TE$_{10} <$ TE$_{20} <$ TE$_{01}$.
 
-(b) Propagating modes ($f > f_c$ required):
+\textbf{(b)} Propagating modes (need $f > f_c$):
+\begin{itemize}[leftmargin=*]
+  \item 8.5--11~GHz $>$ 6.54~GHz $\Rightarrow$ TE$_{10}$ propagates
+  \item 8.5--11~GHz $<$ 13.09~GHz $\Rightarrow$ TE$_{20}$ does NOT propagate
+  \item 8.5--11~GHz $<$ 14.58~GHz $\Rightarrow$ TE$_{01}$ does NOT propagate
+\end{itemize}
+Only TE$_{10}$ propagates. The guide operates single-mode throughout.
 
-All three operating frequencies (8.5, 9.5, 11~GHz) lie between TE$_{10}$ cutoff (6.54~GHz) and TE$_{20}$ cutoff (13.09~GHz). Therefore only TE$_{10}$ propagates at all three frequencies, so the guide operates single-mode throughout.
-
-(c) Back-calculating $f_c$ from measured $\lambda_g$ using $f_c = f\sqrt{1 - (\lambda/\lambda_g)^2}$:
+\textbf{(c)} Back-calculating $f_c$ from measured $\lambda_g$. Starting from $v_p = f\lambda_g = c/\sqrt{1 - (f_c/f)^2}$ and solving for $f_c$:
+\[
+f_c = f\sqrt{1 - \left(\frac{c}{f\lambda_g}\right)^2} = f\sqrt{1 - \left(\frac{\lambda}{\lambda_g}\right)^2}
+\]
 
 \begin{center}
 \begin{tabular}{cccc}
@@ -239,77 +345,40 @@ Frequency (GHz) & $\lambda$ (mm) & $\lambda_g$ (mm) & $f_c$ (GHz) \\
 \end{tabular}
 \end{center}
 
-Average back-calculated $f_c = 6.37$~GHz vs geometric $f_c$ (TE$_{10}$) = 6.54~GHz, so the percent difference is 2.6\%. Agreement is within about 3\%, consistent with minor probe loading and vernier scale reading error.
+Average back-calculated $f_c = 6.37$~GHz vs geometric $f_c$ (TE$_{10}$) = 6.54~GHz, giving a percent difference of 2.6\%. These values all match the theoretical TE$_{10}$ cutoff within about 3\%. Small variations come from probe accuracy and $\lambda_g$ averaging.
 
 \newpage
 
-\section*{Experiment 2: Frequency Measurements}
+\section*{Part 2 Questions}
 
-\subsection*{Objective}
-
-Use a tunable resonant cavity (HP X532B frequency meter) to independently measure the microwave frequency at each of the three oscillator settings (11~GHz, 9.5~GHz, 8.5~GHz). Compare the cavity-measured frequency to the oscillator dial setting and recalculate phase and group velocities.
-
-\subsection*{Theory}
-
-A resonant cavity is a hollow metallic enclosure in which EM fields oscillate at discrete resonant frequencies determined by its dimensions. When a signal at the resonant frequency passes through the cavity it is strongly absorbed, causing a pronounced dip in the SWR meter reading. Tuning the cavity until the SWR dip is greatest gives the signal frequency directly from the calibrated scale.
-
-Combining the cavity-measured frequency with $\lambda_g$ from Experiment 1 allows an independent cross-check of phase velocity:
-\begin{align}
-v_p &= \lambda_g \cdot f \\
-v_g &= c^2 / v_p
-\end{align}
-
-\subsection*{Setup}
-
-Equipment: same as Experiment 1 with the addition of HP X532B Tunable Cavity Frequency Meter inserted between the carriage and the short-circuit termination. The probe was positioned at a standing-wave maximum. The cavity knob was tuned for maximum SWR dip at each oscillator frequency setting.
-
-\subsection*{Equations Used}
-
-\begin{itemize}[leftmargin=*]
-  \item $v_p = \lambda_g\cdot f$ -- phase velocity
-  \item $v_g = c^2 / v_p$ -- group velocity
-  \item \% difference $= |\text{measured} - \text{expected}| / \text{expected} \times 100\%$
-\end{itemize}
-
-\subsection*{Results / Data}
-
-\textbf{Table 2.} Resonant cavity frequency measurements and derived velocities.
-
-\begin{center}
-\begin{tabular}{ccccc}
-\toprule
-Oscillator $f$ (GHz) & Measured $f$ (GHz) & $\lambda_g$ avg (mm) & $v_p$ (m/s) & $v_g$ (m/s) \\
-\midrule
-11   & 11.050 & 32.7 & $3.616\times10^{8}$ & $2.489\times10^{8}$ \\
-9.5  & 9.405  & 43.1 & $4.055\times10^{8}$ & $2.219\times10^{8}$ \\
-8.5  & 8.515  & 55.7 & $4.741\times10^{8}$ & $1.898\times10^{8}$ \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection*{Discussion}
-
-\paragraph{Q1. Phase velocity: $v_p = \lambda_g \cdot f$.}
-Using the measured values for frequency and wavelength, calculate the phase velocity of the wave: $v_p = \lambda_g\cdot f$. How close (percent difference) is this to the values from Experiment~1? Based on this, how important is it to know the frequency accurately?
-
-Using cavity-measured frequency and average $\lambda_g$ from Experiment 1:
-\begin{itemize}[leftmargin=*]
-  \item $v_p(11~\text{GHz}) = 32.72~\text{mm} \times 11.050~\text{GHz} = 3.616\times10^{8}$~m/s (Exp 1: $3.599\times10^{8}$~m/s, \% diff $= 0.5\%$)
-  \item $v_p(9.5~\text{GHz}) = 43.12~\text{mm} \times 9.405~\text{GHz} = 4.055\times10^{8}$~m/s (Exp 1: $4.096\times10^{8}$~m/s, \% diff $= 1.0\%$)
-  \item $v_p(8.5~\text{GHz}) = 55.68~\text{mm} \times 8.515~\text{GHz} = 4.741\times10^{8}$~m/s (Exp 1: $4.733\times10^{8}$~m/s, \% diff $= 0.2\%$)
-\end{itemize}
-
-All three values agree with Experiment 1 to within 1.1\%, confirming that the oscillator frequency was close to its set value and that the waveguide wavelength measurements were accurate. Small discrepancies are attributable to vernier scale reading error and minor oscillator frequency drift.
-
-Based on this, knowing the frequency accurately is important but not critical at this level. Since $v_p = \lambda_g \cdot f$, a 1\% error in frequency directly produces a 1\% error in $v_p$. More critically, frequency accuracy matters for mode control: if the operating frequency drifted below the TE$_{20}$ cutoff (13.09~GHz) it could excite unwanted higher-order modes and corrupt measurements. The cavity meter confirms the oscillator stays within about 0.5\% of its set value, which is sufficient for single-mode waveguide operation.
-
-\paragraph{Q2. What happens to $v_g$ as $f$ approaches $f_c$?}
-From Eq.~4: $v_g = v_{p0}\sqrt{1 - (f_c/f)^2}$. As $f \to f_c$, the term $(f_c/f)^2 \to 1$, so $\sqrt{1 - (f_c/f)^2} \to 0$ and therefore $v_g \to 0$. The measured data confirms this trend:
+\subsection*{Q1}
+\textit{Using the measured values for frequency and wavelength, calculate the phase velocity of the wave: $v_p = \lambda_g f$. How close (i.e. percentage difference) is this to your values from Experiment 3.1? Based on this, how important is it to know the frequency accurately?}
 
 \begin{center}
 \begin{tabular}{cccc}
 \toprule
-$f$ (GHz) & $f_c$ (GHz) & $f / f_c$ & $v_g$ (m/s) \\
+Frequency (GHz) & $v_p$ (m/s) (Part 1) & $v_p$ (m/s) (Part 2) & \% Difference \\
+\midrule
+11   & $3.599\times10^{8}$ & $3.616\times10^{8}$ & 0.5\% \\
+9.5  & $4.096\times10^{8}$ & $4.055\times10^{8}$ & 1.0\% \\
+8.5  & $4.733\times10^{8}$ & $4.741\times10^{8}$ & 0.2\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The phase velocities from Part 2 agree with Part 1 to within 1.1\%, confirming that the oscillator frequency was close to its set value and that the waveguide wavelength measurements were accurate. Small discrepancies are attributable to vernier scale reading error and minor oscillator frequency drift.
+
+Based on this, knowing the frequency accurately is important but not critical at this level. Since $v_p = \lambda_g f$, a 1\% error in frequency directly produces a 1\% error in $v_p$. More critically, frequency accuracy matters for mode control: if the operating frequency drifted above the TE$_{20}$ cutoff (13.09~GHz) it could excite unwanted higher-order modes and corrupt measurements. The cavity meter confirms the oscillator stays within about 0.5\% of its set value, which is sufficient for single-mode waveguide operation.
+
+\subsection*{Q2}
+\textit{What happens to the group velocity $v_g$ as frequency gets closer to the cutoff frequency $f_c$? Can you offer some physical explanation for this?}
+
+From Eq.~4: $v_g = c\sqrt{1 - (f_c/f)^2}$. As $f \to f_c$, the term $(f_c/f)^2 \to 1$, so $\sqrt{1 - (f_c/f)^2} \to 0$ and therefore $v_g \to 0$. The measured data confirms this trend:
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$f$ (GHz) & $f_c$ (GHz) & $f/f_c$ & $v_g$ (m/s) \\
 \midrule
 11   & 6.54 & 1.68 & $2.501\times10^{8}$ \\
 9.5  & 6.54 & 1.45 & $2.197\times10^{8}$ \\
@@ -320,6 +389,6 @@ $f$ (GHz) & $f_c$ (GHz) & $f / f_c$ & $v_g$ (m/s) \\
 
 As frequency decreases toward $f_c = 6.54$~GHz, $v_g$ drops from $2.501\times10^{8}$ to $1.902\times10^{8}$~m/s, approaching zero at cutoff.
 
-Physical explanation: the TE$_{10}$ mode can be visualized as two plane waves bouncing obliquely between the broad walls at angle $\theta$ to the $z$-axis, where $\sin\theta = f_c/f$. As $f \to f_c$, $\theta \to 90^\circ$, so the waves bounce nearly perpendicular to the axis with almost no net axial advance. Energy is trapped bouncing transversely and travels axially more and more slowly. At exactly $f = f_c$ the waves bounce straight across ($\theta = 90^\circ$) and $v_g = 0$, meaning the mode carries no energy along the guide. Below cutoff the mode becomes evanescent and decays exponentially.
+Physically, near cutoff the wave stops transporting energy efficiently. Most of its energy stays stored in the electric and magnetic fields instead of moving forward. Because of this, the wave travels very slowly down the guide, and energy flow almost stops. Visualizing the TE$_{10}$ mode as two plane waves bouncing obliquely between the broad walls at angle $\theta$ to the $z$-axis (where $\sin\theta = f_c/f$), as $f \to f_c$ the angle $\theta \to 90^\circ$ and the waves bounce nearly perpendicular to the axis with almost no net axial advance. Below cutoff the mode becomes evanescent and decays exponentially.
 
 \end{document}
