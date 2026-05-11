@@ -95,6 +95,8 @@
 
 This lab investigates how electromagnetic waves travel inside rectangular waveguides, with a focus on propagation behavior, cutoff conditions, and the formation of standing wave patterns. Waveguides are hollow metal structures used to guide microwave-frequency signals, and unlike coaxial lines they cannot support TEM modes. Instead, they operate using transverse electric (TE) and transverse magnetic (TM) modes, each with a specific cutoff frequency determined by the waveguide's physical dimensions.
 
+The word ``transverse'' means the field has no component along the direction of propagation, which we call the $z$-axis. For TE modes the electric field is all transverse and only the magnetic field has a $z$-component, and for TM modes it is the other way around. The subscripts $m$ and $n$ count how many half-wavelength variations of the field fit across the guide width $a$ (along $x$) and height $b$ (along $y$). For example TE$_{10}$ has one half-wavelength of E-field variation across the width and no variation across the height. The cutoff frequency for any $(m,n)$ mode is written $f_{mn}$, and it sets the minimum frequency where that mode can actually propagate.
+
 In this experiment, a slotted waveguide was used to visualize standing waves created by reflections from a short-circuit load. By sliding a probe along the slot, we measured changes in the electric field and identified the positions of maxima and minima. These measurements allowed us to determine the guide wavelength $\lambda_g$, as well as calculate phase and group velocities at different operating frequencies. Overall, the lab emphasizes how boundary conditions and waveguide geometry shape wave propagation and how these effects differ from ordinary free-space transmission.
 
 \section{Part 1: Wavelength Measurements}
@@ -275,11 +277,11 @@ Overall, the measurements matched the expected behavior of the TE$_{10}$ mode, w
 
 \subsection*{1) Why are $\lambda$ and $\lambda_g$ different?}
 
-$\lambda_g$ is always longer than $\lambda$ because the wave inside the guide bounces obliquely between the walls instead of going straight down $z$. So about the math, $\lambda = c/f$ is just the free-space wavelength, and then $\lambda_g = \lambda/\sqrt{1 - (f_c/f)^2}$ is what shows up along the guide axis. For example at 11~GHz, $\lambda$ is about 27.3~mm and our measured $\lambda_g$ is 32.7~mm, which is roughly 20\% longer. And as $f$ drops toward $f_c$, the bounce angle gets steeper, which stretches $\lambda_g$ out to infinity right at cutoff.
+$\lambda_g$ is always longer than $\lambda$ because the wave inside the guide bounces obliquely between the walls instead of going straight down $z$. The free-space wavelength is just $\lambda = c/f$, and then the guide wavelength is $\lambda_g = \lambda/\sqrt{1 - (f_c/f)^2}$ along the axis. For example at 11~GHz, $\lambda$ is about 27.3~mm and our measured $\lambda_g$ is 32.7~mm, which is roughly 20\% longer. And as $f$ drops toward $f_c$, the bounce angle gets steeper, which stretches $\lambda_g$ out to infinity right at cutoff.
 
 \subsection*{2) What electric field would the probe detect at the short-circuit end?}
 
-The probe would read zero. About the boundary condition, the short forces the tangential E-field at the conductor surface to be zero, which makes the short itself a node of the standing wave. The probe measures tangential E, so if you could push it all the way to the wall it would just show $\mathbf{E} = \mathbf{0}$. For example our data shows the closest detectable minimum sits a few half-wavelengths away from the short, which lines up with that node being the reference point.
+The probe would read zero because the boundary condition forces the tangential E-field to be zero at the conductor surface, which makes the short itself a node of the standing wave. Tangential E just means the part of the E-field that lies flat along the wall (parallel to the surface), and that's exactly what the probe measures. For example our data shows the closest detectable minimum sits a few half-wavelengths away from the short, which lines up with that node being the reference point.
 
 \subsection*{3) Expected distance to the nearest detectable minimum (and comparison)}
 
@@ -297,7 +299,7 @@ $f$ (GHz) & $\lambda_g/2$ (mm) & $n$ & Expected $d$ (mm) & Measured $d$ (mm) & \
 \end{tabular}
 \end{center}
 
-For example at 11~GHz the expected is 81.8~mm and we measured 83.5~mm, which is roughly 2\% off. Same story at 8.5~GHz, about 2.3\% off. The 9.5~GHz case is the outlier at 10.9\%, which is probably because we read a different minimum than the one we counted, or the probe was a little off-center. So basically two of three lined up close, and the third one is consistent with a counting error.
+For example at 11~GHz the expected is 81.8~mm and we measured 83.5~mm, which is roughly 2\% off. Same story at 8.5~GHz, about 2.3\% off. The 9.5~GHz case is the outlier at 10.9\%, which is probably because we read a different minimum than the one we counted, or the probe was a little off-center. So two of three lined up close, and the third one is consistent with a counting error.
 
 \subsection*{4) Number of half-wavelengths between the nearest minimum and the short-circuit end}
 
@@ -315,11 +317,11 @@ $f$ (GHz) & Measured $d$ (mm) & $\lambda_g/2$ (mm) & $n = d/(\lambda_g/2)$ & Nea
 \end{tabular}
 \end{center}
 
-For example at 11~GHz, 83.5~mm $/$ 16.36~mm comes out to 5.10, so that's 5 half-wavelengths. 8.5~GHz lands on 3.07 which is basically 3. The 9.5~GHz one is 4.43 which rounds to 4, but the fact that it is not close to an integer is what gave us the 10\% error in Q3. So basically the pattern matches the TE$_{10}$ standing wave, where $E = 0$ at the short and the next zero shows up half a guide wavelength in.
+For example at 11~GHz, 83.5~mm $/$ 16.36~mm comes out to 5.10, so that's 5 half-wavelengths. 8.5~GHz lands on 3.07 which is basically 3. The 9.5~GHz one is 4.43 which rounds to 4, but the fact that it is not close to an integer is what gave us the 10\% error in Q3. So the pattern matches the TE$_{10}$ standing wave, where $E = 0$ at the short and the next zero shows up half a guide wavelength in.
 
 \subsection*{5) Using $a$ and $b$ to compute cutoff modes}
 
-\textbf{(a)} For our measured $a = 22.92$~mm and $b = 10.29$~mm, the three lowest modes are TE$_{10}$ at 6.54~GHz, TE$_{20}$ at 13.09~GHz, and TE$_{01}$ at 14.58~GHz. About the formula:
+\textbf{(a)} For our measured $a = 22.92$~mm and $b = 10.29$~mm, the three lowest modes are TE$_{10}$ at 6.54~GHz, TE$_{20}$ at 13.09~GHz, and TE$_{01}$ at 14.58~GHz. The formula is:
 \[
 f_c = f_{mn} = \frac{1}{2\sqrt{\mu\varepsilon}}\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}
 \]
@@ -349,13 +351,13 @@ TM modes need both $m$ and $n \geq 1$, so the lowest TM mode is TM$_{11}$ at 15.
   \item 8.5--11~GHz $<$ 13.09~GHz $\Rightarrow$ TE$_{20}$ does NOT propagate
   \item 8.5--11~GHz $<$ 14.58~GHz $\Rightarrow$ TE$_{01}$ does NOT propagate
 \end{itemize}
-For example at 11~GHz we are at $f/f_c = 1.68$ for TE$_{10}$ which propagates fine, and the same 11~GHz is only 0.84 of the TE$_{20}$ cutoff so that one is evanescent. So basically the guide stays single-mode the whole time.
+For example at 11~GHz we are at $f/f_c = 1.68$ for TE$_{10}$ which propagates fine, and the same 11~GHz is only 0.84 of the TE$_{20}$ cutoff so that one just dies off without propagating. So the guide stays single-mode the whole time.
 
 \textbf{(c)} Solving $v_p = f\lambda_g = c/\sqrt{1 - (f_c/f)^2}$ for $f_c$:
 \[
 f_c = f\sqrt{1 - \left(\frac{c}{f\lambda_g}\right)^2} = f\sqrt{1 - \left(\frac{\lambda}{\lambda_g}\right)^2}
 \]
-So basically you back out the cutoff from each measurement and average.
+So you back out the cutoff from each measurement and average.
 
 \begin{center}
 \begin{tabular}{cccc}
@@ -392,7 +394,7 @@ Frequency (GHz) & $v_p$ (m/s) (Part 1) & $v_p$ (m/s) (Part 2) & \% Difference \\
 
 The phase velocities from Part 2 agree with Part 1 within 1.1\% across all three frequencies. For example at 11~GHz, Part 1 gave $3.599\times10^{8}$~m/s and Part 2 gave $3.616\times10^{8}$~m/s, which is 0.5\% off. The reason the agreement is so close is that both calculations use the same $\lambda_g$ average, which means the only real difference is whether you use the dial-set frequency or the cavity-measured one. And the cavity reads within 0.5\% of the dial, so the carry-through is small.
 
-About frequency accuracy, a 1\% error in $f$ gives you a 1\% error in $v_p$ directly, which is fine at this level. The bigger reason to know $f$ accurately is mode control. For example if the frequency drifted above the TE$_{20}$ cutoff at 13.09~GHz you would suddenly excite higher-order modes and the measurements would fall apart. So basically the cavity meter is mainly there to confirm we are still in single-mode TE$_{10}$ territory.
+For frequency accuracy, a 1\% error in $f$ gives you a 1\% error in $v_p$ directly, which is fine at this level. The bigger reason to know $f$ accurately is mode control. For example if the frequency drifted above the TE$_{20}$ cutoff at 13.09~GHz you would suddenly excite higher-order modes and the measurements would fall apart. So the cavity meter is mainly there to confirm we are still in single-mode TE$_{10}$ territory.
 
 \subsection*{Q2}
 \textit{What happens to the group velocity $v_g$ as frequency gets closer to the cutoff frequency $f_c$? Can you offer some physical explanation for this?}
@@ -411,8 +413,8 @@ $f$ (GHz) & $f_c$ (GHz) & $f/f_c$ & $v_g$ (m/s) \\
 \end{tabular}
 \end{center}
 
-For example at 8.5~GHz we measured $v_g = 1.902\times10^{8}$~m/s, and at 11~GHz it is up to $2.501\times10^{8}$~m/s, which lines up with $f/f_c$ going from 1.30 to 1.68. So basically the closer you push to cutoff, the slower energy moves down the guide.
+For example at 8.5~GHz we measured $v_g = 1.902\times10^{8}$~m/s, and at 11~GHz it is up to $2.501\times10^{8}$~m/s, which lines up with $f/f_c$ going from 1.30 to 1.68. So the closer you push to cutoff, the slower energy moves down the guide.
 
-About the physical picture, the TE$_{10}$ mode is like two plane waves bouncing off the broad walls at angle $\theta$ where $\sin\theta = f_c/f$. And as $f$ drops to $f_c$, $\theta$ goes to $90^\circ$, which means the waves bounce sideways with no net axial advance. So basically below cutoff the wave can't make forward progress at all and just decays exponentially down the guide.
+About the physical picture, the TE$_{10}$ mode is like two plane waves bouncing off the broad walls at angle $\theta$ where $\sin\theta = f_c/f$. And as $f$ drops to $f_c$, $\theta$ goes to $90^\circ$, which means the waves bounce sideways with no net axial advance. So below cutoff the wave can't make forward progress at all and just decays exponentially down the guide.
 
 \end{document}
