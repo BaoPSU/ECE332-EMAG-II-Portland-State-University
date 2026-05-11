@@ -172,33 +172,52 @@ A short-circuit termination enforces the boundary condition that the tangential 
 \paragraph{Q3. Expected distance from short circuit to nearest detectable minimum.}
 The short circuit forces $E = 0$ at $z = 0$. Minima repeat every $\lambda_g/2$. The nearest detectable minimum is $n\times(\lambda_g/2)$ from the termination, where $n$ is the smallest integer that places the minimum within probe reach.
 
-\begin{itemize}[leftmargin=*]
-  \item 11~GHz: $\lambda_g/2 = 16.36$~mm, $n=5$, expected $d=81.80$~mm, measured $=83.5$~mm, \% diff $=2.1\%$
-  \item 9.5~GHz: $\lambda_g/2 = 21.56$~mm, $n\approx4.43$, nearest int $n=4$, expected $d=86.24$~mm, measured $=95.6$~mm, \% diff $=10.9\%$
-  \item 8.5~GHz: $\lambda_g/2 = 27.84$~mm, $n=3$, expected $d=83.52$~mm, measured $=85.4$~mm, \% diff $=2.3\%$
-\end{itemize}
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$f$ (GHz) & $\lambda_g/2$ (mm) & $n$ & Expected $d$ (mm) & Measured $d$ (mm) & \% diff \\
+\midrule
+11   & 16.36 & 5            & 81.80 & 83.5 & 2.1\%  \\
+9.5  & 21.56 & 4 ($\approx4.43$) & 86.24 & 95.6 & 10.9\% \\
+8.5  & 27.84 & 3            & 83.52 & 85.4 & 2.3\%  \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 The 11~GHz and 8.5~GHz results agree within about 2\%, consistent with typical vernier scale reading error. The 9.5~GHz result shows a larger discrepancy (about 10\%), likely due to probe alignment or a measurement made to a different minimum than expected.
 
 \paragraph{Q4. Half-wavelengths between nearest detectable minimum and short circuit.}
 $n = d_\text{measured} / (\lambda_g/2)$:
-\begin{itemize}[leftmargin=*]
-  \item 11~GHz: $n = 83.5 / 16.36 = 5.10 \Rightarrow n = 5$ half-wavelengths
-  \item 9.5~GHz: $n = 95.6 / 21.56 = 4.43 \Rightarrow n \approx 4$ half-wavelengths (some measurement uncertainty)
-  \item 8.5~GHz: $n = 85.4 / 27.84 = 3.07 \Rightarrow n = 3$ half-wavelengths
-\end{itemize}
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$f$ (GHz) & Measured $d$ (mm) & $\lambda_g/2$ (mm) & $n = d/(\lambda_g/2)$ & Nearest int $n$ \\
+\midrule
+11   & 83.5 & 16.36 & 5.10 & 5 \\
+9.5  & 95.6 & 21.56 & 4.43 & 4 (with uncertainty) \\
+8.5  & 85.4 & 27.84 & 3.07 & 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \paragraph{Q5. Cutoff frequencies and propagating modes.}
 (a) Using $a = 22.92$~mm, $b = 10.29$~mm, $c = 3\times10^{8}$~m/s (Eq.~1):
 
 Only TE modes are relevant for the three lowest. TM requires $m \geq 1$ AND $n \geq 1$, so TM$_{11}$ is always higher than the lowest TE modes.
 
-\begin{itemize}[leftmargin=*]
-  \item TE$_{10}$ ($m=1$, $n=0$): $f_c = c/(2a) = 6.54$~GHz (lowest)
-  \item TE$_{20}$ ($m=2$, $n=0$): $f_c = c/a = 13.09$~GHz
-  \item TE$_{01}$ ($m=0$, $n=1$): $f_c = c/(2b) = 14.58$~GHz
-  \item TE$_{11}$/TM$_{11}$: $f_c = (c/2)\sqrt{1/a^2 + 1/b^2} = 15.98$~GHz (4th, not in top 3)
-\end{itemize}
+\begin{center}
+\begin{tabular}{cccl}
+\toprule
+Mode & $(m,n)$ & $f_c$ formula & $f_c$ (GHz) \\
+\midrule
+TE$_{10}$         & $(1,0)$ & $c/(2a)$                  & 6.54 (lowest)        \\
+TE$_{20}$         & $(2,0)$ & $c/a$                     & 13.09                \\
+TE$_{01}$         & $(0,1)$ & $c/(2b)$                  & 14.58                \\
+TE$_{11}$/TM$_{11}$ & $(1,1)$ & $(c/2)\sqrt{1/a^2+1/b^2}$ & 15.98 (4th, not in top 3) \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 Three lowest: TE$_{10}$ (6.54~GHz) $<$ TE$_{20}$ (13.09~GHz) $<$ TE$_{01}$ (14.58~GHz). Note $a/b = 22.92/10.29 = 2.23 \approx 2$, confirming standard X-band ordering TE$_{10} <$ TE$_{20} <$ TE$_{01}$.
 
