@@ -1,0 +1,220 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[top=0.85in,bottom=0.85in,left=1in,right=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{cancel}
+
+\graphicspath{{cs_crops/}{./}}
+
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+
+\newmdenv[linewidth=1pt,linecolor=teal,backgroundcolor=tealbg!30,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=4pt,innerbottommargin=4pt,
+  skipabove=4pt,skipbelow=6pt]{cssnip}
+
+\newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!30,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=4pt,innerbottommargin=4pt,
+  skipabove=4pt,skipbelow=4pt]{notebox}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\textbf{ECE332 Spring 2026 --- HW3 Generated Answers}}
+\fancyhead[R]{Bao Nguyen}
+\fancyfoot[C]{\thepage}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+
+\newcommand{\probhead}[2]{%
+  \colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}%
+  {\color{purple}\large\textbf{Problem #1 \hfill #2}}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{ECE 332 --- Homework 3: Generated Answers from Final Cheat Sheet}}\\[4pt]
+{\small Each solution shows the cheat sheet snippet used, then the answer.}
+\end{center}
+
+\vspace{6pt}
+
+%======================================================
+\probhead{1 --- LHC Wave Normally Incident on a Dielectric}{20 pts}
+
+\textbf{Setup:} 200 MHz LHC plane wave in air, $|E|=5$ V/m, normally incident on dielectric ($\varepsilon_r=4$) at $z\ge0$. Positive max at $z=0$, $t=0$.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_normal}\hfill
+\includegraphics[width=0.49\linewidth]{cs_phasor_templates}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_power}
+\end{cssnip}
+
+\textbf{Wave parameters:}
+\[\omega = 2\pi(2\!\times\!10^8) = 4\pi\!\times\!10^8~\text{rad/s},\quad
+  k_1 = \omega/c = \tfrac{4\pi}{3}~\text{rad/m}\]
+
+\textbf{(a) LHC phasor (peak at $z=0, t=0$):} from the templates, $\hat{e}_{\text{LHC}} = \hat{x}+j\hat{y}$.
+\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}}\]
+
+\textbf{(b) Intrinsic impedances and $\Gamma, \tau$:}
+\[\eta_1 = \eta_0 = 120\pi~\Omega,\qquad \eta_2 = \tfrac{\eta_0}{\sqrt{4}} = 60\pi~\Omega\]
+\[\boxed{\Gamma = \tfrac{\eta_2-\eta_1}{\eta_2+\eta_1} = \tfrac{-60\pi}{180\pi} = -\tfrac{1}{3},\quad \tau = 1+\Gamma = \tfrac{2}{3}}\]
+
+\textbf{(c) Reflected, transmitted, total field:}
+\[k_2 = \tfrac{\omega\sqrt{4}}{c} = 2k_1 = \tfrac{8\pi}{3}~\text{rad/m}\]
+\[\tilde{\mathbf{E}}^r = \Gamma\cdot 5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -\tfrac{5}{3}(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}\]
+\[\tilde{\mathbf{E}}^t = \tau\cdot 5(\hat{x}+j\hat{y})\,e^{-jk_2 z} = \tfrac{10}{3}(\hat{x}+j\hat{y})\,e^{-j8\pi z/3}\]
+\[\boxed{\tilde{\mathbf{E}}_1 = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{3}e^{+j4\pi z/3}\right)}\]
+
+\textbf{(d) Power percentages:}
+\[\%P_r = 100|\Gamma|^2 = \boxed{11.1\%}\]
+\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100\!\cdot\!\tfrac{4}{9}\!\cdot\!\tfrac{120\pi}{60\pi} = \boxed{88.9\%}\]
+
+\newpage
+%======================================================
+\probhead{2 --- Same Wave, Poor-Conductor Medium 2}{20 pts}
+
+\textbf{Setup:} Replace medium 2 with poor conductor: $\varepsilon_r=2.25$, $\mu_r=1$, $\sigma=10^{-4}$ S/m. Everything else same as P1.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_normal}\hfill
+\includegraphics[width=0.49\linewidth]{cs_lowloss}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_power}
+\end{cssnip}
+
+\textbf{(a) Medium 1 is unchanged:}
+\[\eta_1 = 120\pi~\Omega,\quad k_1 = \tfrac{4\pi}{3}~\text{rad/m},\quad
+  \tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}\]
+
+\textbf{(b) Classify medium 2:}
+\[\tfrac{\sigma}{\omega\varepsilon} = \tfrac{10^{-4}}{4\pi\!\times\!10^8\cdot 2.25\cdot 8.854\!\times\!10^{-12}} = 4\!\times\!10^{-3} \ll 1\]
+Low-loss dielectric. Use the LOW-LOSS QUICK PARAMS:
+\[\alpha_2 \approx \tfrac{\sigma\eta_0}{2\sqrt{\varepsilon_{r2}}} = \tfrac{10^{-4}\cdot 120\pi}{2\sqrt{2.25}} = 1.26\!\times\!10^{-2}~\text{Np/m}\]
+\[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r2}}}{c} = \tfrac{4\pi\!\times\!10^8\cdot 1.5}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
+\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{1.5} = 80\pi~\Omega\]
+
+\textbf{Reflection and transmission:}
+\[\Gamma = \tfrac{80\pi - 120\pi}{80\pi + 120\pi} = \tfrac{-40\pi}{200\pi} = -\tfrac{1}{5},\quad \tau = 1+\Gamma = \tfrac{4}{5}\]
+
+\textbf{(c) Phasors:}
+\[\tilde{\mathbf{E}}^r = -(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}~\text{V/m}\]
+\[\tilde{\mathbf{E}}^t = 4(\hat{x}+j\hat{y})\,e^{-1.26\times10^{-2}z}\,e^{-j2\pi z}~\text{V/m}\]
+\[\tilde{\mathbf{E}}_1 = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{5}e^{+j4\pi z/3}\right)\]
+
+\textbf{(d) Power:}
+\[\%P_r = 100|\Gamma|^2 = \boxed{4\%}\qquad
+  \%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100\!\cdot\!\tfrac{16}{25}\!\cdot\!\tfrac{120\pi}{80\pi} = \boxed{96\%}\]
+
+\newpage
+%======================================================
+\probhead{3 --- Parallel-Polarized Wave Through Two Dielectric Layers}{10 pts}
+
+\textbf{Setup:} $\theta_i=30^\circ$ from air, layer 1 ($\varepsilon_r=6.25$, $t=5$ cm), layer 2 ($\varepsilon_r=2.25$, $t=5$ cm), exits to air.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_snell}\hfill
+\includegraphics[width=0.49\linewidth]{cs_lateral}
+\end{cssnip}
+
+\textbf{(a) Chained Snell's law:}
+\[\sin\theta_2 = \sin 30^\circ\sqrt{\tfrac{1}{6.25}} = 0.5\!\cdot\!0.4 = 0.2 \Rightarrow \theta_2 = \sin^{-1}(0.2) = \boxed{11.54^\circ}\]
+\[\sin\theta_3 = 0.2\sqrt{\tfrac{6.25}{2.25}} = 0.2\!\cdot\!\tfrac{5}{3} = \tfrac{1}{3} \Rightarrow \theta_3 = \sin^{-1}(1/3) = \boxed{19.47^\circ}\]
+\[\sin\theta_4 = \tfrac{1}{3}\sqrt{\tfrac{2.25}{1}} = \tfrac{1}{3}\!\cdot\!\tfrac{3}{2} = \tfrac{1}{2} \Rightarrow \theta_4 = \boxed{30^\circ = \theta_i}\]
+
+\textbf{(b) Lateral displacement:}
+\[d = t_1\tan\theta_2 + t_2\tan\theta_3 = 5\tan 11.54^\circ + 5\tan 19.47^\circ = 5(0.2041 + 0.3536)~\text{cm}\]
+\[\boxed{d = 2.79~\text{cm}}\]
+
+\begin{center}\includegraphics[width=0.85\linewidth]{HW3_P3_layers}\end{center}
+
+\newpage
+%======================================================
+\probhead{4 --- Dielectric Waveguide TE Mode Identification}{20 pts}
+
+\textbf{Setup:} TE wave, $a=5$ cm, $b=3$ cm, $E_x = -36\cos(40\pi x)\sin(100\pi y)\sin\!\big((2.4\pi\!\times\!10^{10})t - 52.9\pi z\big)$ V/m.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_wgmodes}\hfill
+\includegraphics[width=0.49\linewidth]{cs_epsilon_disp}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_cutoff}\hfill
+\includegraphics[width=0.49\linewidth]{cs_wgimpedance}
+\end{cssnip}
+
+\textbf{(a) Mode from the field expression.} Read $m\pi/a$ from the $\cos$ coefficient and $n\pi/b$ from the $\sin$ coefficient.
+\[\tfrac{m\pi}{a} = 40\pi \Rightarrow m = 40\!\cdot\!0.05 = 2\]
+\[\tfrac{n\pi}{b} = 100\pi \Rightarrow n = 100\!\cdot\!0.03 = 3\]
+\[\boxed{\text{Mode: TE}_{23}}\]
+
+\textbf{(b) $\varepsilon_r$ from dispersion}, with $\omega = 2.4\pi\!\times\!10^{10}$ rad/s, $\beta = 52.9\pi$ rad/m:
+\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]
+  = \!\left(\tfrac{3\!\times\!10^8}{2.4\pi\!\times\!10^{10}}\right)^{\!2}\!\big[(52.9\pi)^2 + (40\pi)^2 + (100\pi)^2\big]\]
+\[\boxed{\varepsilon_r = 2.25}\]
+
+\textbf{(c) Cutoff frequency for TE$_{23}$:}
+\[u_{p0} = \tfrac{c}{\sqrt{\varepsilon_r}} = \tfrac{3\!\times\!10^8}{1.5} = 2\!\times\!10^8~\text{m/s}\]
+\[f_{23} = \tfrac{u_{p0}}{2}\sqrt{\!\left(\tfrac{2}{a}\right)^{\!2}\!+\!\left(\tfrac{3}{b}\right)^{\!2}}
+  = 10^8\sqrt{(2/0.05)^2 + (3/0.03)^2} = 10^8\sqrt{1600+10000}\]
+\[\boxed{f_{23} = 10.77~\text{GHz}}\]
+
+\textbf{(d) $H_y$ from $Z_{\text{TE}}$:} operating frequency $f = \omega/(2\pi) = 12$ GHz.
+\[Z_{\text{TE}} = \tfrac{\eta}{\sqrt{1-(f_c/f)^2}} = \tfrac{377/\sqrt{2.25}}{\sqrt{1-(10.77/12)^2}}
+  = \tfrac{251.3}{\sqrt{1-0.805}} = \tfrac{251.3}{0.442} = 569.9~\Omega\]
+\[\boxed{H_y = \tfrac{E_x}{Z_{\text{TE}}} = -0.063\cos(40\pi x)\sin(100\pi y)\sin((2.4\pi\!\times\!10^{10})t - 52.9\pi z)~\text{A/m}}\]
+
+\newpage
+%======================================================
+\probhead{5 --- Hollow Guide, Multi-Mode Excitation \& Travel Times}{8 pts}
+
+\textbf{Setup:} Hollow guide ($\varepsilon_r=1$, $u_{p0}=c$), $a=3$ cm, $b=2$ cm. Pulse with 9.5 GHz carrier, guide length 100 m.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_cutoff}\hfill
+\includegraphics[width=0.49\linewidth]{cs_groupvel}
+\end{cssnip}
+
+\textbf{Cutoff frequencies for the lowest modes:}
+\[f_{10} = \tfrac{c}{2a} = \tfrac{3\!\times\!10^8}{0.06} = 5~\text{GHz}\]
+\[f_{01} = \tfrac{c}{2b} = \tfrac{3\!\times\!10^8}{0.04} = 7.5~\text{GHz}\]
+\[f_{11} = \tfrac{c}{2}\sqrt{\tfrac{1}{a^2}+\tfrac{1}{b^2}} = (1.5\!\times\!10^8)\sqrt{(1/0.03)^2+(1/0.02)^2} = 9.01~\text{GHz}\]
+\[f_{20} = \tfrac{c}{a} = 10~\text{GHz}\quad(>9.5,\,\text{not excited})\]
+
+\textbf{Modes excited (carrier > $f_c$):} TE$_{10}$, TE$_{01}$, TE$_{11}$, TM$_{11}$. TE$_{20}$ is just above cutoff so it does not propagate.
+
+\textbf{Group velocities:} $u_g = c\sqrt{1-(f_{mn}/f)^2}$ with $f = 9.5$ GHz.
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Mode & $f_c$ (GHz) & $u_g/c$ & $u_g$ (m/s)\\
+\midrule
+TE$_{10}$ & 5.00 & $\sqrt{1-(5/9.5)^2} = 0.85$ & $2.55\!\times\!10^8$\\
+TE$_{01}$ & 7.50 & $\sqrt{1-(7.5/9.5)^2} = 0.61$ & $1.84\!\times\!10^8$\\
+TE$_{11}$, TM$_{11}$ & 9.01 & $\sqrt{1-(9.01/9.5)^2} = 0.32$ & $0.95\!\times\!10^8$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Travel times: $t = L/u_g$ over 100 m.}
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+Mode & $t$ ($\mu$s)\\
+\midrule
+\rowcolor{purplebg!50} TE$_{10}$ & $\boxed{0.39}$\\
+TE$_{01}$ & $\boxed{0.54}$\\
+\rowcolor{purplebg!50} TE$_{11}$, TM$_{11}$ & $\boxed{1.05}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Higher modes arrive later because they propagate closer to cutoff, so $u_g$ drops.
+
+\end{document}
