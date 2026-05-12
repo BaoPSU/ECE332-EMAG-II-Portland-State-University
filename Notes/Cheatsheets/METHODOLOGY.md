@@ -6,13 +6,15 @@ Goal: a one-page (two-sided) reference dense enough to walk through every HW pro
 
 ---
 
-## 1. Source hierarchy (most important first)
+## 1. Source hierarchy (two co-primary sources)
 
-1. **HW answer keys** are the primary source. Every section of the midterm cheat sheet maps to a step that appears in the HW1 or HW2 solutions. If a method shows up in two solutions, it earns a section. If it shows up once, it earns a lookup table.
-2. **Lecture slides** are the secondary source. They define notation and order of operations but the cheat sheet should not just transcribe lecture math. Use lectures to confirm sign conventions and units.
-3. **Textbook** (`Notes/Textbook/EM1-book-7th-ed.pdf`, Ulaby & Ravaioli 7e) is the fallback for derivations and edge cases. Pull tables and figures (e.g. polarization ellipse, waveguide mode pictures) from here, not from lectures, since they reproduce more cleanly.
+**Lecture slides and HW answer keys work together. Neither alone is enough.**
 
-Workflow: read the answer keys first. Highlight every distinct technique. Each technique becomes one ebox.
+1. **Lectures** are where the *methods* live. The phasor method (E→H), the polarization $\psi_0/\gamma/\chi$ system, lossy-media classification by loss tangent, the lossless-vs-lossy comparison, Poynting derivations: all of these were taught as procedures in lecture before any HW used them. Read the lectures to learn the method itself and to copy notation and sign conventions exactly.
+2. **HW answer keys** confirm *which methods get tested* and how to apply them under realistic problem statements. If a method is in lectures but never appears in a HW solution, it usually does not need a cheat sheet ebox. If a method shows up in two HW solutions, it earns a full section. If it shows up once, it earns a lookup table. Answer keys also reveal the common-trap warnings (sign rules, $\cos^{-1}$ range, quadrant fixes) that turn into coral italic notes.
+3. **Textbook** (`Notes/Textbook/EM1-book-7th-ed.pdf`, Ulaby & Ravaioli 7e) is the fallback for derivations and figures. Pull diagrams (polarization ellipse, waveguide cross-section) from the textbook since they reproduce more cleanly than lecture screenshots.
+
+**Workflow:** open the relevant lectures and the HW answer keys side by side. Lectures tell you what the method is. Answer keys tell you which steps actually get points. Together they tell you what to put on the sheet.
 
 ---
 
@@ -130,33 +132,47 @@ Five minipages. Each is a vocabulary list with variable, what it means, units. N
 
 ---
 
-## 7. Mapping HW1+HW2 solutions to the Midterm 1 cheat sheet
+## 7. Mapping HW1+HW2 solutions and lectures to the Midterm 1 cheat sheet
 
-So you can see the recipe: each cheat sheet ebox traces directly to a solution step.
+Each ebox has a lecture source (the method) and a HW source (the application). Both matter.
 
-| Cheat sheet ebox | HW step that motivated it |
-|---|---|
-| Transformer EMF / Motional EMF / Flux form | HW1 problems about loop EMF in changing B |
-| $\partial B/\partial t$ table | HW1 had multiple loops with $B_0\sin(\omega t)$ |
-| Long wire + rect loop integral | HW1 specific geometry that recurred |
-| Sign-to-current-direction table | HW1 always asked for current direction after EMF sign |
-| Displacement vs conduction current | HW1 had parallel-plate cap with both $\sigma$ and $\varepsilon$ |
-| Charge relaxation $\tau_r$ | HW1 had a decay-time problem |
-| Plane-wave parameter order ($\omega\to u_p\to k\to\lambda\to\eta$) | HW2 P1 walked through all five |
-| Polarization auxiliary / rotation / ellipticity | HW2 P3 polarization analysis |
-| Quadrant rule for $\tan(2\gamma)$ | HW2 P3 required quadrant correction |
-| Lossy media: exact / low-loss / good conductor | HW2 had one problem in each regime |
-| Skin depth $\delta_s$ formulas | HW2 surface resistance question |
-| Poynting average | HW2 power density question |
-| dB / attenuation | HW2 attenuation-over-distance question |
+| Cheat sheet ebox | Lecture source | HW source |
+|---|---|---|
+| Maxwell's Equations table | Lectures 1–2 | Background, not a HW step |
+| Faraday: Transformer / Motional / Flux EMF | Lecture 2 | HW1 loop EMF problems |
+| Surface element $d\mathbf{s}$ table | Lecture 1 (geometry review) | HW1 needed it for $\iint B\cdot ds$ |
+| Dot / cross product determinant | Lecture 1 review | HW1 needed cross for $v\times B$ |
+| $\partial B/\partial t$ derivative table | Math review in lecture | HW1 had multiple $B_0\sin(\omega t)$ loops |
+| Long wire + rect loop integral | Lecture 2 worked example | HW1 specific geometry recurred |
+| Sign-to-current-direction table | Lecture 2 (Lenz's law rule) | HW1 always asked for direction |
+| Displacement vs conduction current | Lecture 3 | HW1 parallel-plate cap with both |
+| Charge-current continuity | Lecture 3 | Background, justifies KCL |
+| Charge relaxation $\tau_r$ | Lecture 3 | HW1 decay-time problem |
+| Phasor method (E↔H, 5 steps) | Lecture 4 procedure | HW1 phasor conversion problem |
+| Plane-wave parameter order $\omega\to u_p\to k\to\lambda\to\eta$ | Lecture 5 | HW2 P1 walked through all five |
+| Direction of propagation table | Lecture 5 (sign convention) | HW2 needed it for $\omega t \pm kz$ |
+| $\hat{k}\times\hat{E}$ direction table | Lecture 5 | HW2 needed it repeatedly |
+| Lossless vs lossy comparison | Lecture 6 synthesis | HW2 needed both regimes |
+| Trig phase shifts | Math review | HW2 phase-shift identities |
+| Polarization $\psi_0/\gamma/\chi$ system | Lecture 7 procedure | HW2 P3 polarization analysis |
+| Quadrant rule for $\tan(2\gamma)$ | Implicit in Lecture 7 | HW2 P3 required quadrant correction |
+| $\chi$ → shape / handedness table | Lecture 7 | HW2 needed RHC vs LHC etc. |
+| Phasor ↔ time domain table | Lecture 4 / 5 | HW1 and HW2 both needed |
+| Lossy media classification (loss tangent) | Lecture 8 | HW2 had one problem in each regime |
+| Lossy exact / low-loss / good conductor | Lecture 8 | HW2 P2 (low-loss), P4 (good conductor) |
+| Skin depth $\delta_s$ formulas | Lecture 9 | HW2 surface resistance question |
+| Surface resistance $R_s$ | Lecture 9 | HW2 AC resistance of slab |
+| Retarded potentials | Lecture 9 | HW2 had retarded $V$, $\mathbf{A}$ question |
+| Poynting average power density | Lecture 10 | HW2 power density question |
+| dB / attenuation | Lecture 10 | HW2 attenuation-over-distance question |
 
-So the recipe is: read each HW solution problem. Every distinct technique that appears becomes one ebox. Every recurring lookup becomes one table.
+Pattern: the *lecture* defines the method (notation, sign conventions, decision tree). The *HW solution* picks out the specific steps and trap conditions that earn coral-italic warnings. A few eboxes (Maxwell, $d\mathbf{s}$, dot/cross) are pure lecture material included because they unblock everything else, even though no HW solution explicitly walks through them.
 
 ---
 
-## 8. Plan for the Final cheat sheet (built from HW3 + HW4)
+## 8. Plan for the Final cheat sheet (built from HW3 + HW4 + lectures 11+)
 
-`Homework/HW3/hw3_solutions.pdf` and `Homework/HW4/hw4_solutions.pdf` are the source. Here is the section list derived from them, ready to build.
+`Homework/HW3/hw3_solutions.pdf` and `Homework/HW4/hw4_solutions.pdf` show which methods get tested. Lectures 11 onward (waveguides, antennas, radar) provide the underlying procedures, notation, and any methods that the HW doesn't directly walk through but that may still appear on the exam. Read both sources before building. Here is the section list ready to build.
 
 ### HW3 content (boundaries + waveguides)
 
