@@ -1,0 +1,546 @@
+\documentclass[6pt,letterpaper]{article}
+\usepackage[margin=0.25in, top=0.3in, bottom=0.25in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[expansion=false]{microtype}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{graphicx}
+
+% Colors (match Midterm 1 sheet for visual consistency)
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{gray}{HTML}{444441}\definecolor{graybg}{HTML}{F1EFE8}
+\definecolor{pink}{HTML}{72243E}\definecolor{pinkbg}{HTML}{FBEAF0}
+\definecolor{rowB}{HTML}{F2F2EF}
+
+\newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
+  innertopmargin=2pt,innerbottommargin=2pt,skipabove=1pt,skipbelow=1pt]{ebox}
+
+\newcommand{\shead}[3]{%
+  \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+  {\color{#2}\bfseries\fontsize{6}{7}\selectfont #3}}\vspace{0.5pt}}
+
+\newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+\setlength{\columnsep}{5pt}\setlength{\multicolsep}{1pt}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.3pt}
+\fancyhead[L]{\fontsize{6.5}{7}\selectfont\textbf{ECE332 --- Final Cheat Sheet (HW3 + HW4)}}
+\fancyhead[R]{\fontsize{6.5}{7}\selectfont Bao Nguyen}
+
+\graphicspath{{../img/}{../../Cheatsheets/Midterm1/img/}}
+
+\begin{document}
+
+%%=============================================================
+%% PAGE 1 --- HW3 (BOUNDARIES + WAVEGUIDES)
+%%=============================================================
+\fontsize{6}{7.5}\selectfont
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\begin{multicols}{3}
+
+%-- Column 1 -----------------------------------
+\shead{purplebg}{purple}{NORMAL INCIDENCE --- $\Gamma$ AND $\tau$}
+\begin{ebox}
+\eq{Reflection coeff.}{boundary at $z=0$, wave from medium 1}
+\[\Gamma = \frac{\eta_2-\eta_1}{\eta_2+\eta_1}\;(\text{unitless})\]
+
+\eq{Transmission coeff.}{always}
+\[\tau = 1+\Gamma = \frac{2\eta_2}{\eta_2+\eta_1}\]
+
+\eq{Lossless $\eta_i$}{$\sigma=0$}
+\[\eta_i = \frac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega) \qquad \eta_0=120\pi\approx377\,\Omega\]
+
+\eq{Low-loss $\eta_2$ (poor conductor)}{$\sigma/(\omega\varepsilon)\ll1$}
+\[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right)\;(\Omega)\]
+\textit{\color{coral}For boundary $\Gamma$/$\tau$, take just $|\eta_2|\!\approx\!\eta_0/\sqrt{\varepsilon_{r2}}$; the $j$ term is tiny.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{$\tilde{\mathbf{E}}$ PHASOR TEMPLATES}
+\begin{ebox}
+\textit{Wave in $+\hat{z}$, incident has unit-vector pol.\ $\hat{e}$, amplitude $a_0$:}
+\[\tilde{\mathbf{E}}^i = a_0\hat{e}\,e^{-jk_1z}\]
+\[\tilde{\mathbf{E}}^r = \Gamma a_0\hat{e}\,e^{+jk_1z} \qquad \text{(travels in }-\hat{z}\text{)}\]
+\[\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-jk_2z} \qquad \text{(lossless medium 2)}\]
+\[\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-\alpha_2 z}e^{-j\beta_2 z} \qquad \text{(lossy medium 2)}\]
+\textit{Total in medium 1: $\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r$.}\\
+\textit{\color{coral}LHC incident: $\hat{e} = \hat{x}+j\hat{y}$ (factor of $a_0$ stays out front).}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{POWER REFLECTION \& TRANSMISSION}
+\begin{ebox}
+\eq{\% reflected}{always}
+\[\%P_r = 100\,|\Gamma|^2\]
+\eq{\% transmitted}{$\eta$-ratio matters!}
+\[\%P_t = 100\,|\tau|^2\,\frac{\eta_1}{\eta_2}\]
+\textit{Check: $\%P_r + \%P_t = 100$.}\\
+\textit{\color{coral}If medium 2 is denser ($\eta_2<\eta_1$), $|\tau|>1$ but $\%P_t<100\%$ because of the $\eta_1/\eta_2$ factor.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{LOW-LOSS QUICK PARAMS (med 2)}
+\begin{ebox}
+\eq{Check first}{$\sigma/(\omega\varepsilon)$}\\[1pt]
+\[\alpha_2 \approx \tfrac{\sigma_2}{2}\sqrt{\tfrac{\mu_2}{\varepsilon_2}} = \tfrac{\sigma_2\eta_0}{2\sqrt{\varepsilon_{r2}}}\;\text{(Np/m)}\]
+\[\beta_2 \approx \omega\sqrt{\mu_2\varepsilon_2} = \tfrac{\omega\sqrt{\varepsilon_{r2}}}{c}\;\text{(rad/m)}\]
+\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}}\;\angle\!\approx\!0\]
+\textit{$\varepsilon = \varepsilon_r\varepsilon_0$;\enspace $\varepsilon_0 = 8.85\!\times\!10^{-12}$ F/m;\enspace $36\pi\varepsilon_0\approx1\!\times\!10^{-9}$.}
+\end{ebox}
+
+\columnbreak
+
+%-- Column 2 -----------------------------------
+\shead{tealbg}{teal}{SNELL'S LAW --- OBLIQUE INCIDENCE}
+\begin{ebox}
+\eq{Single boundary}{angles from normal}
+\[\sin\theta_2 = \sin\theta_1\sqrt{\tfrac{\varepsilon_{r1}}{\varepsilon_{r2}}} = \sin\theta_1\,\tfrac{n_1}{n_2}\]
+
+\eq{Multilayer chain}{stack of slabs $1\to2\to3\to4$}
+\[\sin\theta_{i+1} = \sin\theta_i\sqrt{\tfrac{\varepsilon_{r,i}}{\varepsilon_{r,i+1}}}\]
+
+\eq{Air--slabs--air shortcut}{outer media identical}
+\[\theta_{\text{exit}} = \theta_{\text{incident}}\]
+\textit{\color{coral}Snell only sets angles. Reflection/transmission \emph{magnitudes} need Fresnel coefficients (parallel vs perpendicular).}
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{LATERAL DISPLACEMENT}
+\begin{ebox}
+\eq{Beam offset through $N$ slabs}{thickness $t_i$, refracted angle $\theta_i$}
+\[d = \sum_{i=1}^{N} t_i\,\tan\theta_i\]
+\textit{Each slab adds $t_i\tan\theta_i$. Final air-to-air exit returns to $\theta_1$ but is laterally shifted by $d$.}\\[1pt]
+\eq{Common values}{$\arctan$}\\
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}cl@{}}
+\toprule
+$\sin\theta$ & $\theta$\\
+\midrule
+\rowcolor{rowB}$0.2$ & $11.54^\circ$\\
+$1/3$ & $19.47^\circ$\\
+\rowcolor{rowB}$1/2$ & $30^\circ$\\
+$0.5774$ & $35.26^\circ$\\
+\rowcolor{rowB}$1/\sqrt{2}$ & $45^\circ$\\
+\bottomrule
+\end{tabular}}\par}
+\end{ebox}
+
+\vspace{2pt}
+\shead{bluebg}{blue}{FRESNEL --- BRIEF REFERENCE}
+\begin{ebox}
+\eq{Perpendicular pol.\ ($E\perp$ plane of inc.)}{}
+\[\Gamma_\perp = \tfrac{\eta_2\cos\theta_i-\eta_1\cos\theta_t}{\eta_2\cos\theta_i+\eta_1\cos\theta_t}\]
+\eq{Parallel pol.\ ($E\parallel$ plane of inc.)}{}
+\[\Gamma_\parallel = \tfrac{\eta_2\cos\theta_t-\eta_1\cos\theta_i}{\eta_2\cos\theta_t+\eta_1\cos\theta_i}\]
+$\tau_\perp = 1+\Gamma_\perp$,\enspace $\tau_\parallel = (1+\Gamma_\parallel)\cos\theta_i/\cos\theta_t$\\
+\textit{Brewster ($\parallel$ only): $\tan\theta_B = \sqrt{\varepsilon_{r2}/\varepsilon_{r1}}$ $\Rightarrow$ no reflection.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{graybg}{gray}{TRIG SHORTCUTS}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lcl@{}}
+\toprule
+Expr & = & Use\\
+\midrule
+\rowcolor{rowB}$\sin^{-1}(0.2)$ & $0.2014$ rad & $\theta_2$ in HW3 P3\\
+$\sqrt{1-(f_c/f)^2}$ & $u_g/c$ & waveguide ratio\\
+\rowcolor{rowB}$\sqrt{1/a^2+1/b^2}$ & $\sqrt{(b^2+a^2)/(ab)^2}$ & TE$_{11}$ cutoff\\
+\bottomrule
+\end{tabular}}\par}
+$\pi/4 = 45^\circ$,\enspace $\pi/6 = 30^\circ$,\enspace $\pi/3 = 60^\circ$,\enspace $\pi/2 = 90^\circ$
+\end{ebox}
+
+\columnbreak
+
+%-- Column 3 -----------------------------------
+\shead{coralbg}{coral}{RECTANGULAR WAVEGUIDE --- MODES}
+\begin{ebox}
+\eq{TE mode}{$E_z=0$, $H_z\ne0$}\\
+\eq{TM mode}{$H_z=0$, $E_z\ne0$}\\[1pt]
+\textit{Dimensions $a\times b$ with $a>b$ along $\hat{x},\hat{y}$; wave in $\hat{z}$.}\\[1pt]
+\eq{$E_x$ form (TE)}{read $m,n$ from arguments}
+\[E_x \propto \cos\!\left(\tfrac{m\pi x}{a}\right)\sin\!\left(\tfrac{n\pi y}{b}\right)\sin(\omega t-\beta z)\]
+\textit{coef. on $x$ = $m\pi/a$; coef. on $y$ = $n\pi/b$.}\\[1pt]
+\textit{\color{coral}TE mode allowed if at least one of $m,n\ge1$. TM needs both $m,n\ge1$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{CUTOFF FREQUENCY}
+\begin{ebox}
+\eq{$f_{mn}$}{$m,n$ integers $\ge0$ (not both zero)}
+\[f_{mn} = \tfrac{u_{p0}}{2}\sqrt{\!\left(\tfrac{m}{a}\right)^{\!2}\!+\!\left(\tfrac{n}{b}\right)^{\!2}}\;\text{(Hz)}\]
+\[u_{p0} = \tfrac{c}{\sqrt{\varepsilon_r}}\;\text{(m/s, guide medium)}\]
+
+\eq{Common cutoffs ($a>b$)}{}\\
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.20\linewidth}p{0.70\linewidth}@{}}
+\toprule
+Mode & $f_c$\\
+\midrule
+\rowcolor{rowB}TE$_{10}$ & $u_{p0}/(2a)$ (dominant)\\
+TE$_{01}$ & $u_{p0}/(2b)$\\
+\rowcolor{rowB}TE$_{20}$ & $u_{p0}/a = 2f_{10}$\\
+TE$_{11}$,TM$_{11}$ & $\tfrac{u_{p0}}{2}\sqrt{1/a^2+1/b^2}$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{Propagation requires $f>f_{mn}$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{$\varepsilon_r$ FROM DISPERSION}
+\begin{ebox}
+\eq{Given $\omega$, $\beta$, mode $(m,n)$}{}
+\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]\]
+\textit{Sanity: $\beta$ in rad/m, $a,b$ in m, $\omega$ in rad/s.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{WAVE IMPEDANCE \& $H_y$}
+\begin{ebox}
+\[Z_{\text{TE}} = \tfrac{\eta}{\sqrt{1-(f_c/f)^2}}\,(\Omega)\qquad Z_{\text{TM}} = \eta\sqrt{1-(f_c/f)^2}\]
+\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}} \qquad H_y = \tfrac{E_x}{Z_{\text{TE}}}\;\text{(TE mode)}\]
+\textit{$Z_{\text{TE}}>\eta$ always (denominator $<1$); $Z_{\text{TM}}<\eta$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{GROUP VELOCITY \& TRAVEL TIME}
+\begin{ebox}
+\[u_g = u_{p0}\sqrt{1-(f_{mn}/f)^2}\;\text{(m/s)}\]
+\[u_p = \tfrac{u_{p0}}{\sqrt{1-(f_{mn}/f)^2}}\quad\Rightarrow\quad u_pu_g = u_{p0}^2\]
+\[t = L/u_g\;\text{(s)}\quad\text{travel time through guide of length }L\]
+\textit{Higher modes have lower $u_g$ $\Rightarrow$ they arrive later. Group delay spread = sum over excited modes.}
+\end{ebox}
+
+\end{multicols}
+
+% Bottom strip page 1
+\vfill
+\vspace{2pt}
+\noindent
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{BOUNDARY}
+\begin{ebox}
+$\eta_1,\eta_2$ --- imp.\ ($\Omega$)\\
+$\Gamma$ --- refl.\ coeff (unitless)\\
+$\tau=1+\Gamma$ --- trans.\ coeff\\
+$k_i=\omega\sqrt{\varepsilon_{r,i}}/c$ (rad/m)\\
+$\alpha_2,\beta_2$ --- if med 2 lossy\\
+$z=0$ --- boundary plane\\
+$\eta_0=120\pi\approx377\,\Omega$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{tealbg}{teal}{SNELL / OBLIQUE}
+\begin{ebox}
+$\theta_i,\theta_t$ --- angles from normal\\
+$n_i=\sqrt{\varepsilon_{r,i}}$ --- index of refr.\\
+$t_i$ --- slab thickness (m)\\
+$d$ --- lateral disp.\ (m)\\
+plane of inc.\ = plane of $\hat{k}$+normal\\
+$\perp$: $\mathbf{E}\perp$ this plane\\
+$\parallel$: $\mathbf{E}\parallel$ this plane
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{coralbg}{coral}{WAVEGUIDE}
+\begin{ebox}
+$a,b$ --- wide, narrow dim.\ (m); $a>b$\\
+$m,n$ --- mode indices (int.)\\
+$f_{mn}$ --- cutoff (Hz)\\
+$\beta$ --- prop.\ const (rad/m)\\
+$Z_{\text{TE/TM}}$ --- wave imp.\ ($\Omega$)\\
+$E_x,H_y$ --- field comps (V/m, A/m)\\
+$\eta=\eta_0/\sqrt{\varepsilon_r}$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{amberbg}{amber}{VELOCITIES}
+\begin{ebox}
+$u_{p0}=c/\sqrt{\varepsilon_r}$ --- bulk phase vel.\\
+$u_p=u_{p0}/\sqrt{1-(f_c/f)^2}$\\
+$u_g=u_{p0}\sqrt{1-(f_c/f)^2}$\\
+$u_p u_g = u_{p0}^2$\\
+$t=L/u_g$ --- travel time\\
+$c=3\times10^8$ m/s
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{graybg}{gray}{POWER \& UNITS}
+\begin{ebox}
+$\%P_r=100|\Gamma|^2$\\
+$\%P_t=100|\tau|^2\eta_1/\eta_2$\\
+$\%P_r+\%P_t=100$\\
+$\sigma$ (S/m), $\varepsilon$ (F/m), $\mu$ (H/m)\\
+$\varepsilon_0=8.85\!\times\!10^{-12}$ F/m\\
+$\mu_0=4\pi\!\times\!10^{-7}$ H/m\\
+$1/(36\pi)\!\times\!10^{-9}\!\approx\!\varepsilon_0$
+\end{ebox}
+\end{minipage}
+
+\newpage
+
+%%=============================================================
+%% PAGE 2 --- HW4 (ANTENNAS + FRIIS)
+%%=============================================================
+\fontsize{6}{7}\selectfont
+\setlength{\abovedisplayskip}{0pt}\setlength{\belowdisplayskip}{0.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+\begin{multicols}{3}
+
+%-- Column 1 -----------------------------------
+\shead{purplebg}{purple}{DIPOLE TYPE BY LENGTH}
+\begin{ebox}
+\eq{Check first}{compute $\lambda=c/f$, then $l/\lambda$}\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.30\linewidth}p{0.30\linewidth}p{0.32\linewidth}@{}}
+\toprule
+$l/\lambda$ & Type & Use\\
+\midrule
+\rowcolor{rowB}$<1/50$ & Hertzian (short) & Hertzian formula\\
+$=1/4$ & Quarter-wave & Arbitrary formula\\
+\rowcolor{rowB}$=1/2$ & Half-wave & $D=1.64$, simple\\
+other & Arbitrary & Arbitrary formula\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{\color{coral}If $l/\lambda<1/50$ stop and use Hertzian only --- don't subst.\ small $l$ into arbitrary formula.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{purplebg}{purple}{HERTZIAN DIPOLE --- $S(R,\theta)$}
+\begin{ebox}
+\eq{Power density}{$l/\lambda<1/50$; far field}
+\[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta\;\text{(W/m}^2\text{)}\]
+\textit{$k=2\pi/\lambda$ rad/m;\enspace $I_0$ peak current (A);\enspace $l$ length (m);\enspace $R$ obs.\ dist (m).}\\
+\eq{Max direction}{$\theta=\pi/2$ (broadside)}\\
+\eq{Total radiated power}{integrate over $4\pi$ sr}
+\[P_{\text{rad}} = \tfrac{\eta_0 \pi}{3}\!\left(\tfrac{I_0 l}{\lambda}\right)^{\!2}\;\text{(W)}\]
+\eq{Directivity}{Hertzian, exact}
+\[D_{\text{Hertz}} = 1.5 \quad(\text{i.e. }1.76\text{ dB})\]
+\end{ebox}
+
+\vspace{2pt}
+\shead{tealbg}{teal}{ARBITRARY-LENGTH DIPOLE --- $S(\theta)$}
+\begin{ebox}
+\eq{Power density at distance $R$}{any $l$}
+\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\!\left[\tfrac{\cos\!\left(\tfrac{\pi l}{\lambda}\cos\theta\right)-\cos\!\left(\tfrac{\pi l}{\lambda}\right)}{\sin\theta}\right]^{\!2}\]
+
+\eq{Normalized pattern}{$F(\theta)=S(\theta)/S_{\max}$, dimensionless}\\[1pt]
+
+\eq{Half-wave $l=\lambda/2$}{$\pi l/\lambda=\pi/2$}
+\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\tfrac{\cos^2(\tfrac{\pi}{2}\cos\theta)}{\sin^2\theta},\quad D=1.64,\;R_{\text{rad}}=73\,\Omega\]
+
+\eq{Quarter-wave $l=\lambda/4$}{$\pi l/\lambda=\pi/4$, $\cos(\pi/4)=\sqrt{2}/2$}
+\[\tfrac{S(\theta)}{S_0}\!=\!\left[\tfrac{\cos(\tfrac{\pi}{4}\cos\theta)-\tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^{\!2},\;S_0=\tfrac{15I_0^2}{\pi R^2}\]
+\[S_{\max} = S(\pi/2) = S_0\!\left(1-\tfrac{\sqrt{2}}{2}\right)^{\!2}\!\approx 0.0858\,S_0\]
+\end{ebox}
+
+\columnbreak
+
+%-- Column 2 -----------------------------------
+\shead{greenbg}{green}{BEAM PARAMETERS --- HPBW, $\Omega_p$, $D$}
+\begin{ebox}
+\eq{1. Normalize}{}
+\[F(\theta) = S(\theta)/S_{\max}\]
+
+\eq{2. Half-power beamwidth (HPBW)}{solve $F(\theta_{1/2})=0.5$}
+\[\beta = 2\theta_{1/2}\quad\text{(symmetric beams)}\]
+\eq{example}{$F(\theta)=e^{-20\theta^2}$ $\Rightarrow$ $\theta_{1/2}=\sqrt{-\ln 0.5/20}=0.186$ rad $\Rightarrow$ $\beta=21.31^\circ$}\\[1pt]
+
+\eq{3. Pattern solid angle}{(sr)}
+\[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\]
+\textit{If $F$ has no $\phi$ dep.: $\Omega_p = 2\pi\!\int_0^\pi F(\theta)\sin\theta\,d\theta$.}
+
+\eq{4. Directivity}{}
+\[D = \tfrac{4\pi}{\Omega_p}\;\text{(unitless)} \qquad D_{\text{dB}} = 10\log_{10}D\]
+\eq{5. Gain}{$\xi$ = radiation efficiency, $0<\xi\le1$}
+\[G = \xi D \qquad G_{\text{dB}} = 10\log_{10}G\]
+\textit{\color{coral}For lossless / ideal antennas: $G=D$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{COMMON DIPOLE PARAMETERS}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.20\linewidth}p{0.18\linewidth}p{0.18\linewidth}p{0.30\linewidth}@{}}
+\toprule
+Type & $D$ & $D_{\text{dB}}$ & $R_{\text{rad}}$ ($\Omega$)\\
+\midrule
+\rowcolor{rowB}Isotropic & 1 & 0 & ---\\
+Hertzian & 1.5 & 1.76 & $80\pi^2(l/\lambda)^2$\\
+\rowcolor{rowB}Half-wave & 1.64 & 2.15 & 73\\
+$l=\lambda$ & 2.41 & 3.82 & 199\\
+\bottomrule
+\end{tabular}}}\par}
+\end{ebox}
+
+\vspace{2pt}
+\shead{amberbg}{amber}{EFFECTIVE AREA $A_e$}
+\begin{ebox}
+\eq{Definition}{$\text{m}^2$, antenna's receiving cross section}
+\[A_e = \tfrac{\lambda^2 D}{4\pi}\]
+\eq{Physical cross section}{half-wave dipole, wire diameter $d$}
+\[A_p = l\,d = \tfrac{\lambda}{2}\,d\]
+\eq{Ratio}{$A_e\gg A_p$ for thin wires (good!)}\\
+\textit{Example: $f\!=\!100$ MHz, $d\!=\!2$ cm $\Rightarrow$ $A_e/A_p\!\approx\!39$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{greenbg}{green}{POWER FLOW IDENTITIES}
+\begin{ebox}
+\[P_{\text{rad}} = S_{\max}\,\Omega_p\,R^2 = \tfrac{4\pi R^2 S_{\max}}{D}\]
+\[S_{\max} = \tfrac{P_{\text{rad}}\,D}{4\pi R^2}\;\text{(W/m}^2\text{)}\]
+\textit{For isotropic radiator: $S = P_{\text{rad}}/(4\pi R^2)$.}
+\end{ebox}
+
+\columnbreak
+
+%-- Column 3 -----------------------------------
+\shead{pinkbg}{pink}{FRIIS TRANSMISSION FORMULA}
+\begin{ebox}
+\eq{Far-field link budget}{$P_t$ tx, $P_r$ rx, dist $R$}
+\[\boxed{P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t}\]
+\textit{$G_t, G_r$ \emph{linear} gains;\enspace $\lambda=c/f$;\enspace $R$ in m;\enspace $P_t, P_r$ in W.}
+
+\eq{Solve for $R$}{}
+\[R = \tfrac{\lambda}{4\pi}\sqrt{\tfrac{G_tG_rP_t}{P_r}}\]
+
+\eq{Solve for $G_r$ given $A_e$}{}
+\[G_r = \tfrac{4\pi A_{e,r}}{\lambda^2}\quad\Rightarrow\quad P_r=\tfrac{G_t P_t A_{e,r}}{4\pi R^2}\]
+
+\textit{\color{coral}Use linear $G$, not dB. Convert first: $G_{\text{lin}}=10^{G_{\text{dB}}/10}$.}\\
+\textit{Free-space path loss $L_{\text{fs}}=(4\pi R/\lambda)^2$ so $P_r = G_tG_rP_t/L_{\text{fs}}$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{pinkbg}{pink}{dB $\leftrightarrow$ LINEAR}
+\begin{ebox}
+\eq{Power gain}{factor $\to$ dB}
+\[G_{\text{dB}} = 10\log_{10}G_{\text{lin}}\qquad G_{\text{lin}} = 10^{G_{\text{dB}}/10}\]
+
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}cc@{\quad}cc@{}}
+\toprule
+dB & linear & dB & linear\\
+\midrule
+\rowcolor{rowB}0 & 1 & 10 & 10\\
+3 & 2 & 13 & 20\\
+\rowcolor{rowB}6 & 4 & 20 & 100\\
+7 & 5 & 30 & 1000\\
+\rowcolor{rowB}$-3$ & $0.5$ & $-10$ & $0.1$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{For E or amplitude use $20\log$ not $10\log$.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{bluebg}{blue}{RADAR EQUATION (BONUS)}
+\begin{ebox}
+\eq{Monostatic radar}{tx = rx, target cross section $\sigma_t$ (m$^2$)}
+\[P_r = \tfrac{P_t G^2 \lambda^2 \sigma_t}{(4\pi)^3 R^4}\]
+\eq{Doppler shift}{closing velocity $v_r$}
+\[f_d = \tfrac{2 v_r}{\lambda} = \tfrac{2 v_r f}{c}\;\text{(Hz)}\]
+\textit{Factor of 2 from round-trip path; $v_r$ is the radial component toward radar.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{graybg}{gray}{LECTURE-11 BOUNDARY $\leftrightarrow$ T-LINE}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.20\linewidth}p{0.30\linewidth}p{0.42\linewidth}@{}}
+\toprule
+EM & T-line & Match\\
+\midrule
+\rowcolor{rowB}$\tilde{E}_i$ & $\tilde{V}_1^+$ & forward wave\\
+$\tilde{E}_r$ & $\tilde{V}_1^-$ & reverse wave\\
+\rowcolor{rowB}$\eta_i$ & $Z_{0i}$ & line impedance\\
+$\Gamma$ & $\Gamma$ & same formula\\
+\rowcolor{rowB}$k_i$ & $\beta_i$ & wavenumber\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{Bouncing-wave analogy: every t-line formula in Ch.\ 2 transfers verbatim with the substitutions above.}
+\end{ebox}
+
+\vspace{2pt}
+\shead{coralbg}{coral}{ANTENNA INTEGRATION TIPS}
+\begin{ebox}
+\textit{Many radiation integrals (e.g.\ $\Omega_p$ for $e^{-20\theta^2}\sin\theta$) have no closed form.}\\
+\textit{Use Wolfram / numerical integration. State this in the answer.}\\[1pt]
+\textit{Common shortcut: if $F(\theta)$ is narrow ($\theta_{1/2}\ll1$), approximate}
+\[\Omega_p \approx \theta_{1/2}^2\,\pi/(4\ln 2)\quad\text{(Gaussian beam)}\]
+\end{ebox}
+
+\end{multicols}
+
+% Bottom strip page 2
+\vfill
+\noindent
+\begin{minipage}[t]{0.19\linewidth}
+\shead{purplebg}{purple}{DIPOLE}
+\begin{ebox}
+$l$ --- antenna length (m)\\
+$\lambda=c/f$ --- wavelength (m)\\
+$I_0$ --- peak current (A)\\
+$\eta_0=120\pi\approx377\,\Omega$\\
+$k=2\pi/\lambda$ --- wavenumber (rad/m)\\
+$R_{\text{rad}}$ --- radiation res.\ ($\Omega$)\\
+$R$ --- obs.\ dist (m)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{greenbg}{green}{RADIATION}
+\begin{ebox}
+$S(R,\theta)$ --- power density (W/m$^2$)\\
+$S_{\max}$ --- peak power density\\
+$F(\theta)=S/S_{\max}$ --- normalized\\
+$\Omega_p$ --- pattern solid angle (sr)\\
+$\beta$ --- HPBW (rad or deg)\\
+$D$ --- directivity (unitless)\\
+$P_{\text{rad}}$ --- total rad.\ power (W)
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{amberbg}{amber}{ANTENNA}
+\begin{ebox}
+$A_e=\lambda^2D/(4\pi)$ --- effective area\\
+$A_p$ --- physical cross sec.\ (m$^2$)\\
+$\xi$ --- rad.\ efficiency ($0<\xi\le1$)\\
+$G=\xi D$ --- gain (unitless)\\
+$G_{\text{dB}}=10\log G$\\
+Half-wave: $D\!=\!1.64$, $R_{\text{rad}}\!=\!73\,\Omega$\\
+Hertzian: $D\!=\!1.5$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{pinkbg}{pink}{FRIIS / LINK}
+\begin{ebox}
+$P_t$ --- tx power (W)\\
+$P_r$ --- rx power (W)\\
+$G_t, G_r$ --- linear gains\\
+$R$ --- range (m)\\
+$L_{\text{fs}}=(4\pi R/\lambda)^2$ --- path loss\\
+3 dB$\!\to\!2$;\;10 dB$\!\to\!10$\\
+$G_{\text{lin}}=10^{G_{\text{dB}}/10}$
+\end{ebox}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.19\linewidth}
+\shead{bluebg}{blue}{RADAR}
+\begin{ebox}
+$\sigma_t$ --- RCS (m$^2$)\\
+$f_d$ --- Doppler shift (Hz)\\
+$v_r$ --- radial vel.\ (m/s)\\
+$P_r\!\propto\!1/R^4$ (monostatic)\\
+$f_d=2v_r/\lambda$ (round trip)\\
+$c=3\!\times\!10^8$ m/s\\
+$f_d>0$: target approaching
+\end{ebox}
+\end{minipage}
+
+\end{document}
