@@ -143,7 +143,9 @@ Homework/HW2/
 
 Top-level PDFs are the readable outputs. `src/` holds everything needed to rebuild them. Compile `HW2_Generate.tex` from inside `src/` (the `\graphicspath` resolves to `cs_crops/` relative to that directory), then copy the resulting PDF up to `HW2/`.
 
-`make_cs_crops.py` re-renders the midterm cheat sheet PDF and slices it into the named eboxes; rerun it after any cheat sheet edit.
+`make_cs_crops.py` parses the midterm cheat sheet source `.tex`, pulls out each `\shead{}{}{TITLE}` + `\begin{ebox}...\end{ebox}` block, compiles each one as its own standalone mini-document with the same preamble (colors, `\eq`, `\shead`, `ebox`), then renders to PNG and auto-trims whitespace. To add a new section, add an entry to the `WANT` dict mapping a unique keyword from the section title to the desired output slug, then rerun the script.
+
+`make_p3_plots.py` generates the polarization locus plots, including direction-of-motion arrows (curved for rotating cases, double-headed for linear oscillations).
 
 ---
 
