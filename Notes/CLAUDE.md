@@ -31,11 +31,15 @@ Notes/Cheatsheets/
 - **Homeworks:** HW1, HW2
 - **Cheat sheet:** `Midterm1/ECE332_Exam1_cheatsheet` (2-sided, 1 page = 2 PDF pages)
 - **Topics:** Faraday's & Ampère's laws, charge-current continuity, EM & time-harmonic potentials, plane-wave propagation (lossless & lossy), polarization, current flow in conductors, EM power density
+- **Coverage doc:** `Midterm1/COVERAGE.md`
 
-### Final — TBD
-- **Lectures:** TBD
-- **Homeworks:** TBD
-- **Cheat sheet:** `Final/` (to be created)
+### Final — date TBD, NOT cumulative
+- **Lectures:** 11 onward (post-midterm only)
+- **Homeworks:** HW3, HW4 (and any additional post-midterm assignments)
+- **Cheat sheet:** `Final/src/` (to be created)
+- **Topics (expected):** rectangular waveguides & resonant modes, plane-wave reflection/transmission at boundaries, optical fibers, dipole antennas, radiation patterns/directivity/beamwidth, Friis transmission, antenna arrays, radar (monostatic, Doppler)
+- **Coverage doc:** `Final/COVERAGE.md`
+- Per syllabus: "The final exam will not be cumulative."
 
 ---
 
