@@ -66,7 +66,9 @@ def find_brace_end(text, open_pos):
 
 def parse_sections(tex_source):
     """Yield (title, full_section_latex). full_section_latex is the \\shead + \\begin{ebox}...\\end{ebox}."""
-    i = 0
+    # Skip the preamble (the `\shead` macro definition lives there).
+    body_idx = tex_source.find(r"\begin{document}")
+    i = body_idx if body_idx != -1 else 0
     while True:
         idx = tex_source.find(r"\shead", i)
         if idx == -1:
