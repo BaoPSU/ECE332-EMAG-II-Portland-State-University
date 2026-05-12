@@ -2,8 +2,18 @@
 
 Portland State University, ECE332 Electromagnetics II, Spring 2026.
 Owner: Bao Nguyen (baon@pdx.edu). Lab partner: Nick Stites.
+Instructor: Mark Martin (marmart2@pdx.edu), FAB 20-10. Office hours T/Th 12:30–1:20.
 
 **Repo:** `BaoPSU/ECE332-EMAG-II-Portland-State-University`
+**Syllabus:** `syllabus.pdf` at repo root — check it first for grading/coverage questions.
+
+## Exams (from syllabus, Method of Evaluation)
+- **Midterm 1** — May 7, 2026. Covers lectures 1–10 + HW1, HW2. Worth 25%.
+- **Final exam** — date TBD. Covers lecture 11 onward (second half). **NOT cumulative.** Worth 25%.
+- See `Notes/Cheatsheets/Midterm1/COVERAGE.md` and `Notes/Cheatsheets/Final/COVERAGE.md` for full topic lists.
+
+## Grade weights
+Labs 20% · HW 30% · Midterm 25% · Final 25%. Curve possible at end of term.
 
 ---
 
