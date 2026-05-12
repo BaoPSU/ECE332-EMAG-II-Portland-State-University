@@ -1,82 +1,218 @@
 """
 Generate cs_crops/*.png for HW2_Generate.tex.
 
-Renders the Midterm 1 cheat sheet PDF at 300 DPI and crops named regions
-that correspond to the eboxes HW2 problems reference.
-
-Bounding boxes are tuned by inspection of the rendered page at 300 DPI
-(2550 x 3300 px). Adjust the (x0, y0, x1, y1) tuples if cropping looks off.
+Approach: parse the cheat sheet TeX source, extract each `\shead{}{}{TITLE}`
++ following `\begin{ebox}...\end{ebox}` block, then compile each one in a
+standalone mini-doc and render to PNG. This pulls each ebox out of the
+source rather than guessing pixel positions in the rendered cheat sheet.
 """
 
+import re
 import subprocess
+import tempfile
+import shutil
 from pathlib import Path
 from PIL import Image
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-REPO_ROOT = SCRIPT_DIR.parents[2]  # HW2/src -> HW2 -> Homework -> repo root
-CHEATSHEET_PDF = REPO_ROOT / "Notes" / "Cheatsheets" / "Midterm1" / "ECE332_Exam1_cheatsheet.pdf"
+REPO_ROOT = SCRIPT_DIR.parents[2]
+CHEATSHEET_TEX = REPO_ROOT / "Notes" / "Cheatsheets" / "Midterm1" / "src" / "ECE332_Exam1_cheatsheet.tex"
 OUT_DIR = SCRIPT_DIR / "cs_crops"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# Render both pages of the cheat sheet at 300 DPI.
-TMP_BASE = Path("/tmp/cs_render")
-subprocess.run([
-    "pdftoppm", "-r", "300", "-png", str(CHEATSHEET_PDF), str(TMP_BASE),
-], check=True)
-
-p1 = Image.open(f"{TMP_BASE}-1.png")  # HW1 content (we may use trig table from here)
-p2 = Image.open(f"{TMP_BASE}-2.png")  # HW2 content (most crops come from here)
-
-print("Page 1 size:", p1.size)
-print("Page 2 size:", p2.size)
-
-# Page is letter-size at 300 DPI = 2550 x 3300 px.
-# 3-column layout, 0.25in side margins (75 px each), 0.3in top (90 px), 0.25in bottom (75 px).
-# Header bar adds ~30 px.
-# columnsep ~= 5pt = 6 px.
-#
-# Approximate column x ranges (slight padding for the ebox frame):
-COL1 = (60, 870)
-COL2 = (880, 1675)
-COL3 = (1685, 2495)
-
-# Page 2 vertical regions (eyeballed from the layout).
-# PIL crop boxes are (left, upper, right, lower) = (x0, y0, x1, y1).
-def box(col, y0, y1):
-    return (col[0], y0, col[1], y1)
-
-crops_p2 = {
-    # Col 1 sections
-    "cs_waveparams":      box(COL1, 120, 470),   # PLANE WAVE PARAMETERS (LOSSLESS)
-    "cs_losslessEH":      box(COL1, 470, 950),   # LOSSLESS PLANE WAVE E AND H
-    "cs_losslessVsLossy": box(COL1, 950, 1620),  # LOSSLESS vs LOSSY comparison
-    "cs_direction":       box(COL1, 1620, 1860), # DIRECTION OF PROPAGATION
-    "cs_kxE":             box(COL1, 1860, 2380), # k x E DIRECTION TABLE
-    "cs_trig":            box(COL1, 2380, 2680), # TRIG PHASE SHIFTS
-
-    # Col 2 sections
-    "cs_polarization":    box(COL2, 120, 800),   # POLARIZATION GENERAL WAVE (with ellipse fig)
-    "cs_chi":             box(COL2, 800, 1080),  # chi SHAPE & HANDEDNESS
-    "cs_quadrant":        box(COL2, 1080, 1450), # QUADRANT RULE FOR tan(2 gamma)
-    "cs_phasor":          box(COL2, 1450, 1880), # PHASOR <-> TIME DOMAIN
-    "cs_circular":        box(COL2, 1880, 2230), # CIRCULAR POLARIZATION TIME DOMAIN
-    "cs_retarded":        box(COL2, 2230, 2680), # RETARDED POTENTIALS
-
-    # Col 3 sections
-    "cs_lossyclass":      box(COL3, 120, 380),   # LOSSY MEDIA CLASSIFICATION
-    "cs_lossyexact":      box(COL3, 380, 780),   # ANY MEDIUM EXACT
-    "cs_skindepth":       box(COL3, 780, 960),   # SKIN DEPTH
-    "cs_lowloss":         box(COL3, 960, 1180),  # LOW-LOSS MEDIUM
-    "cs_goodconductor":   box(COL3, 1180, 1410), # GOOD CONDUCTOR
-    "cs_surfaceres":      box(COL3, 1410, 1820), # SURFACE RESISTANCE
-    "cs_poynting":        box(COL3, 1820, 2310), # AVERAGE POWER DENSITY (POYNTING)
-    "cs_decibels":        box(COL3, 2310, 2500), # DECIBELS & ATTENUATION
+# Section keyword (case-insensitive substring of the \shead title) -> output slug.
+WANT = {
+    "PLANE WAVE PARAMETERS":     "cs_waveparams",
+    "LOSSLESS PLANE WAVE":       "cs_losslessEH",
+    "LOSSLESS VS":               "cs_losslessVsLossy",
+    "DIRECTION OF PROPAGATION":  "cs_direction",
+    "FIND $\\HAT{H}$ DIRECTION": "cs_kxE",
+    "TRIG PHASE SHIFTS":         "cs_trig",
+    "POLARIZATION --- GENERAL":  "cs_polarization",
+    "SHAPE":                     "cs_chi",
+    "QUADRANT RULE":             "cs_quadrant",
+    "PHASOR $\\LEFTRIGHTARROW$": "cs_phasor",
+    "CIRCULAR POLARIZATION":     "cs_circular",
+    "RETARDED POTENTIALS":       "cs_retarded",
+    "LOSSY MEDIA --- CLASS":     "cs_lossyclass",
+    "ANY MEDIUM":                "cs_lossyexact",
+    "SKIN DEPTH":                "cs_skindepth",
+    "LOW-LOSS MEDIUM":           "cs_lowloss",
+    "GOOD CONDUCTOR (":          "cs_goodconductor",
+    "SURFACE RESISTANCE":        "cs_surfaceres",
+    "AVERAGE POWER DENSITY":     "cs_poynting",
+    "DECIBELS":                  "cs_decibels",
 }
 
-for name, box in crops_p2.items():
-    crop = p2.crop(box)
-    out = OUT_DIR / f"{name}.png"
-    crop.save(out, "PNG", optimize=True)
-    print(f"  wrote {out.name} ({crop.size[0]}x{crop.size[1]})")
+
+def find_brace_end(text, open_pos):
+    """Return the index after the matching closing brace for text[open_pos]=='{'."""
+    depth = 0
+    i = open_pos
+    while i < len(text):
+        c = text[i]
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return i + 1
+        elif c == "\\":
+            i += 2  # skip escaped char
+            continue
+        i += 1
+    raise ValueError(f"unbalanced braces starting at {open_pos}")
+
+
+def parse_sections(tex_source):
+    """Yield (title, full_section_latex). full_section_latex is the \\shead + \\begin{ebox}...\\end{ebox}."""
+    i = 0
+    while True:
+        idx = tex_source.find(r"\shead", i)
+        if idx == -1:
+            return
+        # Parse the three brace-balanced args of \shead.
+        p = idx + len(r"\shead")
+        try:
+            a1 = find_brace_end(tex_source, tex_source.index("{", p))
+            a2 = find_brace_end(tex_source, tex_source.index("{", a1))
+            a3 = find_brace_end(tex_source, tex_source.index("{", a2))
+        except (ValueError, ValueError):
+            i = idx + 1
+            continue
+        title = tex_source[tex_source.index("{", a2) + 1 : a3 - 1].strip()
+
+        # Body: find the following \begin{ebox}...\end{ebox}.
+        body_start = tex_source.find(r"\begin{ebox}", a3)
+        if body_start == -1:
+            i = a3
+            continue
+        body_end = tex_source.find(r"\end{ebox}", body_start)
+        if body_end == -1:
+            i = a3
+            continue
+        body_end += len(r"\end{ebox}")
+
+        full = tex_source[idx:body_end]
+        yield title, full
+        i = body_end
+
+
+def matches_keyword(title, keyword):
+    norm_t = re.sub(r"\s+", " ", title).upper()
+    norm_k = re.sub(r"\s+", " ", keyword).upper()
+    return norm_k in norm_t
+
+
+tex_source = CHEATSHEET_TEX.read_text()
+
+# Pre-compute the section map.
+section_by_keyword = {}
+all_sections = list(parse_sections(tex_source))
+for kw, slug in WANT.items():
+    found = None
+    for title, body in all_sections:
+        if matches_keyword(title, kw):
+            found = (title, body)
+            break
+    if found is None:
+        print(f"  MISS  keyword '{kw}' -> {slug}")
+        continue
+    section_by_keyword[slug] = found
+
+
+# Clean mini-preamble that has everything the eboxes need but nothing extra
+# (no multicol, no fancyhdr). Page is one column ~2.67 in wide (the cheat
+# sheet column width) with a tall canvas; we'll crop whitespace after.
+MINI_PREAMBLE = r"""
+\documentclass[6pt,letterpaper]{article}
+\usepackage[paperwidth=2.67in,paperheight=14in,margin=4pt]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{graphicx}
+
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+\definecolor{green}{HTML}{3B6D11}\definecolor{greenbg}{HTML}{EAF3DE}
+\definecolor{blue}{HTML}{0C447C}\definecolor{bluebg}{HTML}{E6F1FB}
+\definecolor{gray}{HTML}{444441}\definecolor{graybg}{HTML}{F1EFE8}
+\definecolor{pink}{HTML}{72243E}\definecolor{pinkbg}{HTML}{FBEAF0}
+\definecolor{rowB}{HTML}{F2F2EF}
+
+\newmdenv[linewidth=0.4pt,innerleftmargin=3pt,innerrightmargin=3pt,
+  innertopmargin=2pt,innerbottommargin=2pt,skipabove=1pt,skipbelow=1pt]{ebox}
+
+\newcommand{\shead}[3]{%
+  \noindent\colorbox{#1}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}%
+  {\color{#2}\bfseries\fontsize{6}{7}\selectfont #3}}\vspace{0.5pt}}
+
+\newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
+
+\graphicspath{{""" + str(REPO_ROOT / "Notes/Cheatsheets/Midterm1/img") + r"""/}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
+"""
+
+
+def render_section(slug, body):
+    tmpdir = Path(tempfile.mkdtemp(prefix="cs_section_"))
+    tex_path = tmpdir / "section.tex"
+    full_doc = (
+        MINI_PREAMBLE
+        + r"""
+\begin{document}
+\fontsize{6}{7.5}\selectfont
+\setlength{\abovedisplayskip}{1pt}\setlength{\belowdisplayskip}{1.5pt}
+\setlength{\abovedisplayshortskip}{0pt}\setlength{\belowdisplayshortskip}{0pt}
+""" + body + r"""
+\end{document}
+"""
+    )
+    tex_path.write_text(full_doc)
+    r = subprocess.run(
+        ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", str(tex_path)],
+        capture_output=True, cwd=str(tmpdir),
+    )
+    pdf_path = tmpdir / "section.pdf"
+    if not pdf_path.exists():
+        print(f"  COMPILE FAIL  {slug}:  see {tmpdir}")
+        return None
+    # Render to PNG (300 DPI). pdftoppm outputs section-1.png.
+    subprocess.run(["pdftoppm", "-r", "300", "-png", str(pdf_path), str(tmpdir / "rendered")], check=True)
+    png = tmpdir / "rendered-1.png"
+    img = Image.open(png).convert("RGB")
+    # Auto-crop whitespace around content.
+    bbox = img.getbbox() if img.mode == "RGB" else None
+    # Better whitespace crop: find non-white pixels.
+    import numpy as np
+    arr = np.array(img)
+    mask = (arr.sum(axis=2) < 255 * 3 - 30)  # not "essentially white"
+    ys, xs = np.where(mask)
+    if ys.size == 0:
+        cropped = img
+    else:
+        pad = 6
+        y0, y1 = ys.min() - pad, ys.max() + pad
+        x0, x1 = xs.min() - pad, xs.max() + pad
+        y0, x0 = max(0, y0), max(0, x0)
+        y1, x1 = min(img.height, y1 + 1), min(img.width, x1 + 1)
+        cropped = img.crop((x0, y0, x1, y1))
+    out_path = OUT_DIR / f"{slug}.png"
+    cropped.save(out_path, "PNG", optimize=True)
+    shutil.rmtree(tmpdir, ignore_errors=True)
+    return cropped.size
+
+
+for slug, (title, body) in section_by_keyword.items():
+    size = render_section(slug, body)
+    if size:
+        print(f"  {slug:24s}  {size[0]}x{size[1]}  '{title[:50]}'")
 
 print("done")
