@@ -112,6 +112,41 @@ subprocess.run(['curl', '-s', '-X', 'PUT',
 
 ---
 
+## Homework Files — Naming Convention
+
+Each `Homework/HWN/` folder uses this exact naming, no spaces, no inconsistent case:
+
+| File | Meaning |
+|---|---|
+| `HWN_Original.pdf` | Instructor's original prompt (what gets handed out in class) |
+| `HWN_Blank.pdf` | Bao's Xournal worksheet version with extra space for handwriting |
+| `HWN_Submission.pdf` | Bao's completed work that was turned in |
+| `hwN_solutions.pdf` | Instructor's official solutions (lowercase) |
+| `HWN_Generate.pdf` | Walk-through doc showing which cheat sheet snippets solve each problem |
+| `src/` | Folder with LaTeX source, Python scripts, image crops for `HWN_Generate` |
+
+So `HW2/` looks like:
+```
+Homework/HW2/
+├── HW2_Original.pdf
+├── HW2_Blank.pdf
+├── HW2_Submission.pdf
+├── hw2_solutions.pdf
+├── HW2_Generate.pdf
+└── src/
+    ├── HW2_Generate.tex
+    ├── make_cs_crops.py
+    ├── HW2_P3a.py / .png  (per-problem plots, if any)
+    └── cs_crops/
+        └── cs_*.png  (cropped eboxes from the midterm cheat sheet)
+```
+
+Top-level PDFs are the readable outputs. `src/` holds everything needed to rebuild them. Compile `HW2_Generate.tex` from inside `src/` (the `\graphicspath` resolves to `cs_crops/` relative to that directory), then copy the resulting PDF up to `HW2/`.
+
+`make_cs_crops.py` re-renders the midterm cheat sheet PDF and slices it into the named eboxes; rerun it after any cheat sheet edit.
+
+---
+
 ## Lab Reports — LaTeX Convention
 
 - Source: `Labs/Lab N/ECE332_LabN_<topic>_Official_latex.tex`
