@@ -74,13 +74,19 @@ With $a_0 = 5$ V/m (the modulus) and $k_1 = 4\pi/3$:
 
 \textbf{(b) Reflection coefficient $\Gamma$ and transmission coefficient $\tau$.}
 
-\textit{Original formula for intrinsic impedance:} $\eta = \sqrt{\mu/\varepsilon}$.
+\textit{General intrinsic impedance:} $\eta = \sqrt{\mu/\varepsilon}$.
 
-\textit{Medium 1 (air, free space, $\mu=\mu_0$ and $\varepsilon=\varepsilon_0$):}
-\[\eta_1 = \eta_0 = \sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{(4\pi\!\times\!10^{-7})(36\pi\!\times\!10^9)} = 120\pi\,\Omega \approx 377\,\Omega\]
+\textit{Decompose into relative + free-space constants:} since $\mu = \mu_r\mu_0$ and $\varepsilon = \varepsilon_r\varepsilon_0$,
+\[\eta = \sqrt{\tfrac{\mu_r\mu_0}{\varepsilon_r\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\cdot\sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0\]
+which for nonmagnetic media ($\mu_r=1$) reduces to $\eta = \eta_0/\sqrt{\varepsilon_r}$.
 
-\textit{Medium 2 (nonmagnetic dielectric, $\mu_2 = \mu_0$, $\varepsilon_2 = \varepsilon_r\varepsilon_0$).} The general $\eta = \sqrt{\mu/\varepsilon}$ simplifies to the lossless shortcut $\eta = \eta_0/\sqrt{\varepsilon_r}$:
-\[\eta_2 = \sqrt{\tfrac{\mu_0}{\varepsilon_r\varepsilon_0}} = \tfrac{1}{\sqrt{\varepsilon_r}}\sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \tfrac{\eta_0}{\sqrt{\varepsilon_r}} = \tfrac{120\pi}{\sqrt{4}} = \tfrac{120\pi}{2} = 60\pi\,\Omega\]
+\textit{Compute $\eta_0$ from $\mu_0, \varepsilon_0$ directly:}
+\[\eta_0 = \sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{(4\pi\!\times\!10^{-7})(36\pi\!\times\!10^9)} = 120\pi\,\Omega \approx 377\,\Omega\]
+
+\textit{Medium 1 (air):} $\mu_r=1, \varepsilon_r=1$. So $\eta_1 = \eta_0\sqrt{1/1} = \eta_0 = 120\pi\,\Omega$.
+
+\textit{Medium 2 (nonmagnetic dielectric, $\mu_r=1, \varepsilon_r=4$):} use the shortcut $\eta = \eta_0/\sqrt{\varepsilon_r}$:
+\[\eta_2 = \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{\sqrt{4}} = \tfrac{120\pi}{2} = 60\pi\,\Omega\]
 
 \textit{Now apply the boundary formula} $\Gamma = (\eta_2-\eta_1)/(\eta_2+\eta_1)$:
 \[\Gamma = \tfrac{60\pi - 120\pi}{60\pi + 120\pi} = \tfrac{-60\pi}{180\pi} = \boxed{-\tfrac{1}{3}}\]
@@ -136,8 +142,8 @@ This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. Use the LOW-LOSS
 \textit{Phase constant (same as lossless approximation since $\sigma$ is tiny):}
 \[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r2}}}{c} = \tfrac{(4\pi\!\times\!10^8)(1.5)}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
 
-\textit{Impedance: low-loss approximation gives $\eta_c \approx \eta_0/\sqrt{\varepsilon_r}$ (essentially real for this small loss tangent):}
-\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
+\textit{Impedance.} Same decomposition $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$ as in P1, with the low-loss approximation $\eta_c \approx \eta_0/\sqrt{\varepsilon_r}$ since the $j\sigma/(2\omega\varepsilon')$ correction is negligible here ($\sigma/\omega\varepsilon = 4\!\times\!10^{-3}$):
+\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{\sqrt{2.25}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
 
 \textit{Now apply the boundary formulas exactly as in P1:}
 \[\Gamma = \tfrac{\eta_2 - \eta_1}{\eta_2 + \eta_1} = \tfrac{80\pi - 120\pi}{80\pi + 120\pi} = \tfrac{-40\pi}{200\pi} = \boxed{-\tfrac{1}{5}}\]
