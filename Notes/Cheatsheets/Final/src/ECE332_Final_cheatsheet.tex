@@ -154,29 +154,41 @@ $0.5774$ & $35.26^\circ$\\
 \end{ebox}
 
 \vspace{2pt}
-\shead{bluebg}{blue}{FRESNEL --- BRIEF REFERENCE}
+\shead{bluebg}{blue}{FRESNEL OBLIQUE --- $\Gamma, \tau, R, T$}
 \begin{ebox}
-\eq{Perpendicular pol.\ ($E\perp$ plane of inc.)}{}
-\[\Gamma_\perp = \tfrac{\eta_2\cos\theta_i-\eta_1\cos\theta_t}{\eta_2\cos\theta_i+\eta_1\cos\theta_t}\]
-\eq{Parallel pol.\ ($E\parallel$ plane of inc.)}{}
-\[\Gamma_\parallel = \tfrac{\eta_2\cos\theta_t-\eta_1\cos\theta_i}{\eta_2\cos\theta_t+\eta_1\cos\theta_i}\]
-$\tau_\perp = 1+\Gamma_\perp$,\enspace $\tau_\parallel = (1+\Gamma_\parallel)\cos\theta_i/\cos\theta_t$\\
-\textit{Brewster ($\parallel$ only): $\tan\theta_B = \sqrt{\varepsilon_{r2}/\varepsilon_{r1}}$ $\Rightarrow$ no reflection.}
+\eq{Perpendicular ($E\perp$ plane of inc.)}{}
+\[\Gamma_\perp = \tfrac{\eta_2\cos\theta_i-\eta_1\cos\theta_t}{\eta_2\cos\theta_i+\eta_1\cos\theta_t},\quad \tau_\perp = 1+\Gamma_\perp\]
+
+\eq{Parallel ($E\parallel$ plane of inc.)}{}
+\[\Gamma_\parallel = \tfrac{\eta_2\cos\theta_t-\eta_1\cos\theta_i}{\eta_2\cos\theta_t+\eta_1\cos\theta_i},\quad \tau_\parallel = (1+\Gamma_\parallel)\tfrac{\cos\theta_i}{\cos\theta_t}\]
+
+\eq{Critical angle (TIR)}{only if $n_1>n_2$}
+\[\sin\theta_c = \tfrac{n_2}{n_1} = \sqrt{\tfrac{\varepsilon_{r2}}{\varepsilon_{r1}}}\;\;\Rightarrow\;\theta_i\!\ge\!\theta_c\!=\!\text{total internal refl.}\]
+
+\eq{Brewster angle ($\parallel$ only)}{$\Gamma_\parallel=0$, no reflection}
+\[\tan\theta_{B\parallel} = \sqrt{\tfrac{\varepsilon_{r2}}{\varepsilon_{r1}}}\;\text{(nonmag.)}\]
+
+\eq{Reflectivity / Transmissivity}{power form; $R+T=1$}
+\[R = |\Gamma|^2,\quad T = |\tau|^2\tfrac{\eta_1\cos\theta_t}{\eta_2\cos\theta_i}\]
+\textit{Normal incidence: $\theta_t=\theta_i=0$, cos factors drop, $R = |\Gamma|^2$, $T = |\tau|^2(\eta_1/\eta_2)$.}
 \end{ebox}
 
 \vspace{2pt}
-\shead{graybg}{gray}{TRIG SHORTCUTS}
+\shead{amberbg}{amber}{FIBER OPTICS}
 \begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{\begin{tabular}{@{}lcl@{}}
-\toprule
-Expr & = & Use\\
-\midrule
-\rowcolor{rowB}$\sin^{-1}(0.2)$ & $0.2014$ rad & $\theta_2$ in HW3 P3\\
-$\sqrt{1-(f_c/f)^2}$ & $u_g/c$ & waveguide ratio\\
-\rowcolor{rowB}$\sqrt{1/a^2+1/b^2}$ & $\sqrt{(b^2+a^2)/(ab)^2}$ & TE$_{11}$ cutoff\\
-\bottomrule
-\end{tabular}}\par}
-$\pi/4 = 45^\circ$,\enspace $\pi/6 = 30^\circ$,\enspace $\pi/3 = 60^\circ$,\enspace $\pi/2 = 90^\circ$
+\textit{Core index $n_f$, cladding $n_c$, surrounded by $n_0$. Need $n_f>n_c$ for TIR.}
+
+\eq{Index of refraction}{nonmag.\ $\mu_r=1$}
+\[n = c/u_p = \sqrt{\varepsilon_r}\]
+
+\eq{Acceptance angle $\theta_a$}{max $\theta_i$ for TIR in fiber}
+\[\sin\theta_a = \tfrac{1}{n_0}\sqrt{n_f^2 - n_c^2}\]
+
+\eq{Modal dispersion (max time delay)}{fiber length $\ell$}
+\[\tau = \tfrac{\ell n_f}{c}\!\cdot\!\tfrac{n_f-n_c}{n_c}\]
+
+\eq{Max data rate}{$T\!\ge\!2\tau$ to avoid pulse overlap}
+\[f_p = \tfrac{1}{2\tau} = \tfrac{c\,n_c}{2\ell n_f(n_f-n_c)}\]
 \end{ebox}
 
 \columnbreak
