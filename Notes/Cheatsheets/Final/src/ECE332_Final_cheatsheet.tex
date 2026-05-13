@@ -54,20 +54,17 @@
 %-- Column 1 -----------------------------------
 \shead{purplebg}{purple}{NORMAL INCIDENCE --- $\Gamma$ AND $\tau$}
 \begin{ebox}
-\eq{Reflection coeff.}{boundary at $z=0$, wave from medium 1}
+\textit{\color{coral}\textbf{Med.\ 1} ($z<0$): incident side.\enspace\textbf{Med.\ 2} ($z\ge0$): transmitted side. Boundary at $z=0$.}
+
+\eq{Reflection coeff.}{wave from medium 1}
 \[\Gamma = \frac{\eta_2-\eta_1}{\eta_2+\eta_1}\;(\text{unitless})\]
 
 \eq{Transmission coeff.}{always}
 \[\tau = 1+\Gamma = \frac{2\eta_2}{\eta_2+\eta_1}\]
 
-\eq{General $\eta$}{always}
-\[\eta = \sqrt{\tfrac{\mu}{\varepsilon}} = \sqrt{\tfrac{\mu_r\mu_0}{\varepsilon_r\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0\;(\Omega)\]
-
-\eq{Nonmag.\ shortcut}{$\mu_r=1$ (air, most dielectrics)}
-\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\;\Rightarrow\;\eta_1=\eta_0\;(\text{air, }\varepsilon_r=1),\;\eta_2=\tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}}\]
-
-\eq{$\eta_0$ from $\mu_0,\varepsilon_0$}{$\tfrac{1}{\varepsilon_0}\!\approx\!36\pi\!\times\!10^9$}
-\[\eta_0 = \sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{(4\pi\!\times\!10^{-7})(36\pi\!\times\!10^9)} = \sqrt{144\pi^2\!\cdot\!10^2} = 120\pi\approx377\,\Omega\]
+\eq{Intrinsic impedance}{general $\to$ nonmag.\ shortcut}
+\[\eta = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
+\textit{Air: $\varepsilon_r=1\Rightarrow\eta_1=\eta_0$.\enspace Med.\ 2: $\eta_2=\eta_0/\sqrt{\varepsilon_{r,2}}$.}
 
 \eq{Low-loss $\eta_2$ (poor conductor)}{$\sigma/(\omega\varepsilon)\ll1$}
 \[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right)\;(\Omega)\]
