@@ -60,8 +60,14 @@
 \eq{Transmission coeff.}{always}
 \[\tau = 1+\Gamma = \frac{2\eta_2}{\eta_2+\eta_1}\]
 
-\eq{Lossless $\eta_i$}{$\sigma=0$}
-\[\eta_i = \frac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega) \qquad \eta_0=120\pi\approx377\,\Omega\]
+\eq{General $\eta$}{always}
+\[\eta = \sqrt{\tfrac{\mu}{\varepsilon}} = \sqrt{\tfrac{\mu_r\mu_0}{\varepsilon_r\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0\;(\Omega)\]
+
+\eq{Nonmag.\ shortcut}{$\mu_r=1$ (air, most dielectrics)}
+\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\;\Rightarrow\;\eta_1=\eta_0\;(\text{air, }\varepsilon_r=1),\;\eta_2=\tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}}\]
+
+\eq{$\eta_0$ from $\mu_0,\varepsilon_0$}{$\tfrac{1}{\varepsilon_0}\!\approx\!36\pi\!\times\!10^9$}
+\[\eta_0 = \sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{(4\pi\!\times\!10^{-7})(36\pi\!\times\!10^9)} = \sqrt{144\pi^2\!\cdot\!10^2} = 120\pi\approx377\,\Omega\]
 
 \eq{Low-loss $\eta_2$ (poor conductor)}{$\sigma/(\omega\varepsilon)\ll1$}
 \[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right)\;(\Omega)\]
