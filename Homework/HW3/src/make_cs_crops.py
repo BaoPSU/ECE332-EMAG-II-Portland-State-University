@@ -27,7 +27,7 @@ WANT = {
     "NORMAL INCIDENCE":             "cs_normal",
     "PHASOR TEMPLATES":             "cs_phasor_templates",
     "POWER REFLECTION":             "cs_power",
-    "LOSSY MEDIA --- 3 REGIMES":    "cs_lowloss",
+    "LOSSY MEDIA --- 5 CASES":      "cs_lowloss",
     "SNELL'S LAW":                  "cs_snell",
     "LATERAL DISPLACEMENT":         "cs_lateral",
     "RECTANGULAR WAVEGUIDE":        "cs_wgmodes",
