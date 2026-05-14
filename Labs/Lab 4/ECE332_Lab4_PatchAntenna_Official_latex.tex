@@ -63,49 +63,60 @@ The center frequency of the patch is set by the half-wavelength-in-dielectric co
 \[
 f_c \approx \frac{c}{2L\sqrt{\varepsilon_r}} \quad\Longrightarrow\quad L \approx \frac{c}{2 f_c \sqrt{\varepsilon_r}}.
 \]
-With $c = 3\times10^{8}$~m/s and $f_c = 2.443$~GHz, the numerator is $c/(2 f_c) = 61.40$~mm.
+With $c = 2.998\times10^{8}$~m/s and $f_c = \sqrt{f_1 f_2} = \sqrt{2.400 \cdot 2.487} \approx 2.443$~GHz (the geometric mean of the WiFi band), sweeping $\varepsilon_r$ across the FR4 spec range gives:
 
 \begin{center}
 \begin{tabular}{cc}
 \toprule
 $\varepsilon_r$ & $L$ (mm) \\
 \midrule
-4.0 & 30.70 \\
-4.1 & 30.32 \\
-4.2 & 29.96 \\
-4.3 & 29.61 \\
-4.4 & 29.27 \\
+4.0 & 30.806 \\
+4.1 & 30.428 \\
+4.2 & 30.063 \\
+4.3 & 29.711 \\
+4.4 & 29.372 \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 About the spread: a 10\% sweep in $\varepsilon_r$ (4.0 to 4.4) only moves $L$ by about 1.43~mm, which is roughly 4.7\% of $L$. The length scales as $1/\sqrt{\varepsilon_r}$, so the sensitivity is half the relative error in $\varepsilon_r$. For example a $\pm 0.1$ swing around $\varepsilon_r = 4.2$ shifts $L$ by about $\pm 0.36$~mm, which is right at the edge of what an Xacto knife can resolve. So basically picking the wrong $\varepsilon_r$ inside the FR4 spec range won't kill the resonance, it just nudges $f_c$ by a few tens of MHz and we trim by hand on the VNA anyway.
 
-\textbf{Design choice:} use $\varepsilon_r = 4.2$ for the initial cut, so $L = \fb{29.96~mm}$ as the starting length.
+\textbf{Design choice:} use the middle value $L = 30$~mm for the initial cut, which corresponds to $\varepsilon_r \approx 4.2$.
 
 \subsection*{Patch width \texorpdfstring{$W$}{W}}
 
-The constraint from the lab is $W \geq L$, with larger $W$ dropping the input impedance and broadening the pattern. A square patch ($W = L \approx 30$~mm) sits around 300~$\Omega$, so we picked $W = 38$~mm. About 25\% wider than $L$, which trims the edge impedance from $\sim 300~\Omega$ down toward $\sim 200~\Omega$ and leaves enough copper area on each side of the transmission line to cut the inset feed without nicking the radiating edge. $W$ runs along the long edge of the FR4 board so the patch and feed line fit comfortably without crowding the SMA connector.
+The constraint from the lab is $W \geq L$, with larger $W$ dropping the input impedance and broadening the pattern. A square patch ($W = L \approx 30$~mm) sits around 300~$\Omega$. We picked $W = 67$~mm, which is the short edge of the FR4 board minus 2~mm of clearance margin. About 2.2$\times$ wider than $L$, which drops the edge-fed impedance well below the square-patch 300~$\Omega$ value and uses the full board width for the radiating aperture. $W$ runs along the short edge of the board so the transmission line and SMA connector fit along the long edge.
 
 \subsection*{50~\texorpdfstring{$\Omega$}{ohm} transmission line width}
 
-For a microstrip line on FR4 with substrate height $h = 1.6$~mm and $\varepsilon_r = 4.2$, the 50~$\Omega$ trace width comes from the Hammerstad/Wheeler synthesis formula. For $Z_0 = 50~\Omega$ on standard FR4 the ratio $w/h$ lands at about 1.92, so
-\[
-w \approx 1.92 \cdot h = 1.92 \cdot 1.6~\text{mm} \approx 3.05~\text{mm}.
-\]
-We rounded to $w = 3.0$~mm for the cut, which puts $Z_0$ within about 1~$\Omega$ of target, well inside what the VNA-trimming step can clean up.
+The 50~$\Omega$ microstrip trace width was computed using the Digi-Key PCB Trace Impedance Calculator\footnote{\url{https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-pcb-trace-impedance}} with the measured substrate parameters:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+$\varepsilon_r$         & 4.2 \\
+Copper thickness $t$    & 0.04~mm \\
+Substrate height $h$    & 1.40~mm \\
+Target $Z_0$            & 50~$\Omega$ \\
+\midrule
+Trace width $w$         & 2.632~mm \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+We used $w = 2.632$~mm for the transmission line cut. The slightly thinner-than-spec substrate ($h = 1.40$~mm measured vs $1.6$~mm nominal) and the copper-tape thickness ($t = 0.04$~mm) were both factored into the calculator instead of using the textbook approximation.
 
 \subsection*{Wavelength and far-field boundary}
 
 The free-space wavelength at $f_c = 2.443$~GHz is
 \[
-\lambda_0 = \frac{c}{f_c} = \frac{3\times 10^{8}}{2.443\times 10^{9}} \approx 12.28~\text{cm}.
+\lambda_0 = \frac{c}{f_c} = \frac{2.998\times 10^{8}}{2.443\times 10^{9}} \approx 12.28~\text{cm}.
 \]
 For an aperture antenna with largest dimension $D$, the far-field (Fraunhofer) region begins at
 \[
 r_{ff} = \frac{2 D^2}{\lambda_0}.
 \]
-With $D = W = 38$~mm, $r_{ff} \approx 2(0.038)^2/0.1228 \approx 2.35$~cm. So any cable-length separation (typically $\geq 30$~cm with the lab's blue SMAs) is comfortably in the far-field, and the azimuth pattern we measure will be the true radiation pattern rather than near-field coupling.
+With $D = W = 67$~mm, $r_{ff} \approx 2(0.067)^2/0.1228 \approx 7.31$~cm. So any cable-length separation (typically $\geq 30$~cm with the lab's blue SMAs) is comfortably in the far-field, and the azimuth pattern we measure will be the true radiation pattern rather than near-field coupling.
 
 \section{VNA Setup}
 
@@ -127,12 +138,12 @@ Both antennas were built on single-sided copper-clad FR4. The patch and 50~$\Ome
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao's antenna & Nick's antenna \\
+ & Bao's antenna (Y1) & Nick's antenna (Y2) \\
 \midrule
-$L$ initial cut (mm)              & 29.96 & 29.96 \\
-$L$ after trim (mm)               & \fb{TBD} & \fb{TBD} \\
-$W$ (mm)                          & 38.0  & 38.0  \\
-Transmission line width (mm)      & 3.0   & 3.0   \\
+$L$ initial cut (mm)              & 30.0  & 30.0  \\
+$L$ after trim (mm)               & 26.0  & 26.7  \\
+$W$ (mm)                          & 67.0  & 67.0  \\
+Transmission line width (mm)      & 2.632 & 2.632 \\
 Transmission line length (mm)     & \fb{TBD} & \fb{TBD} \\
 Inset distance $R$ (mm)           & \fb{TBD} & \fb{TBD} \\
 \bottomrule
@@ -148,16 +159,19 @@ With both antennas connected, $S_{11}$ (Bao) and $S_{22}$ (Nick) were swept from
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao ($S_{11}$) & Nick ($S_{22}$) \\
+ & Bao (Y1, $S_{11}$) & Nick (Y2, $S_{22}$) \\
 \midrule
+Initial $L$ (mm)                    & 30.0 & 30.0 \\
 Initial $f_\text{ant}$ (GHz)        & \fb{TBD} & \fb{TBD} \\
-Trim direction (cut/extend $L$)     & \fb{TBD} & \fb{TBD} \\
-Post-trim $f_\text{ant}$ (GHz)      & \fb{TBD} & \fb{TBD} \\
+Trim direction                      & cut down & cut down \\
+Amount trimmed (mm)                 & 4.0      & 3.3      \\
+Post-trim $L$ (mm)                  & 26.0     & 26.7     \\
+Post-trim $f_\text{ant}$ (GHz)      & $\approx 2.443$ & $\approx 2.443$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\fb{Describe what the initial resonance looked like, why it was off from 2.443~GHz, and how much length was removed (or added) to land in the band. Note: reduce $L$ if $f_\text{antenna} < f_c$, increase if $f_\text{antenna} > f_c$.}
+Both antennas started at $L = 30$~mm but resonated well below 2.443~GHz on the first sweep. About 4~mm was shaved off Bao's antenna and 3.3~mm off Nick's to bring each resonance up into the WiFi band. The 13\% trim on Bao's patch is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
 
 \subsection*{Input impedance measurement}
 
@@ -254,7 +268,7 @@ Both facing away from each other (back-to-back)   & \fb{TBD} & \fb{TBD} \\
 
 \fb{Discuss: is cross-pol lower than back-to-back, or higher? If lower, the patches are well-polarized and back-to-back coupling is dominated by reflections off the room. If higher, explain why (likely near-field coupling that doesn't respect polarization, or reflections off nearby surfaces).}
 
-For the chosen separation, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 2.35$~cm (using $D = W = 38$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of \fb{TBD~cm} is well past this threshold, so the link is operating in the far-field and the cross-pol result reflects true polarization mismatch rather than near-field coupling.
+For the chosen separation, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 7.31$~cm (using $D = W = 67$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of \fb{TBD~cm} is well past this threshold, so the link is operating in the far-field and the cross-pol result reflects true polarization mismatch rather than near-field coupling.
 
 \section{Discussion and Conclusion}
 
