@@ -2,9 +2,10 @@
 **Portland State University — Spring 2026**
 
 ## Course Info
+- **Repo owner / student:** Bao Nguyen (`baon@pdx.edu`)
+- **Lab partner:** Nick Stites
 - **Instructor:** Mark Martin (`marmart2@pdx.edu`), FAB 20-10
 - **Office hours:** T/Th 12:30–1:20
-- **Lab partner:** Nick Stites
 - **Syllabus:** [`syllabus.pdf`](syllabus.pdf) at repo root
 
 ## Grading
