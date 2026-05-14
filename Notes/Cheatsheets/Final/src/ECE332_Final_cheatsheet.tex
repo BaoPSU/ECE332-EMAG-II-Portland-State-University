@@ -122,13 +122,24 @@ General & $a_x\hat{x}+a_y e^{j\delta}\hat{y}$ & elliptical\\
 \end{ebox}
 
 \vspace{2pt}
-\shead{coralbg}{coral}{LOW-LOSS QUICK PARAMS (med 2)}
+\shead{coralbg}{coral}{LOSSY MEDIA --- 3 REGIMES}
 \begin{ebox}
-\eq{Check first}{$\sigma/(\omega\varepsilon)$}\\[1pt]
-\[\alpha_2 \approx \tfrac{\sigma_2}{2}\sqrt{\tfrac{\mu_2}{\varepsilon_2}} = \tfrac{\sigma_2\eta_0}{2\sqrt{\varepsilon_{r2}}}\;\text{(Np/m)}\]
-\[\beta_2 \approx \omega\sqrt{\mu_2\varepsilon_2} = \tfrac{\omega\sqrt{\varepsilon_{r2}}}{c}\;\text{(rad/m)}\]
-\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}}\;\angle\!\approx\!0\]
-\textit{$\varepsilon = \varepsilon_r\varepsilon_0$;\enspace $\varepsilon_0 = 8.85\!\times\!10^{-12}$ F/m;\enspace $36\pi\varepsilon_0\approx1\!\times\!10^{-9}$.}
+\eq{Loss tangent picks regime}{$\mu_r=1$}
+\[\tfrac{\varepsilon''}{\varepsilon'} = \tfrac{\sigma}{\omega\varepsilon_r\varepsilon_0};\quad \varepsilon'=\varepsilon_r\varepsilon_0;\;\varepsilon_0\!\approx\!1/(36\pi\!\times\!10^9)\]
+
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.16\linewidth}p{0.20\linewidth}p{0.56\linewidth}@{}}
+\toprule
+Range & Type & $\alpha,\,\beta,\,\eta_c$ approximations \\
+\midrule
+\rowcolor{rowB}$<10^{-2}$ & low-loss & $\alpha\!\approx\!\tfrac{\sigma\eta_0}{2\sqrt{\varepsilon_r}}$,\, $\beta\!\approx\!\tfrac{\omega\sqrt{\varepsilon_r}}{c}$,\, $\eta_c\!\approx\!\tfrac{\eta_0}{\sqrt{\varepsilon_r}}$\\
+$10^{-2}$ to $10^2$ & quasi & use exact (below)\\
+\rowcolor{rowB}$>10^2$ & good cond. & $\alpha\!\approx\!\beta\!\approx\!\sqrt{\pi f\mu\sigma}$,\, $\eta_c\!\approx\!(1+j)\sqrt{\tfrac{\pi f\mu}{\sigma}}$\\
+\bottomrule
+\end{tabular}}}\par}
+
+\eq{Exact (quasi-cond)}{$X=\sqrt{1+(\varepsilon''/\varepsilon')^2}$}
+\[\alpha=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X{-}1},\;\beta=\omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X{+}1}\]
+\[\eta_c=\tfrac{\eta}{\sqrt{X}}e^{j\theta_\eta},\quad\theta_\eta=\tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}\]
 \end{ebox}
 
 \columnbreak
