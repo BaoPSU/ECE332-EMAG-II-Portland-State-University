@@ -158,37 +158,51 @@ which for nonmagnetic media ($\mu_r=1$) reduces to $\eta = \eta_0/\sqrt{\varepsi
 \includegraphics[width=0.49\linewidth]{cs_power}
 \end{cssnip}
 
-\textbf{(a) Medium 1 (air) is unchanged from P1.} Same incident phasor:
-\[\eta_1 = 120\pi~\Omega,\quad k_1 = \tfrac{4\pi}{3}~\text{rad/m}\]
-\[\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}\]
+\textbf{Wave parameters in medium 1 (air).} Same as P1, since medium 1 hasn't changed:
+\[\omega = 2\pi f = 4\pi\!\times\!10^8~\text{rad/s},\quad k_1 = \tfrac{\omega\sqrt{\varepsilon_{r,1}}}{c} = \tfrac{\omega}{c} = \tfrac{4\pi}{3}~\text{rad/m},\quad \eta_1 = \eta_0 = 120\pi\,\Omega\]
 
-\textbf{(b) Classify medium 2 first.} The LOSSY classification needs the loss tangent $\sigma/(\omega\varepsilon)$:
-\[\tfrac{\sigma_2}{\omega\varepsilon_2} = \tfrac{\sigma_2}{\omega\varepsilon_{r2}\varepsilon_0} = \tfrac{10^{-4}}{(4\pi\!\times\!10^8)(2.25)(8.854\!\times\!10^{-12})} = 4\!\times\!10^{-3}\]
-This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. Use the LOW-LOSS QUICK PARAMS approximations, not the full lossy formulas.
+\textbf{(a) LHC incident phasor.} Identical to P1 — incident wave is in medium 1 (air), which didn't change. From the PHASOR TEMPLATES + polarization table ($\hat{e}_{\text{LHC}} = \hat{x}+j\hat{y}$):
+\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}}\]
 
-\textit{Attenuation constant (small but nonzero now):}
-\[\alpha_2 \approx \tfrac{\sigma_2 \eta_0}{2\sqrt{\varepsilon_{r2}}} = \tfrac{10^{-4}\cdot 120\pi}{2\sqrt{2.25}} = \tfrac{0.0377}{3} = 1.26\!\times\!10^{-2}~\text{Np/m}\]
+\textbf{(b) Reflection and transmission coefficients --- but first classify medium 2.}
 
-\textit{Phase constant (same as lossless approximation since $\sigma$ is tiny):}
-\[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r2}}}{c} = \tfrac{(4\pi\!\times\!10^8)(1.5)}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
+\textit{Compute the loss tangent $\sigma/(\omega\varepsilon)$ to pick which formulas to use:}
+\[\tfrac{\sigma_2}{\omega\varepsilon_2} = \tfrac{\sigma_2}{\omega\varepsilon_{r,2}\varepsilon_0} = \tfrac{10^{-4}}{(4\pi\!\times\!10^8)(2.25)(8.854\!\times\!10^{-12})} = 4\!\times\!10^{-3}\]
+This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. The LOSSY MEDIA --- CLASSIFICATION table tells us to use the LOW-LOSS QUICK PARAMS shortcuts (not the full exact lossy formulas).
 
-\textit{Impedance.} Same decomposition $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$ as in P1, with the low-loss approximation $\eta_c \approx \eta_0/\sqrt{\varepsilon_r}$ since the $j\sigma/(2\omega\varepsilon')$ correction is negligible here ($\sigma/\omega\varepsilon = 4\!\times\!10^{-3}$):
-\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{\sqrt{2.25}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
+\textit{Intrinsic impedance --- same derivation chain as P1, with the low-loss correction.} From the cheat sheet's NORMAL INCIDENCE ebox the general formula is $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$. For low-loss media the LOW-LOSS QUICK PARAMS box says:
+\[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1 + j\tfrac{\sigma}{2\omega\varepsilon'}\right)\quad\xrightarrow[\sigma/\omega\varepsilon\ll 1]{\mu_r=1}\quad \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
+The $j$ correction is $4\!\times\!10^{-3}/2 = 2\!\times\!10^{-3}$, tiny enough to drop for $\Gamma, \tau$ computation. So:
+\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}} = \tfrac{120\pi}{\sqrt{2.25}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
 
-\textit{Now apply the boundary formulas exactly as in P1:}
+\textit{Attenuation and phase constants from LOW-LOSS QUICK PARAMS} (these matter for the transmitted-wave decay even though they don't affect $\Gamma$):
+\[\alpha_2 \approx \tfrac{\sigma_2 \eta_0}{2\sqrt{\varepsilon_{r,2}}} = \tfrac{10^{-4}\cdot 120\pi}{2\sqrt{2.25}} = 1.26\!\times\!10^{-2}~\text{Np/m}\]
+\[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r,2}}}{c} = \tfrac{(4\pi\!\times\!10^8)(1.5)}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
+
+\textit{Apply the boundary formulas:}
 \[\Gamma = \tfrac{\eta_2 - \eta_1}{\eta_2 + \eta_1} = \tfrac{80\pi - 120\pi}{80\pi + 120\pi} = \tfrac{-40\pi}{200\pi} = \boxed{-\tfrac{1}{5}}\]
-\[\tau = 1+\Gamma = \boxed{\tfrac{4}{5}}\]
+\[\tau = 1+\Gamma = 1 - \tfrac{1}{5} = \boxed{\tfrac{4}{5}}\]
 
-\textbf{(c) Field phasors.} Same templates as P1 except the transmitted wave now has the lossy decay factor $e^{-\alpha_2 z}$:
+\textbf{(c) Reflected, transmitted, and total field phasors.}
+
+\textit{Direction signs from the DIRECTION TABLE.} Med 2 is at $z\ge 0$ (same as P1), so use the first row: incident gets $-jk_1z$, reflected gets $+jk_1z$, transmitted gets the lossy decay $e^{-\alpha_2z}e^{-j\beta_2z}$ (since med 2 is now lossy, replace $e^{-jk_2z}$ with $e^{-\alpha_2z}e^{-j\beta_2z}$).
+
+\textit{Reflected (in medium 1, traveling $-\hat{z}$):}
 \[\tilde{\mathbf{E}}^r = \Gamma\cdot 5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}~\text{V/m}\]
+
+\textit{Transmitted (in medium 2, traveling $+\hat{z}$, now decays with $\alpha_2$):}
 \[\tilde{\mathbf{E}}^t = \tau\cdot 5(\hat{x}+j\hat{y})\,e^{-\alpha_2 z}e^{-j\beta_2 z} = 4(\hat{x}+j\hat{y})\,e^{-1.26\!\times\!10^{-2}z}\,e^{-j2\pi z}~\text{V/m}\]
-\[\boxed{\tilde{\mathbf{E}}_1 = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{5}e^{+j4\pi z/3}\right)~\text{V/m}}\]
 
-\textbf{(d) Power percentages.} Same formulas as P1:
-\[\%P_r = 100|\Gamma|^2 = 100\!\cdot\!\tfrac{1}{25} = \boxed{4\%}\]
-\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100\!\cdot\!\tfrac{16}{25}\!\cdot\!\tfrac{120\pi}{80\pi} = 100\!\cdot\!\tfrac{16}{25}\!\cdot\!\tfrac{3}{2} = \boxed{96\%}\]
+\textit{Total field in medium 1 ($z\le 0$):}
+\[\boxed{\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{5}e^{+j4\pi z/3}\right)~\text{V/m}}\]
 
-\textit{Sanity check: $4\% + 96\% = 100\%$.} The dielectric is denser than air ($\varepsilon_r = 2.25$ vs 1), so most of the wave gets through.
+\textbf{(d) Percentages of incident average power reflected and transmitted.}
+
+\textit{From POWER REFLECTION snippet,} same formulas as P1:
+\[\%P_r = 100|\Gamma|^2 = 100\!\cdot\!\left|-\tfrac{1}{5}\right|^2 = 100\!\cdot\!\tfrac{1}{25} = \boxed{4\%}\]
+\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100\!\cdot\!\left|\tfrac{4}{5}\right|^2\!\cdot\!\tfrac{120\pi}{80\pi} = 100\!\cdot\!\tfrac{16}{25}\!\cdot\!\tfrac{3}{2} = \boxed{96\%}\]
+
+\textit{Sanity check:} $4\% + 96\% = 100\%$. Less reflection than P1 (4\% vs 11.1\%) because medium 2 is closer in impedance to air ($\eta_2 = 80\pi$ vs $60\pi$); the smaller impedance jump means more of the wave gets through.
 
 \newpage
 %======================================================
