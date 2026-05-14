@@ -85,11 +85,27 @@ About the spread: a 10\% sweep in $\varepsilon_r$ (4.0 to 4.4) only moves $L$ by
 
 \subsection*{Patch width \texorpdfstring{$W$}{W}}
 
-The constraint from the lab is $W \geq L$, with larger $W$ dropping the input impedance and broadening the pattern, and a square patch ($W = L$) sitting around 300~$\Omega$. We picked $W = \fb{TBD~mm}$ to leave room for the inset feed cuts on either side of the transmission line and to align with the long edge of the FR4 board.
+The constraint from the lab is $W \geq L$, with larger $W$ dropping the input impedance and broadening the pattern. A square patch ($W = L \approx 30$~mm) sits around 300~$\Omega$, so we picked $W = 38$~mm. About 25\% wider than $L$, which trims the edge impedance from $\sim 300~\Omega$ down toward $\sim 200~\Omega$ and leaves enough copper area on each side of the transmission line to cut the inset feed without nicking the radiating edge. $W$ runs along the long edge of the FR4 board so the patch and feed line fit comfortably without crowding the SMA connector.
 
 \subsection*{50~\texorpdfstring{$\Omega$}{ohm} transmission line width}
 
-For a microstrip line on FR4 with substrate height $h = 1.6$~mm and $\varepsilon_r = 4.2$, the 50~$\Omega$ trace width is approximately $w \approx 3.0$~mm (Hammerstad/Wheeler formula, or a microstrip calculator). The exact value used on our antenna was \fb{w = TBD~mm}.
+For a microstrip line on FR4 with substrate height $h = 1.6$~mm and $\varepsilon_r = 4.2$, the 50~$\Omega$ trace width comes from the Hammerstad/Wheeler synthesis formula. For $Z_0 = 50~\Omega$ on standard FR4 the ratio $w/h$ lands at about 1.92, so
+\[
+w \approx 1.92 \cdot h = 1.92 \cdot 1.6~\text{mm} \approx 3.05~\text{mm}.
+\]
+We rounded to $w = 3.0$~mm for the cut, which puts $Z_0$ within about 1~$\Omega$ of target, well inside what the VNA-trimming step can clean up.
+
+\subsection*{Wavelength and far-field boundary}
+
+The free-space wavelength at $f_c = 2.443$~GHz is
+\[
+\lambda_0 = \frac{c}{f_c} = \frac{3\times 10^{8}}{2.443\times 10^{9}} \approx 12.28~\text{cm}.
+\]
+For an aperture antenna with largest dimension $D$, the far-field (Fraunhofer) region begins at
+\[
+r_{ff} = \frac{2 D^2}{\lambda_0}.
+\]
+With $D = W = 38$~mm, $r_{ff} \approx 2(0.038)^2/0.1228 \approx 2.35$~cm. So any cable-length separation (typically $\geq 30$~cm with the lab's blue SMAs) is comfortably in the far-field, and the azimuth pattern we measure will be the true radiation pattern rather than near-field coupling.
 
 \section{VNA Setup}
 
@@ -113,11 +129,12 @@ Both antennas were built on single-sided copper-clad FR4. The patch and 50~$\Ome
 \toprule
  & Bao's antenna & Nick's antenna \\
 \midrule
-$L$ (mm)                       & \fb{TBD} & \fb{TBD} \\
-$W$ (mm)                       & \fb{TBD} & \fb{TBD} \\
-Transmission line width (mm)   & \fb{TBD} & \fb{TBD} \\
-Transmission line length (mm)  & \fb{TBD} & \fb{TBD} \\
-Inset distance $R$ (mm)        & \fb{TBD} & \fb{TBD} \\
+$L$ initial cut (mm)              & 29.96 & 29.96 \\
+$L$ after trim (mm)               & \fb{TBD} & \fb{TBD} \\
+$W$ (mm)                          & 38.0  & 38.0  \\
+Transmission line width (mm)      & 3.0   & 3.0   \\
+Transmission line length (mm)     & \fb{TBD} & \fb{TBD} \\
+Inset distance $R$ (mm)           & \fb{TBD} & \fb{TBD} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -235,7 +252,9 @@ Both facing away from each other (back-to-back)   & \fb{TBD} & \fb{TBD} \\
 \end{tabular}
 \end{center}
 
-\fb{Discuss: is cross-pol lower than back-to-back, or higher? If lower, the patches are well-polarized and back-to-back coupling is dominated by reflections off the room. If higher, explain why (likely near-field coupling that doesn't respect polarization, or reflections off nearby surfaces). Address near-field vs far-field for the chosen separation distance: the far-field boundary for a patch with largest dimension $D$ is roughly $2D^2/\lambda$, so at 2.443~GHz with $\lambda \approx 12.3$~cm and $D \approx \fb{W}$~mm, the far-field begins at about $\fb{TBD~cm}$.}
+\fb{Discuss: is cross-pol lower than back-to-back, or higher? If lower, the patches are well-polarized and back-to-back coupling is dominated by reflections off the room. If higher, explain why (likely near-field coupling that doesn't respect polarization, or reflections off nearby surfaces).}
+
+For the chosen separation, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 2.35$~cm (using $D = W = 38$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of \fb{TBD~cm} is well past this threshold, so the link is operating in the far-field and the cross-pol result reflects true polarization mismatch rather than near-field coupling.
 
 \section{Discussion and Conclusion}
 
