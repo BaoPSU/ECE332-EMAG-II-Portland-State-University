@@ -77,11 +77,22 @@
 \eq{Wavenumber per medium}{nonmag.}
 \[k_i = \tfrac{\omega\sqrt{\varepsilon_{r,i}}}{c}\;(\text{rad/m})\quad\Rightarrow\;k_2 = k_1\sqrt{\varepsilon_{r,2}/\varepsilon_{r,1}}\]
 
-\textit{Wave in $+\hat{z}$, incident has unit-vector pol.\ $\hat{e}$, amplitude $a_0$:}
-\[\tilde{\mathbf{E}}^i = a_0\hat{e}\,e^{-jk_1z}\]
-\[\tilde{\mathbf{E}}^r = \Gamma a_0\hat{e}\,e^{+jk_1z} \qquad \text{(travels in }-\hat{z}\text{)}\]
-\[\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-jk_2z} \qquad \text{(lossless medium 2)}\]
-\[\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-\alpha_2 z}e^{-j\beta_2 z} \qquad \text{(lossy medium 2)}\]
+\eq{Direction table}{$u\in\{x,y,z\}$ = axis perp.\ to boundary}\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{3pt}\begin{tabular}{@{}cccc@{}}
+\toprule
+Inc dir & Inc & Refl & Trans\\
+\midrule
+\rowcolor{rowB}$+\hat{u}$ & $e^{-jk_1u}$ & $e^{+jk_1u}$ & $e^{-jk_2u}$\\
+$-\hat{u}$ & $e^{+jk_1u}$ & $e^{-jk_1u}$ & $e^{+jk_2u}$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{$+\hat{u}$ direction $\Leftrightarrow$ Med 2 at $u\!\ge\!0$. Reflected sign flips, transmitted matches incident.}\\[2pt]
+
+\textit{General template (incident has pol.\ $\hat{e}$, amplitude $a_0$):}
+\[\tilde{\mathbf{E}}^i = a_0\hat{e}\,e^{\mp jk_1u},\quad
+  \tilde{\mathbf{E}}^r = \Gamma a_0\hat{e}\,e^{\pm jk_1u},\quad
+  \tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{\mp jk_2u}\]
+\textit{(lossy med 2: replace $e^{\mp jk_2u}$ with $e^{\mp\alpha_2 u}e^{\mp j\beta_2 u}$)}\\[1pt]
 \textit{Total in medium 1: $\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r$.}\\[1pt]
 \eq{$\hat{e}$ by polarization}{plug into templates above}
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.30\linewidth}p{0.34\linewidth}p{0.30\linewidth}@{}}
