@@ -9,7 +9,10 @@
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage{xcolor}
+\usepackage{subcaption}
 \usepackage[hidelinks]{hyperref}
+
+\graphicspath{{src/photos/}}
 
 \definecolor{answerhl}{RGB}{198,239,206}
 \definecolor{fillhl}{RGB}{255,235,156}
@@ -128,10 +131,39 @@ Both antennas were built on single-sided copper-clad FR4. The patch and 50~$\Ome
 
 \subsection*{Photographs}
 
-\fb{Insert photo of Bao's antenna with all five dimensions labeled in Sharpie on the board itself: $L$, $W$, $R$, transmission line length, transmission line width.}
+Both antennas are shown below with the five required dimensions labeled in Sharpie directly on the board ($L$, $W$, transmission line length, transmission line width, and patch dimensions). The Sharpie values are the design dimensions captured \emph{before} the trim and inset cuts, so $L = 30$~mm appears on the silkscreen rather than the post-trim values.
 
-\vspace{1em}
-\fb{Insert photo of Nick's antenna with all five dimensions labeled in Sharpie on the board itself: $L$, $W$, $R$, transmission line length, transmission line width.}
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{initial_antenna1_bao}
+\caption{Bao's antenna (Y1) before trimming and inset cuts.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{initial_antenna2_nick}
+\caption{Nick's antenna (Y2) before trimming and inset cuts.}
+\end{subfigure}
+\caption{Initial as-built patches with $L = 30$~mm, $W = 67$~mm, transmission line width 2.6~mm, length 35~mm.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{tuned_antenna1_bao}
+\caption{Bao's antenna (Y1) after trimming to $L = 26$~mm and cutting the inset feed.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{tuned_antenna2_nick}
+\caption{Nick's antenna (Y2) after trimming to $L = 26.7$~mm and cutting the inset feed.}
+\end{subfigure}
+\caption{Tuned patches after the inset-feed cuts on either side of the transmission line.}
+\end{figure}
 
 \subsection*{As-built dimensions}
 
