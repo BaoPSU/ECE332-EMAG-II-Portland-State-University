@@ -187,11 +187,15 @@ The $j$ correction is $4\!\times\!10^{-3}/2 = 2\!\times\!10^{-3}$, tiny enough t
 
 \textit{Direction signs from the DIRECTION TABLE.} Med 2 is at $z\ge 0$ (same as P1), so use the first row: incident gets $-jk_1z$, reflected gets $+jk_1z$, transmitted gets the lossy decay $e^{-\alpha_2z}e^{-j\beta_2z}$ (since med 2 is now lossy, replace $e^{-jk_2z}$ with $e^{-\alpha_2z}e^{-j\beta_2z}$).
 
-\textit{Reflected (in medium 1, traveling $-\hat{z}$):}
-\[\tilde{\mathbf{E}}^r = \Gamma\cdot 5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}~\text{V/m}\]
+\textit{Reflected template (still in lossless medium 1, traveling $-\hat{z}$):}
+\[\tilde{\mathbf{E}}^r = \Gamma\,a_0\hat{e}\,e^{+jk_1z}\]
+Plug in $\Gamma=-1/5$, $a_0=5$, $\hat{e}=\hat{x}+j\hat{y}$, $k_1=4\pi/3$:
+\[\tilde{\mathbf{E}}^r = -\tfrac{1}{5}\cdot 5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}~\text{V/m}\]
 
-\textit{Transmitted (in medium 2, traveling $+\hat{z}$, now decays with $\alpha_2$):}
-\[\tilde{\mathbf{E}}^t = \tau\cdot 5(\hat{x}+j\hat{y})\,e^{-\alpha_2 z}e^{-j\beta_2 z} = 4(\hat{x}+j\hat{y})\,e^{-1.26\!\times\!10^{-2}z}\,e^{-j2\pi z}~\text{V/m}\]
+\textit{Transmitted template (lossy medium 2, traveling $+\hat{z}$, replace $e^{-jk_2z}$ with $e^{-\alpha_2z}e^{-j\beta_2z}$):}
+\[\tilde{\mathbf{E}}^t = \tau\,a_0\hat{e}\,e^{-\alpha_2 z}\,e^{-j\beta_2 z}\]
+Plug in $\tau=4/5$, $a_0=5$, $\hat{e}=\hat{x}+j\hat{y}$, $\alpha_2=1.26\!\times\!10^{-2}$, $\beta_2=2\pi$:
+\[\tilde{\mathbf{E}}^t = \tfrac{4}{5}\cdot 5(\hat{x}+j\hat{y})\,e^{-\alpha_2 z}e^{-j\beta_2 z} = 4(\hat{x}+j\hat{y})\,e^{-1.26\!\times\!10^{-2}z}\,e^{-j2\pi z}~\text{V/m}\]
 
 \textit{Total field in medium 1 ($z\le 0$):}
 \[\boxed{\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{5}e^{+j4\pi z/3}\right)~\text{V/m}}\]
