@@ -109,6 +109,8 @@ for kw, slug in WANT.items():
     section_by_keyword[slug] = found
 
 
+CS_IMG_DIR = REPO_ROOT / "Notes" / "Cheatsheets" / "Final" / "img"
+
 MINI_PREAMBLE = r"""
 \documentclass[6pt,letterpaper]{article}
 \usepackage[paperwidth=2.67in,paperheight=14in,margin=4pt]{geometry}
@@ -120,6 +122,7 @@ MINI_PREAMBLE = r"""
 \usepackage{colortbl}
 \usepackage{array}
 \usepackage{graphicx}
+\graphicspath{{""" + str(CS_IMG_DIR) + r"""/}}
 
 \definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
 \definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
