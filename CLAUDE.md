@@ -161,6 +161,58 @@ Top-level PDFs are the readable outputs. `src/` holds everything needed to rebui
 
 ---
 
+## TA / Instructor Feedback — `FEEDBACK.md` Convention
+
+Whenever a graded assignment comes back with TA or instructor comments, save them as `FEEDBACK.md` alongside the assignment. Applies to **labs and homework alike**:
+
+- `Labs/Lab N/FEEDBACK.md`
+- `Homework/HWN/FEEDBACK.md`
+
+### File template
+
+```markdown
+# <Assignment Name> — TA Feedback
+
+**Grade:** XX / 100
+**TA:** <Name>
+**Submitted:** <date and time>
+**Feedback dates:** <date and time>  ← if multiple comments, list them
+**Attempt:** <N>  ← if multiple submissions allowed
+
+## Comments
+
+1. **<Short bold lead>.** Plain-English restatement of the TA's point.
+   Include the relevant equation in LaTeX math if they cited one:
+   $$\varepsilon = -M \frac{di}{dt}$$
+
+2. **<Next point>.** ...
+
+## Takeaways for future labs
+
+- One bullet per actionable lesson, written so future-Bao can apply it without re-reading the comment.
+- Anchor each bullet to a rule, equation, or decision criterion (not a vague reminder).
+```
+
+### Rules
+
+- **Save the grade exactly as scored**, including the denominator (`98 / 100`, not just `98%`).
+- **Don't paraphrase the TA's correction into something nicer.** If the TA says "the answer should have been differential signaling," write that, not "you could have mentioned differential signaling."
+- **Add a Takeaways section** at the bottom even if the TA didn't give one. The point is to learn from feedback, not just archive it.
+- **Restate equations in LaTeX math** so they render on GitHub.
+- **Use the exact date/time stamp** the grading platform shows (e.g., "April 27 at 5:05 PM").
+- Multiple feedback comments across different dates: list each date under **Feedback dates** and bundle the comments into the numbered list. Don't make separate sub-sections per date.
+
+### Why bother
+
+Feedback files compound across the term. By final-exam study time, the lab `FEEDBACK.md` files give a quick "what concepts did I actually get wrong on graded work" list — way more useful than re-reading the lab manuals. Same logic for homework: HW feedback files (when they exist) tell you which problem types to drill, even if the cheat sheet has the formula.
+
+### Existing examples
+
+- `Labs/Lab 1/FEEDBACK.md` — Signal integrity, 95/100, Jeff Dinsmore
+- `Labs/Lab 2/FEEDBACK.md` — Wireless power, 98/100, Jeff Dinsmore
+
+---
+
 ## Cheat Sheets
 
 See `Notes/CLAUDE.md` for the full cheat sheet workflow (3-column layout, color scheme, ebox environment, page-length constraints).
