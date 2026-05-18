@@ -119,15 +119,17 @@ ax.text(x_end + 0.3, y_bottom_air - 3.6,
         fr"$\theta_4 = {theta_4:.0f}^\circ$",
         fontsize=10, color='darkred')
 
-# Lateral displacement d (between the no-refraction continuation of incident
-# ray at the lower air layer, and the actual exit point on the bottom interface)
-no_refract_x = 0 + (y_top_slab1 - y_bottom_air) * np.tan(np.radians(theta_i))
-ax.annotate('', xy=(x_at_iface3, y_bottom_air - 0.5),
-            xytext=(no_refract_x, y_bottom_air - 0.5),
-            arrowprops=dict(arrowstyle='<->', color='darkgreen', lw=1.6))
-ax.plot([no_refract_x, no_refract_x], [y_top_slab1, y_bottom_air - 0.7],
+# Lateral displacement d: horizontal shift between the entry point at the top of
+# slab 1 (x=0) and the actual exit at the bottom of slab 2 (x = x_at_iface3).
+# Matches textbook Fig. 8-3 convention: d = sum of t_i tan(theta inside slab i).
+ax.plot([0, 0], [y_top_slab1, y_bottom_air - 0.7],
         color='darkgreen', linestyle=':', linewidth=1.0)
-ax.text((no_refract_x + x_at_iface3)/2, y_bottom_air - 1.0,
+ax.plot([x_at_iface3, x_at_iface3], [y_top_slab2, y_bottom_air - 0.7],
+        color='darkgreen', linestyle=':', linewidth=1.0)
+ax.annotate('', xy=(x_at_iface3, y_bottom_air - 0.5),
+            xytext=(0, y_bottom_air - 0.5),
+            arrowprops=dict(arrowstyle='<->', color='darkgreen', lw=1.6))
+ax.text(x_at_iface3 / 2, y_bottom_air - 1.0,
         fr"$d = 2.79$ cm", fontsize=11, color='darkgreen',
         ha='center', va='top',
         bbox=dict(boxstyle='round,pad=0.2', facecolor='white',
