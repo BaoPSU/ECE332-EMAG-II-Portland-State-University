@@ -121,8 +121,10 @@ Each `Homework/HWN/` folder uses this exact naming, no spaces, no inconsistent c
 | `HWN_Original.pdf` | Instructor's original prompt (what gets handed out in class) |
 | `HWN_Blank.pdf` | Bao's Xournal worksheet version with extra space for handwriting |
 | `HWN_Submission.pdf` | Bao's completed work that was turned in |
+| `HWN_Graded.pdf` | TA/instructor's annotated copy returned with grade markings |
 | `hwN_solutions.pdf` | Instructor's official solutions (lowercase) |
 | `HWN_Generate.pdf` | Walk-through doc showing which cheat sheet snippets solve each problem |
+| `FEEDBACK.md` | TA/instructor written comments and grade (see FEEDBACK.md convention) |
 | `src/` | Folder with LaTeX source, Python scripts, image crops for `HWN_Generate` |
 
 So `HW2/` looks like:
