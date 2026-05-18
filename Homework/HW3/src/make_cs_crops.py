@@ -16,7 +16,7 @@ import numpy as np
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parents[2]
-CHEATSHEET_TEX = REPO_ROOT / "Notes" / "Cheatsheets" / "Final" / "src" / "ECE332_Final_cheatsheet.tex"
+CHEATSHEET_TEX = REPO_ROOT / "Notes" / "Cheatsheets" / "Final" / "src" / "ECE332_HW3_cheatsheet.tex"
 OUT_DIR = SCRIPT_DIR / "cs_crops"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
