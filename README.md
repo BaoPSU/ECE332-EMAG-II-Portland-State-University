@@ -28,7 +28,7 @@ Labs/           Lab 1 … Lab 4 — PSU-formatted LaTeX reports
 Notes/
   ├── lecture01.pdf … lecture13.pdf
   ├── Cheatsheets/
-  │   ├── Midterm1/   ECE332_Exam1_cheatsheet (active for lectures 1–10)
+  │   ├── Exam1/   ECE332_Exam1_cheatsheet (active for lectures 1–10)
   │   └── Final/      ECE332_Final_cheatsheet (active for lectures 11+)
   ├── Textbook/
   │   ├── EM1-book-7th-ed.pdf
