@@ -10,7 +10,7 @@ Instructor: Mark Martin (marmart2@pdx.edu), FAB 20-10. Office hours T/Th 12:30�
 ## Exams (from syllabus, Method of Evaluation)
 - **Midterm 1** — May 7, 2026. Covers lectures 1–10 + HW1, HW2. Worth 25%.
 - **Final exam** — date TBD. Covers lecture 11 onward (second half). **NOT cumulative.** Worth 25%.
-- See `Notes/Cheatsheets/Midterm1/COVERAGE.md` and `Notes/Cheatsheets/Final/COVERAGE.md` for full topic lists.
+- See `Notes/Cheatsheets/Exam1/COVERAGE.md` and `Notes/Cheatsheets/Final/COVERAGE.md` for full topic lists.
 
 ## Grade weights
 Labs 20% · HW 30% · Midterm 25% · Final 25%. Curve possible at end of term.
@@ -219,5 +219,5 @@ Feedback files compound across the term. By final-exam study time, the lab `FEED
 
 See `Notes/CLAUDE.md` for the full cheat sheet workflow (3-column layout, color scheme, ebox environment, page-length constraints).
 
-**Important:** Only edit `Notes/Cheatsheets/Midterm1/src/ECE332_Exam1_cheatsheet.tex`.
+**Important:** Only edit `Notes/Cheatsheets/Exam1/src/ECE332_Exam1_cheatsheet.tex`.
 The standalone `ECE332_HW1_cheatsheet.tex` and `ECE332_HW2_cheatsheet.tex` files are not to be modified.
