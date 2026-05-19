@@ -1,6 +1,6 @@
 # Cheat Sheet Methodology — Reverse-Engineered from Midterm 1
 
-This document explains how `Midterm1/ECE332_Exam1_cheatsheet.pdf` was built and how to replicate that quality for the Final using `Homework/HW3/hw3_solutions.pdf` and `Homework/HW4/hw4_solutions.pdf` as the primary source.
+This document explains how `Exam1/ECE332_Exam1_cheatsheet.pdf` was built and how to replicate that quality for the Final using `Homework/HW3/hw3_solutions.pdf` and `Homework/HW4/hw4_solutions.pdf` as the primary source.
 
 Goal: a one-page (two-sided) reference dense enough to walk through every HW problem and exam question without flipping back to lectures or the textbook.
 
@@ -89,7 +89,7 @@ Alternating row tint. Wrap every rowcolor table in:
 The `\makebox[0.98\linewidth][c]` constrains the rowcolor fill so it does not bleed past the ebox. The `\setlength{\tabcolsep}{2pt}` tightens columns so they fit. The `@{}` at both ends strips end-padding. Required because the default rowcolor extends to the full column width of the parent multicol, which leaks color into the next ebox.
 
 ### 5.5 Image inclusion via `\graphicspath{{../img/}}`
-Figures live in `Midterm1/img/`. Compile from `Midterm1/src/` and the path resolves. Use `\includegraphics[width=0.9\linewidth,keepaspectratio]{name.png}` inside a `{\centering ... \par}` wrapper so it does not break ebox spacing.
+Figures live in `Exam1/img/`. Compile from `Exam1/src/` and the path resolves. Use `\includegraphics[width=0.9\linewidth,keepaspectratio]{name.png}` inside a `{\centering ... \par}` wrapper so it does not break ebox spacing.
 
 ### 5.6 Manual spacing
 Math display skip is `0pt` above and `0.5pt` to `1.5pt` below. `\parskip` is zero. The page is dense by deliberate suppression of LaTeX's default spacing, not by font shrinking past 6 pt (which would trip `microtype` errors — see `Notes/CLAUDE.md` for the `expansion=false` fix).
@@ -233,7 +233,7 @@ Pattern: the *lecture* defines the method (notation, sign conventions, decision 
 
 1. **Copy the existing tex** as a starting template. The preamble (colors, `\shead`, `\eq`, `ebox`, header/footer) is already correct.
 2. **Replace the body** with the section list from §8.
-3. **Reuse images** from `Midterm1/img/` if relevant (unit circle, conductor diagram). Add new figures to a `Final/img/` folder: waveguide cross-section, dipole pattern, layer-stack with $\theta$ angles.
+3. **Reuse images** from `Exam1/img/` if relevant (unit circle, conductor diagram). Add new figures to a `Final/img/` folder: waveguide cross-section, dipole pattern, layer-stack with $\theta$ angles.
 4. **Compile from `Final/src/`** twice with `pdflatex -interaction=nonstopmode`. Verify output is exactly 1 physical page (2 PDF pages).
 5. **Spot-check against the answer keys**: pick HW3 P4 (waveguide TE$_{23}$ identification). Try to do it using only the cheat sheet. If you have to flip to the solutions, the missing piece becomes a new ebox.
 6. **Push** both `.tex` and `.pdf` to `Notes/Cheatsheets/Final/` and `Notes/Cheatsheets/Final/src/`.
@@ -254,8 +254,8 @@ Apply those three rules to every ebox and the final sheet will carry the same we
 
 ## References
 
-- `Notes/Cheatsheets/Midterm1/src/ECE332_Exam1_cheatsheet.tex` — reference implementation.
-- `Notes/Cheatsheets/Midterm1/COVERAGE.md` — topic list for the midterm.
+- `Notes/Cheatsheets/Exam1/src/ECE332_Exam1_cheatsheet.tex` — reference implementation.
+- `Notes/Cheatsheets/Exam1/COVERAGE.md` — topic list for the midterm.
 - `Notes/Cheatsheets/Final/COVERAGE.md` — topic list for the final.
 - `Notes/Textbook/EM1-book-7th-ed.pdf` — Ulaby & Ravaioli for derivations and figures.
 - `Homework/HW1/hw1solns.pdf`, `Homework/HW2/HW2_solutions.pdf` — midterm source material.
