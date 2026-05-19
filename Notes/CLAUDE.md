@@ -8,7 +8,7 @@ This project maintains LaTeX cheat sheets for ECE332 (Electromagnetics II) at Po
 **Folder structure:**
 ```
 Notes/Cheatsheets/
-├── Midterm1/
+├── Exam1/
 │   ├── ECE332_Exam1_cheatsheet.pdf
 │   ├── ECE332_HW1_cheatsheet.pdf
 │   ├── ECE332_HW2_cheatsheet.pdf
@@ -29,9 +29,9 @@ Notes/Cheatsheets/
 ### Midterm 1 — May 7, 2026
 - **Lectures:** 1–10
 - **Homeworks:** HW1, HW2
-- **Cheat sheet:** `Midterm1/ECE332_Exam1_cheatsheet` (2-sided, 1 page = 2 PDF pages)
+- **Cheat sheet:** `Exam1/ECE332_Exam1_cheatsheet` (2-sided, 1 page = 2 PDF pages)
 - **Topics:** Faraday's & Ampère's laws, charge-current continuity, EM & time-harmonic potentials, plane-wave propagation (lossless & lossy), polarization, current flow in conductors, EM power density
-- **Coverage doc:** `Midterm1/COVERAGE.md`
+- **Coverage doc:** `Exam1/COVERAGE.md`
 
 ### Final — date TBD, NOT cumulative
 - **Lectures:** 11 onward (post-midterm only)
