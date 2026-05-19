@@ -16,7 +16,7 @@ from PIL import Image
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPT_DIR.parents[2]
-CHEATSHEET_TEX = REPO_ROOT / "Notes" / "Cheatsheets" / "Midterm1" / "src" / "ECE332_Exam1_cheatsheet.tex"
+CHEATSHEET_TEX = REPO_ROOT / "Notes" / "Cheatsheets" / "Exam1" / "src" / "ECE332_Exam1_cheatsheet.tex"
 OUT_DIR = SCRIPT_DIR / "cs_crops"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -157,7 +157,7 @@ MINI_PREAMBLE = r"""
 
 \newcommand{\eq}[2]{\noindent{\color{gray}\bfseries\fontsize{5.8}{6}\selectfont#1}\enspace{\color{teal}\fontsize{5.5}{6}\selectfont\textit{#2}}}
 
-\graphicspath{{""" + str(REPO_ROOT / "Notes/Cheatsheets/Midterm1/img") + r"""/}}
+\graphicspath{{""" + str(REPO_ROOT / "Notes/Cheatsheets/Exam1/img") + r"""/}}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}\setlength{\parskip}{0pt}
 """
