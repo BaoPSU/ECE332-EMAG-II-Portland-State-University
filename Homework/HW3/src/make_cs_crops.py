@@ -24,7 +24,6 @@ OUT_DIR.mkdir(parents=True, exist_ok=True)
 # Snell's law / multilayer (P3), waveguide modes (P4), multi-mode group
 # velocity (P5).
 WANT = {
-    "INTRINSIC IMPEDANCE":          "cs_normal",
     "PHASOR TEMPLATES":             "cs_phasor_templates",
     "POWER REFLECTION":             "cs_power",
     "LOSSY MEDIA --- 5 CASES":      "cs_lowloss",
