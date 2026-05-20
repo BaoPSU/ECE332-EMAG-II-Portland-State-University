@@ -52,20 +52,6 @@
 \begin{multicols}{3}
 
 %-- Column 1 -----------------------------------
-\shead{purplebg}{purple}{INTRINSIC IMPEDANCE $\eta$}
-\begin{ebox}
-\textit{\color{coral}\textbf{Med.\ 1} ($z<0$): incident side.\enspace\textbf{Med.\ 2} ($z\ge0$): transmitted side. Boundary at $z=0$. ($\Gamma, \tau$ in Table 8-2 below.)}
-
-\eq{General $\to$ nonmag.\ shortcut}{}
-\[\eta_i = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
-\textit{\color{coral}Default $\mu_r=1$ (air, dielectric, ``nonmag.''). Only use $\mu_r\!\ne\!1$ if problem says so (``ferromagnetic'', iron, ferrite, or $\mu_r$ given explicitly).}
-
-\eq{Low-loss correction}{$\sigma/(\omega\varepsilon)\ll1$}
-\[\eta_c \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \;\xrightarrow{\text{drop tiny }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega)\]
-\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_r}$. The $j$ term is for accuracy with $|\eta_c|, \theta_\eta$. See LOSSY MEDIA --- 5 CASES table for all regimes.}
-\end{ebox}
-
-\vspace{2pt}
 \shead{purplebg}{purple}{$\tilde{\mathbf{E}}$ PHASOR TEMPLATES}
 \begin{ebox}
 \eq{Wavenumber per medium}{nonmag.}
@@ -172,7 +158,7 @@ Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma};$ $\alpha
 \vspace{2pt}
 \shead{bluebg}{blue}{TABLE 8-2 --- $\Gamma, \tau, R, T$ SUMMARY}
 \begin{ebox}
-\textit{Shorthand: $c_i\!=\!\cos\theta_i$, $c_t\!=\!\cos\theta_t$.}\\[1pt]
+\textit{\color{coral}\textbf{Med.\ 1} ($z<0$) incident side; \textbf{Med.\ 2} ($z\ge0$) transmitted. Shorthand: $c_i\!=\!\cos\theta_i$, $c_t\!=\!\cos\theta_t$.}\\[1pt]
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1pt}\fontsize{5.2}{6.0}\selectfont\begin{tabular}{@{}p{0.10\linewidth}p{0.22\linewidth}p{0.30\linewidth}p{0.30\linewidth}@{}}
 \toprule
  & \textbf{Normal} ($\theta_i\!=\!0$) & $\boldsymbol{\perp}$ \textbf{pol} & $\boldsymbol{\parallel}$ \textbf{pol}\\
@@ -185,7 +171,15 @@ $R$ & $|\Gamma|^2$ & $|\Gamma_\perp|^2$ & $|\Gamma_\parallel|^2$\\
 $R\!+\!T$ & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\parallel\!=\!1\!-\!R_\parallel$\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{\color{blue}Notes: $\sin\theta_t\!=\!\sqrt{\mu_1\varepsilon_1/\mu_2\varepsilon_2}\sin\theta_i$;\ $\eta_i\!=\!\sqrt{\mu_i/\varepsilon_i}$;\ nonmag.\ $\Rightarrow\eta_2/\eta_1\!=\!n_1/n_2$.}
+\textit{\color{blue}Notes: $\sin\theta_t\!=\!\sqrt{\mu_1\varepsilon_1/\mu_2\varepsilon_2}\sin\theta_i$;\ nonmag.\ $\Rightarrow\eta_2/\eta_1\!=\!n_1/n_2$.}\\[2pt]
+
+\eq{Intrinsic impedance $\eta_i$}{plug into table above}
+\[\eta_i = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
+\textit{\color{coral}Default $\mu_r=1$ (air, dielectric). Use $\mu_r\!\ne\!1$ only if problem says ``ferromagnetic''/iron/ferrite/etc.}
+
+\eq{Low-loss correction $\eta_c$}{$\sigma/(\omega\varepsilon)\ll1$}
+\[\eta_c \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \xrightarrow{\text{drop }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
+\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_r}$. The $j$ term is for $|\eta_c|, \theta_\eta$. See LOSSY MEDIA --- 5 CASES for all regimes.}
 \end{ebox}
 
 \columnbreak
