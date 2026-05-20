@@ -1,0 +1,226 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[top=0.85in,bottom=0.85in,left=1in,right=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{cancel}
+
+\graphicspath{{cs_crops/}{./}}
+
+\definecolor{teal}{HTML}{0F6E56}\definecolor{tealbg}{HTML}{E1F5EE}
+\definecolor{coral}{HTML}{993C1D}\definecolor{coralbg}{HTML}{FAECE7}
+\definecolor{purple}{HTML}{534AB7}\definecolor{purplebg}{HTML}{EEEDFE}
+\definecolor{amber}{HTML}{854F0B}\definecolor{amberbg}{HTML}{FAEEDA}
+
+\newmdenv[linewidth=1pt,linecolor=teal,backgroundcolor=tealbg!30,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=4pt,innerbottommargin=4pt,
+  skipabove=4pt,skipbelow=6pt]{cssnip}
+
+\newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!30,
+  innerleftmargin=6pt,innerrightmargin=6pt,
+  innertopmargin=4pt,innerbottommargin=4pt,
+  skipabove=4pt,skipbelow=4pt]{notebox}
+
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\textbf{ECE332 Spring 2026 --- HW4 Generated Answers}}
+\fancyhead[R]{Bao Nguyen}
+\fancyfoot[C]{\thepage}
+
+\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+
+\newcommand{\probhead}[2]{%
+  \colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}%
+  {\color{purple}\large\textbf{Problem #1 \hfill #2}}}}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{ECE 332 --- Homework 4: Generated Answers from HW4 Cheat Sheet}}\\[4pt]
+{\small Each solution shows the cheat sheet snippet used, then the answer.}
+\end{center}
+
+\vspace{4pt}
+
+\begin{notebox}
+\textbf{Symbol reference} (used throughout):
+\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\topsep}{1pt}\setlength{\parsep}{0pt}
+\item $l$ --- antenna physical length (m)
+\item $\lambda = c/f$ --- wavelength (m); $c=3\!\times\!10^8$ m/s
+\item $I_0$ --- peak current at antenna feed (A)
+\item $R$ --- distance from antenna to observation point (m)
+\item $\theta$ --- angle from antenna axis (rad or deg)
+\item $\eta_0 = 120\pi \approx 377\,\Omega$ --- intrinsic impedance of free space
+\item $k = 2\pi/\lambda$ --- wavenumber (rad/m)
+\item $S(R,\theta)$ --- average power density radiated (W/m\textsuperscript{2})
+\item $F(\theta) = S(\theta)/S_{\max}$ --- normalized radiation intensity (unitless)
+\item $\beta$ --- half-power beamwidth (rad or deg)
+\item $\Omega_p$ --- pattern solid angle (sr)
+\item $D = 4\pi/\Omega_p$ --- directivity (unitless, often dB)
+\item $A_e = \lambda^2 D/(4\pi)$ --- effective aperture area (m\textsuperscript{2})
+\item $A_p$ --- physical cross-section area (m\textsuperscript{2})
+\item $G_t, G_r$ --- antenna gains (linear)
+\item $P_t, P_r$ --- transmitted / received power (W)
+\end{itemize}
+\textit{\color{coral}\textbf{Key shortcuts:} Hertzian dipole ($l/\lambda < 1/50$) $\Rightarrow D = 1.5$. Half-wave dipole ($l = \lambda/2$) $\Rightarrow D = 1.64$, $R_{\text{rad}} = 73\,\Omega$. 3 dB $\Rightarrow$ linear gain of 2.}
+\end{notebox}
+
+\vspace{4pt}
+
+%======================================================
+\probhead{1 --- Hertzian Dipole, Power Density at 5 km}{8 pts}
+
+\textbf{Setup:} A 1-m long dipole excited by a 1 MHz current with amplitude $I_0 = 12$ A. Find the average power density radiated at $R = 5$ km, $\theta = 45^\circ$.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_dipole_type}\hfill
+\includegraphics[width=0.49\linewidth]{cs_hertzian}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_dipole_params}
+\end{cssnip}
+
+\textbf{Step 1 --- Classify the dipole length.} Compute the wavelength to compare with $l$:
+\[\lambda = \tfrac{c}{f} = \tfrac{3\!\times\!10^8}{10^6} = 300~\text{m}\]
+\[\tfrac{l}{\lambda} = \tfrac{1}{300} < \tfrac{1}{50}\quad\Rightarrow\;\text{\textbf{Hertzian dipole}}\]
+The DIPOLE TYPE BY LENGTH section says short ($l/\lambda < 1/50$) means we can use the Hertzian $S(R,\theta)$ formula directly.
+
+\textbf{Step 2 --- Apply the Hertzian power density formula.} From HERTZIAN DIPOLE --- $S(R,\theta)$:
+\[S(R,\theta) = \left(\tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\right)\sin^2\theta\]
+
+\textbf{Step 3 --- Plug in numbers.} $\eta_0 = 120\pi$, $k = 2\pi/\lambda = 2\pi/300$ rad/m, $I_0 = 12$ A, $l = 1$ m, $R = 5000$ m, $\theta = \pi/4$:
+\[S = \tfrac{(120\pi)(2\pi/300)^2(12)^2(1)^2}{32\pi^2(5\!\times\!10^3)^2}\sin^2(\pi/4)\]
+
+Numerator: $(120\pi)(4\pi^2/9\!\times\!10^4)(144) = (120\pi)(144)(4\pi^2)/(9\!\times\!10^4)$
+\[= 120 \cdot 144 \cdot 4 \cdot \pi^3 / (9\!\times\!10^4) = 69120\pi^3/(9\!\times\!10^4)\]
+
+Denominator: $32\pi^2 \cdot 2.5\!\times\!10^7$. And $\sin^2(\pi/4) = 1/2$.
+
+Working it out cleanly:
+\[\boxed{S(5\text{ km},\,45^\circ) = 1.51\!\times\!10^{-9}~\text{W/m}^2}\]
+
+\textit{Sanity:} a 12 A current at 1 MHz across a 1-m antenna at 5 km radiates ~1.5 nW/m\textsuperscript{2}. The $1/R^2$ falloff dominates: most of the radiated power scatters into space, only a tiny fraction reaches any one observation point.
+
+%======================================================
+\probhead{2 --- Beam Parameters from Normalized Pattern}{15 pts}
+
+\textbf{Setup:} $F(\theta) = \exp(-20\theta^2)$ for $0 \le \theta \le \pi$ ($\theta$ in radians). Find: (a) half-power beamwidth $\beta$, (b) pattern solid angle $\Omega_p$, (c) directivity $D$.
+
+\begin{cssnip}
+\includegraphics[width=0.95\linewidth]{cs_beam}
+\end{cssnip}
+
+\textbf{(a) Half-power beamwidth $\beta$ (5 pts).} HPBW is the angular width between the two points where $F(\theta) = 1/2$. Solve $\exp(-20\theta^2) = 0.5$:
+\[-20\theta^2 = \ln(0.5) \;\Rightarrow\; \theta = \sqrt{-\ln(0.5)/20} = \sqrt{0.693/20} = \pm 0.186~\text{rad}\]
+The beam is symmetric about $\theta = 0$, so the full beamwidth is:
+\[\boxed{\beta = 2\theta = 0.372~\text{rad} = 21.31^\circ}\]
+
+\textbf{(b) Pattern solid angle $\Omega_p$ (5 pts).} From BEAM PARAMETERS:
+\[\Omega_p = \iint_{4\pi} F(\theta)\sin\theta\,d\theta\,d\phi = \int_0^{2\pi}\!\!\int_0^{\pi} \exp(-20\theta^2)\sin\theta\,d\theta\,d\phi\]
+$F$ has no $\phi$ dependence, so $\int_0^{2\pi}d\phi = 2\pi$:
+\[\Omega_p = 2\pi\!\int_0^{\pi}\exp(-20\theta^2)\sin\theta\,d\theta\]
+This integral has no closed form, evaluate numerically (Python/MATLAB/calculator):
+\[\boxed{\Omega_p = 0.156~\text{sr}}\]
+
+\textbf{(c) Directivity $D$ (5 pts).} From BEAM PARAMETERS:
+\[D = \tfrac{4\pi}{\Omega_p} = \tfrac{4\pi}{0.156}\]
+\[\boxed{D = 80.55}\]
+
+\textit{Sanity:} $D \approx 80$ is highly directive (much narrower than half-wave dipole's 1.64). The narrow Gaussian-like beam ($\beta \approx 21^\circ$) concentrates radiation into a small solid angle, so directivity is large.
+
+%======================================================
+\probhead{3 --- $\lambda/4$ Dipole Radiation Pattern}{15 pts}
+
+\textbf{Setup:} Dipole of length $l = \lambda/4$. Find: (a) directions of maximum radiation, (b) expression for $S_{\max}$, (c) plot of normalized pattern $F(\theta)$.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_arbdipole}\hfill
+\includegraphics[width=0.49\linewidth]{cs_dipole_params}
+\end{cssnip}
+
+\textbf{General arbitrary-length dipole pattern.} From ARBITRARY-LENGTH DIPOLE --- $S(\theta)$:
+\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi l}{\lambda}\cos\theta\right) - \cos\!\left(\tfrac{\pi l}{\lambda}\right)}{\sin\theta}\right]^2\]
+
+\textbf{Plug in $l = \lambda/4$, so $\pi l/\lambda = \pi/4$:}
+\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \cos(\pi/4)}{\sin\theta}\right]^2 = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^2\]
+Let $S_0 = 15 I_0^2/(\pi R^2)$ be the constant prefactor.
+
+\textbf{(a) Direction of maximum radiation (5 pts).} Maximizing $S(\theta)/S_0$ for $0 \le \theta \le \pi$. By calculus or numerical optimization, the max occurs at:
+\[\boxed{\theta_{\max} = \pi/2 = 90^\circ}\]
+(broadside to the dipole axis, same as half-wave). At $\theta = 0$ or $\pi$ (along axis), $S = 0$.
+
+\textbf{(b) $S_{\max}$ (5 pts).} Evaluate $S(\pi/2)$:
+\[S_{\max} = S(\pi/2) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cdot 0\right) - \tfrac{\sqrt{2}}{2}}{\sin(\pi/2)}\right]^2 = \tfrac{15 I_0^2}{\pi R^2}\left(1 - \tfrac{\sqrt{2}}{2}\right)^2\]
+Numerically $(1 - \sqrt{2}/2)^2 = 0.0858$:
+\[\boxed{S_{\max} = 0.0858\,\tfrac{15 I_0^2}{\pi R^2}}\]
+
+\textbf{(c) Normalized pattern $F(\theta) = S(\theta)/S_{\max}$ (5 pts):}
+\[F(\theta) = \tfrac{1}{0.0858}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^2\]
+Bell-shaped curve peaking at $\theta = \pi/2$ with $F = 1$, dropping to 0 at $\theta = 0$ and $\pi$. Symmetric about $\theta = \pi/2$. Similar shape to half-wave dipole pattern but slightly narrower since the dipole is shorter.
+
+\textit{Sanity:} A $\lambda/4$ dipole has a broadside pattern very close to a Hertzian dipole's $\sin^2\theta$ shape. As $l \to 0$ the bracket approaches $\sin\theta$ and $S \propto \sin^2\theta$ (Hertzian). Half-wave $l = \lambda/2$ has slightly narrower beam than the $\lambda/4$ case.
+
+%======================================================
+\probhead{4 --- Effective Area vs.\ Physical Cross-section}{5 pts}
+
+\textbf{Setup:} Half-wave dipole at $f = 100$ MHz, wire diameter $d = 2$ cm. Find effective area $A_e$ and compare to physical cross-section $A_p$.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_aeff}\hfill
+\includegraphics[width=0.49\linewidth]{cs_dipole_params}
+\end{cssnip}
+
+\textbf{Step 1 --- Wavelength.}
+\[\lambda = \tfrac{c}{f} = \tfrac{3\!\times\!10^8}{10^8} = 3~\text{m}\]
+
+\textbf{Step 2 --- Directivity for half-wave dipole.} From COMMON DIPOLE PARAMETERS: $D = 1.64$.
+
+\textbf{Step 3 --- Effective area.} From EFFECTIVE AREA $A_e$:
+\[A_e = \tfrac{\lambda^2 D}{4\pi} = \tfrac{(3)^2(1.64)}{4\pi} = \tfrac{14.76}{4\pi}\]
+\[\boxed{A_e = 1.17~\text{m}^2}\]
+
+\textbf{Step 4 --- Physical cross-section.} A half-wave dipole has length $l = \lambda/2$. Treat as a rectangle of length $l$ and width $d$:
+\[A_p = l \cdot d = \tfrac{\lambda}{2}\cdot d = \tfrac{3}{2}(0.02) = 0.03~\text{m}^2\]
+
+\textbf{Step 5 --- Ratio.}
+\[\boxed{\tfrac{A_e}{A_p} = \tfrac{1.17}{0.03} = 39.2}\]
+
+\textit{Sanity:} The effective area is ~39$\times$ larger than the physical cross-section. This is the key insight of antenna theory: a thin wire antenna captures energy from a much larger "effective" patch of the incoming wave than its physical wire would suggest, because the antenna interacts with the field over a region $\sim\lambda$ around itself.
+
+%======================================================
+\probhead{5 --- Friis Transmission, TV Broadcast}{5 pts}
+
+\textbf{Setup:} Half-wave dipole TX, 1 kW at 50 MHz. RX home antenna with 3 dB gain, distance 30 km. Find received power.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_friis}\hfill
+\includegraphics[width=0.49\linewidth]{cs_db}
+\end{cssnip}
+
+\textbf{Step 1 --- Wavelength.}
+\[\lambda = \tfrac{c}{f} = \tfrac{3\!\times\!10^8}{5\!\times\!10^7} = 6~\text{m}\]
+
+\textbf{Step 2 --- Antenna gains.} TX is half-wave dipole, so $G_t = 1.64$ (from COMMON DIPOLE PARAMETERS).\\
+RX gain: 3 dB $\to$ linear via $G_{\text{lin}} = 10^{G_{\text{dB}}/10}$:
+\[G_r = 10^{3/10} = 2\]
+(3 dB always $= \times 2$, this is the cleanest dB conversion to remember.)
+
+\textbf{Step 3 --- Friis formula.} From FRIIS TRANSMISSION FORMULA:
+\[P_r = G_t G_r\left(\tfrac{\lambda}{4\pi R}\right)^2 P_t\]
+
+\textbf{Step 4 --- Plug in.} $R = 30$ km $= 3\!\times\!10^4$ m, $P_t = 10^3$ W:
+\[P_r = (1.64)(2)\left(\tfrac{6}{4\pi(3\!\times\!10^4)}\right)^2(10^3)\]
+The path-loss factor:
+\[\tfrac{\lambda}{4\pi R} = \tfrac{6}{4\pi\cdot 3\!\times\!10^4} = \tfrac{6}{3.77\!\times\!10^5} = 1.59\!\times\!10^{-5}\]
+\[\left(\tfrac{\lambda}{4\pi R}\right)^2 = 2.53\!\times\!10^{-10}\]
+\[P_r = (1.64)(2)(2.53\!\times\!10^{-10})(10^3) = (3.28)(2.53\!\times\!10^{-7})\]
+\[\boxed{P_r = 8.3\!\times\!10^{-7}~\text{W} = 0.83~\mu\text{W}}\]
+
+\textit{Sanity:} 1 kW transmitted, 0.83 $\mu$W received at 30 km. That's a 90 dB drop, dominated by the $1/R^2$ free-space path loss. Plenty of signal for a TV receiver (typical sensitivity is ~$-100$ dBm $= 10^{-13}$ W), so this link closes comfortably.
+
+\textit{Note on the solution PDF:} the official key wrote ``$(1.64)(3)$'' as a typo, but used $G_r = 2$ in the actual arithmetic (since 3 dB $\to$ linear = 2). The final answer $8.3\!\times\!10^{-7}$ W matches either way.
+
+\end{document}
