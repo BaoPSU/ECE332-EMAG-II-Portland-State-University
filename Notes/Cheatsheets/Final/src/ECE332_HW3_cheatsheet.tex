@@ -52,23 +52,17 @@
 \begin{multicols}{3}
 
 %-- Column 1 -----------------------------------
-\shead{purplebg}{purple}{NORMAL INCIDENCE --- $\Gamma$ AND $\tau$}
+\shead{purplebg}{purple}{INTRINSIC IMPEDANCE $\eta$}
 \begin{ebox}
-\textit{\color{coral}\textbf{Med.\ 1} ($z<0$): incident side.\enspace\textbf{Med.\ 2} ($z\ge0$): transmitted side. Boundary at $z=0$.}
+\textit{\color{coral}\textbf{Med.\ 1} ($z<0$): incident side.\enspace\textbf{Med.\ 2} ($z\ge0$): transmitted side. Boundary at $z=0$. ($\Gamma, \tau$ in Table 8-2 below.)}
 
-\eq{Reflection coeff.}{wave from medium 1}
-\[\Gamma = \frac{\eta_2-\eta_1}{\eta_2+\eta_1}\;(\text{unitless})\]
-
-\eq{Transmission coeff.}{always}
-\[\tau = 1+\Gamma = \frac{2\eta_2}{\eta_2+\eta_1}\]
-
-\eq{Intrinsic impedance}{general $\to$ nonmag.\ shortcut}
+\eq{General $\to$ nonmag.\ shortcut}{}
 \[\eta_i = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
 \textit{\color{coral}Default $\mu_r=1$ (air, dielectric, ``nonmag.''). Only use $\mu_r\!\ne\!1$ if problem says so (``ferromagnetic'', iron, ferrite, or $\mu_r$ given explicitly).}
 
-\eq{Low-loss $\eta_2$ (poor conductor)}{$\sigma/(\omega\varepsilon)\ll1$}
-\[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \;\xrightarrow{\text{drop tiny }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}}\;(\Omega)\]
-\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_{r,2}}$. The $j$ term is for accuracy with $|\eta_c|, \theta_\eta$.}
+\eq{Low-loss correction}{$\sigma/(\omega\varepsilon)\ll1$}
+\[\eta_c \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \;\xrightarrow{\text{drop tiny }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\;(\Omega)\]
+\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_r}$. The $j$ term is for accuracy with $|\eta_c|, \theta_\eta$. See LOSSY MEDIA --- 5 CASES table for all regimes.}
 \end{ebox}
 
 \vspace{2pt}
