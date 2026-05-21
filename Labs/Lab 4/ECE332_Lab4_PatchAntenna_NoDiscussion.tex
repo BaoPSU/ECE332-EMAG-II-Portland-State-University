@@ -1,0 +1,370 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[hidelinks]{hyperref}
+
+\graphicspath{{src/photos/}}
+
+\definecolor{answerhl}{RGB}{198,239,206}
+\definecolor{fillhl}{RGB}{255,235,156}
+\newcommand{\hl}[1]{\colorbox{answerhl}{#1}}
+\newcommand{\fb}[1]{\colorbox{fillhl}{\textit{#1}}}
+
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries\scshape Portland State \\[2pt] University \par}
+\vspace{1.5cm}
+{\large\scshape Department of \par}
+{\large\scshape Electrical and Computer Engineering \par}
+\vspace{1.5cm}
+{\LARGE\bfseries ECE332 \par}
+\vspace{0.4cm}
+{\LARGE\scshape Lab 4: Patch Antenna \par}
+\vfill
+{\large \textbf{Prepared by:} \par}
+{\large Bao Nguyen \par}
+{\large Nick Stites \par}
+\vspace{1cm}
+{\large \textbf{Term:} Spring 2026 \par}
+\vspace{0.4cm}
+{\large \textbf{Date:} May 21, 2026 \par}
+\vspace{2cm}
+\end{titlepage}
+
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This lab builds and characterizes a half-wave rectangular patch antenna on single-sided copper-clad FR4, tuned for the 2.4~GHz WiFi band ($f_c \approx 2.443$~GHz, the geometric mean of the 2.400--2.487~GHz channel range). The patch is fed at the edge by a 50~$\Omega$ microstrip transmission line made from copper tape, and a side-launch SMA connector ties the transmission line to the VNA. The patch length $L$ sets the resonant frequency through the half-wavelength-in-dielectric condition $f_c = c/(2L\sqrt{\varepsilon_r})$. The width $W$ controls the input impedance and the radiation pattern, and the inset distance $R$ tunes the feed-point impedance down toward 50~$\Omega$.
+
+After construction we measure $S_{11}$ and $S_{22}$ on a VNA to verify the resonance lands inside the WiFi band, trim the patch length if needed, then cut an inset feed of length $R$ to drop the input impedance to 50~$\Omega$. The second half of the lab uses both antennas at once to measure $S_{21}$ and $S_{12}$ versus orientation angle, producing an azimuth pattern of the radiation lobe. A cross-polarization test ($90^\circ$ rotation of one antenna) verifies that patch antennas are linearly polarized in the far field.
+
+\section{Antenna Design Calculations}
+
+\subsection*{Patch length \texorpdfstring{$L$}{L} versus \texorpdfstring{$\varepsilon_r$}{epsilon\_r}}
+
+The center frequency of the patch is set by the half-wavelength-in-dielectric condition,
+\[
+f_c \approx \frac{c}{2L\sqrt{\varepsilon_r}} \quad\Longrightarrow\quad L \approx \frac{c}{2 f_c \sqrt{\varepsilon_r}}.
+\]
+With $c = 2.998\times10^{8}$~m/s and $f_c = \sqrt{f_1 f_2} = \sqrt{2.400 \cdot 2.487} \approx 2.443$~GHz (the geometric mean of the WiFi band), sweeping $\varepsilon_r$ across the FR4 spec range gives:
+
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+$\varepsilon_r$ & $L$ (mm) \\
+\midrule
+4.0 & 30.806 \\
+4.1 & 30.428 \\
+4.2 & 30.063 \\
+4.3 & 29.711 \\
+4.4 & 29.372 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+About the spread: a 10\% sweep in $\varepsilon_r$ (4.0 to 4.4) only moves $L$ by about 1.43~mm, which is roughly 4.7\% of $L$. The length scales as $1/\sqrt{\varepsilon_r}$, so the sensitivity is half the relative error in $\varepsilon_r$. For example a $\pm 0.1$ swing around $\varepsilon_r = 4.2$ shifts $L$ by about $\pm 0.36$~mm, which is right at the edge of what an Xacto knife can resolve. So basically picking the wrong $\varepsilon_r$ inside the FR4 spec range won't kill the resonance, it just nudges $f_c$ by a few tens of MHz and we trim by hand on the VNA anyway.
+
+\textbf{Design choice:} use the middle value $L = 30$~mm for the initial cut, which corresponds to $\varepsilon_r \approx 4.2$.
+
+\subsection*{Patch width \texorpdfstring{$W$}{W}}
+
+The constraint from the lab is $W \geq L$, with larger $W$ dropping the input impedance and broadening the pattern. A square patch ($W = L \approx 30$~mm) sits around 300~$\Omega$. We picked $W = 67$~mm, which is the short edge of the FR4 board minus 2~mm of clearance margin. About 2.2$\times$ wider than $L$, which drops the edge-fed impedance well below the square-patch 300~$\Omega$ value and uses the full board width for the radiating aperture. $W$ runs along the short edge of the board so the transmission line and SMA connector fit along the long edge.
+
+\subsection*{50~\texorpdfstring{$\Omega$}{ohm} transmission line width}
+
+The 50~$\Omega$ microstrip trace width was computed using the Digi-Key PCB Trace Impedance Calculator\footnote{\url{https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-pcb-trace-impedance}} with the measured substrate parameters:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+$\varepsilon_r$         & 4.2 \\
+Copper thickness $t$    & 0.04~mm \\
+Substrate height $h$    & 1.40~mm \\
+Target $Z_0$            & 50~$\Omega$ \\
+\midrule
+Trace width $w$         & 2.632~mm \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+We used $w = 2.632$~mm for the transmission line cut. The slightly thinner-than-spec substrate ($h = 1.40$~mm measured vs $1.6$~mm nominal) and the copper-tape thickness ($t = 0.04$~mm) were both factored into the calculator instead of using the textbook approximation.
+
+\subsection*{Wavelength and far-field boundary}
+
+The free-space wavelength at $f_c = 2.443$~GHz is
+\[
+\lambda_0 = \frac{c}{f_c} = \frac{2.998\times 10^{8}}{2.443\times 10^{9}} \approx 12.28~\text{cm}.
+\]
+For an aperture antenna with largest dimension $D$, the far-field (Fraunhofer) region begins at
+\[
+r_{ff} = \frac{2 D^2}{\lambda_0}.
+\]
+With $D = W = 67$~mm, $r_{ff} \approx 2(0.067)^2/0.1228 \approx 7.31$~cm. So any cable-length separation (typically $\geq 30$~cm with the lab's blue SMAs) is comfortably in the far-field, and the azimuth pattern we measure will be the true radiation pattern rather than near-field coupling.
+
+\section{VNA Setup}
+
+The VNA was configured per the lab procedure with a 4-way quadrant split: top-left $S_{11}$ Log-Mag, top-right $S_{11}$ Smith (R+jX), bottom-left $S_{22}$ Log-Mag, bottom-right $S_{22}$ Smith (R+jX). Start frequency 1.5~GHz, stop frequency 2.7~GHz. The eCal module was used for calibration on both ports through the blue SMA cables. After the resonance was found in the WiFi band, the VNA was recalibrated over the narrower 2.35--2.55~GHz span.
+
+\section{Build the Antennas}
+
+Both antennas were built on single-sided copper-clad FR4. The patch and 50~$\Omega$ transmission line were cut from copper tape using an Xacto knife, with the transmission line meeting the patch at the center of the $W$-edge and running to the board edge where the side-launch SMA connector was soldered. The SMA center pin attaches to the transmission line and the body pins to the ground plane on the bare side of the board.
+
+\subsection*{Photographs}
+
+Both antennas are shown below with the five required dimensions labeled in Sharpie directly on the board ($L$, $W$, transmission line length, transmission line width, and patch dimensions). The Sharpie values are the design dimensions captured \emph{before} the trim and inset cuts, so $L = 30$~mm appears on the silkscreen rather than the post-trim values.
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{initial_antenna1}
+\caption{Antenna 1 (Bao + Nick, port 1, $S_{11}$) before trimming.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{initial_antenna2}
+\caption{Antenna 2 (Fearghus + Jack, port 2, $S_{22}$) before trimming.}
+\end{subfigure}
+\caption{Initial as-built patches with $L = 30$~mm, $W = 67$~mm, transmission line width 2.6~mm, length 35~mm.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{tuned_antenna1}
+\caption{Antenna 1 (Bao + Nick, Y1) after trimming to $L = 26$~mm. No inset feed cut was needed.}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{tuned_antenna2}
+\caption{Antenna 2 (Fearghus + Jack, Y2) after trimming to $L = 26.7$~mm. No inset feed cut was needed.}
+\end{subfigure}
+\caption{Tuned patches after the inset-feed cuts on either side of the transmission line.}
+\end{figure}
+
+\subsection*{As-built dimensions}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Antenna 1 — Bao + Nick (Y1) & Antenna 2 — Fearghus + Jack (Y2) \\
+\midrule
+$L$ initial cut (mm)              & 30.0  & 30.0  \\
+$L$ after trim (mm)               & 26.0  & 26.7  \\
+$W$ (mm)                          & 67.0  & 67.0  \\
+Transmission line width (mm)      & 2.632 & 2.632 \\
+Transmission line length (mm)     & 35    & 35    \\
+Inset distance $R$ (mm)           & 0 (none) & 0 (none) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Initial Measurements and Impedance Matching}
+
+\subsection*{Initial resonance and trimming}
+
+With both antennas connected, $S_{11}$ (Antenna 1, our pair's build) and $S_{22}$ (Antenna 2, partner pair's build) were swept from 1.5--2.7~GHz to find the initial resonance. The frequency with the lowest return-loss magnitude was treated as the operating frequency.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Antenna 1 — Y1, $S_{11}$ (Bao + Nick) & Antenna 2 — Y2, $S_{22}$ (Fearghus + Jack) \\
+\midrule
+Initial $L$ (mm)                    & 30.0 & 30.0 \\
+Initial $f_\text{ant}$ (GHz)        & 2.168 & 2.151 \\
+Initial return loss at resonance (dB) & $-11.64$ & $-8.54$ \\
+Trim direction                      & cut down & cut down \\
+Amount trimmed (mm)                 & 4.0      & 3.3      \\
+Post-trim $L$ (mm)                  & 26.0     & 26.7     \\
+Post-trim $f_\text{ant}$ (GHz)      & $\approx 2.443$ & $\approx 2.443$ \\
+Post-trim return loss (dB)          & $-25.1$  & $-24.5$  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Initial VNA capture (before any tuning):}
+\begin{center}
+\includegraphics[width=0.85\textwidth]{src/photos/vna_01_initial}
+\end{center}
+Both antennas resonated below 2.443~GHz on the first sweep, with $S_{11}$ dipping at 2.168~GHz ($-11.6$~dB, Antenna 1) and $S_{22}$ at 2.151~GHz ($-8.5$~dB, Antenna 2). Neither was matched at the WiFi center frequency, so the next step was to trim the patch length to push the resonance up.
+
+\textbf{VNA capture after L trim (frequency tuned, before inset cut):}
+\begin{center}
+\includegraphics[width=0.85\textwidth]{src/photos/vna_02_freq_tuned}
+\end{center}
+About 4~mm was shaved off Antenna 1 and 3.3~mm off Antenna 2 to bring each resonance up into the WiFi band. Both resonances landed within a few MHz of 2.443~GHz, and the return loss at center improved dramatically ($-25.1$~dB and $-24.5$~dB respectively).
+
+The 13\% trim on Antenna 1 is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
+
+\subsection*{Input impedance measurement}
+
+At the post-trim operating frequency, the input impedance was read from the Smith chart marker.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Antenna 1 (Bao + Nick) & Antenna 2 (Fearghus + Jack) \\
+\midrule
+$Z_{IN\_0}$ from Smith chart ($\Omega$) & $52.6 + j4.2$ & $48.2 - j5.3$ \\
+$|Z_{IN\_0}|$ approx ($\Omega$)          & $52.8$        & $48.5$        \\
+Return loss at $f_c = 2.443$~GHz (dB)    & $-25.1$       & $-24.5$       \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Both edge-fed impedances landed close to $50~\Omega$ already. The $W = 67$~mm choice (much wider than $L \approx 30$~mm) shifted the patch's edge impedance well below the typical $\sim 300~\Omega$ that a square patch would show, so the antenna is roughly matched even without an inset feed.
+
+\subsection*{Inset feed calculation \texorpdfstring{$R$}{R}}
+
+Moving the feed inward by distance $R$ scales the input impedance as
+\[
+Z_{IN\_R} = Z_{IN\_0}\cos^2\!\left(\frac{\pi R}{L}\right) \quad\Longrightarrow\quad R = \frac{L}{\pi}\cos^{-1}\!\sqrt{\frac{Z_{IN\_R}}{Z_{IN\_0}}}
+\]
+where $Z_{IN\_R} = 50~\Omega$ is the target and $Z_{IN\_0}$ is the measured edge-fed impedance.
+
+\textbf{Calculated $R$:}
+\begin{itemize}[leftmargin=*]
+  \item Antenna 1 (Bao + Nick): $L = 26$~mm, $Z_{IN\_0} \approx 52.8~\Omega \;\Rightarrow\; R = \tfrac{26}{\pi}\cos^{-1}\!\sqrt{50/52.8} \approx 1.85$~mm
+  \item Antenna 2 (Fearghus + Jack): $L = 26.7$~mm, $Z_{IN\_0} \approx 48.5~\Omega$. Since $Z_{IN\_0} < 50~\Omega$ the formula has no real solution (arccos of $>1$), meaning the patch is already \emph{below} target. An inset feed only \emph{lowers} the impedance further, so strictly no inset cut is needed. A small symmetric cut was still made to fine-tune the return loss empirically.
+\end{itemize}
+
+\subsection*{Inset cut decision: not needed}
+
+After the frequency-tuning trim, the edge-fed input impedances were already very close to $50~\Omega$ (Antenna 1 $\approx 52.8~\Omega$, Antenna 2 $\approx 48.5~\Omega$). The calculated $R$ for Antenna 1 was only about $1.85$~mm, and for Antenna 2 the formula has no real solution because $Z_{IN\_0} < 50~\Omega$ (an inset feed only \emph{lowers} the impedance further).
+
+Rather than make a tiny cut on Antenna 1 and no cut on Antenna 2, we left both antennas at the edge-fed configuration. The return loss measured on the VNA already exceeded the $-20$~dB spec at center for both antennas without any inset feed:
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+ & Antenna 1 — $S_{11}$ (Bao + Nick) & Antenna 2 — $S_{22}$ (Fearghus + Jack) \\
+\midrule
+Inset cut performed?               & no (not needed) & no (not needed) \\
+Return loss at $f_c = 2.443$~GHz (dB) & $-28.2$  & $-30.05$ \\
+Return loss at 2.400~GHz (dB)      & $-8.28$  & $-10.88$ \\
+Return loss at 2.487~GHz (dB)      & $-8.74$  & $-11.18$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The wide $W = 67$~mm patch (about $2.2\times$ wider than $L$) was the key choice that made the inset feed unnecessary. A square patch fed at the edge would have presented $\sim 300~\Omega$, but the wide patch dropped the edge impedance into the $48$--$53~\Omega$ range automatically.
+
+\textbf{Target:} return loss below $-20$~dB at $f_c$, and at least $-9.5$~dB across the whole 2.400--2.487~GHz band.
+
+\subsection*{VNA screen captures}
+
+\textbf{Final state with band-edge markers (Deliverable \#1):} four-quadrant view of $S_{11}$/$S_{22}$ in Log-Mag and Smith, with three markers placed at 2.400~GHz, 2.443~GHz (center), and 2.487~GHz to show return loss across the full WiFi band.
+\begin{center}
+\includegraphics[width=0.95\textwidth]{src/photos/vna_06_final_with_band_markers}
+\end{center}
+
+\textbf{Marker readings:}
+\begin{itemize}[leftmargin=*]
+  \item Marker 1 (2.400~GHz, low edge): $S_{11} = -8.28$~dB, $S_{22} = -10.88$~dB
+  \item Marker 2 (2.487~GHz, high edge): $S_{11} = -8.74$~dB, $S_{22} = -11.18$~dB
+  \item Marker 3 (2.443~GHz, center):  $S_{11} = -28.20$~dB, $S_{22} = -30.05$~dB
+\end{itemize}
+
+\textbf{Compliance check vs the lab spec:}
+\begin{itemize}[leftmargin=*]
+  \item ``Below $-20$~dB at design frequency'' (deliverable \#1): $S_{11} = -28.2$~dB \textbf{PASS} and $S_{22} = -30.05$~dB \textbf{PASS}
+  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both band edges ($-10.88$ and $-11.18$~dB, both deeper than $-9.5$). $S_{11}$ is marginal: $-8.28$~dB at 2.400~GHz and $-8.74$~dB at 2.487~GHz, both about $1$~dB shy of the $-9.5$ target. Antenna 1 meets the center spec but not the band-edge spec on either side; the bandwidth is narrower than ideal.
+  \item Antenna 2's $S_{22}$ at center reads $-30.05$~dB, just barely meeting the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
+\end{itemize}
+
+\section{More Measurements and Polarization Observations}
+
+\subsection*{Azimuth pattern}
+
+The Smith chart quadrants were reconfigured to show $S_{12}$ and $S_{21}$ Log-Mag instead. The two antennas were placed facing each other, separated by a fixed distance set by the VNA cable lengths. One antenna was held stationary; the other was rotated in $15^\circ$ increments out to $90^\circ$. The aligned ($0^\circ$) measurement was taken as the 0~dB baseline, and the values below are the drop from that baseline.
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+Angle ($^\circ$) & $S_{21}$ (dB) & $S_{12}$ (dB) & Drop from 0~dB baseline (dB) \\
+\midrule
+0   & $-26.8$ & $-26.8$ & 0.0  \\
+15  & $-27.8$ & $-27.8$ & $-1.0$  \\
+30  & $-29.6$ & $-29.6$ & $-2.8$  \\
+45  & $-30.9$ & $-30.9$ & $-4.1$  \\
+60  & $-31.6$ & $-31.6$ & $-4.8$  \\
+75  & $-34.4$ & $-34.4$ & $-7.6$  \\
+90  & $-50.0$ & $-50.0$ & $-23.2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Antenna separation distance: 50~cm.
+
+The baseline reading at $0^\circ$ (antennas perfectly aligned, face-to-face) was $-26.8$~dB. As the antenna rotates, $S_{21}$ drops monotonically. The first $15^\circ$ tilt only costs about $1$~dB, but the drop accelerates sharply: by $75^\circ$ the link has fallen $7.6$~dB, and at $90^\circ$ (E-fields perpendicular) the link collapses to roughly $-50$~dB, about $23$~dB below baseline. The sharp drop near $90^\circ$ is the patch's linear polarization showing itself.
+
+\begin{center}
+\includegraphics[width=0.85\textwidth]{src/photos/azimuth_polar}
+\end{center}
+
+The polar plot above was generated in Python (matplotlib polar projection) from the measured drop-from-baseline values, mirrored about $0^\circ$ per the lab's note that the pattern can be assumed symmetric. The half-power beamwidth (HPBW) is the angular width where the curve crosses the dashed $-3$~dB ring. Interpolating between the $30^\circ$ ($-2.8$~dB) and $45^\circ$ ($-4.1$~dB) data points gives the $-3$~dB point at about $32.3^\circ$, so the full half-power beamwidth is:
+\[
+\text{HPBW} \approx 2 \times 32.3^\circ \approx 64.6^\circ
+\]
+This is in the expected ballpark for a half-wave patch antenna (typical patch HPBW is $60$--$90^\circ$).
+
+\subsection*{Cross-polarization test}
+
+With both antennas facing each other, one was tipped on its side so that its $E$-field axis was rotated $90^\circ$ relative to the other. $S_{21}/S_{12}$ was recorded, then compared to the value with the two antennas facing entirely away from each other.
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Configuration & $S_{21}$ (dB) & $S_{12}$ (dB) \\
+\midrule
+Both facing, aligned (face-to-face baseline)     & $-25.2$ & $-25.2$ \\
+Both facing, one tipped $90^\circ$ (cross-pol)    & $-34.2$ & $-34.2$ \\
+Both facing away from each other (back-to-back)   & $-44.8$ & $-44.8$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Comparing cross-pol vs back-to-back:} the back-to-back link ($-44.8$~dB) is about $10.6$~dB \emph{lower} than the cross-pol link ($-34.2$~dB). So pointing the antennas away from each other actually rejects the signal more aggressively than rotating one patch $90^\circ$.
+
+That makes physical sense: patch antennas are linearly polarized in the far-field but not perfectly so. A $90^\circ$ rotation cuts the co-polar signal but the antennas still see each other's main lobe directly, so cross-polarization leakage and edge-of-pattern coupling keep the link alive at $-34$~dB. In the back-to-back configuration, both antennas have nulls pointing at each other (patches have very low back-side radiation), so the only way for signal to reach the other side is through reflections off the room (walls, ceiling, table) and diffraction around the substrate. Those indirect paths are weaker than the cross-pol leakage, so the back-to-back number is more negative.
+
+For the chosen separation of $50$~cm, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 7.31$~cm (using $D = W = 67$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of $50$~cm is about $7\times$ past this threshold, so the link is operating well in the far-field. The cross-pol result therefore reflects true polarization mismatch rather than near-field coupling.
+
+\section{Discussion and Conclusion}
+
+\textit{Discussion to be written by hand.}
+
+% Suggested talking points (delete before printing):
+% - resonance prediction vs measured (fringing field)
+% - impedance match (no inset cut needed at W=67 mm)
+% - band-edge spec: S22 passes, S11 narrow band
+% - radiation pattern shape, HPBW ~64.6 deg
+% - cross-pol vs back-to-back
+% - hardest step (L trimming)
+% - overall verdict
+
+\vspace{2cm}
+\end{document}
