@@ -154,6 +154,10 @@ $R\!+\!T$ \tiny total & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\para
 
 \eq{Slab-indexed}{$\theta_i = $ angle inside slab $i$}
 \[d = \sum_{i=1}^{N} t_i\,\tan\theta_i\]
+
+\eq{Angle-indexed (HW3 P3 style)}{$\theta_1 = $ incident, $\theta_{i+1}=$ inside slab $i$}
+\[d = \sum_{i=1}^{N} t_i\,\tan\theta_{i+1}\]
+\textit{Same physics, different numbering. In HW3 P3: slab 1 contributes $t_1\tan\theta_2$, slab 2 contributes $t_2\tan\theta_3$. The angle in the formula is always the one the ray makes \emph{inside that slab}.}\\[1pt]
 \textit{Air--slab--air: exit angle returns to $\theta_1$ but is laterally shifted by $d$.}
 \end{ebox}
 
@@ -250,9 +254,9 @@ TE$_{20}$ & $u_{p0}/a = 2f_{10}$\\
 \vspace{2pt}
 \shead{coralbg}{coral}{$\varepsilon_r$ FROM DISPERSION}
 \begin{ebox}
-\eq{Given $\omega$, $\beta$, mode $(m,n)$}{}
-\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]\]
-\textit{Sanity: $\beta$ in rad/m, $a,b$ in m, $\omega$ in rad/s.}
+\eq{Given $\omega$, $\beta$, mode $(m,n)$}{result is unitless}
+\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]\;(\text{unitless})\]
+\textit{Inputs: $\omega$ (rad/s), $\beta$ (rad/m), $a,b$ (m), $c=3\!\times\!10^8$ (m/s), $m,n$ (unitless).}
 \end{ebox}
 
 \vspace{2pt}
