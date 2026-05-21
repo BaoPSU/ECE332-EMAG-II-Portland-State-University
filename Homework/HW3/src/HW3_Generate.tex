@@ -169,14 +169,14 @@ which for nonmagnetic media ($\mu_r=1$) reduces to $\eta = \eta_0/\sqrt{\varepsi
 
 \textit{Compute the loss tangent $\sigma/(\omega\varepsilon)$ to pick which formulas to use:}
 \[\tfrac{\sigma_2}{\omega\varepsilon_2} = \tfrac{\sigma_2}{\omega\varepsilon_{r,2}\varepsilon_0} = \tfrac{10^{-4}}{(4\pi\!\times\!10^8)(2.25)(8.854\!\times\!10^{-12})} = 4\!\times\!10^{-3}\]
-This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. The LOSSY MEDIA --- CLASSIFICATION table tells us to use the LOW-LOSS QUICK PARAMS shortcuts (not the full exact lossy formulas).
+This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. The LOSSY MEDIA --- 5 CASES table classifies media by $\sigma/(\omega\varepsilon)$ and tells us to use the \emph{low-loss row} shortcuts (not the full exact lossy formulas in the bottom).
 
-\textit{Intrinsic impedance --- same derivation chain as P1, with the low-loss correction.} From the cheat sheet's NORMAL INCIDENCE ebox the general formula is $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$. For low-loss media the LOW-LOSS QUICK PARAMS box says:
+\textit{Intrinsic impedance --- same derivation chain as P1, with the low-loss correction.} The general formula $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$ lives in the intrinsic-impedance footer of TABLE 8-2. For low-loss media the low-loss row of LOSSY MEDIA --- 5 CASES says:
 \[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1 + j\tfrac{\sigma}{2\omega\varepsilon'}\right)\quad\xrightarrow[\sigma/\omega\varepsilon\ll 1]{\mu_r=1}\quad \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
 The $j$ correction is $4\!\times\!10^{-3}/2 = 2\!\times\!10^{-3}$, tiny enough to drop for $\Gamma, \tau$ computation. So:
 \[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}} = \tfrac{120\pi}{\sqrt{2.25}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
 
-\textit{Attenuation and phase constants from LOW-LOSS QUICK PARAMS} (these matter for the transmitted-wave decay even though they don't affect $\Gamma$):
+\textit{Attenuation and phase constants from low-loss row of LOSSY MEDIA --- 5 CASES} (these matter for the transmitted-wave decay even though they don't affect $\Gamma$):
 \[\alpha_2 \approx \tfrac{\sigma_2 \eta_0}{2\sqrt{\varepsilon_{r,2}}} = \tfrac{10^{-4}\cdot 120\pi}{2\sqrt{2.25}} = 1.26\!\times\!10^{-2}~\text{Np/m}\]
 \[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r,2}}}{c} = \tfrac{(4\pi\!\times\!10^8)(1.5)}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
 
