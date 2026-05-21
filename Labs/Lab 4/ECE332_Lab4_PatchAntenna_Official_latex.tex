@@ -194,16 +194,30 @@ With both antennas connected, $S_{11}$ (Bao) and $S_{22}$ (Nick) were swept from
  & Bao (Y1, $S_{11}$) & Nick (Y2, $S_{22}$) \\
 \midrule
 Initial $L$ (mm)                    & 30.0 & 30.0 \\
-Initial $f_\text{ant}$ (GHz)        & \fb{TBD} & \fb{TBD} \\
+Initial $f_\text{ant}$ (GHz)        & 2.168 & 2.151 \\
+Initial return loss at resonance (dB) & $-11.64$ & $-8.54$ \\
 Trim direction                      & cut down & cut down \\
 Amount trimmed (mm)                 & 4.0      & 3.3      \\
 Post-trim $L$ (mm)                  & 26.0     & 26.7     \\
 Post-trim $f_\text{ant}$ (GHz)      & $\approx 2.443$ & $\approx 2.443$ \\
+Post-trim return loss (dB)          & $-25.1$  & $-24.5$  \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-Both antennas started at $L = 30$~mm but resonated well below 2.443~GHz on the first sweep. About 4~mm was shaved off Bao's antenna and 3.3~mm off Nick's to bring each resonance up into the WiFi band. The 13\% trim on Bao's patch is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
+\textbf{Initial VNA capture (before any tuning):}
+\begin{center}
+\includegraphics[width=0.85\textwidth]{src/photos/vna_01_initial}
+\end{center}
+Both antennas resonated below 2.443~GHz on the first sweep, with $S_{11}$ dipping at 2.168~GHz ($-11.6$~dB, Bao) and $S_{22}$ at 2.151~GHz ($-8.5$~dB, Nick). Neither was matched at the WiFi center frequency, so the next step was to trim the patch length to push the resonance up.
+
+\textbf{VNA capture after L trim (frequency tuned, before inset cut):}
+\begin{center}
+\includegraphics[width=0.85\textwidth]{src/photos/vna_02_freq_tuned}
+\end{center}
+About 4~mm was shaved off Bao's antenna and 3.3~mm off Nick's to bring each resonance up into the WiFi band. Both resonances landed within a few MHz of 2.443~GHz, and the return loss at center improved dramatically ($-25.1$~dB and $-24.5$~dB respectively).
+
+The 13\% trim on Bao's patch is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
 
 \subsection*{Input impedance measurement}
 
@@ -214,11 +228,14 @@ At the post-trim operating frequency, the input impedance was read from the Smit
 \toprule
  & Bao's antenna & Nick's antenna \\
 \midrule
-$Z_{IN\_0}$ from Smith chart ($\Omega$) & \fb{TBD} & \fb{TBD} \\
-Return loss at $f_c$ (dB)               & \fb{TBD} & \fb{TBD} \\
+$Z_{IN\_0}$ from Smith chart ($\Omega$) & $52.6 + j4.2$ & $48.2 - j5.3$ \\
+$|Z_{IN\_0}|$ approx ($\Omega$)          & $52.8$        & $48.5$        \\
+Return loss at $f_c = 2.443$~GHz (dB)    & $-25.1$       & $-24.5$       \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+Both edge-fed impedances landed close to $50~\Omega$ already. The $W = 67$~mm choice (much wider than $L \approx 30$~mm) shifted the patch's edge impedance well below the typical $\sim 300~\Omega$ that a square patch would show, so the antenna is roughly matched even without an inset feed.
 
 \subsection*{Inset feed calculation \texorpdfstring{$R$}{R}}
 
@@ -228,10 +245,10 @@ Z_{IN\_R} = Z_{IN\_0}\cos^2\!\left(\frac{\pi R}{L}\right) \quad\Longrightarrow\q
 \]
 where $Z_{IN\_R} = 50~\Omega$ is the target and $Z_{IN\_0}$ is the measured edge-fed impedance.
 
-\textbf{Calculated $R$ (plug in measured $L$ and $Z_{IN\_0}$):}
+\textbf{Calculated $R$:}
 \begin{itemize}[leftmargin=*]
-  \item Bao's antenna: $L = \fb{TBD},\ Z_{IN\_0} = \fb{TBD}\ \Omega \ \Rightarrow\ R = \fb{TBD~mm}$
-  \item Nick's antenna: $L = \fb{TBD},\ Z_{IN\_0} = \fb{TBD}\ \Omega \ \Rightarrow\ R = \fb{TBD~mm}$
+  \item Bao's antenna: $L = 26$~mm, $Z_{IN\_0} \approx 52.8~\Omega \;\Rightarrow\; R = \tfrac{26}{\pi}\cos^{-1}\!\sqrt{50/52.8} \approx 1.85$~mm
+  \item Nick's antenna: $L = 26.7$~mm, $Z_{IN\_0} \approx 48.5~\Omega$. Since $Z_{IN\_0} < 50~\Omega$ the formula has no real solution (arccos of $>1$), meaning the patch is already \emph{below} target. An inset feed only \emph{lowers} the impedance further, so strictly no inset cut is needed. A small symmetric cut was still made to fine-tune the return loss empirically.
 \end{itemize}
 
 \subsection*{After inset cuts}
@@ -244,9 +261,9 @@ Per the lab procedure, about half of the calculated $R$ was cut from each side o
  & Bao's antenna ($S_{11}$) & Nick's antenna ($S_{22}$) \\
 \midrule
 Final $R$ (mm)                     & \fb{TBD} & \fb{TBD} \\
-Return loss at $f_c$ (dB)          & \fb{TBD} & \fb{TBD} \\
-Return loss at 2.400~GHz (dB)      & \fb{TBD} & \fb{TBD} \\
-Return loss at 2.487~GHz (dB)      & \fb{TBD} & \fb{TBD} \\
+Return loss at $f_c = 2.446$~GHz (dB) & $-22.3$  & $-31.1$ \\
+Return loss at 2.400~GHz (dB)      & $-6.7$   & $-10.7$ \\
+Return loss at 2.487~GHz (dB)      & $-9.7$   & $-11.4$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -255,7 +272,24 @@ Return loss at 2.487~GHz (dB)      & \fb{TBD} & \fb{TBD} \\
 
 \subsection*{VNA screen captures}
 
-\fb{Insert VNA screen capture (deliverable \#1): both antennas connected, four-quadrant view of $S_{11}$/$S_{22}$ Log-Mag + Smith, with markers at 2.400, 2.443, and 2.487~GHz. Both $S_{11}$ and $S_{22}$ must read below $-20$~dB at the 2.443~GHz design frequency to satisfy the deliverable.}
+\textbf{Final state with markers (Deliverable \#1):} four-quadrant view of $S_{11}$/$S_{22}$ in Log-Mag and Smith, with three markers at 2.400~GHz, 2.446~GHz (center), and 2.487~GHz.
+\begin{center}
+\includegraphics[width=0.95\textwidth]{src/photos/vna_05_final_markers}
+\end{center}
+
+\textbf{Marker readings:}
+\begin{itemize}[leftmargin=*]
+  \item Marker 1 (2.400~GHz): $S_{11} = -6.7$~dB, $S_{22} = -10.7$~dB
+  \item Marker 2 (2.487~GHz): $S_{11} = -9.7$~dB, $S_{22} = -11.4$~dB
+  \item Marker 3 (2.446~GHz, center): $S_{11} = -22.3$~dB, $S_{22} = -31.1$~dB
+\end{itemize}
+
+\textbf{Compliance check vs the lab spec:}
+\begin{itemize}[leftmargin=*]
+  \item ``Below $-20$~dB at design frequency'' (deliverable \#1): $S_{11} = -22.3$~dB \textbf{PASS} and $S_{22} = -31.1$~dB \textbf{PASS}
+  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both edges (deeper than $-10$~dB). $S_{11}$ passes at 2.487~GHz ($-9.7$~dB) but is marginal at 2.400~GHz ($-6.7$~dB), so Bao's antenna does not strictly meet the band-edge spec at the low end.
+  \item Nick's $S_{22}$ at center reads $-31.1$~dB, exceeding the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
+\end{itemize}
 
 \section{More Measurements and Polarization Observations}
 
