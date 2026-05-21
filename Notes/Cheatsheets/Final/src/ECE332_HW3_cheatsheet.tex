@@ -93,6 +93,33 @@ General & $a_x\hat{x}+a_y e^{j\delta}\hat{y}$ & elliptical\\
 \end{ebox}
 
 \vspace{2pt}
+\shead{bluebg}{blue}{TABLE 8-2 --- $\Gamma, \tau, R, T$ SUMMARY}
+\begin{ebox}
+\textit{\color{coral}\textbf{Med.\ 1} ($z<0$) incident side; \textbf{Med.\ 2} ($z\ge0$) transmitted. Shorthand: $c_i\!=\!\cos\theta_i$, $c_t\!=\!\cos\theta_t$.}\\[1pt]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1pt}\fontsize{5.2}{6.0}\selectfont\begin{tabular}{@{}p{0.23\linewidth}p{0.18\linewidth}p{0.24\linewidth}p{0.27\linewidth}@{}}
+\toprule
+ & \textbf{Normal} ($\theta_i\!=\!0$) & $\boldsymbol{\perp}$ \textbf{pol} & $\boldsymbol{\parallel}$ \textbf{pol}\\
+\midrule
+\rowcolor{rowB}$\Gamma$ \tiny refl.\ wave & $\tfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$ & $\tfrac{\eta_2 c_i-\eta_1 c_t}{\eta_2 c_i+\eta_1 c_t}$ & $\tfrac{\eta_2 c_t-\eta_1 c_i}{\eta_2 c_t+\eta_1 c_i}$\\
+$\tau$ \tiny trans.\ wave & $\tfrac{2\eta_2}{\eta_2+\eta_1}$ & $\tfrac{2\eta_2 c_i}{\eta_2 c_i+\eta_1 c_t}$ & $\tfrac{2\eta_2 c_i}{\eta_2 c_t+\eta_1 c_i}$\\
+\rowcolor{rowB}$\tau$ rel.\ & $\tau\!=\!1\!+\!\Gamma$ & $\tau_\perp\!=\!1\!+\!\Gamma_\perp$ & $\tau_\parallel\!=\!(1\!+\!\Gamma_\parallel)\tfrac{c_i}{c_t}$\\
+$R$ \tiny refl.\ pwr & $|\Gamma|^2$ & $|\Gamma_\perp|^2$ & $|\Gamma_\parallel|^2$\\
+\rowcolor{rowB}$T$ \tiny trans.\ pwr & $|\tau|^2\tfrac{\eta_1}{\eta_2}$ & $|\tau_\perp|^2\tfrac{\eta_1 c_t}{\eta_2 c_i}$ & $|\tau_\parallel|^2\tfrac{\eta_1 c_t}{\eta_2 c_i}$\\
+$R\!+\!T$ \tiny total & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\parallel\!=\!1\!-\!R_\parallel$\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{\color{blue}Notes: $\sin\theta_t\!=\!\sqrt{\mu_1\varepsilon_1/\mu_2\varepsilon_2}\sin\theta_i$;\ nonmag.\ $\Rightarrow\eta_2/\eta_1\!=\!n_1/n_2$.}\\[2pt]
+
+\eq{Intrinsic impedance $\eta_i$}{plug into table above}
+\[\eta_i = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
+\textit{\color{coral}Default $\mu_r=1$ (air, dielectric). Use $\mu_r\!\ne\!1$ only if problem says ``ferromagnetic''/iron/ferrite/etc.}
+
+\eq{Low-loss correction $\eta_c$}{$\sigma/(\omega\varepsilon)\ll1$}
+\[\eta_c \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \xrightarrow{\text{drop }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
+\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_r}$. The $j$ term is for $|\eta_c|, \theta_\eta$. See LOSSY MEDIA --- 5 CASES for all regimes.}
+\end{ebox}
+
+\vspace{2pt}
 \shead{coralbg}{coral}{POWER REFLECTION \& TRANSMISSION}
 \begin{ebox}
 \eq{\% reflected}{always}
@@ -101,33 +128,6 @@ General & $a_x\hat{x}+a_y e^{j\delta}\hat{y}$ & elliptical\\
 \[\%P_t = 100\,|\tau|^2\,\frac{\eta_1}{\eta_2}\]
 \textit{Check: $\%P_r + \%P_t = 100$.}\\
 \textit{\color{coral}If medium 2 is denser ($\eta_2<\eta_1$), $|\tau|>1$ but $\%P_t<100\%$ because of the $\eta_1/\eta_2$ factor.}
-\end{ebox}
-
-\vspace{2pt}
-\shead{coralbg}{coral}{LOSSY MEDIA --- 5 CASES}
-\begin{ebox}
-\eq{Loss tangent}{$\varepsilon'\!=\!\varepsilon_r\varepsilon_0$, $\varepsilon_0\!\approx\!1/(36\pi\!\times\!10^9)$}
-\[\tfrac{\varepsilon''}{\varepsilon'} = \tfrac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
-
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\fontsize{5.6}{6.5}\selectfont\begin{tabular}{@{}p{0.18\linewidth}p{0.12\linewidth}p{0.62\linewidth}@{}}
-\toprule
-Type & $\sigma/\omega\varepsilon$ & $\eta_c,\;\alpha,\;\beta$\\
-\midrule
-\rowcolor{rowB}Lossless ($\sigma\!=\!0$) & 0 & $\eta\!=\!\eta_0/\sqrt{\varepsilon_r}$ exact;\, $\alpha\!=\!0$,\, $\beta\!=\!\omega\sqrt{\varepsilon_r}/c$\\
-Low-loss & $<10^{-2}$ & $\eta_c\!\approx\!\tfrac{\eta_0}{\sqrt{\varepsilon_r}}\!\left(1{+}j\tfrac{\sigma}{2\omega\varepsilon'}\right);$ $\alpha\!\approx\!\tfrac{\sigma\eta_0}{2\sqrt{\varepsilon_r}},\,\beta\!\approx\!\tfrac{\omega\sqrt{\varepsilon_r}}{c}$\\
-\rowcolor{rowB}Quasi-cond. & $10^{-2}$--$10^2$ & exact: $(\eta/\sqrt{X})e^{j\theta_\eta}$, see below\\
-Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma};$ $\alpha\!\approx\!\beta\!\approx\!\sqrt{\pi f\mu\sigma}$\\
-\rowcolor{rowB}Magnetic & any & keep full $\sqrt{\mu_r/\varepsilon_r}\,\eta_0$\\
-\bottomrule
-\end{tabular}}}\par}
-\textit{\color{coral}For $\Gamma/\tau$: drop $j$ correction; use $\eta_0/\sqrt{\varepsilon_r}$. Magnetic: keep $\mu_r$.}
-
-\eq{Exact (quasi-cond)}{$X=\sqrt{1+(\varepsilon''/\varepsilon')^2}$}
-\[\begin{aligned}
-\alpha &= \omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X-1}\\
-\beta &= \omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X+1}\\
-\theta_\eta &= \tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}
-\end{aligned}\]
 \end{ebox}
 
 \columnbreak
@@ -162,30 +162,30 @@ Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma};$ $\alpha
 \end{ebox}
 
 \vspace{2pt}
-\shead{bluebg}{blue}{TABLE 8-2 --- $\Gamma, \tau, R, T$ SUMMARY}
+\shead{coralbg}{coral}{LOSSY MEDIA --- 5 CASES}
 \begin{ebox}
-\textit{\color{coral}\textbf{Med.\ 1} ($z<0$) incident side; \textbf{Med.\ 2} ($z\ge0$) transmitted. Shorthand: $c_i\!=\!\cos\theta_i$, $c_t\!=\!\cos\theta_t$.}\\[1pt]
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1pt}\fontsize{5.2}{6.0}\selectfont\begin{tabular}{@{}p{0.23\linewidth}p{0.18\linewidth}p{0.24\linewidth}p{0.27\linewidth}@{}}
+\eq{Loss tangent}{$\varepsilon'\!=\!\varepsilon_r\varepsilon_0$, $\varepsilon_0\!\approx\!1/(36\pi\!\times\!10^9)$}
+\[\tfrac{\varepsilon''}{\varepsilon'} = \tfrac{\sigma}{\omega\varepsilon_r\varepsilon_0}\]
+
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\fontsize{5.6}{6.5}\selectfont\begin{tabular}{@{}p{0.18\linewidth}p{0.12\linewidth}p{0.62\linewidth}@{}}
 \toprule
- & \textbf{Normal} ($\theta_i\!=\!0$) & $\boldsymbol{\perp}$ \textbf{pol} & $\boldsymbol{\parallel}$ \textbf{pol}\\
+Type & $\sigma/\omega\varepsilon$ & $\eta_c,\;\alpha,\;\beta$\\
 \midrule
-\rowcolor{rowB}$\Gamma$ \tiny refl.\ wave & $\tfrac{\eta_2-\eta_1}{\eta_2+\eta_1}$ & $\tfrac{\eta_2 c_i-\eta_1 c_t}{\eta_2 c_i+\eta_1 c_t}$ & $\tfrac{\eta_2 c_t-\eta_1 c_i}{\eta_2 c_t+\eta_1 c_i}$\\
-$\tau$ \tiny trans.\ wave & $\tfrac{2\eta_2}{\eta_2+\eta_1}$ & $\tfrac{2\eta_2 c_i}{\eta_2 c_i+\eta_1 c_t}$ & $\tfrac{2\eta_2 c_i}{\eta_2 c_t+\eta_1 c_i}$\\
-\rowcolor{rowB}$\tau$ rel.\ & $\tau\!=\!1\!+\!\Gamma$ & $\tau_\perp\!=\!1\!+\!\Gamma_\perp$ & $\tau_\parallel\!=\!(1\!+\!\Gamma_\parallel)\tfrac{c_i}{c_t}$\\
-$R$ \tiny refl.\ pwr & $|\Gamma|^2$ & $|\Gamma_\perp|^2$ & $|\Gamma_\parallel|^2$\\
-\rowcolor{rowB}$T$ \tiny trans.\ pwr & $|\tau|^2\tfrac{\eta_1}{\eta_2}$ & $|\tau_\perp|^2\tfrac{\eta_1 c_t}{\eta_2 c_i}$ & $|\tau_\parallel|^2\tfrac{\eta_1 c_t}{\eta_2 c_i}$\\
-$R\!+\!T$ \tiny total & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\parallel\!=\!1\!-\!R_\parallel$\\
+\rowcolor{rowB}Lossless ($\sigma\!=\!0$) & 0 & $\eta\!=\!\eta_0/\sqrt{\varepsilon_r}$ exact;\, $\alpha\!=\!0$,\, $\beta\!=\!\omega\sqrt{\varepsilon_r}/c$\\
+Low-loss & $<10^{-2}$ & $\eta_c\!\approx\!\tfrac{\eta_0}{\sqrt{\varepsilon_r}}\!\left(1{+}j\tfrac{\sigma}{2\omega\varepsilon'}\right);$ $\alpha\!\approx\!\tfrac{\sigma\eta_0}{2\sqrt{\varepsilon_r}},\,\beta\!\approx\!\tfrac{\omega\sqrt{\varepsilon_r}}{c}$\\
+\rowcolor{rowB}Quasi-cond. & $10^{-2}$--$10^2$ & exact: $(\eta/\sqrt{X})e^{j\theta_\eta}$, see below\\
+Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma};$ $\alpha\!\approx\!\beta\!\approx\!\sqrt{\pi f\mu\sigma}$\\
+\rowcolor{rowB}Magnetic & any & keep full $\sqrt{\mu_r/\varepsilon_r}\,\eta_0$\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{\color{blue}Notes: $\sin\theta_t\!=\!\sqrt{\mu_1\varepsilon_1/\mu_2\varepsilon_2}\sin\theta_i$;\ nonmag.\ $\Rightarrow\eta_2/\eta_1\!=\!n_1/n_2$.}\\[2pt]
+\textit{\color{coral}For $\Gamma/\tau$: drop $j$ correction; use $\eta_0/\sqrt{\varepsilon_r}$. Magnetic: keep $\mu_r$.}
 
-\eq{Intrinsic impedance $\eta_i$}{plug into table above}
-\[\eta_i = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0 \xrightarrow{\mu_r=1} \tfrac{\eta_0}{\sqrt{\varepsilon_{r,i}}}\;(\Omega)\qquad \eta_0=120\pi\!\approx\!377\,\Omega\]
-\textit{\color{coral}Default $\mu_r=1$ (air, dielectric). Use $\mu_r\!\ne\!1$ only if problem says ``ferromagnetic''/iron/ferrite/etc.}
-
-\eq{Low-loss correction $\eta_c$}{$\sigma/(\omega\varepsilon)\ll1$}
-\[\eta_c \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1+j\tfrac{\sigma}{2\omega\varepsilon'}\right) \xrightarrow{\text{drop }j}\; \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
-\textit{\color{coral}For $\Gamma$/$\tau$ just use $\eta_0/\sqrt{\varepsilon_r}$. The $j$ term is for $|\eta_c|, \theta_\eta$. See LOSSY MEDIA --- 5 CASES for all regimes.}
+\eq{Exact (quasi-cond)}{$X=\sqrt{1+(\varepsilon''/\varepsilon')^2}$}
+\[\begin{aligned}
+\alpha &= \omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X-1}\\
+\beta &= \omega\sqrt{\tfrac{\mu\varepsilon'}{2}}\sqrt{X+1}\\
+\theta_\eta &= \tfrac{1}{2}\arctan\!\tfrac{\sigma}{\omega\varepsilon'}
+\end{aligned}\]
 \end{ebox}
 
 \columnbreak
