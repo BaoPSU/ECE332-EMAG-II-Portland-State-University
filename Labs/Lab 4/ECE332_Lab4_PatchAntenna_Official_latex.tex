@@ -137,14 +137,14 @@ Both antennas are shown below with the five required dimensions labeled in Sharp
 \centering
 \begin{subfigure}{0.48\textwidth}
 \centering
-\includegraphics[width=\textwidth]{initial_antenna1_bao}
-\caption{Bao's antenna (Y1) before trimming and inset cuts.}
+\includegraphics[width=\textwidth]{initial_antenna1}
+\caption{Antenna 1 (Bao + Nick, port 1, $S_{11}$) before trimming.}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.48\textwidth}
 \centering
-\includegraphics[width=\textwidth]{initial_antenna2_nick}
-\caption{Nick's antenna (Y2) before trimming and inset cuts.}
+\includegraphics[width=\textwidth]{initial_antenna2}
+\caption{Antenna 2 (Fearghus + Jack, port 2, $S_{22}$) before trimming.}
 \end{subfigure}
 \caption{Initial as-built patches with $L = 30$~mm, $W = 67$~mm, transmission line width 2.6~mm, length 35~mm.}
 \end{figure}
@@ -153,14 +153,14 @@ Both antennas are shown below with the five required dimensions labeled in Sharp
 \centering
 \begin{subfigure}{0.48\textwidth}
 \centering
-\includegraphics[width=\textwidth]{tuned_antenna1_bao}
-\caption{Bao's antenna (Y1) after trimming to $L = 26$~mm and cutting the inset feed.}
+\includegraphics[width=\textwidth]{tuned_antenna1}
+\caption{Antenna 1 (Bao + Nick, Y1) after trimming to $L = 26$~mm. No inset feed cut was needed.}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.48\textwidth}
 \centering
-\includegraphics[width=\textwidth]{tuned_antenna2_nick}
-\caption{Nick's antenna (Y2) after trimming to $L = 26.7$~mm and cutting the inset feed.}
+\includegraphics[width=\textwidth]{tuned_antenna2}
+\caption{Antenna 2 (Fearghus + Jack, Y2) after trimming to $L = 26.7$~mm. No inset feed cut was needed.}
 \end{subfigure}
 \caption{Tuned patches after the inset-feed cuts on either side of the transmission line.}
 \end{figure}
@@ -170,7 +170,7 @@ Both antennas are shown below with the five required dimensions labeled in Sharp
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao's antenna (Y1) & Nick's antenna (Y2) \\
+ & Antenna 1 — Bao + Nick (Y1) & Antenna 2 — Fearghus + Jack (Y2) \\
 \midrule
 $L$ initial cut (mm)              & 30.0  & 30.0  \\
 $L$ after trim (mm)               & 26.0  & 26.7  \\
@@ -186,12 +186,12 @@ Inset distance $R$ (mm)           & 0 (none) & 0 (none) \\
 
 \subsection*{Initial resonance and trimming}
 
-With both antennas connected, $S_{11}$ (Bao) and $S_{22}$ (Nick) were swept from 1.5--2.7~GHz to find the initial resonance. The frequency with the lowest return-loss magnitude was treated as the operating frequency.
+With both antennas connected, $S_{11}$ (Antenna 1, our pair's build) and $S_{22}$ (Antenna 2, partner pair's build) were swept from 1.5--2.7~GHz to find the initial resonance. The frequency with the lowest return-loss magnitude was treated as the operating frequency.
 
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao (Y1, $S_{11}$) & Nick (Y2, $S_{22}$) \\
+ & Antenna 1 — Y1, $S_{11}$ (Bao + Nick) & Antenna 2 — Y2, $S_{22}$ (Fearghus + Jack) \\
 \midrule
 Initial $L$ (mm)                    & 30.0 & 30.0 \\
 Initial $f_\text{ant}$ (GHz)        & 2.168 & 2.151 \\
@@ -209,15 +209,15 @@ Post-trim return loss (dB)          & $-25.1$  & $-24.5$  \\
 \begin{center}
 \includegraphics[width=0.85\textwidth]{src/photos/vna_01_initial}
 \end{center}
-Both antennas resonated below 2.443~GHz on the first sweep, with $S_{11}$ dipping at 2.168~GHz ($-11.6$~dB, Bao) and $S_{22}$ at 2.151~GHz ($-8.5$~dB, Nick). Neither was matched at the WiFi center frequency, so the next step was to trim the patch length to push the resonance up.
+Both antennas resonated below 2.443~GHz on the first sweep, with $S_{11}$ dipping at 2.168~GHz ($-11.6$~dB, Antenna 1) and $S_{22}$ at 2.151~GHz ($-8.5$~dB, Antenna 2). Neither was matched at the WiFi center frequency, so the next step was to trim the patch length to push the resonance up.
 
 \textbf{VNA capture after L trim (frequency tuned, before inset cut):}
 \begin{center}
 \includegraphics[width=0.85\textwidth]{src/photos/vna_02_freq_tuned}
 \end{center}
-About 4~mm was shaved off Bao's antenna and 3.3~mm off Nick's to bring each resonance up into the WiFi band. Both resonances landed within a few MHz of 2.443~GHz, and the return loss at center improved dramatically ($-25.1$~dB and $-24.5$~dB respectively).
+About 4~mm was shaved off Antenna 1 and 3.3~mm off Antenna 2 to bring each resonance up into the WiFi band. Both resonances landed within a few MHz of 2.443~GHz, and the return loss at center improved dramatically ($-25.1$~dB and $-24.5$~dB respectively).
 
-The 13\% trim on Bao's patch is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
+The 13\% trim on Antenna 1 is larger than the simple $L = c/(2 f_c\sqrt{\varepsilon_r})$ formula predicts, which lines up with the well-known fringing-field effect: the radiating aperture extends about $0.5h$ past each end of the metal patch, so the electrical length is roughly $L + 2(0.5h) \approx L + 1.4$~mm longer than the physical length. The formula treats only the geometric $L$, so the as-cut patches always resonate a bit low and we trim from there.
 
 \subsection*{Input impedance measurement}
 
@@ -226,7 +226,7 @@ At the post-trim operating frequency, the input impedance was read from the Smit
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao's antenna & Nick's antenna \\
+ & Antenna 1 (Bao + Nick) & Antenna 2 (Fearghus + Jack) \\
 \midrule
 $Z_{IN\_0}$ from Smith chart ($\Omega$) & $52.6 + j4.2$ & $48.2 - j5.3$ \\
 $|Z_{IN\_0}|$ approx ($\Omega$)          & $52.8$        & $48.5$        \\
@@ -247,20 +247,20 @@ where $Z_{IN\_R} = 50~\Omega$ is the target and $Z_{IN\_0}$ is the measured edge
 
 \textbf{Calculated $R$:}
 \begin{itemize}[leftmargin=*]
-  \item Bao's antenna: $L = 26$~mm, $Z_{IN\_0} \approx 52.8~\Omega \;\Rightarrow\; R = \tfrac{26}{\pi}\cos^{-1}\!\sqrt{50/52.8} \approx 1.85$~mm
-  \item Nick's antenna: $L = 26.7$~mm, $Z_{IN\_0} \approx 48.5~\Omega$. Since $Z_{IN\_0} < 50~\Omega$ the formula has no real solution (arccos of $>1$), meaning the patch is already \emph{below} target. An inset feed only \emph{lowers} the impedance further, so strictly no inset cut is needed. A small symmetric cut was still made to fine-tune the return loss empirically.
+  \item Antenna 1 (Bao + Nick): $L = 26$~mm, $Z_{IN\_0} \approx 52.8~\Omega \;\Rightarrow\; R = \tfrac{26}{\pi}\cos^{-1}\!\sqrt{50/52.8} \approx 1.85$~mm
+  \item Antenna 2 (Fearghus + Jack): $L = 26.7$~mm, $Z_{IN\_0} \approx 48.5~\Omega$. Since $Z_{IN\_0} < 50~\Omega$ the formula has no real solution (arccos of $>1$), meaning the patch is already \emph{below} target. An inset feed only \emph{lowers} the impedance further, so strictly no inset cut is needed. A small symmetric cut was still made to fine-tune the return loss empirically.
 \end{itemize}
 
 \subsection*{Inset cut decision: not needed}
 
-After the frequency-tuning trim, the edge-fed input impedances were already very close to $50~\Omega$ (Bao $\approx 52.8~\Omega$, Nick $\approx 48.5~\Omega$). The calculated $R$ for Bao was only about $1.85$~mm, and for Nick the formula has no real solution because $Z_{IN\_0} < 50~\Omega$ (an inset feed only \emph{lowers} the impedance further).
+After the frequency-tuning trim, the edge-fed input impedances were already very close to $50~\Omega$ (Antenna 1 $\approx 52.8~\Omega$, Antenna 2 $\approx 48.5~\Omega$). The calculated $R$ for Antenna 1 was only about $1.85$~mm, and for Antenna 2 the formula has no real solution because $Z_{IN\_0} < 50~\Omega$ (an inset feed only \emph{lowers} the impedance further).
 
-Rather than make a tiny cut on Bao's antenna and no cut on Nick's, we left both antennas at the edge-fed configuration. The return loss measured on the VNA already exceeded the $-20$~dB spec at center for both antennas without any inset feed:
+Rather than make a tiny cut on Antenna 1 and no cut on Antenna 2, we left both antennas at the edge-fed configuration. The return loss measured on the VNA already exceeded the $-20$~dB spec at center for both antennas without any inset feed:
 
 \begin{center}
 \begin{tabular}{lcc}
 \toprule
- & Bao's antenna ($S_{11}$) & Nick's antenna ($S_{22}$) \\
+ & Antenna 1 — $S_{11}$ (Bao + Nick) & Antenna 2 — $S_{22}$ (Fearghus + Jack) \\
 \midrule
 Inset cut performed?               & no (not needed) & no (not needed) \\
 Return loss at $f_c = 2.443$~GHz (dB) & $-28.2$  & $-30.05$ \\
@@ -291,8 +291,8 @@ The wide $W = 67$~mm patch (about $2.2\times$ wider than $L$) was the key choice
 \textbf{Compliance check vs the lab spec:}
 \begin{itemize}[leftmargin=*]
   \item ``Below $-20$~dB at design frequency'' (deliverable \#1): $S_{11} = -28.2$~dB \textbf{PASS} and $S_{22} = -30.05$~dB \textbf{PASS}
-  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both band edges ($-10.88$ and $-11.18$~dB, both deeper than $-9.5$). $S_{11}$ is marginal: $-8.28$~dB at 2.400~GHz and $-8.74$~dB at 2.487~GHz, both about $1$~dB shy of the $-9.5$ target. Bao's antenna meets the center spec but not the band-edge spec on either side; the bandwidth is narrower than ideal.
-  \item Nick's $S_{22}$ at center reads $-30.05$~dB, just barely meeting the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
+  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both band edges ($-10.88$ and $-11.18$~dB, both deeper than $-9.5$). $S_{11}$ is marginal: $-8.28$~dB at 2.400~GHz and $-8.74$~dB at 2.487~GHz, both about $1$~dB shy of the $-9.5$ target. Antenna 1 meets the center spec but not the band-edge spec on either side; the bandwidth is narrower than ideal.
+  \item Antenna 2's $S_{22}$ at center reads $-30.05$~dB, just barely meeting the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
 \end{itemize}
 
 \section{More Measurements and Polarization Observations}
@@ -355,18 +355,18 @@ For the chosen separation of $50$~cm, the far-field boundary is $r_{ff} = 2D^2/\
 
 \section{Discussion and Conclusion}
 
-About the resonance, the simple half-wave formula $L = c/(2 f_c\sqrt{\varepsilon_r})$ predicted $L \approx 30$~mm for the $2.443$~GHz WiFi center using $\varepsilon_r = 4.2$. The as-cut patches landed well below that: $2.168$~GHz for Bao and $2.151$~GHz for Nick, both about 11\% low. So basically the textbook formula consistently over-predicts $L$ because it ignores the fringing-field extension at each radiating edge, which adds roughly $0.5h$ of effective length per side. For example with $h = 1.4$~mm that's about $1.4$~mm of extra electrical length, which roughly matches what we observed: trimming $4$~mm off Bao's patch and $3.3$~mm off Nick's was enough to push the resonance up into the WiFi band without overshooting.
+First, the resonance. The textbook formula said $L$ should be about $30$~mm to land on $2.443$~GHz with $\varepsilon_r = 4.2$. But the as-cut antennas resonated lower: $2.168$~GHz for Antenna 1 and $2.151$~GHz for Antenna 2, both about $11\%$ off. This is because the simple formula doesn't include the way the electric field bulges past the edge of the patch, which makes the patch look electrically longer than it is. For $h = 1.4$~mm of substrate that extra length is roughly $1.4$~mm, which matches what we saw: trimming $4$~mm off Antenna 1 and $3.3$~mm off Antenna 2 was enough to bring both into the WiFi band.
 
-About the impedance match, choosing $W = 67$~mm (about $2.2\times$ wider than the trimmed $L$) dropped the edge-fed input impedance into the $48$--$53~\Omega$ range right out of the gate. So no inset feed cut was needed. Both antennas measured below $-20$~dB return loss at the center frequency without any further surgery: $S_{11} = -28.2$~dB and $S_{22} = -30.05$~dB at $2.443$~GHz. And then Nick's $-30.05$~dB at center clears (just barely) the $-30$~dB bonus threshold, so the bonus photo and email submission applies.
+Next, the impedance match. Picking $W = 67$~mm (more than twice as wide as the trimmed $L$) put the edge-fed impedance into the $48$--$53~\Omega$ range on its own, so we did not need to cut an inset feed. Both antennas already had return loss below $-20$~dB at the center frequency: $S_{11} = -28.2$~dB and $S_{22} = -30.05$~dB at $2.443$~GHz. Antenna 2 just barely cleared the $-30$~dB bonus mark, but since Fearghus and Jack built that one, the bonus belongs to them.
 
-About the band-edge spec, the $-9.5$~dB requirement across the full $2.400$--$2.487$~GHz band passed for $S_{22}$ on both edges ($-10.88$ and $-11.18$~dB) but was missed by $S_{11}$ on both edges ($-8.28$ and $-8.74$~dB, both about $1$~dB shy). So Bao's antenna has a narrower bandwidth than ideal. Like, the trace dips deeply at the center but rolls off too fast on the way out. Widening the patch further or adding an inset feed slot would broaden the bandwidth, but that wasn't required for this lab.
+About the band-edge requirement, the lab asked for at least $-9.5$~dB across the full WiFi band ($2.400$ to $2.487$~GHz). $S_{22}$ passed at both edges ($-10.88$ and $-11.18$~dB), but $S_{11}$ missed both by about $1$~dB ($-8.28$ and $-8.74$~dB). So Antenna 1 has a narrower bandwidth than ideal. The trace dips deep right at $2.443$~GHz but climbs back up too fast at the edges. Making $W$ even wider or adding an inset slot would help broaden the bandwidth, but it wasn't required.
 
-About the radiation pattern, the polar plot has a broad main lobe with HPBW of about $64.6^\circ$, which is well inside the typical $60$--$90^\circ$ window for a half-wave patch. The drop from $0^\circ$ to $15^\circ$ was only $1$~dB so the beam center is gentle, and then the pattern falls off sharply between $75^\circ$ and $90^\circ$, going from $-7.6$~dB at $75^\circ$ to about $-23$~dB at $90^\circ$. The deep null at $90^\circ$ is the patch's linear polarization showing itself, since the receiving antenna's $E$-field at that angle is perpendicular to the transmitter's.
+The radiation pattern. The polar plot has a wide main lobe with a half-power beamwidth of about $64.6^\circ$, which is normal for a half-wave patch (typical range $60$--$90^\circ$). The signal drops only $1$~dB from $0^\circ$ to $15^\circ$, so the beam center is gentle. Between $75^\circ$ and $90^\circ$ the signal falls off sharply, from $-7.6$~dB to about $-23$~dB. That deep dip at $90^\circ$ is the patch showing its linear polarization: at that angle the receiver's $E$-field is at right angles to the transmitter's, so almost no signal gets picked up.
 
-About the cross-pol test, tipping one antenna $90^\circ$ on its side dropped the link from $-25.2$~dB to $-34.2$~dB, a $9$~dB cross-polarization rejection. Pointing the antennas away from each other back-to-back dropped it further to $-44.8$~dB. So basically the back-to-back configuration rejects about $10$~dB more than the cross-pol configuration, which makes sense because patches have very low back-side gain, so the only path back-to-back is via room reflections and substrate diffraction, both of which are weaker than the residual cross-pol leakage in the main beam. For our $50$~cm separation, the far-field distance is only about $7.3$~cm, so the link is operating $\sim 7\times$ past the far-field boundary and the cross-pol rejection reflects true polarization mismatch rather than near-field weirdness.
+About the cross-polarization test, tipping one antenna on its side dropped the link by $9$~dB, from $-25.2$~dB face-to-face down to $-34.2$~dB. Pointing them back-to-back dropped it another $10$~dB, all the way to $-44.8$~dB. So pointing away blocks more signal than rotating one of them. That fits the physics: the patch barely radiates out the back, so the only way signal gets through back-to-back is by bouncing off walls and the ceiling, which is weaker than the small amount of cross-polarized signal leaking through the main beam. At our $50$~cm spacing the far-field starts at only $7.3$~cm, so these numbers are real polarization effects, not weird near-field behavior.
 
-About the most error-prone step, none of the construction was especially fragile this time, mostly because we never had to make symmetric inset cuts. The biggest source of uncertainty was the initial trim to land on $2.443$~GHz, which was iterative on the VNA. For example shaving off $0.5$--$1$~mm at a time and re-measuring is fine, but it's easy to over-shoot and end up above the band, which would mean adding copper tape back. Doing it in small steps and checking the VNA after each cut kept us from overshooting.
+The hardest step. Nothing in the build was especially fragile this time, mostly because we did not need to make symmetric inset cuts. The trickiest part was trimming $L$ to land on $2.443$~GHz. Each cut is permanent, and overshooting means taping copper back on. We took small cuts (around $0.5$--$1$~mm at a time) and checked the VNA after each one, which kept us from going too far.
 
-So basically the antenna landed inside the WiFi band, beat the $-20$~dB center-frequency spec by a large margin on both ports, and Nick's antenna cleared the $-30$~dB bonus threshold. The remaining miss is bandwidth at the band edges on Bao's antenna, which is a known trade-off for narrow-bandwidth patches and acceptable for this assignment.
+In short, the antenna landed in the WiFi band, beat the $-20$~dB center-frequency requirement on both ports, and Antenna 2 (Fearghus + Jack) cleared the $-30$~dB bonus mark. The only miss is bandwidth at the band edges on Antenna 1, which is a normal trade-off for narrow-bandwidth patches and acceptable for this lab.
 
 \end{document}
