@@ -261,9 +261,9 @@ Per the lab procedure, about half of the calculated $R$ was cut from each side o
  & Bao's antenna ($S_{11}$) & Nick's antenna ($S_{22}$) \\
 \midrule
 Final $R$ (mm)                     & \fb{TBD} & \fb{TBD} \\
-Return loss at $f_c = 2.446$~GHz (dB) & $-22.3$  & $-31.1$ \\
-Return loss at 2.400~GHz (dB)      & $-6.7$   & $-10.7$ \\
-Return loss at 2.487~GHz (dB)      & $-9.7$   & $-11.4$ \\
+Return loss at $f_c = 2.443$~GHz (dB) & $-28.2$  & $-30.05$ \\
+Return loss at 2.400~GHz (dB)      & $-8.28$  & $-10.88$ \\
+Return loss at 2.487~GHz (dB)      & $-8.74$  & $-11.18$ \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -272,23 +272,23 @@ Return loss at 2.487~GHz (dB)      & $-9.7$   & $-11.4$ \\
 
 \subsection*{VNA screen captures}
 
-\textbf{Final state with markers (Deliverable \#1):} four-quadrant view of $S_{11}$/$S_{22}$ in Log-Mag and Smith, with three markers at 2.400~GHz, 2.446~GHz (center), and 2.487~GHz.
+\textbf{Final state with band-edge markers (Deliverable \#1):} four-quadrant view of $S_{11}$/$S_{22}$ in Log-Mag and Smith, with three markers placed at 2.400~GHz, 2.443~GHz (center), and 2.487~GHz to show return loss across the full WiFi band.
 \begin{center}
-\includegraphics[width=0.95\textwidth]{src/photos/vna_05_final_markers}
+\includegraphics[width=0.95\textwidth]{src/photos/vna_06_final_with_band_markers}
 \end{center}
 
 \textbf{Marker readings:}
 \begin{itemize}[leftmargin=*]
-  \item Marker 1 (2.400~GHz): $S_{11} = -6.7$~dB, $S_{22} = -10.7$~dB
-  \item Marker 2 (2.487~GHz): $S_{11} = -9.7$~dB, $S_{22} = -11.4$~dB
-  \item Marker 3 (2.446~GHz, center): $S_{11} = -22.3$~dB, $S_{22} = -31.1$~dB
+  \item Marker 1 (2.400~GHz, low edge): $S_{11} = -8.28$~dB, $S_{22} = -10.88$~dB
+  \item Marker 2 (2.487~GHz, high edge): $S_{11} = -8.74$~dB, $S_{22} = -11.18$~dB
+  \item Marker 3 (2.443~GHz, center):  $S_{11} = -28.20$~dB, $S_{22} = -30.05$~dB
 \end{itemize}
 
 \textbf{Compliance check vs the lab spec:}
 \begin{itemize}[leftmargin=*]
-  \item ``Below $-20$~dB at design frequency'' (deliverable \#1): $S_{11} = -22.3$~dB \textbf{PASS} and $S_{22} = -31.1$~dB \textbf{PASS}
-  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both edges (deeper than $-10$~dB). $S_{11}$ passes at 2.487~GHz ($-9.7$~dB) but is marginal at 2.400~GHz ($-6.7$~dB), so Bao's antenna does not strictly meet the band-edge spec at the low end.
-  \item Nick's $S_{22}$ at center reads $-31.1$~dB, exceeding the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
+  \item ``Below $-20$~dB at design frequency'' (deliverable \#1): $S_{11} = -28.2$~dB \textbf{PASS} and $S_{22} = -30.05$~dB \textbf{PASS}
+  \item ``At least $-9.5$~dB across WiFi band (2.400--2.487~GHz)'': $S_{22}$ passes at both band edges ($-10.88$ and $-11.18$~dB, both deeper than $-9.5$). $S_{11}$ is marginal: $-8.28$~dB at 2.400~GHz and $-8.74$~dB at 2.487~GHz, both about $1$~dB shy of the $-9.5$ target. Bao's antenna meets the center spec but not the band-edge spec on either side; the bandwidth is narrower than ideal.
+  \item Nick's $S_{22}$ at center reads $-30.05$~dB, just barely meeting the $-30$~dB threshold mentioned in the procedure for the bonus exam-point opportunity.
 \end{itemize}
 
 \section{More Measurements and Polarization Observations}
@@ -302,20 +302,22 @@ The Smith chart quadrants were reconfigured to show $S_{12}$ and $S_{21}$ Log-Ma
 \toprule
 Angle ($^\circ$) & $S_{21}$ (dB) & $S_{12}$ (dB) & Drop from 0~dB baseline (dB) \\
 \midrule
-0   & \fb{TBD} & \fb{TBD} & 0.0 \\
-15  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
-30  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
-45  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
-60  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
-75  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
-90  & \fb{TBD} & \fb{TBD} & \fb{TBD} \\
+0   & $-26.8$ & $-26.8$ & 0.0  \\
+15  & $-27.8$ & $-27.8$ & $-1.0$  \\
+30  & $-29.6$ & $-29.6$ & $-2.8$  \\
+45  & $-30.9$ & $-30.9$ & $-4.1$  \\
+60  & $-31.6$ & $-31.6$ & $-4.8$  \\
+75  & $-34.4$ & $-34.4$ & $-7.6$  \\
+90  & $-50.0$ & $-50.0$ & $-23.2$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-Antenna separation distance: \fb{TBD~cm}.
+Antenna separation distance: 50~cm.
 
-\fb{Insert polar (azimuth) plot from Excel showing the radiation pattern across $\pm 90^\circ$. Use the 6+ data points above; assume symmetry across $0^\circ$.}
+The baseline reading at $0^\circ$ (antennas perfectly aligned, face-to-face) was $-26.8$~dB. As the antenna rotates, $S_{21}$ drops monotonically. The first $15^\circ$ tilt only costs about $1$~dB, but the drop accelerates sharply: by $75^\circ$ the link has fallen $7.6$~dB, and at $90^\circ$ (E-fields perpendicular) the link collapses to roughly $-50$~dB, about $23$~dB below baseline. The sharp drop near $90^\circ$ is the patch's linear polarization showing itself.
+
+\fb{Insert polar (azimuth) plot from Excel showing the radiation pattern across $\pm 90^\circ$. Use the 7 data points above; assume symmetry across $0^\circ$. A blank polar template is available at \texttt{src/photos/polar\_template.gif} for sketching.}
 
 \subsection*{Cross-polarization test}
 
@@ -326,15 +328,18 @@ With both antennas facing each other, one was tipped on its side so that its $E$
 \toprule
 Configuration & $S_{21}$ (dB) & $S_{12}$ (dB) \\
 \midrule
-Both facing, one tipped $90^\circ$ (cross-pol)    & \fb{TBD} & \fb{TBD} \\
-Both facing away from each other (back-to-back)   & \fb{TBD} & \fb{TBD} \\
+Both facing, aligned (face-to-face baseline)     & $-25.2$ & $-25.2$ \\
+Both facing, one tipped $90^\circ$ (cross-pol)    & $-34.2$ & $-34.2$ \\
+Both facing away from each other (back-to-back)   & $-44.8$ & $-44.8$ \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\fb{Discuss: is cross-pol lower than back-to-back, or higher? If lower, the patches are well-polarized and back-to-back coupling is dominated by reflections off the room. If higher, explain why (likely near-field coupling that doesn't respect polarization, or reflections off nearby surfaces).}
+\textbf{Comparing cross-pol vs back-to-back:} the back-to-back link ($-44.8$~dB) is about $10.6$~dB \emph{lower} than the cross-pol link ($-34.2$~dB). So pointing the antennas away from each other actually rejects the signal more aggressively than rotating one patch $90^\circ$.
 
-For the chosen separation, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 7.31$~cm (using $D = W = 67$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of \fb{TBD~cm} is well past this threshold, so the link is operating in the far-field and the cross-pol result reflects true polarization mismatch rather than near-field coupling.
+That makes physical sense: patch antennas are linearly polarized in the far-field but not perfectly so. A $90^\circ$ rotation cuts the co-polar signal but the antennas still see each other's main lobe directly, so cross-polarization leakage and edge-of-pattern coupling keep the link alive at $-34$~dB. In the back-to-back configuration, both antennas have nulls pointing at each other (patches have very low back-side radiation), so the only way for signal to reach the other side is through reflections off the room (walls, ceiling, table) and diffraction around the substrate. Those indirect paths are weaker than the cross-pol leakage, so the back-to-back number is more negative.
+
+For the chosen separation of $50$~cm, the far-field boundary is $r_{ff} = 2D^2/\lambda_0 \approx 7.31$~cm (using $D = W = 67$~mm and $\lambda_0 = 12.28$~cm at 2.443~GHz, derived above). Our antenna spacing of $50$~cm is about $7\times$ past this threshold, so the link is operating well in the far-field. The cross-pol result therefore reflects true polarization mismatch rather than near-field coupling.
 
 \section{Discussion and Conclusion}
 
