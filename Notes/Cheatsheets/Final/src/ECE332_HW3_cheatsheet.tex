@@ -210,18 +210,18 @@ Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma}$\newline 
 \vspace{2pt}
 \shead{coralbg}{coral}{TABLE 8-3 --- FULL FIELD COMPONENTS}
 \begin{ebox}
-\textit{Shorthand: $C_X\!=\!\cos\tfrac{m\pi x}{a}$, $S_X\!=\!\sin\tfrac{m\pi x}{a}$, $C_Y\!=\!\cos\tfrac{n\pi y}{b}$, $S_Y\!=\!\sin\tfrac{n\pi y}{b}$. All fields carry an $e^{-j\beta z}$ factor (omitted below). $k_c^2 = (m\pi/a)^2+(n\pi/b)^2$.}\\[1pt]
+\textit{All fields carry an $e^{-j\beta z}$ factor (omitted below). $k_c^2 = (m\pi/a)^2+(n\pi/b)^2$.}\\[1pt]
 
 \eq{TE mode}{generator: $\tilde{H}_z$}
-\[\tilde{H}_z = H_0\,C_X C_Y\]
-\[\tilde{E}_x = \tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) H_0\,C_X S_Y\]
-\[\tilde{E}_y = -\tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) H_0\,S_X C_Y\]
+\[\tilde{H}_z = H_0\cos\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
+\[\tilde{E}_x = \tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) H_0\cos\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
+\[\tilde{E}_y = -\tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) H_0\sin\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
 \[\tilde{E}_z = 0,\quad \tilde{H}_x = -\tilde{E}_y/Z_\text{TE},\quad \tilde{H}_y = \tilde{E}_x/Z_\text{TE}\]
 
 \eq{TM mode}{generator: $\tilde{E}_z$}
-\[\tilde{E}_z = E_0\,S_X S_Y\]
-\[\tilde{E}_x = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) E_0\,C_X S_Y\]
-\[\tilde{E}_y = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) E_0\,S_X C_Y\]
+\[\tilde{E}_z = E_0\sin\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
+\[\tilde{E}_x = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) E_0\cos\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
+\[\tilde{E}_y = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) E_0\sin\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
 \[\tilde{H}_z = 0,\quad \tilde{H}_x = -\tilde{E}_y/Z_\text{TM},\quad \tilde{H}_y = \tilde{E}_x/Z_\text{TM}\]
 
 \textit{\color{coral}TEM (plane wave) for reference: $\tilde{E}_x\!=\!E_0e^{-j\beta z}$, $\tilde{H}_y\!=\!\tilde{E}_x/\eta$, $f_c$ N/A, $k\!=\!\omega\sqrt{\mu\varepsilon}$.}
