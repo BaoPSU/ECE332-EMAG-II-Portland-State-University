@@ -49,27 +49,26 @@
 \begin{multicols}{3}
 
 %-- Column 1 -----------------------------------
-\shead{graybg}{gray}{PROBLEM LOOKUP --- READ FIRST}
+\shead{graybg}{gray}{HW4 PROBLEM LOOKUP --- READ FIRST}
 \begin{ebox}
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1.5pt}\begin{tabular}{@{}p{0.50\linewidth}p{0.46\linewidth}@{}}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1.5pt}\begin{tabular}{@{}p{0.10\linewidth}p{0.86\linewidth}@{}}
 \toprule
-Question asks for\ldots & Go to\\
+\# & Question $\to$ section\\
 \midrule
-\rowcolor{rowB}power density $S(R,\theta)$ from a dipole & DIPOLE TYPE $\to$ HERTZIAN or ARB\\
-HPBW $\beta$ from $F(\theta)$ & BEAM PARAM step 2\\
-\rowcolor{rowB}solid angle $\Omega_p$ / directivity $D$ & BEAM PARAM step 3--4\\
-$\theta_{\max}$, $S_{\max}$, plot $F(\theta)$ & ARB-LENGTH DIPOLE\\
-\rowcolor{rowB}effective area $A_e$ / ratio $A_e/A_p$ & EFFECTIVE AREA\\
-$P_r$ given $P_t,G_t,G_r,R$ (link) & FRIIS FORMULA\\
+\rowcolor{rowB}P1 & Power density of a dipole $\to$ DIPOLE TYPE then HERTZIAN\\
+P2 & HPBW $\beta$, solid angle $\Omega_p$, directivity $D$ from $F(\theta)$ $\to$ BEAM PARAMETERS\\
+\rowcolor{rowB}P3 & $\theta_{\max}$, $S_{\max}$, plot $F(\theta)$ for $\lambda/4$ dipole $\to$ ARBITRARY-LENGTH DIPOLE\\
+P4 & Effective area $A_e$, ratio $A_e/A_p$ $\to$ EFFECTIVE AREA\\
+\rowcolor{rowB}P5 & Friis link budget ($P_r$ given $P_t, G_t, G_r, R$) $\to$ FRIIS FORMULA\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{\color{coral}Step 0 always: compute $\lambda=c/f$. Step 1: classify dipole by $l/\lambda$.}
+\textit{\color{coral}Step 0 always: $\lambda\!=\!c/f$. Step 1 for any dipole: classify by $l/\lambda$.}
 \end{ebox}
 
 \vspace{1pt}
 \shead{purplebg}{purple}{DIPOLE TYPE BY LENGTH}
 \begin{ebox}
-\eq{Compute first}{$\lambda=c/f$, then ratio $l/\lambda$}\\[1pt]
+\eq{Compute first}{$\lambda\!=\!c/f$, then ratio $l/\lambda$}\\[1pt]
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.22\linewidth}p{0.32\linewidth}p{0.38\linewidth}@{}}
 \toprule
 $l/\lambda$ & Type & Use formula\\
@@ -77,83 +76,69 @@ $l/\lambda$ & Type & Use formula\\
 \rowcolor{rowB}$<1/50$ & Hertzian (short) & HERTZIAN $S(R,\theta)$, $D\!=\!1.5$\\
 $=1/4$ & Quarter-wave & ARB formula, $\pi l/\lambda\!=\!\pi/4$\\
 \rowcolor{rowB}$=1/2$ & Half-wave & half-wave shortcut, $D\!=\!1.64$, $R_{\text{rad}}\!=\!73\,\Omega$\\
-$=1$ & Full-wave & ARB, $D\!=\!2.41$, $R_{\text{rad}}\!=\!199\,\Omega$\\
-\rowcolor{rowB}other & Arbitrary & ARB formula\\
+other & Arbitrary & ARB formula\\
 \bottomrule
 \end{tabular}}}\par}
 \textit{\color{coral}If $l/\lambda<1/50$ STOP and use Hertzian. Do NOT plug small $l$ into the arbitrary formula --- you'll get the wrong shape.}
 \end{ebox}
 
 \vspace{1pt}
-\shead{purplebg}{purple}{HERTZIAN DIPOLE --- $S(R,\theta)$}
+\shead{purplebg}{purple}{HERTZIAN DIPOLE --- $S(R,\theta)$\ \ (P1)}
 \begin{ebox}
-\eq{Far-field E,H phasors}{Lec 15 eq 19}
-\[\tilde{E}_\theta = \tfrac{j I_0 k l \eta_0}{4\pi}\tfrac{e^{-jkR}}{R}\sin\theta,\ \ \tilde{H}_\phi = \tilde{E}_\theta/\eta_0\]
 \eq{Power density}{$l/\lambda<1/50$; far field}
-\[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta = S_{\max}\sin^2\theta\;(\text{W/m}^2)\]
-\textit{$k\!=\!2\pi/\lambda$ (rad/m);\, $I_0$ peak current (A);\, $l$ length (m);\, $R$ obs.\ dist (m).}\\[1pt]
-\eq{Max direction}{broadside}\ \ $\theta\!=\!\pi/2$\\
-\eq{Total radiated power}{integrate over $4\pi$}
-\[P_{\text{rad}} = \tfrac{\eta_0 \pi}{3}\!\left(\tfrac{I_0 l}{\lambda}\right)^{\!2}\;(\text{W})\]
-\eq{Directivity}{exact}\ \ $D_{\text{Hertz}}\!=\!1.5$ ($1.76$ dB)\\[1pt]
-\textit{\color{blue}HW4 P1: $l\!=\!1$m, $f\!=\!1$MHz, $I_0\!=\!12$A, $R\!=\!5$km, $\theta\!=\!45^\circ$. $\lambda\!=\!300$m, $l/\lambda\!=\!1/300\!<\!1/50$ \checkmark. $S\!=\!\frac{(120\pi)(2\pi/300)^2(144)(1)}{32\pi^2(5{\times}10^3)^2}\!\cdot\!\frac{1}{2}\!=\!\mathbf{1.51{\times}10^{-9}}$ W/m$^2$.}
+\[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta\;(\text{W/m}^2)\]
+\textit{$k\!=\!2\pi/\lambda$ (rad/m);\, $I_0$ peak current (A);\, $l$ length (m);\, $R$ obs.\ dist (m);\, $\eta_0\!=\!120\pi\!\approx\!377\,\Omega$.}\\[1pt]
+\eq{Max direction}{broadside}\ \ $\theta_{\max}\!=\!\pi/2$\\[1pt]
+\eq{Recipe}{}
+1.\ Compute $\lambda\!=\!c/f$. Check $l/\lambda\!<\!1/50$.\\
+2.\ Compute $k\!=\!2\pi/\lambda$.\\
+3.\ Plug into $S(R,\theta)$ with given $R$, $\theta$.\\[1pt]
+\textit{\color{blue}HW4 P1: $l\!=\!1$m, $f\!=\!1$MHz, $I_0\!=\!12$A, $R\!=\!5$km, $\theta\!=\!45^\circ$. $\lambda\!=\!300$m, $l/\lambda\!=\!1/300\!<\!1/50$ \checkmark. $k\!=\!2\pi/300$. $S\!=\!\frac{(120\pi)(2\pi/300)^2(144)(1)}{32\pi^2(5{\times}10^3)^2}\!\cdot\!\frac{1}{2}\!=\!\mathbf{1.51{\times}10^{-9}}$ W/m$^2$.}
 \end{ebox}
 
 \vspace{1pt}
-\shead{tealbg}{teal}{ARBITRARY-LENGTH DIPOLE --- $S(\theta)$}
+\shead{tealbg}{teal}{ARBITRARY-LENGTH DIPOLE --- $S(\theta)$\ \ (P3)}
 \begin{ebox}
-\eq{Power density}{any $l$, at distance $R$}
+\eq{Power density at $R$}{any $l$}
 \[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\!\left[\tfrac{\cos\!\left(\tfrac{\pi l}{\lambda}\cos\theta\right)-\cos\!\left(\tfrac{\pi l}{\lambda}\right)}{\sin\theta}\right]^{\!2}\]
-\eq{Normalized pattern}{dimensionless}\ \ $F(\theta)\!=\!S(\theta)/S_{\max}$\\[1pt]
-
-\eq{Half-wave $l\!=\!\lambda/2$}{$\pi l/\lambda\!=\!\pi/2$, shortcut form}
-\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\tfrac{\cos^2(\tfrac{\pi}{2}\cos\theta)}{\sin^2\theta}\]
-$D\!=\!1.64$, $R_{\text{rad}}\!=\!73\,\Omega$, $\theta_{\max}\!=\!\pi/2$.\\[1pt]
 
 \eq{Quarter-wave $l\!=\!\lambda/4$}{$\pi l/\lambda\!=\!\pi/4$, $\cos(\pi/4)\!=\!\sqrt{2}/2$}
 \[\tfrac{S(\theta)}{S_0}\!=\!\left[\tfrac{\cos(\tfrac{\pi}{4}\cos\theta)-\tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^{\!2},\;S_0\!=\!\tfrac{15I_0^2}{\pi R^2}\]
 \[S_{\max} = S(\pi/2) = S_0\!\left(1-\tfrac{\sqrt{2}}{2}\right)^{\!2}\!\approx 0.0858\,S_0\]
-\textit{\color{blue}HW4 P3: $\theta_{\max}\!=\!\pi/2$ (broadside, same as half-wave); $S_{\max}\!=\!0.0858\,S_0$.}
+\eq{Normalized pattern}{plot this for P3c}
+\[F(\theta) = \tfrac{S(\theta)}{S_{\max}} = \tfrac{1}{0.0858}\!\left[\tfrac{\cos(\tfrac{\pi}{4}\cos\theta)-\tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^{\!2}\]
+\textit{\color{blue}HW4 P3: $\theta_{\max}\!=\!\pi/2$ (broadside);\ \ $S_{\max}\!=\!0.0858\,S_0$;\ \ $F(\theta)$ peaks $\!=\!1$ at $\pi/2$, drops to $0$ at $\theta\!=\!0,\pi$.}\\[1pt]
+
+\eq{Half-wave $l\!=\!\lambda/2$ (ref.\ only)}{$\pi l/\lambda\!=\!\pi/2$}
+\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\tfrac{\cos^2(\tfrac{\pi}{2}\cos\theta)}{\sin^2\theta},\;D\!=\!1.64,\,R_{\text{rad}}\!=\!73\,\Omega\]
 \end{ebox}
 
 \columnbreak
 
 %-- Column 2 -----------------------------------
-\shead{greenbg}{green}{BEAM PARAMETERS --- HPBW, $\Omega_p$, $D$}
+\shead{greenbg}{green}{BEAM PARAMETERS --- $\beta$, $\Omega_p$, $D$\ \ (P2)}
 \begin{ebox}
 \eq{Step 1 --- Normalize}{always start here}
 \[F(\theta) = S(\theta)/S_{\max}\]
 
-\eq{Step 2 --- HPBW $\beta$}{solve $F(\theta_{1/2})\!=\!0.5$, then $\beta\!=\!2\theta_{1/2}$ (symmetric beams)}\\[1pt]
+\eq{Step 2 --- HPBW $\beta$}{solve $F(\theta_{1/2})\!=\!0.5$, then $\beta\!=\!2\theta_{1/2}$ for symmetric beams}\\[1pt]
 \textit{\color{coral}Gaussian shortcut: $F\!=\!e^{-a\theta^2}\!=\!0.5\Rightarrow\theta_{1/2}\!=\!\sqrt{\ln 2/a}$.}\\
-\textit{\color{blue}HW4 P2: $F\!=\!e^{-20\theta^2}$, $a\!=\!20\Rightarrow\theta_{1/2}\!=\!\sqrt{\ln 2/20}\!=\!0.186$ rad, $\beta\!=\!0.372$ rad $\!=\!21.31^\circ$.}\\[1pt]
+\textit{\color{blue}HW4 P2a: $F\!=\!e^{-20\theta^2}$, $a\!=\!20\Rightarrow\theta_{1/2}\!=\!\sqrt{\ln 2/20}\!=\!0.186$ rad. $\boxed{\beta\!=\!0.372\text{ rad}\!=\!21.31^\circ}$.}\\[1pt]
 
-\eq{Step 3 --- Solid angle $\Omega_p$}{(sr)}
+\eq{Step 3 --- Pattern solid angle $\Omega_p$}{units: sr}
 \[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\]
-\textit{If $F$ has no $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}\\
-\textit{\color{coral}Most integrals have NO closed form. Use Wolfram / numerical integration.}\\
-\textit{\color{blue}HW4 P2: $\Omega_p\!=\!2\pi\!\int_0^\pi\!e^{-20\theta^2}\!\sin\theta\,d\theta\!=\!\mathbf{0.156}$ sr (numeric).}\\[1pt]
+\textit{No $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}\\
+\textit{\color{coral}Most integrals have NO closed form. Use Wolfram / numerical.}\\
+\textit{Wolfram: \texttt{2*pi*Integrate[Exp[-20 t\textasciicircum 2]*Sin[t],\{t,0,pi\}]}}\\
+\textit{\color{blue}HW4 P2b: $\boxed{\Omega_p\!=\!0.156\text{ sr}}$ (numeric).}\\[1pt]
 
-\eq{Step 4 --- Directivity}{}
+\eq{Step 4 --- Directivity $D$}{}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
-\textit{Alt.\ if two orthogonal HPBWs known:\ $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$.}\\
-\textit{\color{blue}HW4 P2: $D\!=\!4\pi/0.156\!=\!\mathbf{80.55}$ ($19.06$ dB), very directive.}\\[1pt]
+\textit{\color{blue}HW4 P2c: $D\!=\!4\pi/0.156\!=\!\boxed{80.55}$ ($19.06$ dB).}\\[1pt]
 
-\eq{Step 5 --- Gain \& efficiency}{$\xi\!=\!$ radiation eff., $0<\xi\le1$}
-\[G = \xi D = \tfrac{4\pi R^2 S_{\max}}{P_t}\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
-\textit{\color{coral}Lossless / ideal antenna $\Rightarrow$ $\xi\!=\!1$, $G\!=\!D$.}
-\end{ebox}
-
-\vspace{1pt}
-\shead{coralbg}{coral}{$R_{\text{rad}}$, EFFICIENCY, POWER SPLIT}
-\begin{ebox}
-\eq{Radiation resistance}{$\Omega$, equivalent ckt.\ load that absorbs $P_{\text{rad}}$}
-\[R_{\text{rad}} = \tfrac{2 P_{\text{rad}}}{I_0^2}\qquad R_{\text{loss}} = \tfrac{2 P_{\text{loss}}}{I_0^2}\]
-\eq{Input power split}{$P_t$ from generator}
-\[P_t = P_{\text{rad}} + P_{\text{loss}}\qquad R_{\text{in}} = R_{\text{rad}} + R_{\text{loss}}\]
-\eq{Radiation efficiency}{two equivalent forms}
-\[\xi = \tfrac{P_{\text{rad}}}{P_t} = \tfrac{R_{\text{rad}}}{R_{\text{rad}}+R_{\text{loss}}}\]
-\textit{\color{blue}Hertzian: $R_{\text{rad}}\!=\!80\pi^2(l/\lambda)^2$ small.\ Half-wave: $R_{\text{rad}}\!=\!73\,\Omega$ matches $50/75\,\Omega$ lines well.}
+\eq{Step 5 --- Gain (if asked)}{$\xi\!=\!$ rad.\ eff., $0<\xi\le1$}
+\[G = \xi D\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
+\textit{Lossless / ideal antenna $\Rightarrow$ $G\!=\!D$.}
 \end{ebox}
 
 \vspace{1pt}
@@ -166,48 +151,45 @@ Type & $D$ & $D_{\text{dB}}$ & $R_{\text{rad}}$ ($\Omega$)\\
 \rowcolor{rowB}Isotropic & 1 & 0 & ---\\
 Hertzian & 1.5 & 1.76 & $80\pi^2(l/\lambda)^2$\\
 \rowcolor{rowB}Half-wave & 1.64 & 2.15 & 73\\
-$l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
 \bottomrule
 \end{tabular}}}\par}
 \textit{Half-wave is the default ``dipole antenna'' unless stated otherwise.}
 \end{ebox}
 
 \vspace{1pt}
-\shead{amberbg}{amber}{EFFECTIVE AREA $A_e$}
+\shead{amberbg}{amber}{EFFECTIVE AREA $A_e$\ \ (P4)}
 \begin{ebox}
 \eq{Definition}{antenna's RX cross section (m$^2$)}
 \[A_e = \tfrac{\lambda^2 D}{4\pi}\;(\text{m}^2)\]
 \eq{Physical cross section}{wire dipole, diameter $d$}
-\[A_p = l\,d = \tfrac{\lambda}{2}\,d\;(\text{half-wave})\]
-\eq{Inverse: $D$ from $A_e$}{}
-\[D = \tfrac{4\pi A_e}{\lambda^2}\]
-\textit{\color{blue}HW4 P4: half-wave, $f\!=\!100$MHz, $d\!=\!2$cm. $\lambda\!=\!3$m, $D\!=\!1.64\Rightarrow A_e\!=\!\frac{9(1.64)}{4\pi}\!=\!\mathbf{1.17}$ m$^2$. $A_p\!=\!(1.5)(0.02)\!=\!0.03$ m$^2$. Ratio $\mathbf{39.2{\times}}$.}\\
-\textit{\color{coral}Thin wires: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$ region.}
-\end{ebox}
-
-\vspace{1pt}
-\shead{greenbg}{green}{POWER FLOW IDENTITIES}
-\begin{ebox}
-\[P_{\text{rad}} = S_{\max}\,\Omega_p\,R^2 = \tfrac{4\pi R^2 S_{\max}}{D}\]
-\[S_{\max} = \tfrac{P_{\text{rad}}\,D}{4\pi R^2}\;(\text{W/m}^2)\]
-\textit{Isotropic radiator: $S\!=\!P_{\text{rad}}/(4\pi R^2)$ (no $D$ factor).}
+\[A_p = l\,d = \tfrac{\lambda}{2}\,d\;\text{(half-wave)}\]
+\eq{Recipe}{}
+1.\ $\lambda\!=\!c/f$.\quad 2.\ Pick $D$ (1.64 for half-wave).\\
+3.\ $A_e\!=\!\lambda^2 D/(4\pi)$.\quad 4.\ $A_p\!=\!l d$.\quad 5.\ Ratio.\\[1pt]
+\textit{\color{blue}HW4 P4: half-wave, $f\!=\!100$MHz, $d\!=\!2$cm. $\lambda\!=\!3$m, $D\!=\!1.64$. $A_e\!=\!\frac{9(1.64)}{4\pi}\!=\!\boxed{1.17\text{ m}^2}$. $A_p\!=\!(1.5)(0.02)\!=\!0.03$ m$^2$. Ratio $\boxed{A_e/A_p\!=\!39.2}$.}\\
+\textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$.}
 \end{ebox}
 
 \columnbreak
 
 %-- Column 3 -----------------------------------
-\shead{pinkbg}{pink}{FRIIS TRANSMISSION FORMULA}
+\shead{pinkbg}{pink}{FRIIS TRANSMISSION FORMULA\ \ (P5)}
 \begin{ebox}
 \eq{Far-field link budget}{$P_t$ tx, $P_r$ rx, range $R$}
 \[\boxed{P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t}\;(\text{W})\]
-\textit{$G_t, G_r$ \emph{linear} gains;\, $\lambda\!=\!c/f$;\, $R$ in m;\, $P_t, P_r$ in W.}\\[1pt]
+\textit{$G_t, G_r$ are \emph{linear} gains;\, $\lambda\!=\!c/f$;\, $R$ in m;\, $P_t, P_r$ in W.}\\[1pt]
 \eq{Solve for $R$}{max range}
 \[R = \tfrac{\lambda}{4\pi}\sqrt{\tfrac{G_tG_rP_t}{P_r}}\;(\text{m})\]
-\eq{Solve for $P_r$ using $A_e$}{equivalent form}
-\[P_r = \tfrac{G_t P_t A_{e,r}}{4\pi R^2},\quad G_r = \tfrac{4\pi A_{e,r}}{\lambda^2}\]
-\textit{Free-space path loss: $L_{\text{fs}}\!=\!(4\pi R/\lambda)^2$, $P_r\!=\!G_tG_rP_t/L_{\text{fs}}$.}\\[1pt]
-\textit{\color{coral}Use \emph{linear} $G$. Convert dB first: $G_{\text{lin}}\!=\!10^{G_{\text{dB}}/10}$.}\\
-\textit{\color{blue}HW4 P5: half-wave TX, $P_t\!=\!1$kW, $f\!=\!50$MHz, RX $G_r\!=\!3$dB$\!=\!2$, $R\!=\!30$km. $\lambda\!=\!6$m, $G_t\!=\!1.64$. $P_r\!=\!(1.64)(2)\!\left(\tfrac{6}{4\pi\!\cdot\!3{\times}10^4}\right)^{\!2}\!10^3\!=\!\mathbf{8.3{\times}10^{-7}}$ W ($0.83\,\mu$W).}
+\eq{Equivalent form using $A_e$}{recv.\ area form}
+\[P_r = \tfrac{G_t P_t A_{e,r}}{4\pi R^2},\qquad G_r = \tfrac{4\pi A_{e,r}}{\lambda^2}\]
+\textit{Free-space path loss: $L_{\text{fs}}\!=\!(4\pi R/\lambda)^2$, so $P_r\!=\!G_tG_rP_t/L_{\text{fs}}$.}\\[1pt]
+\eq{Recipe}{}
+1.\ $\lambda\!=\!c/f$.\\
+2.\ Convert any dB gains to linear: $G\!=\!10^{G_{\text{dB}}/10}$.\\
+3.\ If TX is ``half-wave dipole'' use $G_t\!=\!1.64$.\\
+4.\ Plug into Friis.\\[1pt]
+\textit{\color{coral}Use \emph{linear} $G$, not dB. Convert FIRST.}\\
+\textit{\color{blue}HW4 P5: half-wave TX, $P_t\!=\!1$kW, $f\!=\!50$MHz, RX $G_r\!=\!3$dB$\!=\!2$, $R\!=\!30$km. $\lambda\!=\!6$m, $G_t\!=\!1.64$. $P_r\!=\!(1.64)(2)\!\left(\tfrac{6}{4\pi\!\cdot\!3{\times}10^4}\right)^{\!2}\!10^3\!=\!\boxed{8.3{\times}10^{-7}\text{ W}}\!=\!0.83\,\mu$W.}
 \end{ebox}
 
 \vspace{1pt}
@@ -225,95 +207,28 @@ dB & linear & dB & linear\\
 \rowcolor{rowB}$-3$ & $0.5$ & $-10$ & $0.1$\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{\color{coral}For E-field or amplitude use $20\log$ not $10\log$ (power is squared).}\\
-\textit{Memorize: 3\,dB $\!\Leftrightarrow\!\times2$, 10\,dB $\!\Leftrightarrow\!\times10$. Add dB $=$ multiply linear.}
+\textit{Memorize: 3 dB $\!\Leftrightarrow\!\times2$, 10 dB $\!\Leftrightarrow\!\times10$. Add dB $=$ multiply linear.}\\
+\textit{\color{coral}For E-field / amplitude use $20\log$ not $10\log$ (power $\propto$ E$^2$).}
 \end{ebox}
 
 \vspace{1pt}
-\shead{coralbg}{coral}{ANTENNA INTEGRATION TIPS}
+\shead{graybg}{gray}{SYMBOL REFERENCE}
 \begin{ebox}
-\textit{$\Omega_p$ integrals usually have no closed form.}\\
-\textit{Wolfram: \texttt{2*pi*Integrate[Exp[-20 t\textasciicircum 2]*Sin[t],\{t,0,pi\}]}.}\\[1pt]
-\eq{Narrow-beam shortcut}{Gaussian beam, $\theta_{1/2}\!\ll\!1$}
-\[\Omega_p \approx \tfrac{\pi\,\theta_{1/2}^2}{\ln 2}\quad\text{(approximate)}\]
-\textit{\color{coral}Only valid for narrow beams; HW4 P2 is borderline so use the integral.}\\[1pt]
-\eq{Sanity check $D$}{compare to known antennas}\\
-$D\!<\!2$: short / half-wave dipole. $D\!\sim\!10$: small horn. $D\!>\!100$: dish.
-\end{ebox}
-
-\vspace{1pt}
-\shead{bluebg}{blue}{RADAR EQUATION (BONUS)}
-\begin{ebox}
-\eq{Monostatic radar}{tx $=$ rx, target RCS $\sigma_t$ (m$^2$)}
-\[P_r = \tfrac{P_t G^2 \lambda^2 \sigma_t}{(4\pi)^3 R^4}\;(\text{W})\]
-\eq{Doppler shift}{closing velocity $v_r$}
-\[f_d = \tfrac{2 v_r}{\lambda} = \tfrac{2 v_r f}{c}\;(\text{Hz})\]
-\textit{Factor 2 from round-trip path; $v_r$ radial toward radar.}\\
-\textit{$f_d\!>\!0$: target approaching. $1/R^4$ falloff vs.\ Friis $1/R^2$.}
+$l$ --- antenna length (m); $\lambda\!=\!c/f$ (m); $c\!=\!3\!\times\!10^8$ m/s\\
+$I_0$ --- peak current (A); $\eta_0\!=\!120\pi\!\approx\!377\,\Omega$\\
+$k\!=\!2\pi/\lambda$ wavenumber (rad/m)\\
+$R$ --- range from antenna to obs.\ pt (m)\\
+$S(R,\theta)$ --- power density (W/m$^2$)\\
+$F(\theta)\!=\!S/S_{\max}$ --- normalized pattern (unitless)\\
+$\beta$ --- half-power beamwidth (rad or deg)\\
+$\Omega_p$ --- pattern solid angle (sr)\\
+$D\!=\!4\pi/\Omega_p$ --- directivity (unitless)\\
+$\xi$ --- radiation efficiency ($0\!<\!\xi\!\le\!1$); $G\!=\!\xi D$\\
+$A_e\!=\!\lambda^2 D/(4\pi)$ --- effective area (m$^2$)\\
+$A_p\!=\!l d$ --- physical cross sec.\ (m$^2$)\\
+$P_t, P_r$ --- TX / RX power (W); $G_t,G_r$ linear gains
 \end{ebox}
 
 \end{multicols}
 
-\vfill
-\noindent
-\begin{minipage}[t]{0.19\linewidth}
-\shead{purplebg}{purple}{DIPOLE}
-\begin{ebox}
-$l$ --- antenna length (m)\\
-$\lambda\!=\!c/f$ --- wavelength (m)\\
-$I_0$ --- peak current (A)\\
-$\eta_0\!=\!120\pi\!\approx\!377\,\Omega$\\
-$k\!=\!2\pi/\lambda$ (rad/m)\\
-$R_{\text{rad}}$ --- rad.\ res.\ ($\Omega$)\\
-$R$ --- obs.\ dist (m)
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{greenbg}{green}{RADIATION}
-\begin{ebox}
-$S(R,\theta)$ --- pwr dens.\ (W/m$^2$)\\
-$S_{\max}$ --- peak power density\\
-$F(\theta)\!=\!S/S_{\max}$ normalized\\
-$\Omega_p$ --- solid angle (sr)\\
-$\beta$ --- HPBW (rad or deg)\\
-$D$ --- directivity (unitless)\\
-$P_{\text{rad}}$ --- total power (W)
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{amberbg}{amber}{ANTENNA}
-\begin{ebox}
-$A_e\!=\!\lambda^2D/(4\pi)$ eff.\ area\\
-$A_p$ --- phys.\ cross sec.\ (m$^2$)\\
-$\xi$ --- rad.\ eff.\ ($0\!<\!\xi\!\le\!1$)\\
-$G\!=\!\xi D$ --- gain (linear)\\
-$G_{\text{dB}}\!=\!10\log G$\\
-Half-wave: $D\!=\!1.64$, $R_{\text{rad}}\!=\!73$\\
-Hertzian: $D\!=\!1.5$
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{pinkbg}{pink}{FRIIS / LINK}
-\begin{ebox}
-$P_t$ --- tx power (W)\\
-$P_r$ --- rx power (W)\\
-$G_t,G_r$ --- linear gains\\
-$R$ --- range (m)\\
-$L_{\text{fs}}\!=\!(4\pi R/\lambda)^2$ path loss\\
-3 dB $\!\to\!2$;\;10 dB $\!\to\!10$\\
-$G_{\text{lin}}\!=\!10^{G_{\text{dB}}/10}$
-\end{ebox}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.19\linewidth}
-\shead{bluebg}{blue}{RADAR}
-\begin{ebox}
-$\sigma_t$ --- RCS (m$^2$)\\
-$f_d$ --- Doppler shift (Hz)\\
-$v_r$ --- radial vel.\ (m/s)\\
-$P_r\!\propto\!1/R^4$ (monostatic)\\
-$f_d\!=\!2v_r/\lambda$ (round-trip)\\
-$c\!=\!3\!\times\!10^8$ m/s\\
-$f_d\!>\!0$: target approaching
-\end{ebox}
-\end{minipage}
 \end{document}
