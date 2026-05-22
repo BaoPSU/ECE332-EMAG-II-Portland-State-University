@@ -87,14 +87,16 @@ $=1$ & Full-wave & ARB, $D\!=\!2.41$, $R_{\text{rad}}\!=\!199\,\Omega$\\
 \vspace{1pt}
 \shead{purplebg}{purple}{HERTZIAN DIPOLE --- $S(R,\theta)$}
 \begin{ebox}
+\eq{Far-field E,H phasors}{Lec 15 eq 19}
+\[\tilde{E}_\theta = \tfrac{j I_0 k l \eta_0}{4\pi}\tfrac{e^{-jkR}}{R}\sin\theta,\ \ \tilde{H}_\phi = \tilde{E}_\theta/\eta_0\]
 \eq{Power density}{$l/\lambda<1/50$; far field}
-\[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta\;(\text{W/m}^2)\]
+\[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta = S_{\max}\sin^2\theta\;(\text{W/m}^2)\]
 \textit{$k\!=\!2\pi/\lambda$ (rad/m);\, $I_0$ peak current (A);\, $l$ length (m);\, $R$ obs.\ dist (m).}\\[1pt]
 \eq{Max direction}{broadside}\ \ $\theta\!=\!\pi/2$\\
 \eq{Total radiated power}{integrate over $4\pi$}
 \[P_{\text{rad}} = \tfrac{\eta_0 \pi}{3}\!\left(\tfrac{I_0 l}{\lambda}\right)^{\!2}\;(\text{W})\]
 \eq{Directivity}{exact}\ \ $D_{\text{Hertz}}\!=\!1.5$ ($1.76$ dB)\\[1pt]
-\textit{\color{blue}Example (HW4 P1): $l\!=\!1$m, $f\!=\!1$MHz, $I_0\!=\!12$A, $R\!=\!5$km, $\theta\!=\!45^\circ$. $\lambda\!=\!300$m, $l/\lambda\!=\!1/300\!<\!1/50$ \checkmark. $S\!=\!\frac{(120\pi)(2\pi/300)^2(144)(1)}{32\pi^2(5{\times}10^3)^2}\cdot\frac{1}{2}\!=\!\mathbf{1.51{\times}10^{-9}}$ W/m$^2$.}
+\textit{\color{blue}HW4 P1: $l\!=\!1$m, $f\!=\!1$MHz, $I_0\!=\!12$A, $R\!=\!5$km, $\theta\!=\!45^\circ$. $\lambda\!=\!300$m, $l/\lambda\!=\!1/300\!<\!1/50$ \checkmark. $S\!=\!\frac{(120\pi)(2\pi/300)^2(144)(1)}{32\pi^2(5{\times}10^3)^2}\!\cdot\!\frac{1}{2}\!=\!\mathbf{1.51{\times}10^{-9}}$ W/m$^2$.}
 \end{ebox}
 
 \vspace{1pt}
@@ -134,11 +136,24 @@ $D\!=\!1.64$, $R_{\text{rad}}\!=\!73\,\Omega$, $\theta_{\max}\!=\!\pi/2$.\\[1pt]
 
 \eq{Step 4 --- Directivity}{}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
+\textit{Alt.\ if two orthogonal HPBWs known:\ $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$.}\\
 \textit{\color{blue}HW4 P2: $D\!=\!4\pi/0.156\!=\!\mathbf{80.55}$ ($19.06$ dB), very directive.}\\[1pt]
 
-\eq{Step 5 --- Gain}{$\xi\!=\!$ radiation efficiency, $0<\xi\le1$}
-\[G = \xi D\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
-\textit{\color{coral}Lossless / ideal antenna $\Rightarrow$ $G\!=\!D$.}
+\eq{Step 5 --- Gain \& efficiency}{$\xi\!=\!$ radiation eff., $0<\xi\le1$}
+\[G = \xi D = \tfrac{4\pi R^2 S_{\max}}{P_t}\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
+\textit{\color{coral}Lossless / ideal antenna $\Rightarrow$ $\xi\!=\!1$, $G\!=\!D$.}
+\end{ebox}
+
+\vspace{1pt}
+\shead{coralbg}{coral}{$R_{\text{rad}}$, EFFICIENCY, POWER SPLIT}
+\begin{ebox}
+\eq{Radiation resistance}{$\Omega$, equivalent ckt.\ load that absorbs $P_{\text{rad}}$}
+\[R_{\text{rad}} = \tfrac{2 P_{\text{rad}}}{I_0^2}\qquad R_{\text{loss}} = \tfrac{2 P_{\text{loss}}}{I_0^2}\]
+\eq{Input power split}{$P_t$ from generator}
+\[P_t = P_{\text{rad}} + P_{\text{loss}}\qquad R_{\text{in}} = R_{\text{rad}} + R_{\text{loss}}\]
+\eq{Radiation efficiency}{two equivalent forms}
+\[\xi = \tfrac{P_{\text{rad}}}{P_t} = \tfrac{R_{\text{rad}}}{R_{\text{rad}}+R_{\text{loss}}}\]
+\textit{\color{blue}Hertzian: $R_{\text{rad}}\!=\!80\pi^2(l/\lambda)^2$ small.\ Half-wave: $R_{\text{rad}}\!=\!73\,\Omega$ matches $50/75\,\Omega$ lines well.}
 \end{ebox}
 
 \vspace{1pt}
