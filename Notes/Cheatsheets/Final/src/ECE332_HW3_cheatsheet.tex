@@ -205,21 +205,32 @@ Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma}$\newline 
 \vspace{2pt}
 \shead{coralbg}{coral}{TABLE 8-3 --- FULL FIELD COMPONENTS}
 \begin{ebox}
-\textit{$e^{-j\beta z}$ factor omitted. $k_c^2\!=\!(m\pi/a)^2\!+\!(n\pi/b)^2$. $\tilde{E}$ in V/m, $\tilde{H}$ in A/m.}\\[1pt]
+\textit{$e^{-j\beta z}$ factor omitted. $k_c^2\!=\!(m\pi/a)^2\!+\!(n\pi/b)^2$. $\tilde{E}$ in V/m, $\tilde{H}$ in A/m, $Z$ in $\Omega$.}\\[1pt]
 
 \eq{TE mode}{generator: $\tilde{H}_z$}
 \[\tilde{H}_z = H_0\cos\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
 \[\tilde{E}_x = \tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) H_0\cos\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
 \[\tilde{E}_y = -\tfrac{j\omega\mu}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) H_0\sin\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
-\[\tilde{E}_z = 0,\quad \tilde{H}_x = -\tilde{E}_y/Z_\text{TE},\quad \tilde{H}_y = \tilde{E}_x/Z_\text{TE}\]
+\[\tilde{E}_z = 0,\;\; \tilde{H}_x = -\tilde{E}_y/Z_\text{TE},\;\; \tilde{H}_y = \tilde{E}_x/Z_\text{TE}\]
+\[Z_\text{TE} = \eta/\sqrt{1-(f_c/f)^2}\]
 
 \eq{TM mode}{generator: $\tilde{E}_z$}
 \[\tilde{E}_z = E_0\sin\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
 \[\tilde{E}_x = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{m\pi}{a}\right) E_0\cos\!\tfrac{m\pi x}{a}\sin\!\tfrac{n\pi y}{b}\]
 \[\tilde{E}_y = -\tfrac{j\beta}{k_c^2}\!\left(\tfrac{n\pi}{b}\right) E_0\sin\!\tfrac{m\pi x}{a}\cos\!\tfrac{n\pi y}{b}\]
-\[\tilde{H}_z = 0,\quad \tilde{H}_x = -\tilde{E}_y/Z_\text{TM},\quad \tilde{H}_y = \tilde{E}_x/Z_\text{TM}\]
+\[\tilde{H}_z = 0,\;\; \tilde{H}_x = -\tilde{E}_y/Z_\text{TM},\;\; \tilde{H}_y = \tilde{E}_x/Z_\text{TM}\]
+\[Z_\text{TM} = \eta\sqrt{1-(f_c/f)^2}\]
 
-\textit{\color{coral}TEM (plane wave) for reference: $\tilde{E}_x\!=\!E_0e^{-j\beta z}$, $\tilde{H}_y\!=\!\tilde{E}_x/\eta$, $f_c$ N/A, $k\!=\!\omega\sqrt{\mu\varepsilon}$.}
+\eq{TEM plane wave}{for reference}
+\[\tilde{E}_x = E_0\,e^{-j\beta z},\;\; \tilde{E}_y = \tilde{E}_z = 0\]
+\[\tilde{H}_y = \tilde{E}_x/\eta,\;\; \tilde{H}_x = \tilde{H}_z = 0\]
+\[\eta = \sqrt{\mu/\varepsilon}\;(\Omega),\;\; f_c\text{ N/A},\;\; k = \omega\sqrt{\mu\varepsilon}\]
+
+\eq{Properties common to TE/TM}{}
+\[f_c = \tfrac{u_{p0}}{2}\sqrt{(m/a)^2+(n/b)^2}\;(\text{Hz})\]
+\[\beta = k\sqrt{1-(f_c/f)^2}\;(\text{rad/m})\]
+\[u_p = \tfrac{\omega}{\beta} = \tfrac{u_{p0}}{\sqrt{1-(f_c/f)^2}}\;(\text{m/s})\]
+\[u_{p0} = 1/\sqrt{\mu\varepsilon}\;(\text{m/s})\]
 \end{ebox}
 
 \vspace{2pt}
