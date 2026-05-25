@@ -236,10 +236,7 @@ Good cond. & $>10^2$ & $\eta_c\!\approx\!(1{+}j)\sqrt{\pi f\mu/\sigma}$\newline 
 \vspace{2pt}
 \shead{coralbg}{coral}{CUTOFF FREQUENCY}
 \begin{ebox}
-\eq{$f_{mn}$ (a.k.a.\ $f_c$ for that mode)}{$m,n$ integers $\ge0$ (not both zero)}
-\[f_c \equiv f_{mn} = \tfrac{u_{p0}}{2}\sqrt{\!\left(\tfrac{m}{a}\right)^{\!2}\!+\!\left(\tfrac{n}{b}\right)^{\!2}}\;\text{(Hz)}\]
-
-\eq{Common cutoffs ($a>b$)}{}\\
+\eq{Common cutoffs ($a>b$)}{$f_c$ formula in Table 8-3}\\
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.22\linewidth}p{0.70\linewidth}@{}}
 \toprule
 Mode & $f_{mn}$\\
@@ -263,20 +260,14 @@ TE$_{20}$ & $f_{20}=u_{p0}/a = 2f_{10}$\\
 \end{ebox}
 
 \vspace{2pt}
-\shead{coralbg}{coral}{WAVE IMPEDANCE \& $H_y$}
-\begin{ebox}
-\[Z_{\text{TE}} = \tfrac{\eta}{\sqrt{1-(f_c/f)^2}}\,(\Omega)\quad Z_{\text{TM}} = \eta\sqrt{1-(f_c/f)^2}\,(\Omega)\]
-\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\,(\Omega) \quad H_y = \tfrac{E_x}{Z_{\text{TE}}}\,(\text{A/m, TE mode})\]
-\textit{$Z_{\text{TE}}>\eta$ always (denominator $<1$); $Z_{\text{TM}}<\eta$.}
-\end{ebox}
-
-\vspace{2pt}
 \shead{amberbg}{amber}{GROUP VELOCITY \& TRAVEL TIME}
 \begin{ebox}
+\eq{Practical}{$\eta_0\!=\!120\pi$; nonmag.\ media}
+\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\,(\Omega)\quad(\!\Leftrightarrow\!\sqrt{\mu/\varepsilon}\text{ in Tab.\ 8-3})\]
 \[u_g = u_{p0}\sqrt{1-(f_{mn}/f)^2}\;\text{(m/s)}\]
-\[u_p = \tfrac{u_{p0}}{\sqrt{1-(f_{mn}/f)^2}}\;\text{(m/s)}\quad\Rightarrow\quad u_pu_g = u_{p0}^2\;\text{(m}^2\text{/s}^2)\]
+\[u_p u_g = u_{p0}^2\;\text{(m}^2\text{/s}^2)\]
 \[t = L/u_g\;\text{(s)}\quad\text{travel time through guide of length }L\]
-\textit{Higher modes have lower $u_g$ $\Rightarrow$ they arrive later. Group delay spread = sum over excited modes.}
+\textit{Higher modes have lower $u_g$ $\Rightarrow$ arrive later. ($u_p$, $\beta$, $f_c$, $Z_\text{TE/TM}$ in Tab.\ 8-3.)}
 \end{ebox}
 
 \end{multicols}
