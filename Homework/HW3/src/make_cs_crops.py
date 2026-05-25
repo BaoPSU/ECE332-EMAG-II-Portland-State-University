@@ -34,7 +34,6 @@ WANT = {
     "TABLE 8-3":                    "cs_table83",
     "CUTOFF FREQUENCY":             "cs_cutoff",
     "$\\VAREPSILON_R$ FROM DISPERSION": "cs_epsilon_disp",
-    "WAVE IMPEDANCE":               "cs_wgimpedance",
     "GROUP VELOCITY":               "cs_groupvel",
 }
 
