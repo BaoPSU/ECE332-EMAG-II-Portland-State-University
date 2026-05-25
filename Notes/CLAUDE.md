@@ -216,3 +216,77 @@ The sheet must fit on **1 page**. If it overflows, try (in order of impact):
 2. Reduce `\vspace{}` between sections (currently `0.3pt`)
 3. Tighten ebox margins (`innertopmargin`/`innerbottommargin`)
 4. Condense multi-line items to one line
+
+---
+
+## "Retard-Proof" Methodology (HW3 / HW4 / Exam1 style)
+
+Anchor the sheet to the assignment, not abstract topic order. This is what makes the difference between a sheet that's a reference dump and one you can actually solve from under time pressure.
+
+### Top of sheet: PROBLEM LOOKUP table
+First box on the sheet is a 2-column lookup mapping question types → section name. Sized so the eye lands on it first.
+```latex
+\shead{graybg}{gray}{HW4 PROBLEM LOOKUP --- READ FIRST}
+\begin{ebox}
+{\centering\makebox[0.98\linewidth][c]{...\begin{tabular}{@{}p{0.10\linewidth}p{0.86\linewidth}@{}}
+\toprule
+\# & Question $\to$ section\\
+\midrule
+\rowcolor{rowB}P1 & Power density of a dipole $\to$ HERTZIAN\\
+P2 & HPBW, solid angle, directivity $\to$ BEAM PARAMETERS\\
+...
+```
+- Tag each row with the HW problem number (`P1`, `P2`, ...) so you know which formula solves which problem.
+- Footer with `\textit{\color{coral}Step 0 always: ...}` for universal prerequisites (e.g. compute λ first).
+
+### `\eq{label}{when-to-use}` pattern
+Every formula gets a label AND a when-to-use clarifier. The clarifier is in italic teal:
+```latex
+\eq{Power density}{$l/\lambda<1/50$; far field}
+\[S(R,\theta) = ...\]
+```
+The condition tells you when this formula applies vs the alternate (e.g. arbitrary-length dipole).
+
+### Worked numerical example inline
+After each formula, drop one italic blue line with HW problem numbers plugged in and boxed answer:
+```latex
+\textit{\color{blue}HW4 P1: $l=1$m, $f=1$MHz, ... $S=...=\mathbf{1.51\times10^{-9}}$ W/m$^2$.}
+```
+- Use **bold** for the final number.
+- Box the answer with `\boxed{...}` for the key step.
+- Lets you find the right formula by recognizing the worked numbers, not by re-deriving from labels.
+
+### Coral warnings for gotchas
+Use `\textit{\color{coral}...}` for traps:
+```latex
+\textit{\color{coral}If $l/\lambda<1/50$ STOP and use Hertzian. Do NOT plug small $l$ into the arbitrary formula --- you'll get the wrong shape.}
+```
+
+### Recipe blocks
+For multi-step procedures (Friis, effective area, beam parameters), number the steps with `\eq{Step N --- ...}{condition}` so each formula stands alone but the order is forced.
+
+### Units everywhere
+Every formula output gets a unit annotation `(Ω)`, `(rad/m)`, `(V/m)`, `(unitless)`, etc. — including bottom-strip symbol boxes. Single-line note acceptable for tables where every entry shares a unit:
+```latex
+\textit{$\tilde{E}$ in V/m, $\tilde{H}$ in A/m.}  % applies to whole box
+```
+
+### Bottom-strip symbol reference
+Always end with 4–5 `\minipage` boxes summarizing the symbols. Each line: `$symbol$ --- description (unit)`. One symbol per line. Don't pack multiple symbols on one line — give each its own description and unit.
+
+---
+
+## Lessons Learned (What Breaks Page Count)
+
+- **Adding ~2 lines to bottom-strip boxes** is enough to push from 1 page to 2. Trim something else first.
+- **Bold + extra punctuation in italic notes** consumes more space than expected — keep notes lean.
+- **Column widths in tables**: changing `p{0.18}` → `p{0.23}` (5%) is a meaningful visual change but rarely affects pages. Changing the total sum past `0.98\linewidth` causes overflow warnings.
+- **Shrinking font below 5.5pt** to fit content usually means you should restructure, not shrink. 4.6pt is the practical floor for readability.
+- **Vertical line separators** (`|p{...}|`) are cheap visually — no page-count impact, helps eye-scan tables.
+
+## Lessons Learned (Source Authoring)
+
+- **HW solutions are the primary source.** Build the sheet by reverse-engineering what the official `hwN_solutions.pdf` actually computes. Every section should map back to a specific HW problem.
+- **Don't include sections from prior HW.** HW4 sheet should not have Snell, Brewster, or T-line analogies. Keep the sheet scoped to the assignment.
+- **Default to no shorthand.** Full `\cos\theta_i` reads cleaner than `c_i` even if it takes more space. Use shorthand only if the table genuinely doesn't fit — and document the shorthand in the caption.
+- **Vertical/horizontal lines in tables.** Vertical column separators (`|p{...}|`) help readability for wide formula tables. Horizontal `\midrule` between every row is visual clutter — use only between conceptually distinct row groups.
