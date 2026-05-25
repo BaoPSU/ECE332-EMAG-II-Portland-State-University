@@ -1,5 +1,5 @@
 \documentclass[11pt,letterpaper]{article}
-\usepackage[top=0.85in,bottom=0.85in,left=1in,right=1in]{geometry}
+\usepackage[top=0.8in,bottom=0.8in,left=0.9in,right=0.9in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{xcolor}
 \usepackage{mdframed}
@@ -7,7 +7,6 @@
 \usepackage{fancyhdr}
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{cancel}
 
 \graphicspath{{cs_crops/}{./}}
 
@@ -21,18 +20,18 @@
   innertopmargin=4pt,innerbottommargin=4pt,
   skipabove=4pt,skipbelow=6pt]{cssnip}
 
-\newmdenv[linewidth=1pt,linecolor=coral,backgroundcolor=coralbg!30,
+\newmdenv[linewidth=0.6pt,linecolor=amber,backgroundcolor=amberbg!20,
   innerleftmargin=6pt,innerrightmargin=6pt,
-  innertopmargin=4pt,innerbottommargin=4pt,
-  skipabove=4pt,skipbelow=4pt]{notebox}
+  innertopmargin=3pt,innerbottommargin=3pt,
+  skipabove=2pt,skipbelow=4pt]{givens}
 
 \pagestyle{fancy}\fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
-\fancyhead[L]{\textbf{ECE332 Spring 2026 --- HW3 Generated Answers}}
+\fancyhead[L]{\textbf{ECE332 Spring 2026 --- HW3 Generated (Bao's Style)}}
 \fancyhead[R]{Bao Nguyen}
 \fancyfoot[C]{\thepage}
 
-\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
 
 \newcommand{\probhead}[2]{%
   \colorbox{purplebg}{\parbox{\dimexpr\linewidth-2\fboxsep}%
@@ -41,277 +40,313 @@
 \begin{document}
 
 \begin{center}
-{\Large\textbf{ECE 332 --- Homework 3: Generated Answers from Final Cheat Sheet}}\\[4pt]
-{\small Each solution shows the cheat sheet snippet used, then the answer.}
+{\Large\textbf{ECE 332 --- Homework 3 Walkthrough}}\\[2pt]
+{\small Cheat sheet snippet $\to$ formula template $\to$ givens $\to$ plug $\to$ \fbox{answer}.}
 \end{center}
 
-\vspace{4pt}
-
-\begin{notebox}
-\textbf{Symbol reference} (used throughout):
-\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\topsep}{1pt}\setlength{\parsep}{0pt}
-\item $\varepsilon_0 = 8.854\!\times\!10^{-12}$ F/m --- permittivity of free space (constant)
-\item $\mu_0 = 4\pi\!\times\!10^{-7}$ H/m --- permeability of free space (constant)
-\item $\varepsilon_r$ --- relative permittivity (dielectric constant) of the medium, dimensionless
-\item $\mu_r$ --- relative permeability of the medium, dimensionless. $\mu_r = 1$ for nonmagnetic materials (air, most dielectrics)
-\item $\varepsilon = \varepsilon_r \varepsilon_0$ --- absolute permittivity of the medium (F/m)
-\item $\mu = \mu_r \mu_0$ --- absolute permeability of the medium (H/m)
-\item $\sigma$ --- conductivity of the medium (S/m). $\sigma=0$ for lossless / ideal dielectric
-\item $\eta = \sqrt{\mu/\varepsilon}$ --- intrinsic impedance of the medium ($\Omega$)
-\item $\eta_0 = \sqrt{\mu_0/\varepsilon_0} = 120\pi \approx 377\,\Omega$ --- intrinsic impedance of free space
-\item $k = \omega\sqrt{\mu\varepsilon} = \omega\sqrt{\varepsilon_r}/c$ (nonmag.) --- wavenumber (rad/m)
-\item $\alpha$ --- attenuation constant (Np/m); $\beta$ --- phase constant (rad/m)
-\item $\Gamma = (\eta_2-\eta_1)/(\eta_2+\eta_1)$ --- reflection coefficient (unitless)
-\item $\tau = 1 + \Gamma$ --- transmission coefficient (unitless)
-\item Superscripts on $\tilde{\mathbf{E}}$: \textbf{$i$} = incident, \textbf{$r$} = reflected, \textbf{$t$} = transmitted. Three distinct waves, three distinct superscripts.
-\end{itemize}
-\textit{\color{coral}\textbf{Note:} the official HW3 solution PDF labels both reflected and transmitted as $\tilde{E}^r$ (typo). The second one is really $\tilde{E}^t$ --- you can tell because it carries $\tau$ and $k_2$ instead of $\Gamma$ and $k_1$. This doc uses the correct $i/r/t$ throughout.}
-\end{notebox}
-
-\vspace{4pt}
-
 %======================================================
-\probhead{1 --- LHC Wave Normally Incident on a Dielectric}{20 pts}
+\probhead{1 --- 200 MHz LHC, Air $\to$ Dielectric ($\varepsilon_r=4$)}{20 pts}
 
-\textbf{Setup:} 200 MHz LHC plane wave in air, $|E|=5$ V/m, normally incident on dielectric ($\varepsilon_r=4$) at $z\ge0$. Positive max at $z=0$, $t=0$.
+\textbf{Setup:} 200 MHz LHC plane wave, $|E|=5$ V/m, normal incidence onto $\varepsilon_r=4$ at $z\ge0$. Positive max at $z=0,t=0$.
 
 \begin{cssnip}
 \includegraphics[width=0.49\linewidth]{cs_table82}\hfill
-\includegraphics[width=0.49\linewidth]{cs_phasor_templates}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_phasor_templates}\\[3pt]
 \includegraphics[width=0.49\linewidth]{cs_power}
 \end{cssnip}
 
-\textbf{Wave parameters in medium 1 (air):}
+\textbf{(a) Incident E phasor.}\quad Template: $\tilde{\mathbf{E}}^i = a_0\hat{e}\,e^{-jk_1u}$.
 
-Angular frequency from $f$:
-\[\omega = 2\pi f = 2\pi(2\!\times\!10^8) = 4\pi\!\times\!10^8~\text{rad/s}\]
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j(4\pi/3)z}\;\text{V/m}\]
+\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}\;\text{V/m}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$f = 200$ MHz, $\omega = 2\pi f = 4\pi{\times}10^8$ rad/s\\
+$u = z$;\ $\mu_r = \varepsilon_{r1} = 1$ (Air)\\
+$\hat{e} = \hat{x}+j\hat{y}$ (LHC)\\
+$k_1 = \omega\sqrt{\varepsilon_{r1}}/c = 4\pi/3$ rad/m\\
+$c = 3{\times}10^8$ m/s;\ $a_0 = 5$ V/m
+\end{givens}
+\end{minipage}
 
-Wavenumber from the lossless plane wave formula $k = \omega\sqrt{\varepsilon_r}/c$. In air, $\varepsilon_r=1$ so this reduces to $k_1 = \omega/c$:
-\[k_1 = \tfrac{\omega}{c} = \tfrac{4\pi\!\times\!10^8}{3\!\times\!10^8} = \tfrac{4\pi}{3}~\text{rad/m}\]
+\textbf{(b) Reflection \& transmission coefficients.}
 
-\textbf{(a) LHC incident phasor.} The PHASOR TEMPLATES section says the incident wave has the form $\tilde{\mathbf{E}}^i = a_0\hat{e}\,e^{-jk_1z}$ where $\hat{e}$ depends on polarization. From the polarization table:
-\[\text{LHC} \Rightarrow \hat{e} = \hat{x}+j\hat{y}\]
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\eta_1(\text{Air}) = \sqrt{\tfrac{\mu_r}{\varepsilon_{r1}}}\,\eta_0 = \sqrt{1/1}(120\pi) = 120\pi\,\Omega\]
+\[\eta_2(\text{med 2}) = \sqrt{\tfrac{\mu_r}{\varepsilon_{r2}}}\,\eta_0 = \sqrt{1/4}(120\pi) = 60\pi\,\Omega\]
+\[\Gamma = \tfrac{\eta_2-\eta_1}{\eta_2+\eta_1} = \tfrac{60\pi-120\pi}{60\pi+120\pi} = \boxed{-\tfrac{1}{3}}\;(\text{unitless})\]
+\[\tau = 1+\Gamma = 1-\tfrac{1}{3} = \boxed{\tfrac{2}{3}}\;(\text{unitless})\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$\eta_0 = 120\pi\,\Omega \approx 377\,\Omega$
+\end{givens}
+\end{minipage}
 
-With $a_0 = 5$ V/m (the modulus) and $k_1 = 4\pi/3$:
-\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}}\]
+\textbf{(c) Reflected, transmitted, total field.}
 
-\textbf{(b) Reflection coefficient $\Gamma$ and transmission coefficient $\tau$.}
+Templates: $\tilde{\mathbf{E}}^r = \Gamma a_0\hat{e}\,e^{+jk_1u}$,\quad $\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-jk_2u}$.
 
-\textit{General intrinsic impedance:} $\eta = \sqrt{\mu/\varepsilon}$.
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\tilde{\mathbf{E}}^r = -\tfrac{1}{3}(5)(\hat{x}+j\hat{y})\,e^{+j(4\pi/3)z}\]
+\[\boxed{\tilde{\mathbf{E}}^r = -\tfrac{5}{3}(\hat{x}+j\hat{y})\,e^{j4\pi z/3}\;\text{V/m}}\]
+\[\tilde{\mathbf{E}}^t = \tfrac{2}{3}(5)(\hat{x}+j\hat{y})\,e^{-j(8\pi/3)z}\]
+\[\boxed{\tilde{\mathbf{E}}^t = \tfrac{10}{3}(\hat{x}+j\hat{y})\,e^{-j8\pi z/3}\;\text{V/m}}\]
+\[\tilde{\mathbf{E}}_T = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r\]
+\[\boxed{\tilde{\mathbf{E}}_T = 5(\hat{x}+j\hat{y})\!\left[e^{-j4\pi z/3} - \tfrac{1}{3}e^{j4\pi z/3}\right]\,\text{V/m}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$k_2 = \omega\sqrt{\varepsilon_{r2}}/c = 8\pi/3$\\
+$\varepsilon_{r2} = 4$;\ $c = 3{\times}10^8$\\
+$\omega = 400\pi{\times}10^6$
+\end{givens}
+\end{minipage}
 
-\textit{Decompose into relative + free-space constants:} since $\mu = \mu_r\mu_0$ and $\varepsilon = \varepsilon_r\varepsilon_0$,
-\[\eta = \sqrt{\tfrac{\mu_r\mu_0}{\varepsilon_r\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\cdot\sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{\tfrac{\mu_r}{\varepsilon_r}}\,\eta_0\]
-which for nonmagnetic media ($\mu_r=1$) reduces to $\eta = \eta_0/\sqrt{\varepsilon_r}$.
-
-\textit{Compute $\eta_0$ from $\mu_0, \varepsilon_0$ directly:}
-\[\eta_0 = \sqrt{\tfrac{\mu_0}{\varepsilon_0}} = \sqrt{(4\pi\!\times\!10^{-7})(36\pi\!\times\!10^9)} = 120\pi\,\Omega \approx 377\,\Omega\]
-
-\textit{Medium 1 (air):} $\mu_r=1, \varepsilon_r=1$. So $\eta_1 = \eta_0\sqrt{1/1} = \eta_0 = 120\pi\,\Omega$.
-
-\textit{Medium 2 (nonmagnetic dielectric, $\mu_r=1, \varepsilon_r=4$):} use the shortcut $\eta = \eta_0/\sqrt{\varepsilon_r}$:
-\[\eta_2 = \tfrac{\eta_0}{\sqrt{\varepsilon_{r2}}} = \tfrac{120\pi}{\sqrt{4}} = \tfrac{120\pi}{2} = 60\pi\,\Omega\]
-
-\textit{Now apply the boundary formula} $\Gamma = (\eta_2-\eta_1)/(\eta_2+\eta_1)$:
-\[\Gamma = \tfrac{60\pi - 120\pi}{60\pi + 120\pi} = \tfrac{-60\pi}{180\pi} = \boxed{-\tfrac{1}{3}}\]
-
-\[\tau = 1+\Gamma = 1 - \tfrac{1}{3} = \boxed{\tfrac{2}{3}}\]
-
-\textbf{(c) Reflected, transmitted, and total field phasors.}
-
-\textit{Wavenumbers in both media} use the same formula $k_i = \omega\sqrt{\varepsilon_{r,i}}/c$, just plug in each medium's $\varepsilon_r$:
-
-\textit{Medium 1 (air, $\varepsilon_{r,1}=1$):}
-\[k_1 = \tfrac{\omega\sqrt{1}}{c} = \tfrac{4\pi\!\times\!10^8}{3\!\times\!10^8} = \tfrac{4\pi}{3}~\text{rad/m}\]
-
-\textit{Medium 2 (dielectric, $\varepsilon_{r,2}=4$):}
-\[k_2 = \tfrac{\omega\sqrt{4}}{c} = \tfrac{2\omega}{c} = 2k_1 = \tfrac{8\pi}{3}~\text{rad/m}\]
-
-\textit{Notice}: same formula, only $\varepsilon_r$ changes per medium (just like $\eta$).
-
-\textit{From the PHASOR TEMPLATES} (reflected wave travels in $-\hat{z}$, sign of $z$-term flips):
-\[\tilde{\mathbf{E}}^r = \Gamma\cdot a_0\hat{e}\,e^{+jk_1z} = -\tfrac{1}{3}\!\cdot\!5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -\tfrac{5}{3}(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}\]
-
-\textit{Transmitted wave in lossless medium 2:}
-\[\tilde{\mathbf{E}}^t = \tau\cdot a_0\hat{e}\,e^{-jk_2z} = \tfrac{2}{3}\!\cdot\!5(\hat{x}+j\hat{y})\,e^{-j8\pi z/3} = \tfrac{10}{3}(\hat{x}+j\hat{y})\,e^{-j8\pi z/3}\]
-
-\textit{Total field in medium 1 is incident + reflected:}
-\[\boxed{\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{3}e^{+j4\pi z/3}\right)~\text{V/m}}\]
-
-\textbf{(d) Percentages of incident average power reflected and transmitted.}
-
-\textit{From the POWER REFLECTION snippet,} $\%P_r = 100|\Gamma|^2$ and $\%P_t = 100|\tau|^2(\eta_1/\eta_2)$. The $\eta_1/\eta_2$ factor accounts for the change in wave impedance: even though $|\tau|>0$, the medium beyond carries power differently.
-
-\[\%P_r = 100\!\cdot\!\left|-\tfrac{1}{3}\right|^2 = 100\!\cdot\!\tfrac{1}{9} = \boxed{11.1\%}\]
-\[\%P_t = 100\!\cdot\!\left|\tfrac{2}{3}\right|^2\!\cdot\!\tfrac{120\pi}{60\pi} = 100\!\cdot\!\tfrac{4}{9}\!\cdot\!2 = \boxed{88.9\%}\]
-
-\textit{Sanity check:} $11.1\% + 88.9\% = 100\%$. Energy conserved.
+\textbf{(d) \% reflected and transmitted power.}
+\[\%P_r = 100|\Gamma|^2 = 100|{-}\tfrac{1}{3}|^2 = \boxed{11.1\%}\]
+\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100|\tfrac{2}{3}|^2\,\tfrac{120\pi}{60\pi} = \boxed{88.9\%}\]
+\textit{Check: $11.1\% + 88.9\% = 100\%$. Energy conserved $\checkmark$}
 
 \newpage
 %======================================================
-\probhead{2 --- Same Wave, Poor-Conductor Medium 2}{20 pts}
+\probhead{2 --- Same Setup, Med 2 = Poor Conductor ($\varepsilon_r{=}2.25,\,\sigma{=}10^{-4}$)}{20 pts}
 
-\textbf{Setup:} Replace medium 2 with poor conductor: $\varepsilon_r=2.25$, $\mu_r=1$, $\sigma=10^{-4}$ S/m. Everything else same as P1.
+\textbf{Setup:} Replace medium 2 with poor conductor: $\varepsilon_r = 2.25$, $\mu_r = 1$, $\sigma = 10^{-4}$ S/m. Med 1 unchanged.
 
 \begin{cssnip}
 \includegraphics[width=0.49\linewidth]{cs_table82}\hfill
-\includegraphics[width=0.49\linewidth]{cs_phasor_templates}\\[4pt]
+\includegraphics[width=0.49\linewidth]{cs_phasor_templates}\\[3pt]
 \includegraphics[width=0.49\linewidth]{cs_lowloss}\hfill
 \includegraphics[width=0.49\linewidth]{cs_power}
 \end{cssnip}
 
-\textbf{Wave parameters in medium 1 (air).} Same as P1, since medium 1 hasn't changed:
-\[\omega = 2\pi f = 4\pi\!\times\!10^8~\text{rad/s},\quad k_1 = \tfrac{\omega\sqrt{\varepsilon_{r,1}}}{c} = \tfrac{\omega}{c} = \tfrac{4\pi}{3}~\text{rad/m},\quad \eta_1 = \eta_0 = 120\pi\,\Omega\]
+\textbf{(a) Incident E phasor.}\quad Med 1 didn't change, so same form as P1.
+\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}\;\text{V/m}}\]
 
-\textbf{(a) LHC incident phasor.} Identical to P1 — incident wave is in medium 1 (air), which didn't change. From the PHASOR TEMPLATES + polarization table ($\hat{e}_{\text{LHC}} = \hat{x}+j\hat{y}$):
-\[\boxed{\tilde{\mathbf{E}}^i = 5(\hat{x}+j\hat{y})\,e^{-j4\pi z/3}~\text{V/m}}\]
+\textbf{(b) Classify medium 2, then $\Gamma, \tau$.}
 
-\textbf{(b) Reflection and transmission coefficients --- but first classify medium 2.}
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+Loss tangent:
+\[\tfrac{\sigma}{\omega\varepsilon'} = \tfrac{10^{-4}}{(4\pi{\times}10^8)(2.25)(8.85{\times}10^{-12})} = 3.99{\times}10^{-3}\]
+Since $\sigma/\omega\varepsilon' \ll 10^{-2}$, \textbf{low-loss}; use $\eta_0/\sqrt{\varepsilon_r}$.
+\[\eta_1 = 120\pi\,\Omega,\quad \eta_2 = \tfrac{120\pi}{\sqrt{2.25}} = 80\pi\,\Omega\]
+\[\Gamma = \tfrac{80\pi-120\pi}{80\pi+120\pi} = \boxed{-\tfrac{1}{5}}\;(\text{unitless})\]
+\[\tau = 1+\Gamma = 1-\tfrac{1}{5} = \boxed{\tfrac{4}{5}}\;(\text{unitless})\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens (med 2):}\\
+$\varepsilon_{r2} = 2.25,\ \mu_{r2} = 1$\\
+$\sigma_2 = 10^{-4}$ S/m\\
+$\varepsilon_0 = 8.85{\times}10^{-12}$ F/m\\
+$\omega = 400\pi{\times}10^6$ rad/s\\
+$\eta_0 = 120\pi\,\Omega$
+\end{givens}
+\end{minipage}
 
-\textit{Compute the loss tangent $\sigma/(\omega\varepsilon)$ to pick which formulas to use:}
-\[\tfrac{\sigma_2}{\omega\varepsilon_2} = \tfrac{\sigma_2}{\omega\varepsilon_{r,2}\varepsilon_0} = \tfrac{10^{-4}}{(4\pi\!\times\!10^8)(2.25)(8.854\!\times\!10^{-12})} = 4\!\times\!10^{-3}\]
-This is $\ll 1$, so medium 2 is a \textbf{low-loss dielectric}. The LOSSY MEDIA --- 5 CASES table classifies media by $\sigma/(\omega\varepsilon)$ and tells us to use the \emph{low-loss row} shortcuts (not the full exact lossy formulas in the bottom).
+\textbf{(c) Reflected, transmitted (lossy), total field.}
 
-\textit{Intrinsic impedance --- same derivation chain as P1, with the low-loss correction.} The general formula $\eta = \sqrt{\mu_r/\varepsilon_r}\,\eta_0$ lives in the intrinsic-impedance footer of TABLE 8-2. For low-loss media the low-loss row of LOSSY MEDIA --- 5 CASES says:
-\[\eta_2 \approx \sqrt{\tfrac{\mu}{\varepsilon'}}\!\left(1 + j\tfrac{\sigma}{2\omega\varepsilon'}\right)\quad\xrightarrow[\sigma/\omega\varepsilon\ll 1]{\mu_r=1}\quad \tfrac{\eta_0}{\sqrt{\varepsilon_r}}\]
-The $j$ correction is $4\!\times\!10^{-3}/2 = 2\!\times\!10^{-3}$, tiny enough to drop for $\Gamma, \tau$ computation. So:
-\[\eta_2 \approx \tfrac{\eta_0}{\sqrt{\varepsilon_{r,2}}} = \tfrac{120\pi}{\sqrt{2.25}} = \tfrac{120\pi}{1.5} = 80\pi\,\Omega\]
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\tilde{\mathbf{E}}^r = \Gamma a_0\hat{e}\,e^{+jk_1z} = -\tfrac{1}{5}(5)(\hat{x}+j\hat{y})e^{+j4\pi z/3}\]
+\[\boxed{\tilde{\mathbf{E}}^r = -(\hat{x}+j\hat{y})\,e^{j4\pi z/3}\;\text{V/m}}\]
+$\tilde{\mathbf{E}}^t$ replaces $e^{-jk_2z}$ with $e^{-\alpha_2 z}e^{-j\beta_2 z}$ (lossy):
+\[\tilde{\mathbf{E}}^t = \tau a_0\hat{e}\,e^{-\alpha_2 z}e^{-j\beta_2 z} = \tfrac{4}{5}(5)(\hat{x}+j\hat{y})e^{-0.004\pi z}e^{-j2\pi z}\]
+\[\boxed{\tilde{\mathbf{E}}^t = 4(\hat{x}+j\hat{y})\,e^{-0.004\pi z}e^{-j2\pi z}\;\text{V/m}}\]
+\[\boxed{\tilde{\mathbf{E}}_T = 5(\hat{x}+j\hat{y})\!\left[e^{-j4\pi z/3} - \tfrac{1}{5}e^{j4\pi z/3}\right]\,\text{V/m}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Low-loss row (Table 5-cases):}\\
+$\alpha_2 \!\approx\! \tfrac{\sigma\eta_0}{2\sqrt{\varepsilon_r}} \!=\! \tfrac{10^{-4}(120\pi)}{2\sqrt{2.25}} \!=\! 0.004\pi$\\
+\hspace*{0.7cm}$= 1.26{\times}10^{-2}$ Np/m\\
+$\beta_2 \!\approx\! \tfrac{\omega\sqrt{\varepsilon_r}}{c} \!=\! \tfrac{(400\pi{\times}10^6)(1.5)}{3{\times}10^8} \!=\! 2\pi$ rad/m
+\end{givens}
+\end{minipage}
 
-\textit{Attenuation and phase constants from low-loss row of LOSSY MEDIA --- 5 CASES} (these matter for the transmitted-wave decay even though they don't affect $\Gamma$):
-\[\alpha_2 \approx \tfrac{\sigma_2 \eta_0}{2\sqrt{\varepsilon_{r,2}}} = \tfrac{10^{-4}\cdot 120\pi}{2\sqrt{2.25}} = 1.26\!\times\!10^{-2}~\text{Np/m}\]
-\[\beta_2 \approx \tfrac{\omega\sqrt{\varepsilon_{r,2}}}{c} = \tfrac{(4\pi\!\times\!10^8)(1.5)}{3\!\times\!10^8} = 2\pi~\text{rad/m}\]
-
-\textit{Apply the boundary formulas:}
-\[\Gamma = \tfrac{\eta_2 - \eta_1}{\eta_2 + \eta_1} = \tfrac{80\pi - 120\pi}{80\pi + 120\pi} = \tfrac{-40\pi}{200\pi} = \boxed{-\tfrac{1}{5}}\]
-\[\tau = 1+\Gamma = 1 - \tfrac{1}{5} = \boxed{\tfrac{4}{5}}\]
-
-\textbf{(c) Reflected, transmitted, and total field phasors.}
-
-\textit{Direction signs from the DIRECTION TABLE.} Med 2 is at $z\ge 0$ (same as P1), so use the first row: incident gets $-jk_1z$, reflected gets $+jk_1z$, transmitted gets the lossy decay $e^{-\alpha_2z}e^{-j\beta_2z}$ (since med 2 is now lossy, replace $e^{-jk_2z}$ with $e^{-\alpha_2z}e^{-j\beta_2z}$).
-
-\textit{Reflected template (still in lossless medium 1, traveling $-\hat{z}$):}
-\[\tilde{\mathbf{E}}^r = \Gamma\,a_0\hat{e}\,e^{+jk_1z}\]
-Plug in $\Gamma=-1/5$, $a_0=5$, $\hat{e}=\hat{x}+j\hat{y}$, $k_1=4\pi/3$:
-\[\tilde{\mathbf{E}}^r = -\tfrac{1}{5}\cdot 5(\hat{x}+j\hat{y})\,e^{+j4\pi z/3} = -(\hat{x}+j\hat{y})\,e^{+j4\pi z/3}~\text{V/m}\]
-
-\textit{Transmitted template (lossy medium 2, traveling $+\hat{z}$, replace $e^{-jk_2z}$ with $e^{-\alpha_2z}e^{-j\beta_2z}$):}
-\[\tilde{\mathbf{E}}^t = \tau\,a_0\hat{e}\,e^{-\alpha_2 z}\,e^{-j\beta_2 z}\]
-Plug in $\tau=4/5$, $a_0=5$, $\hat{e}=\hat{x}+j\hat{y}$, $\alpha_2=1.26\!\times\!10^{-2}$, $\beta_2=2\pi$:
-\[\tilde{\mathbf{E}}^t = \tfrac{4}{5}\cdot 5(\hat{x}+j\hat{y})\,e^{-\alpha_2 z}e^{-j\beta_2 z} = 4(\hat{x}+j\hat{y})\,e^{-1.26\!\times\!10^{-2}z}\,e^{-j2\pi z}~\text{V/m}\]
-
-\textit{Total field in medium 1 ($z\le 0$):}
-\[\boxed{\tilde{\mathbf{E}}_1 = \tilde{\mathbf{E}}^i + \tilde{\mathbf{E}}^r = 5(\hat{x}+j\hat{y})\!\left(e^{-j4\pi z/3} - \tfrac{1}{5}e^{+j4\pi z/3}\right)~\text{V/m}}\]
-
-\textbf{(d) Percentages of incident average power reflected and transmitted.}
-
-\textit{From POWER REFLECTION snippet,} same formulas as P1:
-\[\%P_r = 100|\Gamma|^2 = 100\!\cdot\!\left|-\tfrac{1}{5}\right|^2 = 100\!\cdot\!\tfrac{1}{25} = \boxed{4\%}\]
-\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100\!\cdot\!\left|\tfrac{4}{5}\right|^2\!\cdot\!\tfrac{120\pi}{80\pi} = 100\!\cdot\!\tfrac{16}{25}\!\cdot\!\tfrac{3}{2} = \boxed{96\%}\]
-
-\textit{Sanity check:} $4\% + 96\% = 100\%$. Less reflection than P1 (4\% vs 11.1\%) because medium 2 is closer in impedance to air ($\eta_2 = 80\pi$ vs $60\pi$); the smaller impedance jump means more of the wave gets through.
+\textbf{(d) \% reflected and transmitted power.}
+\[\%P_r = 100|\Gamma|^2 = 100|{-}\tfrac{1}{5}|^2 = \boxed{4\%}\]
+\[\%P_t = 100|\tau|^2\,\tfrac{\eta_1}{\eta_2} = 100|\tfrac{4}{5}|^2\,\tfrac{120\pi}{80\pi} = \boxed{96\%}\]
+\textit{Check: $4\% + 96\% = 100\%$. Energy conserved $\checkmark$}
 
 \newpage
 %======================================================
-\probhead{3 --- Parallel-Polarized Wave Through Two Dielectric Layers}{10 pts}
+\probhead{3 --- Parallel-Pol, Two Layers ($\varepsilon_r{=}6.25, 2.25$)}{10 pts}
 
-\textbf{Setup:} $\theta_i=30^\circ$ from air, layer 1 ($\varepsilon_r=6.25$, $t=5$ cm), layer 2 ($\varepsilon_r=2.25$, $t=5$ cm), exits to air.
+\textbf{Setup:} $\theta_i = 30^\circ$ from air into layer 1 ($\varepsilon_r = 6.25$, 5 cm), layer 2 ($\varepsilon_r = 2.25$, 5 cm), exits to air.
 
 \begin{cssnip}
 \includegraphics[width=0.49\linewidth]{cs_snell}\hfill
-\includegraphics[width=0.49\linewidth]{cs_lateral}\\[4pt]
-\includegraphics[width=0.95\linewidth]{cs_table82}
+\includegraphics[width=0.49\linewidth]{cs_lateral}
 \end{cssnip}
 
-\textbf{(a) Chained Snell's law:}
-\[\sin\theta_2 = \sin 30^\circ\sqrt{\tfrac{1}{6.25}} = 0.5\!\cdot\!0.4 = 0.2 \Rightarrow \theta_2 = \sin^{-1}(0.2) = \boxed{11.54^\circ}\]
-\[\sin\theta_3 = 0.2\sqrt{\tfrac{6.25}{2.25}} = 0.2\!\cdot\!\tfrac{5}{3} = \tfrac{1}{3} \Rightarrow \theta_3 = \sin^{-1}(1/3) = \boxed{19.47^\circ}\]
-\[\sin\theta_4 = \tfrac{1}{3}\sqrt{\tfrac{2.25}{1}} = \tfrac{1}{3}\!\cdot\!\tfrac{3}{2} = \tfrac{1}{2} \Rightarrow \theta_4 = \boxed{30^\circ = \theta_i}\]
+\textbf{(a) Chained Snell's law: $\sin\theta_{i+1} = \sin\theta_i\sqrt{\varepsilon_{r,i}/\varepsilon_{r,i+1}}$}
 
-\textbf{(b) Lateral displacement:}
-\[d = t_1\tan\theta_2 + t_2\tan\theta_3 = 5\tan 11.54^\circ + 5\tan 19.47^\circ = 5(0.2041 + 0.3536)~\text{cm}\]
-\[\boxed{d = 2.79~\text{cm}}\]
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\sin\theta_2 = \sin 30^\circ\sqrt{1/6.25} = 0.5(0.4) = 0.2\]
+\[\boxed{\theta_2 = \sin^{-1}(0.2) = 11.54^\circ}\]
+\[\sin\theta_3 = \sin\theta_2\sqrt{6.25/2.25} = 0.2(5/3) = 1/3\]
+\[\boxed{\theta_3 = \sin^{-1}(1/3) = 19.47^\circ}\]
+\[\sin\theta_4 = \sin\theta_3\sqrt{2.25/1} = (1/3)(1.5) = 0.5\]
+\[\boxed{\theta_4 = 30.00^\circ = \theta_i}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$\varepsilon_{r1} = 1$ (air, $\theta_1 = 30^\circ$)\\
+$\varepsilon_{r2} = 6.25$ (layer 1)\\
+$\varepsilon_{r3} = 2.25$ (layer 2)\\
+$\varepsilon_{r4} = 1$ (air exit)
+\end{givens}
+\end{minipage}
 
-\begin{center}\includegraphics[width=0.85\linewidth]{HW3_P3_layers}\end{center}
+\textbf{(b) Lateral distance $d = \sum_i t_i\tan\theta_{\text{inside slab }i}$:}
+
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[d = t_2\tan\theta_2 + t_3\tan\theta_3\]
+\[= 0.05\tan(11.54^\circ) + 0.05\tan(19.47^\circ)\]
+\[= 0.05(0.2041) + 0.05(0.3534)\]
+\[\boxed{d = 0.0279\;\text{m} = 2.79\;\text{cm}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$t_2 = t_3 = 0.05$ m (slab thickness)\\
+$\theta_2 = 11.54^\circ$ (inside layer 1)\\
+$\theta_3 = 19.47^\circ$ (inside layer 2)
+\end{givens}
+\end{minipage}
 
 \newpage
 %======================================================
-\probhead{4 --- Dielectric Waveguide TE Mode Identification}{20 pts}
+\probhead{4 --- TE Waveguide, Find Mode, $\varepsilon_r$, $f_c$, $H_y$}{20 pts}
 
-\textbf{Setup:} TE wave, $a=5$ cm, $b=3$ cm, $E_x = -36\cos(40\pi x)\sin(100\pi y)\sin\!\big((2.4\pi\!\times\!10^{10})t - 52.9\pi z\big)$ V/m.
+\textbf{Setup:} TE wave, $a = 5$ cm, $b = 3$ cm,
+$E_x = -36\cos(40\pi x)\sin(100\pi y)\sin\!\big((2.4\pi{\times}10^{10})t - 52.9\pi z\big)$ V/m.
 
 \begin{cssnip}
 \includegraphics[width=0.49\linewidth]{cs_wgmodes}\hfill
-\includegraphics[width=0.49\linewidth]{cs_table83}\\[4pt]
-\includegraphics[width=0.49\linewidth]{cs_epsilon_disp}\hfill
-\includegraphics[width=0.49\linewidth]{cs_cutoff}\\[4pt]
-\includegraphics[width=0.49\linewidth]{cs_wgimpedance}
+\includegraphics[width=0.49\linewidth]{cs_epsilon_disp}\\[3pt]
+\includegraphics[width=0.95\linewidth]{cs_table83}
 \end{cssnip}
 
-\textbf{(a) Mode from the field expression.} Read $m\pi/a$ from the $\cos$ coefficient and $n\pi/b$ from the $\sin$ coefficient.
-\[\tfrac{m\pi}{a} = 40\pi \Rightarrow m = 40\!\cdot\!0.05 = 2\]
-\[\tfrac{n\pi}{b} = 100\pi \Rightarrow n = 100\!\cdot\!0.03 = 3\]
+\textit{\color{coral}New: Table 8-3 now contains $Z_\text{TE}/Z_\text{TM}$, full TEM column, and Properties Common ($f_c$, $\beta$, $u_p$, $u_{p0}$) --- one stop for all waveguide field formulas.}
+
+\textbf{(a) Mode number.} Match $E_x$ to Table 8-3 TE-row form $\cos(m\pi x/a)\sin(n\pi y/b)$.
+
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\tfrac{m\pi}{a} = 40\pi \Rightarrow m = 40(0.05) = 2\]
+\[\tfrac{n\pi}{b} = 100\pi \Rightarrow n = 100(0.03) = 3\]
 \[\boxed{\text{Mode: TE}_{23}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$a = 0.05$ m,\ $b = 0.03$ m\\
+TE wave (given), so $E_z = 0$
+\end{givens}
+\end{minipage}
 
-\textbf{(b) $\varepsilon_r$ from dispersion}, with $\omega = 2.4\pi\!\times\!10^{10}$ rad/s, $\beta = 52.9\pi$ rad/m:
-\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]
-  = \!\left(\tfrac{3\!\times\!10^8}{2.4\pi\!\times\!10^{10}}\right)^{\!2}\!\big[(52.9\pi)^2 + (40\pi)^2 + (100\pi)^2\big]\]
+\textbf{(b) $\varepsilon_r$ from $\varepsilon_r$ FROM DISPERSION box (Example 8-8).}
+
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\varepsilon_r = \tfrac{c^2}{\omega^2}\!\left[\beta^2 + \!\left(\tfrac{m\pi}{a}\right)^{\!2}\!+\!\left(\tfrac{n\pi}{b}\right)^{\!2}\right]\]
+\[= \!\left(\tfrac{3{\times}10^8}{2.4\pi{\times}10^{10}}\right)^{\!2}\!\big[(52.9\pi)^2 + (40\pi)^2 + (100\pi)^2\big]\]
 \[\boxed{\varepsilon_r = 2.25}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$\beta = 52.9\pi$ rad/m\\
+$\omega = 2.4\pi{\times}10^{10}$ rad/s\\
+$c = 3{\times}10^8$ m/s
+\end{givens}
+\end{minipage}
 
-\textbf{(c) Cutoff frequency for TE$_{23}$:}
-\[u_{p0} = \tfrac{c}{\sqrt{\varepsilon_r}} = \tfrac{3\!\times\!10^8}{1.5} = 2\!\times\!10^8~\text{m/s}\]
-\[f_{23} = \tfrac{u_{p0}}{2}\sqrt{\!\left(\tfrac{2}{a}\right)^{\!2}\!+\!\left(\tfrac{3}{b}\right)^{\!2}}
-  = 10^8\sqrt{(2/0.05)^2 + (3/0.03)^2} = 10^8\sqrt{1600+10000}\]
-\[\boxed{f_{23} = 10.77~\text{GHz}}\]
+\textbf{(c) Cutoff frequency for TE$_{23}$ from Table 8-3 Properties Common.}
 
-\textbf{(d) $H_y$ from $Z_{\text{TE}}$:} operating frequency $f = \omega/(2\pi) = 12$ GHz.
-\[Z_{\text{TE}} = \tfrac{\eta}{\sqrt{1-(f_c/f)^2}} = \tfrac{377/\sqrt{2.25}}{\sqrt{1-(10.77/12)^2}}
-  = \tfrac{251.3}{\sqrt{1-0.805}} = \tfrac{251.3}{0.442} = 569.9~\Omega\]
-\[\boxed{H_y = \tfrac{E_x}{Z_{\text{TE}}} = -0.063\cos(40\pi x)\sin(100\pi y)\sin((2.4\pi\!\times\!10^{10})t - 52.9\pi z)~\text{A/m}}\]
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[u_{p0} = \tfrac{c}{\sqrt{\varepsilon_r}} = \tfrac{3{\times}10^8}{1.5} = 2{\times}10^8\;\text{m/s}\]
+\[f_{23} = \tfrac{u_{p0}}{2}\sqrt{\!\left(\tfrac{m}{a}\right)^{\!2}\!+\!\left(\tfrac{n}{b}\right)^{\!2}}\]
+\[= 10^8\sqrt{(2/0.05)^2 + (3/0.03)^2} = 10^8\sqrt{11600}\]
+\[\boxed{f_c = 10.77\;\text{GHz}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$m = 2,\ n = 3$\\
+$a = 0.05,\ b = 0.03$ m\\
+$\varepsilon_r = 2.25$ (from b)
+\end{givens}
+\end{minipage}
+
+\textbf{(d) $H_y$ from Table 8-3 TE block: $\tilde{H}_y = \tilde{E}_x/Z_\text{TE}$.}
+
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[\eta = \tfrac{\eta_0}{\sqrt{\varepsilon_r}} = \tfrac{120\pi}{\sqrt{2.25}} = 80\pi\,\Omega\]
+\[Z_\text{TE} = \tfrac{\eta}{\sqrt{1-(f_c/f)^2}} = \tfrac{80\pi}{\sqrt{1-(10.77/12)^2}} = 569.9\,\Omega\]
+\[H_y = \tfrac{E_x}{Z_\text{TE}} = \tfrac{-36}{569.9}\cos(40\pi x)\sin(100\pi y)\sin(\omega t-\beta z)\]
+\[\boxed{H_y = -0.0632\cos(40\pi x)\sin(100\pi y)\sin\!\big((2.4\pi{\times}10^{10})t-52.9\pi z\big)\;\text{A/m}}\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$f = \omega/(2\pi) = 12$ GHz\\
+$f_c = 10.77$ GHz\\
+$\eta_0 = 120\pi \approx 377\,\Omega$\\
+$\varepsilon_r = 2.25$
+\end{givens}
+\end{minipage}
 
 \newpage
 %======================================================
-\probhead{5 --- Hollow Guide, Multi-Mode Excitation \& Travel Times}{8 pts}
+\probhead{5 --- Hollow Guide Multi-Mode Travel Times}{8 pts}
 
-\textbf{Setup:} Hollow guide ($\varepsilon_r=1$, $u_{p0}=c$), $a=3$ cm, $b=2$ cm. Pulse with 9.5 GHz carrier, guide length 100 m.
+\textbf{Setup:} Hollow guide ($\varepsilon_r = 1$, $u_{p0} = c$), $a = 3$ cm, $b = 2$ cm. Carrier 9.5 GHz, length $L = 100$ m. Find $t$ for each excited mode.
 
 \begin{cssnip}
 \includegraphics[width=0.49\linewidth]{cs_cutoff}\hfill
 \includegraphics[width=0.49\linewidth]{cs_groupvel}
 \end{cssnip}
 
-\textbf{Cutoff frequencies for the lowest modes:}
-\[f_{10} = \tfrac{c}{2a} = \tfrac{3\!\times\!10^8}{0.06} = 5~\text{GHz}\]
-\[f_{01} = \tfrac{c}{2b} = \tfrac{3\!\times\!10^8}{0.04} = 7.5~\text{GHz}\]
-\[f_{11} = \tfrac{c}{2}\sqrt{\tfrac{1}{a^2}+\tfrac{1}{b^2}} = (1.5\!\times\!10^8)\sqrt{(1/0.03)^2+(1/0.02)^2} = 9.01~\text{GHz}\]
-\[f_{20} = \tfrac{c}{a} = 10~\text{GHz}\quad(>9.5,\,\text{not excited})\]
+\textbf{Cutoffs (compute lowest modes, stop when $f_{mn} > 9.5$ GHz):}
 
-\textbf{Modes excited (carrier > $f_c$):} TE$_{10}$, TE$_{01}$, TE$_{11}$, TM$_{11}$. TE$_{20}$ is just above cutoff so it does not propagate.
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\[f_{10} = \tfrac{c}{2a} = \tfrac{3{\times}10^8}{0.06} = 5\;\text{GHz}\quad(<\!9.5,\text{ excited})\]
+\[f_{01} = \tfrac{c}{2b} = \tfrac{3{\times}10^8}{0.04} = 7.5\;\text{GHz}\quad(<\!9.5,\text{ excited})\]
+\[f_{20} = \tfrac{c}{a} = 10\;\text{GHz}\quad(>\!9.5,\text{ not excited})\]
+\[f_{11} = \tfrac{c}{2}\sqrt{\tfrac{1}{a^2}+\tfrac{1}{b^2}} = 9.014\;\text{GHz}\quad(<\!9.5,\text{ excited})\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}
+\begin{givens}
+\textbf{Givens:}\\
+$f = 9.5$ GHz (carrier)\\
+$a = 0.03,\ b = 0.02$ m\\
+$u_{p0} = c$ (hollow)\\
+$L = 100$ m
+\end{givens}
+\end{minipage}
 
-\textbf{Group velocities:} $u_g = c\sqrt{1-(f_{mn}/f)^2}$ with $f = 9.5$ GHz.
+\textbf{Travel times: $u_g = u_{p0}\sqrt{1-(f_{mn}/f)^2}$, $t = L/u_g$.}
+
 \begin{center}
 \begin{tabular}{lccc}
 \toprule
-Mode & $f_c$ (GHz) & $u_g/c$ & $u_g$ (m/s)\\
+Mode & $f_c$ (GHz) & $u_g$ (m/s) & $t = L/u_g$\\
 \midrule
-TE$_{10}$ & 5.00 & $\sqrt{1-(5/9.5)^2} = 0.85$ & $2.55\!\times\!10^8$\\
-TE$_{01}$ & 7.50 & $\sqrt{1-(7.5/9.5)^2} = 0.61$ & $1.84\!\times\!10^8$\\
-TE$_{11}$, TM$_{11}$ & 9.01 & $\sqrt{1-(9.01/9.5)^2} = 0.32$ & $0.95\!\times\!10^8$\\
+\rowcolor{purplebg!50} TE$_{10}$ & 5.000 & $3{\times}10^8\sqrt{1-(5/9.5)^2} = 2.551{\times}10^8$ & $\boxed{0.392\;\mu\text{s}}$\\
+TE$_{01}$ & 7.500 & $3{\times}10^8\sqrt{1-(7.5/9.5)^2} = 1.841{\times}10^8$ & $\boxed{543.1\;\text{ns}}$\\
+\rowcolor{purplebg!50} TE$_{20}$ & 10.000 & N/A (not excited) & N/A\\
+TE$_{11}$, TM$_{11}$ & 9.014 & $3{\times}10^8\sqrt{1-(9.014/9.5)^2} = 9.510{\times}10^7$ & $\boxed{1.05\;\mu\text{s}}$\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\textbf{Travel times: $t = L/u_g$ over 100 m.}
-\begin{center}
-\begin{tabular}{lc}
-\toprule
-Mode & $t$ ($\mu$s)\\
-\midrule
-\rowcolor{purplebg!50} TE$_{10}$ & $\boxed{0.39}$\\
-TE$_{01}$ & $\boxed{0.54}$\\
-\rowcolor{purplebg!50} TE$_{11}$, TM$_{11}$ & $\boxed{1.05}$\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-Higher modes arrive later because they propagate closer to cutoff, so $u_g$ drops.
+\textit{Higher modes arrive later: as $f_{mn} \to f$, $u_g \to 0$, so closer-to-cutoff modes have longer travel time.}
 
 \end{document}
