@@ -113,10 +113,13 @@ Working it out cleanly:
 \includegraphics[width=0.95\linewidth]{cs_beam}
 \end{cssnip}
 
-\textbf{(a) Half-power beamwidth $\beta$ (5 pts).} HPBW is the angular width between the two points where $F(\theta) = 1/2$. Solve $\exp(-20\theta^2) = 0.5$:
-\[-20\theta^2 = \ln(0.5) \;\Rightarrow\; \theta = \sqrt{-\ln(0.5)/20} = \sqrt{0.693/20} = \pm 0.186~\text{rad}\]
-The beam is symmetric about $\theta = 0$, so the full beamwidth is:
-\[\boxed{\beta = 2\theta = 0.372~\text{rad} = 21.31^\circ}\]
+\textbf{(a) Half-power beamwidth $\beta$ (5 pts).} From BEAM PARAMETERS Step 2, the original cheat sheet equations:
+\[F(\theta_{1/2}) = 0.5\;\Rightarrow\;\text{solve for }\theta_{1/2}\]
+\[\beta = 2\theta_{1/2}\quad(\text{symmetric beams})\]
+Plug in $F(\theta) = \exp(-20\theta^2)$:
+\[\exp(-20\theta_{1/2}^2) = 0.5 \;\Rightarrow\; -20\theta_{1/2}^2 = \ln(0.5)\]
+\[\theta_{1/2} = \sqrt{-\ln(0.5)/20} = \sqrt{0.693/20} = 0.186~\text{rad}\]
+\[\boxed{\beta = 2\theta_{1/2} = 0.372~\text{rad} = 21.31^\circ}\]
 
 \textbf{(b) Pattern solid angle $\Omega_p$ (5 pts).} From BEAM PARAMETERS:
 \[\Omega_p = \iint_{4\pi} F(\theta)\sin\theta\,d\theta\,d\phi = \int_0^{2\pi}\!\!\int_0^{\pi} \exp(-20\theta^2)\sin\theta\,d\theta\,d\phi\]
