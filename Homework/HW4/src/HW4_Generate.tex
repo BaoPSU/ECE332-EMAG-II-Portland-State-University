@@ -169,9 +169,31 @@ This integral has no closed form; evaluate numerically on the TI-36X Pro.
 \[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \cos(\pi/4)}{\sin\theta}\right]^2 = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^2\]
 Let $S_0 = 15 I_0^2/(\pi R^2)$ be the constant prefactor.
 
-\textbf{(a) Direction of maximum radiation (5 pts).} Maximizing $S(\theta)/S_0$ for $0 \le \theta \le \pi$. By calculus or numerical optimization, the max occurs at:
+\textbf{(a) Direction of maximum radiation (5 pts).} Three-step argument: (i) endpoints via L'H\^opital, (ii) symmetry about $\pi/2$, (iii) sampling to confirm single peak.
+
+\textit{Step (i) --- endpoints $\theta = 0, \pi$ via L'H\^opital.} Inside the squared bracket: $f(\theta) = \cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}$ over $g(\theta) = \sin\theta$.
+
+At $\theta = 0$: $f(0) = \cos(\pi/4) - \sqrt{2}/2 = 0$ and $g(0) = 0 \Rightarrow$ 0/0 form. Apply L'H\^opital:
+\[f'(\theta) = \tfrac{\pi}{4}\sin\!\left(\tfrac{\pi}{4}\cos\theta\right)\sin\theta, \quad g'(\theta) = \cos\theta\]
+\[\lim_{\theta\to 0}\tfrac{f'(\theta)}{g'(\theta)} = \tfrac{(\pi/4)\sin(\pi/4)\cdot 0}{1} = 0\]
+So $S(0)/S_0 = 0^2 = 0$. Same algebra at $\theta = \pi$ (with $g'(\pi) = -1$) gives $S(\pi) = 0$.
+
+\textit{Step (ii) --- symmetry about $\theta = \pi/2$.} Substitute $\theta \to \pi-\theta$: $\cos(\pi-\theta) = -\cos\theta$, but $\cos$ is even so $\cos((\pi/4)\cos(\pi-\theta)) = \cos((\pi/4)\cos\theta)$. And $\sin(\pi-\theta) = \sin\theta$. So $S(\theta) = S(\pi-\theta)$, pattern mirrors about $\pi/2$.
+
+\textit{Step (iii) --- sample values to confirm single peak (not M-shape).} Compute $S(\theta)/S_0$ for a few angles:
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$\theta$ & $30^\circ$ & $60^\circ$ & $90^\circ$\\
+\midrule
+$S/S_0$ & 0.020 & 0.063 & \textbf{0.086}\\
+\bottomrule
+\end{tabular}
+\end{center}
+Monotone rise to $90^\circ$, then symmetric fall. Single peak at the center.
+
 \[\boxed{\theta_{\max} = \pi/2 = 90^\circ}\]
-(broadside to the dipole axis, same as half-wave). At $\theta = 0$ or $\pi$ (along axis), $S = 0$.
+(broadside to the dipole axis, same as half-wave dipole.)
 
 \textbf{(b) $S_{\max}$ (5 pts).} Evaluate $S(\pi/2)$:
 \[S_{\max} = S(\pi/2) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cdot 0\right) - \tfrac{\sqrt{2}}{2}}{\sin(\pi/2)}\right]^2 = \tfrac{15 I_0^2}{\pi R^2}\left(1 - \tfrac{\sqrt{2}}{2}\right)^2\]
