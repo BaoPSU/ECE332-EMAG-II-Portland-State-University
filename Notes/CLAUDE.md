@@ -221,7 +221,29 @@ The sheet must fit on **1 page**. If it overflows, try (in order of impact):
 
 ## "Retard-Proof" Methodology (HW3 / HW4 / Exam1 style)
 
-Anchor the sheet to the assignment, not abstract topic order. This is what makes the difference between a sheet that's a reference dump and one you can actually solve from under time pressure.
+**Hard rule learned the hard way: a cheat sheet is a GENERIC FORMULA REFERENCE for a topic area, not a dump of the HW problems with answers boxed inline.**
+
+The cheat sheet must be reusable on:
+- This HW
+- Future HWs covering the same topic
+- The exam (where the questions will use different numbers / different setups)
+
+So the sheet shows you HOW to recognize and solve problems of a given type. It must NOT:
+- Tag formulas with HW problem numbers (`(P1)`, `(P2)`, etc.) — that ties the sheet to one specific assignment
+- Box the actual HW answer next to the formula — that gives away the work and looks like a problem dump
+- Use the exact HW numerical values as worked examples (e.g. `HW4 P1: l=1m, f=1MHz, R=5km → S = 1.51×10⁻⁹ W/m²`)
+
+What the sheet should have instead:
+- Formula templates with units
+- `\eq{label}{when-to-use}` clarifiers
+- Decision lookups (dipole-type-by-length, lossy-media-5-cases, etc.) that route any problem to the right formula
+- Numbered recipes (Step 1 normalize, Step 2 HPBW, etc.)
+- Tiny illustrative examples that show the SHAPE of the formula without solving any specific HW problem (e.g. `Gaussian shortcut: F = e^(-aθ²) = 0.5 ⇒ θ = √(ln 2/a)`)
+- Coral warnings for traps that apply generally (e.g. "If l/λ < 1/50 STOP and use Hertzian, do NOT plug small l into the arbitrary formula")
+
+Where the worked HW answers DO belong: `HWN_Generate.pdf` — the walkthrough document, which embeds cheat sheet snippets AND walks through the actual problem. That's the right place for `Problem 1: l = 1m, f = 1MHz → ... → S = 1.51×10⁻⁹ W/m²` work.
+
+Anchor the cheat sheet to the topic, not the assignment.
 
 ### Top of sheet: PROBLEM LOOKUP table
 First box on the sheet is a 2-column lookup mapping question types → section name. Sized so the eye lands on it first.
@@ -290,3 +312,47 @@ Always end with 4–5 `\minipage` boxes summarizing the symbols. Each line: `$sy
 - **Don't include sections from prior HW.** HW4 sheet should not have Snell, Brewster, or T-line analogies. Keep the sheet scoped to the assignment.
 - **Default to no shorthand.** Full `\cos\theta_i` reads cleaner than `c_i` even if it takes more space. Use shorthand only if the table genuinely doesn't fit — and document the shorthand in the caption.
 - **Vertical/horizontal lines in tables.** Vertical column separators (`|p{...}|`) help readability for wide formula tables. Horizontal `\midrule` between every row is visual clutter — use only between conceptually distinct row groups.
+
+---
+
+## Coverage Analysis: Does the Cheat Sheet Cover the HW?
+
+After every cheat sheet rewrite, do a quick map of HW problem → cheat sheet section it solves. If any HW problem can't be solved using only the cheat sheet (plus standard mental math), the sheet is incomplete. If multiple sections are needed, the sheet should make the routing obvious.
+
+### Example: HW4 ↔ HW4 cheat sheet (post-rewrite)
+
+| HW4 problem | What it asks | Cheat sheet sections that solve it |
+|---|---|---|
+| P1 (8 pts) | Hertzian dipole power density at distance | DIPOLE TYPE BY LENGTH (classify) → HERTZIAN DIPOLE — $S(R,\theta)$ |
+| P2 (15 pts) | HPBW, $\Omega_p$, $D$ from $F(\theta)$ | BEAM PARAMETERS step 2 (Gaussian shortcut), step 3, step 4 |
+| P3 (15 pts) | $\lambda/4$ dipole pattern, $\theta_\text{max}$, $S_\text{max}$, plot $F(\theta)$ | ARBITRARY-LENGTH DIPOLE (quarter-wave specialization gives $S_\text{max} = 0.0858 S_0$ directly) |
+| P4 (5 pts)  | Effective area vs physical area for half-wave dipole | EFFECTIVE AREA $A_e$ + COMMON DIPOLE PARAMETERS ($D = 1.64$) |
+| P5 (5 pts)  | Friis link budget, TV broadcast | FRIIS TRANSMISSION + dB ↔ LINEAR (3 dB = ×2) + COMMON DIPOLE PARAMETERS ($G_t = 1.64$ for half-wave) |
+
+**Coverage: 5/5 HW4 problems** solvable using only the cheat sheet. No external lookups needed except for one numerical integral in P2 ($\Omega_p$ for $e^{-20\theta^2}\sin\theta$), which the sheet flags as requiring Wolfram / numerical evaluation.
+
+### "OP-ness" rating: how much does the sheet shortcut the work?
+
+- **Mode classification step**: ⭐⭐⭐⭐⭐ The DIPOLE TYPE BY LENGTH lookup eliminates ambiguity (Hertzian vs arbitrary) on sight. Saves a step of derivation each problem.
+- **Direct formulas with units inline**: ⭐⭐⭐⭐⭐ Every formula has units annotated, so plug-and-chug is direct — no unit-tracking errors.
+- **Quarter-wave / half-wave specializations pre-derived**: ⭐⭐⭐⭐⭐ $S_\text{max} = 0.0858 S_0$ for $\lambda/4$ and $D = 1.64$ for half-wave are baked in. No re-deriving cos(π/4) terms on the exam.
+- **Numbered recipe for beam parameters**: ⭐⭐⭐⭐⭐ Steps 1–4 (normalize → HPBW → $\Omega_p$ → $D$) make multi-part directivity problems mechanical.
+- **Gaussian HPBW shortcut**: ⭐⭐⭐⭐⭐ $F = e^{-a\theta^2} \Rightarrow \theta_{1/2} = \sqrt{\ln 2/a}$ pre-derived. Skips the algebra step.
+- **3 dB ↔ ×2 dB-linear table**: ⭐⭐⭐⭐ Friis problems with mixed dB/linear gains get done without calculator log conversions.
+- **Friis recipe**: ⭐⭐⭐⭐ Numbered 1–4 (compute λ, convert dB→lin, pick $G_t$, plug in) so the problem reads like a checklist.
+
+**Overall OP rating: 9/10.** The only soft spot is Problem 2(b) requiring numerical integration — the sheet flags it but can't shortcut it without a CAS. Everything else is plug-and-chug from the formulas printed on the sheet.
+
+### Gaps to fix if any HW problem can't be solved from the sheet:
+1. Identify which formula / table is missing
+2. Add a new section OR extend an existing one
+3. Do NOT add HW-specific values — keep the new section generic
+4. Re-run `make_cs_crops.py` so the walkthrough doc picks up the new snippet
+
+### Sign that the sheet has drifted into "HW dump" territory:
+- You see `(P1)`, `(P2)`, etc. tags next to section headers
+- Boxed numerical answers like `\mathbf{1.51 \times 10^{-9}}$ W/m²` appear inline with formulas
+- Worked example uses the exact problem statement of an HW problem ("HW4 P1: l = 1m, f = 1MHz, R = 5km...")
+- The sheet wouldn't be useful next term when the HW numbers change
+
+If any of these appear: rewrite generic.
