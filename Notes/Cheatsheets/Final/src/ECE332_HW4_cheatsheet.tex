@@ -137,8 +137,9 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \eq{Step 3 --- Pattern solid angle $\Omega_p$}{units: sr}
 \[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\]
 \textit{No $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}\\
-\textit{\color{coral}Most integrals have NO closed form. Use Wolfram / numerical.}\\
-\textit{Wolfram: \texttt{2*pi*Integrate[F[t]*Sin[t],\{t,0,pi\}]}}\\[1pt]
+\textit{\color{coral}Narrow-beam Gaussian shortcut ($\sin\theta\!\approx\!\theta$, extend to $\infty$):}
+\[\color{coral}\Omega_p \approx \tfrac{\pi}{a} = \tfrac{\pi\,\theta_{1/2}^2}{\ln 2}\quad(F\!=\!e^{-a\theta^2})\]
+\textit{\color{coral}Non-Gaussian: no closed form, use Wolfram / numerical.}\\[1pt]
 
 \eq{Step 4 --- Directivity $D$}{}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
