@@ -126,20 +126,25 @@ That's the half-angle from the peak to one $-3$ dB point. Since the beam is symm
 \[\Omega_p = \iint_{4\pi} F(\theta)\sin\theta\,d\theta\,d\phi = \int_0^{2\pi}\!\!\int_0^{\pi} \exp(-20\theta^2)\sin\theta\,d\theta\,d\phi\]
 $F$ has no $\phi$ dependence, so $\int_0^{2\pi}d\phi = 2\pi$:
 \[\Omega_p = 2\pi\!\int_0^{\pi}\exp(-20\theta^2)\sin\theta\,d\theta\]
+This integral has no closed form; evaluate numerically on the TI-36X Pro.
 
-\textit{By hand (narrow-beam Gaussian shortcut from cheat sheet).} The beam is narrow ($\beta\!\approx\!21^\circ$), so use $\sin\theta\!\approx\!\theta$ and extend the upper limit to $\infty$ (the Gaussian dies off fast):
-\[\Omega_p \approx 2\pi\!\int_0^{\infty} e^{-20\theta^2}\,\theta\,d\theta\]
-Let $u = 20\theta^2 \Rightarrow du = 40\theta\,d\theta$, so $\theta\,d\theta = du/40$:
-\[= 2\pi\!\int_0^{\infty} e^{-u}\,\tfrac{du}{40} = \tfrac{2\pi}{40}\!\int_0^{\infty} e^{-u}\,du = \tfrac{\pi}{20}\]
-\[\boxed{\Omega_p \approx \tfrac{\pi}{20} \approx 0.157~\text{sr}}\]
-Textbook numerical answer is $0.156$ sr; the narrow-beam approximation is within $1\%$.
+\textit{\textbf{TI-36X Pro keystrokes (definite integral):}}
+\begin{enumerate}\setlength{\itemsep}{0pt}
+  \item Press \texttt{[2nd]} $\to$ \texttt{[d/dx]} ($\to$ definite-integral template appears, shown as $\int_\square^\square \square\,d\square$).
+  \item \textbf{Lower limit:} type \texttt{0}, then $\to$ arrow to the upper limit.
+  \item \textbf{Upper limit:} press \texttt{[$\pi$]}, then arrow into the integrand box.
+  \item \textbf{Integrand:} type \texttt{e\^{}(-20$\times$x\^{}2)$\times$sin(x)} (use \texttt{[e\^{}x]} for the exp, \texttt{[x\^{}2]} for the square, \texttt{[sin]} for the sine).
+  \item \textbf{Variable:} arrow to the $d\square$ slot, type \texttt{x}.
+  \item Press \texttt{[enter]} $\to$ calculator returns $\approx 0.02485$.
+  \item Multiply by $2\pi$: \texttt{$\times$[$\pi$]$\times$2 [enter]} $\to$ $\approx 0.1561$.
+\end{enumerate}
+
+\[\boxed{\Omega_p \approx 0.156~\text{sr}}\]
+\textit{Make sure the calculator is in RADIANS mode (\texttt{[mode]} $\to$ \texttt{RAD}) since $\theta$ in the exponent is bare — degree mode will give nonsense.}
 
 \textbf{(c) Directivity $D$ (5 pts).} From BEAM PARAMETERS Step 4:
-\[D = \tfrac{4\pi}{\Omega_p}\]
-Using the by-hand $\Omega_p \approx \pi/20$:
-\[D \approx \tfrac{4\pi}{\pi/20} = 4\!\cdot\!20 = 80\]
-\[\boxed{D \approx 80}\]
-Textbook value using $\Omega_p = 0.156$ exactly: $D = 4\pi/0.156 = 80.55$.
+\[D = \tfrac{4\pi}{\Omega_p} = \tfrac{4\pi}{0.156}\]
+\[\boxed{D = 80.55}\]
 
 \textit{Sanity:} $D \approx 80$ is highly directive (much narrower than half-wave dipole's 1.64). The narrow Gaussian-like beam ($\beta \approx 21^\circ$) concentrates radiation into a small solid angle, so directivity is large.
 
