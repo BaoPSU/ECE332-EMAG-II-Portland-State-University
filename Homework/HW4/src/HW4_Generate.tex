@@ -104,6 +104,7 @@ Working it out cleanly:
 
 \textit{Sanity:} a 12 A current at 1 MHz across a 1-m antenna at 5 km radiates ~1.5 nW/m\textsuperscript{2}. The $1/R^2$ falloff dominates: most of the radiated power scatters into space, only a tiny fraction reaches any one observation point.
 
+\newpage
 %======================================================
 \probhead{2 --- Beam Parameters from Normalized Pattern}{15 pts}
 
@@ -135,19 +136,22 @@ This integral has no closed form; evaluate numerically on the TI-36X Pro.
   \item \textbf{Upper limit:} press \texttt{[$\pi$]}, then arrow into the integrand box.
   \item \textbf{Integrand:} type \texttt{e\^{}(-20$\times$x\^{}2)$\times$sin(x)} (use \texttt{[e\^{}x]} for the exp, \texttt{[x\^{}2]} for the square, \texttt{[sin]} for the sine).
   \item \textbf{Variable:} arrow to the $d\square$ slot, type \texttt{x}.
-  \item Press \texttt{[enter]} $\to$ calculator returns $\approx 0.02485$.
-  \item Multiply by $2\pi$: \texttt{$\times$[$\pi$]$\times$2 [enter]} $\to$ $\approx 0.1561$.
+  \item Press \texttt{[enter]} $\to$ calculator returns $\approx 0.024792$.
+  \item Multiply by $2\pi$: \texttt{$\times$[$\pi$]$\times$2 [enter]} $\to$ $\approx 0.15578$.
 \end{enumerate}
 
-\[\boxed{\Omega_p \approx 0.156~\text{sr}}\]
+\[\boxed{\Omega_p \approx 0.1558~\text{sr}}\]
+\textit{Keep the unrounded calculator value for part (c). Textbook rounds $\Omega_p$ to $0.156$ first and gets $D=80.55$; using the full precision gives $D\approx 80.67$.}
 \textit{Make sure the calculator is in RADIANS mode (\texttt{[mode]} $\to$ \texttt{RAD}) since $\theta$ in the exponent is bare — degree mode will give nonsense.}
 
 \textbf{(c) Directivity $D$ (5 pts).} From BEAM PARAMETERS Step 4:
-\[D = \tfrac{4\pi}{\Omega_p} = \tfrac{4\pi}{0.156}\]
-\[\boxed{D = 80.55}\]
+\[D = \tfrac{4\pi}{\Omega_p} = \tfrac{4\pi}{0.15578}\]
+\[\boxed{D = 80.67}\]
+\textit{Using textbook's rounded $\Omega_p = 0.156$: $D = 4\pi/0.156 = 80.55$. Use the unrounded value to avoid this rounding error.}
 
 \textit{Sanity:} $D \approx 80$ is highly directive (much narrower than half-wave dipole's 1.64). The narrow Gaussian-like beam ($\beta \approx 21^\circ$) concentrates radiation into a small solid angle, so directivity is large.
 
+\newpage
 %======================================================
 \probhead{3 --- $\lambda/4$ Dipole Radiation Pattern}{15 pts}
 
@@ -180,6 +184,7 @@ Bell-shaped curve peaking at $\theta = \pi/2$ with $F = 1$, dropping to 0 at $\t
 
 \textit{Sanity:} A $\lambda/4$ dipole has a broadside pattern very close to a Hertzian dipole's $\sin^2\theta$ shape. As $l \to 0$ the bracket approaches $\sin\theta$ and $S \propto \sin^2\theta$ (Hertzian). Half-wave $l = \lambda/2$ has slightly narrower beam than the $\lambda/4$ case.
 
+\newpage
 %======================================================
 \probhead{4 --- Effective Area vs.\ Physical Cross-section}{5 pts}
 
@@ -207,6 +212,7 @@ Bell-shaped curve peaking at $\theta = \pi/2$ with $F = 1$, dropping to 0 at $\t
 
 \textit{Sanity:} The effective area is ~39$\times$ larger than the physical cross-section. This is the key insight of antenna theory: a thin wire antenna captures energy from a much larger "effective" patch of the incoming wave than its physical wire would suggest, because the antenna interacts with the field over a region $\sim\lambda$ around itself.
 
+\newpage
 %======================================================
 \probhead{5 --- Friis Transmission, TV Broadcast}{5 pts}
 
