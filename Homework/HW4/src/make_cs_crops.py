@@ -32,6 +32,7 @@ WANT = {
     "POWER FLOW":                   "cs_powerflow",
     "FRIIS TRANSMISSION":           "cs_friis",
     "dB $\\leftrightarrow$ LINEAR": "cs_db",
+    "EFFICIENCY":                   "cs_rrad_eff",
 }
 
 
