@@ -159,11 +159,12 @@ Type & $D$ & $D_{\text{dB}}$ & $R_{\text{rad}}$ ($\Omega$)\\
 \midrule
 \rowcolor{rowB}Isotropic & 1 & 0 & ---\\
 Hertzian & 1.5 & 1.76 & $80\pi^2(l/\lambda)^2$\\
-\rowcolor{rowB}Half-wave & 1.64 & 2.15 & 73\\
-$l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
+\rowcolor{rowB}Half-wave & 1.64 & 2.15 & $73.2$\\
+$\lambda/4$ monopole & 1.64 & 2.15 & $36.6$\\
+\rowcolor{rowB}$l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{Half-wave is the default ``dipole antenna'' unless stated otherwise.}
+\textit{Half-wave: $P_{\text{rad}}\!=\!36.6 I_0^2$ W. $\lambda/4$ monopole (above ground): same patt.\ as half-wave but $P_{\text{rad}}, R_{\text{rad}}$ halved.}
 \end{ebox}
 
 \vspace{1pt}
@@ -175,6 +176,8 @@ $l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
 \[A_p = l\,d = \tfrac{\lambda}{2}\,d\;\text{(half-wave)}\]
 \eq{Inverse: $D$ from $A_e$}{}
 \[D = \tfrac{4\pi A_e}{\lambda^2}\;(\text{unitless})\]
+\eq{Hertzian special case}{$D\!=\!1.5$}
+\[A_e^{\text{Hertz}} = \tfrac{3\lambda^2}{8\pi} \approx 0.119\lambda^2\;(\text{m}^2)\]
 \textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$.}
 \end{ebox}
 
@@ -187,6 +190,10 @@ $l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
 \[P_t = P_{\text{rad}} + P_{\text{loss}}\quad R_{\text{in}} = R_{\text{rad}} + R_{\text{loss}}\]
 \eq{Radiation efficiency}{two equivalent forms}
 \[\xi = \tfrac{P_{\text{rad}}}{P_t} = \tfrac{R_{\text{rad}}}{R_{\text{rad}}+R_{\text{loss}}}\;(\text{unitless})\]
+\eq{Receiving antenna}{$\tilde{V}_{\text{oc}}\!=\!\tilde{E}^i l$ for short dipole}\\
+Max pwr transfer when $Z_L\!=\!Z_{\text{in}}^*$ (conjugate match):
+\[P_L = P_{\text{int}} = \tfrac{|\tilde{V}_{\text{oc}}|^2}{8R_{\text{rad}}}\;(\text{W})\]
+\[A_e = \tfrac{30\pi|\tilde{V}_{\text{oc}}|^2}{R_{\text{rad}}|\tilde{E}^i|^2}\;(\text{m}^2,\;\text{alt.\ form})\]
 \end{ebox}
 
 \columnbreak
@@ -202,6 +209,9 @@ $l\!=\!\lambda$ & 2.41 & 3.82 & 199\\
 \eq{Equivalent form using $A_e$}{recv.\ area form}
 \[P_r = \tfrac{G_t P_t A_{e,r}}{4\pi R^2},\quad G_r = \tfrac{4\pi A_{e,r}}{\lambda^2}\]
 \textit{Free-space path loss: $L_{\text{fs}}\!=\!(4\pi R/\lambda)^2$, so $P_r\!=\!G_tG_rP_t/L_{\text{fs}}$.}\\[1pt]
+\eq{General form (off-axis)}{when patterns NOT peak-aligned}
+\[P_r = G_tG_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t\,F_t(\theta_t,\phi_t)F_r(\theta_r,\phi_r)\]
+\textit{$F_t, F_r$ normalized patterns at the link directions; $F\!=\!1$ when aligned.}\\[1pt]
 \eq{Recipe}{}
 1.\ $\lambda\!=\!c/f$.\ \ 2.\ Convert dB gains to linear: $G\!=\!10^{G_{\text{dB}}/10}$.\\
 3.\ If TX is ``half-wave dipole'' use $G_t\!=\!1.64$.\ \ 4.\ Plug into Friis.\\[1pt]
