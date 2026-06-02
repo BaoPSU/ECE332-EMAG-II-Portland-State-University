@@ -318,6 +318,27 @@ The reader's eye should be able to land on a row and pull every relevant value w
 ### Implicit knowledge is the enemy
 Anywhere the sheet says "half-wave dipole" without spelling out that l = λ/2, OR says "use the dB conversion" without showing the formula, OR references a value defined elsewhere — that's an implicit-knowledge gap. The whole point of a cheat sheet is to remove the need to remember anything. If it requires memorization to use the sheet, it's not a cheat sheet.
 
+### ⚠️ ALWAYS regenerate cs_crops + recompile Generate after editing the cheat sheet
+**This is critical and easy to forget.** The HW*_Generate.pdf documents embed PNG snippets of cheat sheet sections (`cs_*.png` files generated from the cheat sheet source). When you edit `ECE332_HW*_cheatsheet.tex`, those PNGs become stale — they still show the OLD section content.
+
+**Mandatory post-edit checklist whenever the cheat sheet source changes:**
+1. Edit `Notes/Cheatsheets/Final/src/ECE332_HW*_cheatsheet.tex`
+2. Compile the cheat sheet: `cd src && pdflatex ECE332_HW*_cheatsheet.tex` (x2 for ToC)
+3. **Regenerate the crops:** `cd Homework/HW*/src && python3 make_cs_crops.py`
+4. **Recompile the Generate:** `cd Homework/HW*/src && pdflatex HW*_Generate.tex` (x2)
+5. Copy resulting PDF up: `cp HW*_Generate.pdf ../HW*_Generate.pdf`
+6. Push all of: cheat sheet .tex/.pdf + updated cs_crops/*.png + Generate .tex/.pdf
+
+If you skip steps 3-4, the user reads HW*_Generate.pdf and sees STALE cheat sheet snippets that don't match what's in the current cheat sheet PDF. They'll catch this and call you out. Don't make them call you out — do it the first time.
+
+**Common forgetting pattern (do not repeat):**
+- You make a "small" edit to one row of a cheat sheet table
+- You compile + push the cheat sheet
+- You forget that the Generate has an embedded PNG of that table
+- User opens HW*_Generate.pdf, sees the old table, asks "did you not update the generate with that new cheatsheet stuff?"
+- You scramble to regenerate crops and recompile
+- All of this could have been avoided by ALWAYS running `make_cs_crops.py` after any cheat sheet edit, even one-character fixes.
+
 ---
 
 ## Lessons Learned (What Breaks Page Count)
