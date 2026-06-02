@@ -287,6 +287,44 @@ Use `\textit{\color{coral}...}` for traps:
 ### Recipe blocks
 For multi-step procedures (Friis, effective area, beam parameters), number the steps with `\eq{Step N --- ...}{condition}` so each formula stands alone but the order is forced.
 
+### Equation-first walkthrough style (for `HW*_Generate.pdf` worked solutions)
+
+**The rule:** start every problem (and every sub-part) with the **goal equation** — the formula from the cheat sheet that DIRECTLY answers what's being asked. Then identify what variables are missing, solve for each, and plug back in.
+
+**Bad (variable-first — reader is lost):**
+```
+λ = c/f = 3×10⁸/10⁸ = 3 m            ← reader thinks: "why are we computing λ?"
+D = 1.64 from cheat sheet              ← "OK and now D... where is this going?"
+A_e = λ²D/(4π) = 1.17 m²              ← "OH, that's what we needed"
+```
+
+**Good (equation-first — reader sees the destination):**
+```
+GOAL: find A_e. From EFFECTIVE AREA box:
+  A_e = λ²D/(4π)              ← goal stated up front
+
+We need λ and D. Find each:
+  λ = c/f = 3×10⁸/10⁸ = 3 m   ← purpose is obvious now
+  D = 1.64 (half-wave, from COMMON DIPOLE PARAMS)
+
+Plug back in:
+  A_e = (3)²(1.64)/(4π) = 1.17 m²
+```
+
+**Why this matters:** when a student reads a walkthrough, they should always know WHY they're computing a value. If you start with `λ = c/f`, the reader has no idea what λ is FOR until they see it used 3 lines later. That's confusing under time pressure.
+
+**Structural pattern per sub-part:**
+1. State what we're solving for (the goal)
+2. Write the goal equation from the cheat sheet (cite section name)
+3. Identify what's missing (list the unknowns)
+4. For each unknown, write its own sub-equation and solve (recursively apply the pattern if needed)
+5. Plug values back into goal equation
+6. Box the answer
+
+**Composite/derived quantities:** when an equation has multiple unknowns, treat each one as a mini sub-goal with its own equation. Don't just drop "λ = 3 m" out of nowhere — write `λ = c/f` first, then plug.
+
+**Hard rule:** the FIRST line of each sub-part's solution should be the formula from the cheat sheet that you're using to answer the question. The reader should never have to scroll DOWN to figure out what equation we're using.
+
 ### Units everywhere
 Every formula output gets a unit annotation `(Ω)`, `(rad/m)`, `(V/m)`, `(unitless)`, etc. — including bottom-strip symbol boxes. Single-line note acceptable for tables where every entry shares a unit:
 ```latex
