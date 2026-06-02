@@ -203,12 +203,9 @@ Max pwr transfer when $Z_L\!=\!Z_{\text{in}}^*$ (conjugate match):
 %-- Column 3 -----------------------------------
 \shead{pinkbg}{pink}{FRIIS TRANSMISSION FORMULA}
 \begin{ebox}
-\eq{Power density at RX antenna}{TX gain $G_t$, range $R$}
-\[S_r = \tfrac{G_t\,P_t}{4\pi R^2}\;(\text{W/m}^2)\]
-\textit{Energy spreads over sphere of area $4\pi R^2$, with TX gain $G_t$ concentrating it.}\\[1pt]
-\eq{Far-field link budget}{$P_t$ tx, $P_r$ rx, range $R$}
-\[\boxed{P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t}\;(\text{W})\]
-\textit{$G_t, G_r$ are \emph{linear} gains;\, $\lambda\!=\!c/f$;\, $R$ in m;\, $P_t, P_r$ in W. Equivalent: $P_r = S_r A_{e,r}$.}\\[1pt]
+\eq{Pwr density at RX, then RX pwr}{$G_t,G_r$ linear gains; $\lambda\!=\!c/f$}
+\[S_r = \tfrac{G_t P_t}{4\pi R^2}\;(\text{W/m}^2);\;\boxed{P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t}\;(\text{W})\]
+\textit{Equivalent: $P_r = S_r A_{e,r}$.}\\[1pt]
 \eq{Solve for $R$}{max range}
 \[R = \tfrac{\lambda}{4\pi}\sqrt{\tfrac{G_tG_rP_t}{P_r}}\;(\text{m})\]
 \eq{Equivalent form using $A_e$}{recv.\ area form}
@@ -279,8 +276,7 @@ Square $\ell$ & $\ell^2$ & $\beta\!\approx\!0.88\lambda/\ell$\\
 \rowcolor{rowB}Circular (diam.\ $d$) & $\pi d^2/4$ & $\beta\!\approx\!1.02\lambda/d \approx 58.4^\circ(\lambda/d)$\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{\color{coral}Scaling: $D\propto A_p/\lambda^2$; $\beta\propto\lambda/\sqrt{A_p}$. Double area $\Rightarrow$ $D{\times}2$, $\beta/\sqrt{2}$. Double $f$ ($\lambda/2$) $\Rightarrow$ $D{\times}4$, $\beta/2$.}\\
-\textit{Tapered illumination widens main lobe ($\sim 1.2$--$1.5\times$ wider), reduces side lobes.}
+\textit{\color{coral}Scaling: $D\!\propto\!A_p/\lambda^2$; $\beta\!\propto\!\lambda/\sqrt{A_p}$. Double area $\Rightarrow$ $D{\times}2$, $\beta/\sqrt{2}$. Double $f$ ($\lambda/2$) $\Rightarrow$ $D{\times}4$, $\beta/2$.}
 \end{ebox}
 
 \vspace{1pt}
