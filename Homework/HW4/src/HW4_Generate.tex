@@ -174,32 +174,79 @@ Let $S_0 = 15 I_0^2/(\pi R^2)$ be the constant prefactor.
 
 \textit{Step (i) --- endpoints $\theta = 0, \pi$ via L'H\^opital.} Inside the squared bracket: $f(\theta) = \cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}$ over $g(\theta) = \sin\theta$.
 
-At $\theta = 0$: $f(0) = \cos(\pi/4) - \sqrt{2}/2 = 0$ and $g(0) = 0 \Rightarrow$ 0/0 form. Apply L'H\^opital:
-\[f'(\theta) = \tfrac{\pi}{4}\sin\!\left(\tfrac{\pi}{4}\cos\theta\right)\sin\theta, \quad g'(\theta) = \cos\theta\]
-\[\lim_{\theta\to 0}\tfrac{f'(\theta)}{g'(\theta)} = \tfrac{(\pi/4)\sin(\pi/4)\cdot 0}{1} = 0\]
-So $S(0)/S_0 = 0^2 = 0$. Same algebra at $\theta = \pi$ (with $g'(\pi) = -1$) gives $S(\pi) = 0$.
+At $\theta = 0$:
+\[f(0) = \cos\!\left(\tfrac{\pi}{4}\cdot\cos(0)\right) - \tfrac{\sqrt{2}}{2} = \cos\!\left(\tfrac{\pi}{4}\cdot 1\right) - \tfrac{\sqrt{2}}{2} = \tfrac{\sqrt{2}}{2} - \tfrac{\sqrt{2}}{2} = 0\]
+\[g(0) = \sin(0) = 0\]
+0/0 indeterminate form, apply L'H\^opital. Compute derivatives:
+\[f'(\theta) = \tfrac{d}{d\theta}\!\left[\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}\right] = -\sin\!\left(\tfrac{\pi}{4}\cos\theta\right)\cdot\tfrac{d}{d\theta}\!\left(\tfrac{\pi}{4}\cos\theta\right)\]
+\[= -\sin\!\left(\tfrac{\pi}{4}\cos\theta\right)\cdot\left(-\tfrac{\pi}{4}\sin\theta\right) = \tfrac{\pi}{4}\sin\!\left(\tfrac{\pi}{4}\cos\theta\right)\sin\theta\]
+\[g'(\theta) = \tfrac{d}{d\theta}\sin\theta = \cos\theta\]
+Take the limit:
+\[\lim_{\theta\to 0}\tfrac{f'(\theta)}{g'(\theta)} = \lim_{\theta\to 0}\tfrac{(\pi/4)\sin((\pi/4)\cos\theta)\sin\theta}{\cos\theta} = \tfrac{(\pi/4)\cdot\sin(\pi/4)\cdot 0}{1} = \tfrac{0}{1} = 0\]
+So $S(0)/S_0 = 0^2 = 0$, meaning $S(0) = 0$.
 
-\textit{Step (ii) --- symmetry about $\theta = \pi/2$.} Substitute $\theta \to \pi-\theta$: $\cos(\pi-\theta) = -\cos\theta$, but $\cos$ is even so $\cos((\pi/4)\cos(\pi-\theta)) = \cos((\pi/4)\cos\theta)$. And $\sin(\pi-\theta) = \sin\theta$. So $S(\theta) = S(\pi-\theta)$, pattern mirrors about $\pi/2$.
+Same algebra at $\theta = \pi$ (with $\cos(\pi) = -1$ and $g'(\pi) = -1$) also gives $S(\pi) = 0$.
 
-\textit{Step (iii) --- sample values to confirm single peak (not M-shape).} Compute $S(\theta)/S_0$ for a few angles:
+\textit{Step (ii) --- symmetry about $\theta = \pi/2$.} Substitute $\theta \to \pi-\theta$:
+\[\cos(\pi-\theta) = -\cos\theta \;\Rightarrow\; \tfrac{\pi}{4}\cos(\pi-\theta) = -\tfrac{\pi}{4}\cos\theta\]
+But $\cos$ is even ($\cos(-x) = \cos(x)$), so:
+\[\cos\!\left(\tfrac{\pi}{4}\cos(\pi-\theta)\right) = \cos\!\left(-\tfrac{\pi}{4}\cos\theta\right) = \cos\!\left(\tfrac{\pi}{4}\cos\theta\right) \;\;\text{(unchanged)}\]
+And $\sin(\pi-\theta) = \sin\theta$ (also unchanged). So $S(\pi - \theta) = S(\theta)$ --- pattern mirrors about $\pi/2$.
+
+\textit{Step (iii) --- sample values to rule out M-shape.} Compute $S(\theta)/S_0$ at a few angles with full arithmetic.
+
+At $\theta = 30^\circ = \pi/6$:
+\[\cos(30^\circ) = \tfrac{\sqrt{3}}{2} = 0.866,\quad \tfrac{\pi}{4}\cdot 0.866 = 0.680\]
+\[\cos(0.680~\text{rad}) = 0.777,\quad 0.777 - 0.707 = 0.070\]
+\[\sin(30^\circ) = 0.500,\quad \tfrac{0.070}{0.500} = 0.140\]
+\[(0.140)^2 = \mathbf{0.020}\]
+
+At $\theta = 60^\circ = \pi/3$:
+\[\cos(60^\circ) = 0.500,\quad \tfrac{\pi}{4}\cdot 0.500 = 0.393\]
+\[\cos(0.393~\text{rad}) = 0.924,\quad 0.924 - 0.707 = 0.217\]
+\[\sin(60^\circ) = 0.866,\quad \tfrac{0.217}{0.866} = 0.250\]
+\[(0.250)^2 = \mathbf{0.063}\]
+
+At $\theta = 90^\circ = \pi/2$:
+\[\cos(90^\circ) = 0,\quad \tfrac{\pi}{4}\cdot 0 = 0\]
+\[\cos(0) = 1,\quad 1 - 0.707 = 0.293\]
+\[\sin(90^\circ) = 1,\quad \tfrac{0.293}{1} = 0.293\]
+\[(0.293)^2 = \mathbf{0.0858}\]
+
 \begin{center}
 \begin{tabular}{cccc}
 \toprule
 $\theta$ & $30^\circ$ & $60^\circ$ & $90^\circ$\\
 \midrule
-$S/S_0$ & 0.020 & 0.063 & \textbf{0.086}\\
+$S/S_0$ & 0.020 & 0.063 & \textbf{0.0858}\\
 \bottomrule
 \end{tabular}
 \end{center}
-Monotone rise to $90^\circ$, then symmetric fall. Single peak at the center.
+Monotone rise to $90^\circ$, then symmetric fall (by step (ii)). Single peak at the center.
 
 \[\boxed{\theta_{\max} = \pi/2 = 90^\circ}\]
 (broadside to the dipole axis, same as half-wave dipole.)
 
-\textbf{(b) $S_{\max}$ (5 pts).} Evaluate $S(\pi/2)$:
-\[S_{\max} = S(\pi/2) = \tfrac{15 I_0^2}{\pi R^2}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cdot 0\right) - \tfrac{\sqrt{2}}{2}}{\sin(\pi/2)}\right]^2 = \tfrac{15 I_0^2}{\pi R^2}\left(1 - \tfrac{\sqrt{2}}{2}\right)^2\]
-Numerically $(1 - \sqrt{2}/2)^2 = 0.0858$:
-\[\boxed{S_{\max} = 0.0858\,\tfrac{15 I_0^2}{\pi R^2}}\]
+\textbf{(b) $S_{\max}$ (5 pts).} Evaluate $S(\theta)$ at $\theta = \pi/2$, plugging in step by step.
+
+\textit{Inner cos first:}
+\[\cos(\pi/2) = 0 \;\;\Rightarrow\;\; \tfrac{\pi}{4}\cdot\cos(\pi/2) = \tfrac{\pi}{4}\cdot 0 = 0\]
+
+\textit{Outer cos:}
+\[\cos\!\left(\tfrac{\pi}{4}\cos(\pi/2)\right) = \cos(0) = 1\]
+
+\textit{Denominator:}
+\[\sin(\pi/2) = 1\]
+
+\textit{Bracket:}
+\[\tfrac{1 - \sqrt{2}/2}{1} = 1 - \tfrac{\sqrt{2}}{2}\]
+
+\textit{Square it:}
+\[\left(1 - \tfrac{\sqrt{2}}{2}\right)^2 = (1 - 0.7071)^2 = (0.2929)^2 = 0.0858\]
+
+\textit{Multiply by prefactor $S_0$:}
+\[S_{\max} = S_0 \cdot 0.0858 = \tfrac{15 I_0^2}{\pi R^2}\cdot 0.0858\]
+\[\boxed{S_{\max} = 0.0858\,\tfrac{15 I_0^2}{\pi R^2} \approx \tfrac{1.287\,I_0^2}{\pi R^2}}\]
 
 \textbf{(c) Normalized pattern $F(\theta) = S(\theta)/S_{\max}$ (5 pts):}
 \[F(\theta) = \tfrac{1}{0.0858}\left[\tfrac{\cos\!\left(\tfrac{\pi}{4}\cos\theta\right) - \tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^2\]
