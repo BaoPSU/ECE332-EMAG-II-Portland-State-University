@@ -296,6 +296,28 @@ Every formula output gets a unit annotation `(Ω)`, `(rad/m)`, `(V/m)`, `(unitle
 ### Bottom-strip symbol reference
 Always end with 4–5 `\minipage` boxes summarizing the symbols. Each line: `$symbol$ --- description (unit)`. One symbol per line. Don't pack multiple symbols on one line — give each its own description and unit.
 
+### Idiot-proof lookup tables — every key parameter gets its own column
+Reference tables (e.g. COMMON DIPOLE PARAMETERS) should have a dedicated column for each piece of information the reader needs, not pack info into the row label parenthetically. Bad vs good:
+
+**Bad (info buried in name):**
+```
+| Type             | D    | R_rad |
+| Half-wave        | 1.64 | 73.2  |  ← reader has to KNOW that half-wave means l=λ/2
+| λ/4 monopole     | 1.64 | 36.6  |
+```
+
+**Good (explicit column):**
+```
+| Type             | l       | D    | R_rad |
+| Half-wave        | λ/2     | 1.64 | 73.2  |
+| λ/4 monopole     | λ/4 gnd | 1.64 | 36.6  |
+```
+
+The reader's eye should be able to land on a row and pull every relevant value without having to recall what the name implies. If a column would be all "N/A" or trivial, OK to omit — but if the value differs per row, give it its own column. Adding a column costs minimal space when other columns have slack. Test by asking: "Can a sleep-deprived student looking at row X read off the answer in 2 seconds without prior knowledge?" If no, add the column.
+
+### Implicit knowledge is the enemy
+Anywhere the sheet says "half-wave dipole" without spelling out that l = λ/2, OR says "use the dB conversion" without showing the formula, OR references a value defined elsewhere — that's an implicit-knowledge gap. The whole point of a cheat sheet is to remove the need to remember anything. If it requires memorization to use the sheet, it's not a cheat sheet.
+
 ---
 
 ## Lessons Learned (What Breaks Page Count)
