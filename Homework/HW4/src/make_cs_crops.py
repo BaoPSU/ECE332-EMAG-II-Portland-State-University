@@ -33,6 +33,9 @@ WANT = {
     "FRIIS TRANSMISSION":           "cs_friis",
     "dB $\\leftrightarrow$ LINEAR": "cs_db",
     "EFFICIENCY":                   "cs_rrad_eff",
+    "NOISE \\& SNR":                "cs_noise",
+    "APERTURE ANTENNAS":            "cs_aperture",
+    "LINEAR ANTENNA ARRAY":         "cs_array",
 }
 
 
