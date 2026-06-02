@@ -268,4 +268,94 @@ The path-loss factor:
 
 \textit{Note on the solution PDF:} the official key wrote ``$(1.64)(3)$'' as a typo, but used $G_r = 2$ in the actual arithmetic (since 3 dB $\to$ linear = 2). The final answer $8.3\!\times\!10^{-7}$ W matches either way.
 
+\newpage
+%======================================================
+\probhead{6 --- Communication Link with SNR}{15 pts (new)}
+
+\textbf{Setup:} $G_t = 20$ dB, $G_r = 23$ dB, $R = 20$ km, $P_t = 10$ W, $f = 6$ GHz. All matched. Find: (a) power density at RX antenna, (b) received power, (c) SNR in dB if $T_\text{sys} = 1000$ K and $B = 20$ MHz.
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_friis}\hfill
+\includegraphics[width=0.49\linewidth]{cs_noise}\\[3pt]
+\includegraphics[width=0.49\linewidth]{cs_db}
+\end{cssnip}
+
+\textbf{Setup numbers.}
+\[\lambda = \tfrac{c}{f} = \tfrac{3\!\times\!10^8}{6\!\times\!10^9} = 0.05~\text{m}\]
+\[G_t = 10^{20/10} = 100\quad G_r = 10^{23/10} = 199.5\]
+
+\textbf{(a) Power density at RX antenna.} TX radiates $G_t P_t$ over a sphere of area $4\pi R^2$:
+\[S_r = \tfrac{G_t P_t}{4\pi R^2} = \tfrac{(100)(10)}{4\pi(2\!\times\!10^4)^2} = \tfrac{1000}{5.027\!\times\!10^9}\]
+\[\boxed{S_r = 1.989\!\times\!10^{-7}~\text{W/m}^2 \approx 0.199~\mu\text{W/m}^2}\]
+
+\textbf{(b) Received power (Friis).}
+\[P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t\]
+\[\tfrac{\lambda}{4\pi R} = \tfrac{0.05}{4\pi(2\!\times\!10^4)} = 1.989\!\times\!10^{-7}\]
+\[\left(\tfrac{\lambda}{4\pi R}\right)^{\!2} = 3.957\!\times\!10^{-14}\]
+\[P_r = (100)(199.5)(3.957\!\times\!10^{-14})(10) = 7.894\!\times\!10^{-9}\]
+\[\boxed{P_r = 7.89~\text{nW}}\]
+\textit{Check:} equivalent via effective area: $A_{e,r} = G_r\lambda^2/(4\pi) = 199.5(0.0025)/(4\pi) = 0.0397$ m$^2$, then $P_r = S_r A_{e,r} = (1.989\!\times\!10^{-7})(0.0397) = 7.89\!\times\!10^{-9}$ W $\checkmark$
+
+\textbf{(c) Signal-to-noise ratio.}\\
+Noise floor (from NOISE \& SNR):
+\[P_N = k_B T_\text{sys} B = (1.38\!\times\!10^{-23})(1000)(2\!\times\!10^7) = 2.76\!\times\!10^{-13}~\text{W}\]
+\[\text{SNR} = \tfrac{P_r}{P_N} = \tfrac{7.89\!\times\!10^{-9}}{2.76\!\times\!10^{-13}} = 2.86\!\times\!10^4\]
+\[\boxed{\text{SNR}_\text{dB} = 10\log_{10}(2.86\!\times\!10^4) = 44.6~\text{dB}}\]
+\textit{Sanity:} $\!>\!40$ dB SNR is a very clean link. Plenty for digital comm (usually $>\!10$ dB suffices).
+
+\newpage
+%======================================================
+\probhead{7 --- Circular Aperture Antenna Scaling}{15 pts (new)}
+
+\textbf{Setup:} Circular aperture, circular beam $\beta = 3^\circ$ at $f = 20$ GHz. Find (a) $D$ in dB, (b) new $D$ and $\beta$ if $A_p$ doubled, (c) new $D$ and $\beta$ if frequency doubled (same $A_p$).
+
+\begin{cssnip}
+\includegraphics[width=0.49\linewidth]{cs_aperture}\hfill
+\includegraphics[width=0.49\linewidth]{cs_db}
+\end{cssnip}
+
+\textbf{(a) Directivity from beamwidth.} For circular beam ($\beta_{xz} = \beta_{yz} = \beta$):
+\[D \approx \tfrac{4\pi}{\beta^2}\quad\text{(use $\beta$ in radians)}\]
+\[\beta = 3^\circ\cdot\tfrac{\pi}{180} = 0.05236~\text{rad}\]
+\[D = \tfrac{4\pi}{(0.05236)^2} = \tfrac{12.566}{0.002742} = 4584\]
+\[\boxed{D = 10\log_{10}(4584) = 36.6~\text{dB}}\]
+
+\textbf{(b) Area doubled, $A_p \to 2A_p$.} Use $D \propto A_p$ (from $D \approx 4\pi A_p/\lambda^2$):
+\[D_\text{new} = 2 D_\text{old} = 9168 \Rightarrow \boxed{D_\text{new} = 39.6~\text{dB}}\]
+Since $\beta \propto \lambda/\sqrt{A_p} \propto 1/\sqrt{A_p}$:
+\[\boxed{\beta_\text{new} = \beta/\sqrt{2} = 3^\circ/1.414 = 2.12^\circ}\]
+
+\textbf{(c) Frequency doubled ($\lambda \to \lambda/2$), same $A_p$.} Use $D \propto A_p/\lambda^2$:
+\[D_\text{new} = 4 D_\text{old} = 18336 \Rightarrow \boxed{D_\text{new} = 42.6~\text{dB}}\]
+Since $\beta \propto \lambda$:
+\[\boxed{\beta_\text{new} = \beta/2 = 1.5^\circ}\]
+
+\textit{Sanity:} bigger area or shorter wavelength both sharpen the beam and increase directivity. Doubling area gives +3 dB ($\times 2$); doubling frequency gives +6 dB ($\times 4$) because both $D$ and $1/\beta^2$ scale.
+
+\newpage
+%======================================================
+\probhead{8 --- 5-Element Linear Array, $d = 3\lambda/4$}{(new)}
+
+\textbf{Setup:} Uniform-amplitude broadside linear array, $N = 5$ elements, equal-phase, interelement spacing $d = 3\lambda/4$. Find (a) normalized array factor, (b) HPBW.
+
+\begin{cssnip}
+\includegraphics[width=0.55\linewidth]{cs_array}
+\end{cssnip}
+
+\textbf{(a) Normalized array factor.} From LINEAR ANTENNA ARRAY (uniform, equal-phase):
+\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)},\quad \gamma = kd\cos\theta\]
+With $kd = (2\pi/\lambda)(3\lambda/4) = 3\pi/2$:
+\[\gamma = \tfrac{3\pi}{2}\cos\theta,\;\; N\gamma/2 = \tfrac{15\pi}{4}\cos\theta,\;\; \gamma/2 = \tfrac{3\pi}{4}\cos\theta\]
+\[F_a(\theta) = \tfrac{\sin^2\!\left(\tfrac{15\pi}{4}\cos\theta\right)}{\sin^2\!\left(\tfrac{3\pi}{4}\cos\theta\right)}\]
+Peak at $\gamma = 0$ ($\cos\theta = 0$, broadside): $F_a^\text{max} = N^2 = 25$.
+\[\boxed{F_a^\text{norm}(\theta) = \tfrac{1}{25}\!\cdot\!\tfrac{\sin^2((15\pi/4)\cos\theta)}{\sin^2((3\pi/4)\cos\theta)}}\]
+
+\textbf{(b) Half-power beamwidth.} For uniform broadside array, the standard result is:
+\[\beta \approx 0.886\,\tfrac{\lambda}{Nd}\;(\text{rad})\]
+\[\beta = 0.886\cdot\tfrac{\lambda}{5(3\lambda/4)} = 0.886\cdot\tfrac{4}{15} = 0.236~\text{rad}\]
+\[\boxed{\beta \approx 13.5^\circ}\]
+\textit{Check by solving:} $F_a^\text{norm} = 0.5$ at $\gamma/2 \approx 0.28$ rad, so $\cos\theta = 0.28/(3\pi/4) = 0.119$, $\theta = 83.2^\circ$, offset from broadside ($90^\circ$) by $6.8^\circ$, full HPBW $\approx 13.6^\circ$ $\checkmark$.
+
+\textit{Sanity:} 5 closely-spaced elements give a moderately narrow beam ($\sim 14^\circ$) compared to a single dipole's $\sim 78^\circ$. Adding more elements or increasing spacing further narrows the main lobe (with grating-lobe risk if $d > \lambda$).
+
 \end{document}
