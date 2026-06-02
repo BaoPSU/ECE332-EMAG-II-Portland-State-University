@@ -246,6 +246,46 @@ dB & linear & dB & linear\\
 \end{ebox}
 
 \vspace{1pt}
+\shead{bluebg}{blue}{NOISE \& SNR}
+\begin{ebox}
+\eq{Noise power}{thermal noise into matched receiver}
+\[P_N = k_B\,T_{\text{sys}}\,B\;(\text{W})\]
+$k_B\!=\!1.38{\times}10^{-23}$ J/K; $T_{\text{sys}}$ system noise temp (K); $B$ receiver bandwidth (Hz).\\[1pt]
+\eq{Signal-to-noise ratio}{}
+\[\text{SNR} = \tfrac{P_{\text{rec}}}{P_N}\;(\text{unitless})\quad\text{SNR}_{\text{dB}}\!=\!10\log_{10}\tfrac{P_{\text{rec}}}{P_N}\]
+\textit{Typical comm.\ link needs SNR $>10$ dB for usable signal.}
+\end{ebox}
+
+\vspace{1pt}
+\shead{tealbg}{teal}{APERTURE ANTENNAS (horn, dish)}
+\begin{ebox}
+\eq{Directivity from aperture area}{uniform illumination}
+\[D \approx \tfrac{4\pi A_p}{\lambda^2}\;(\text{unitless})\quad\Rightarrow\;A_e\!\approx\!A_p\]
+\eq{Directivity from beamwidths}{rectangular beam}
+\[D \approx \tfrac{4\pi}{\beta_{xz}\beta_{yz}}\;\text{(use rad)}\]
+\textit{Circular beam ($\beta_{xz}\!=\!\beta_{yz}\!=\!\beta$): $D\approx 4\pi/\beta^2$.}\\[1pt]
+\eq{Half-power beamwidth}{uniform rect.\ illumination}
+\[\beta_{xz} \approx 0.88\,\tfrac{\lambda}{\ell_x}\;(\text{rad})\quad\beta_{yz}\!\approx\!0.88\,\tfrac{\lambda}{\ell_y}\]
+\textit{\color{coral}Scaling: $D\propto A_p/\lambda^2$; $\beta\propto\lambda/\sqrt{A_p}$. Double area $\Rightarrow$ $D{\times}2$, $\beta/\sqrt{2}$. Double $f$ ($\lambda/2$) $\Rightarrow$ $D{\times}4$, $\beta/2$.}
+\end{ebox}
+
+\vspace{1pt}
+\shead{pinkbg}{pink}{LINEAR ANTENNA ARRAY}
+\begin{ebox}
+\eq{Setup}{$N$ identical elements, spacing $d$ along axis}
+\[\text{element pos } z_i = id,\;i = 0,\ldots,N\!-\!1;\;A_i = a_i e^{j\psi_i}\]
+\eq{Pattern multiplication}{}
+\[S(R,\theta,\phi) = S_e(R,\theta,\phi)\,F_a(\theta)\]
+\eq{Array factor}{$F_a(\theta) = |\sum A_i e^{jkid\cos\theta}|^2$}
+\[F_a(\theta) = \left|\sum_{i=0}^{N-1} A_i\,e^{jkid\cos\theta}\right|^2\]
+\eq{Uniform $A_i\!=\!1$, equal phase}{closed form}
+\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)},\;\gamma\!=\!kd\cos\theta\]
+\textit{Normalize: $F_a/N^2$. Peak $N^2$ at $\gamma\!=\!0$ ($\cos\theta\!=\!0$, broadside).}\\[1pt]
+\eq{HPBW (broadside, uniform)}{array length $L\!=\!(N{-}1)d$}
+\[\beta \approx 0.88\,\tfrac{\lambda}{L}\;(\text{rad})\]
+\end{ebox}
+
+\vspace{1pt}
 \shead{graybg}{gray}{SYMBOL REFERENCE}
 \begin{ebox}
 $l$ --- antenna length (m); $\lambda\!=\!c/f$ (m); $c\!=\!3\!\times\!10^8$ m/s\\
