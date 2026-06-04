@@ -4,13 +4,26 @@
 
 ---
 
-## What the instructor emphasized
+## What the instructor emphasized (Lecture 19 review)
 
-_(Drop bullets here)_
+**Aperture antennas (slides 95-100):**
+- Large-aperture far-field condition R ≥ 2d²/λ where d is the longest aperture dimension
+- For a uniformly-illuminated rectangular aperture: F(θ) = sinc²(πℓ_x sin θ/λ)
+- HPBW: β_xz ≈ 0.88λ/ℓ_x, β_yz ≈ 0.88λ/ℓ_y
+- D = 4πℓ_xℓ_y/λ² = 4πA_p/λ², and A_p ≈ A_e
 
-- 
-- 
-- 
+**Linear arrays (slides 101-115):**
+- Pattern multiplication: S(R,θ,ϕ) = S_e·F_a(θ) (element pattern × array factor)
+- Uniform amplitude + equal phase: F_a^norm = sin²(Nπd/λ cos θ)/(N²·sin²(πd/λ cos θ))
+- **Electronic steering** (NEW — not on cheat sheet):
+  - Linear phase distribution ψ_i = −i·δ
+  - δ = (2πd/λ)·cos θ₀ steers the beam to θ = θ₀
+  - **Broadside:** θ₀ = π/2 (δ = 0, equal phase)
+  - **End-fire:** θ₀ = 0 (δ = kd = 2πd/λ)
+- **Frequency scanning** (NEW — not on cheat sheet):
+  - Path-length increment Δℓ between elements produces phase delay that varies with f
+  - cos θ₀ ≈ (n₀·λ₀/d)·(Δf/f₀) — small frequency shift = beam steers
+  - Tradeoff: smaller Δf needs larger n₀ (longer transmission lines, may be impractical)
 
 ## Likely problem types
 
@@ -48,6 +61,9 @@ _(Drop bullets here)_
 - F_a^uniform = sin²(Nγ/2)/sin²(γ/2), γ = kd cos θ
 - F_a^max = N² at θ = π/2 (broadside)
 - β_array ≈ 0.88 λ/(Nd) (broadside, uniform)
+- **Electronic steering:** δ = (2πd/λ)·cos θ₀ to point beam at θ₀
+- **End-fire:** δ = kd = 2πd/λ (θ₀ = 0)
+- **Frequency scanning:** cos θ₀ ≈ (n₀λ₀/d)·(Δf/f₀)
 
 ## Practice — go back to
 
