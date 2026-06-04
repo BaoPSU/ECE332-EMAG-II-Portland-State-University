@@ -4,13 +4,18 @@
 
 ---
 
-## What the instructor emphasized
+## What the instructor emphasized (Lecture 19 review)
 
-_(Drop bullets here from lecture / review session — exact things called out)_
-
-- 
-- 
-- 
+- **Snell's law of reflection:** θ_r = θ_i (always)
+- **Snell's law of refraction:** sin θ_t / sin θ_i = n₁/n₂ = √(μ_r1·ε_r1)/√(μ_r2·ε_r2) (slides 25-26)
+- **Index of refraction:** n = c/u_p = √(μ_r·ε_r). For nonmagnetic: n = √ε_r
+- **Critical angle (TIR):** sin θ_c = n₂/n₁ — only when going dense → less dense (slides 27-28)
+- **Brewster angle (polarizing angle)** θ_B∥ where parallel-pol reflection coefficient Γ∥ = 0 — the reflected wave is pure perp-polarized at this angle (slides 48-49). **NOT on cheat sheet.**
+- **Fiber optics** got 8+ slides — he wants you to know:
+  - Acceptance angle sin θ_a = (1/n₀)·√(n_f² − n_c²)
+  - Modal dispersion τ = (l·n_f/c)·(n_f − n_c)/n_c
+  - Max data rate f_p = 1/(2τ) = c·n_c/(2·l·n_f·(n_f − n_c)) (slides 29-35)
+  - These are **NOT on the cheat sheet** — add to your 2-sided summary or memorize
 
 ## Likely problem types
 
@@ -31,9 +36,12 @@ _(Drop bullets here from lecture / review session — exact things called out)_
 ## Quick recall
 
 - sin θ_t = sin θ_i · √(ε_r,1/ε_r,2) = sin θ_i · n₁/n₂
+- sin θ_c = n₂/n₁ (TIR critical angle, dense → less dense)
 - d = Σᵢ tᵢ tan θᵢ
-- NA = √(n_core² − n_clad²)
-- θ_acceptance = arcsin(NA / n_outside)
+- **Brewster:** θ_B∥ = tan⁻¹√(ε₂/ε₁) for nonmagnetic — at this angle, only perp-pol reflects
+- **Fiber acceptance angle:** sin θ_a = (1/n₀)·√(n_f² − n_c²)
+- **Fiber modal dispersion delay:** τ = (l·n_f/c)·(n_f − n_c)/n_c
+- **Fiber max data rate:** f_p = 1/(2τ)
 
 ## Practice — go back to
 
