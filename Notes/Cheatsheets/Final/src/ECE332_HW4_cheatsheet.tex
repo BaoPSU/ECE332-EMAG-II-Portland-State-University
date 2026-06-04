@@ -73,17 +73,9 @@ $=1$ & Full-wave & ARB, $D\!=\!2.41$, $R_{\text{rad}}\!=\!199\,\Omega$\\
 \[\tilde{E}_\theta = \tfrac{j I_0 k l \eta_0}{4\pi}\tfrac{e^{-jkR}}{R}\sin\theta,\;\; \tilde{H}_\phi = \tilde{E}_\theta/\eta_0\]
 \eq{Power density}{$l/\lambda<1/50$; far field}
 \[S(R,\theta) = \tfrac{\eta_0 k^2 I_0^2 l^2}{32\pi^2 R^2}\sin^2\theta = S_{\max}\sin^2\theta\,(\text{W/m}^2)\]
-$S(R,\theta)$ --- avg.\ pwr dens.\ at $(R,\theta)$ (W/m$^2$)\\
-$l$ --- antenna length (m, the rod itself)\\
-$I_0$ --- peak current in dipole (A)\\
-$R$ --- distance from antenna to obs.\ point (m)\\
-$\theta$ --- angle from dipole axis (rad/$^\circ$)\\
-$k\!=\!2\pi/\lambda$ --- wavenumber (rad/m)\\
-$\eta_0\!=\!120\pi\!\approx\!377\,\Omega$ --- free-space impedance\\[1pt]
-\eq{Max direction}{broadside}\ \ $\theta_{\max}\!=\!\pi/2$\\
-\eq{Total radiated power}{integrate over $4\pi$}
-\[P_{\text{rad}} = \tfrac{\eta_0 \pi}{3}\!\left(\tfrac{I_0 l}{\lambda}\right)^{\!2}\,(\text{W})\]
-\eq{Directivity}{exact}\ \ $D_{\text{Hertz}}\!=\!1.5$ ($1.76$ dB)
+\textit{$l$ rod length (m); $I_0$ peak current (A); $R$ obs.\ dist.\ (m); $\theta$ from dipole axis; $k\!=\!2\pi/\lambda$ (rad/m); $\eta_0\!=\!120\pi\!\approx\!377\,\Omega$.}\\
+\eq{Max @ broadside}{}\,$\theta_{\max}\!=\!\pi/2$;\, \eq{$D$}{exact}\,$D\!=\!1.5$ (1.76 dB)\\
+\eq{Total radiated power}{}\,$P_{\text{rad}}\!=\!\tfrac{\eta_0\pi}{3}(I_0 l/\lambda)^2$\,(W)
 \end{ebox}
 
 \vspace{1pt}
@@ -185,21 +177,6 @@ $\lambda/4$ monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$.}
 \end{ebox}
 
-\vspace{1pt}
-\shead{coralbg}{coral}{$R_{\text{rad}}$, EFFICIENCY, POWER SPLIT}
-\begin{ebox}
-\eq{Radiation resistance}{$\Omega$, equiv.\ ckt.\ load absorbing $P_{\text{rad}}$}
-\[R_{\text{rad}} = \tfrac{2 P_{\text{rad}}}{I_0^2}\quad R_{\text{loss}} = \tfrac{2 P_{\text{loss}}}{I_0^2}\]
-\eq{Input power split}{$P_t$ from generator}
-\[P_t = P_{\text{rad}} + P_{\text{loss}}\quad R_{\text{in}} = R_{\text{rad}} + R_{\text{loss}}\]
-\eq{Radiation efficiency}{two equivalent forms}
-\[\xi = \tfrac{P_{\text{rad}}}{P_t} = \tfrac{R_{\text{rad}}}{R_{\text{rad}}+R_{\text{loss}}}\;(\text{unitless})\]
-\eq{Receiving antenna}{$\tilde{V}_{\text{oc}}\!=\!\tilde{E}^i l$ for short dipole}\\
-Max pwr transfer when $Z_L\!=\!Z_{\text{in}}^*$ (conjugate match):
-\[P_L = P_{\text{int}} = \tfrac{|\tilde{V}_{\text{oc}}|^2}{8R_{\text{rad}}}\;(\text{W})\]
-\[A_e = \tfrac{30\pi|\tilde{V}_{\text{oc}}|^2}{R_{\text{rad}}|\tilde{E}^i|^2}\;(\text{m}^2,\;\text{alt.\ form})\]
-\end{ebox}
-
 \columnbreak
 
 %-- Column 3 -----------------------------------
@@ -241,14 +218,6 @@ dB & linear & dB & linear\\
 \end{tabular}}}\par}
 \textit{Memorize: 3 dB $\!\Leftrightarrow\!\times2$, 10 dB $\!\Leftrightarrow\!\times10$. Add dB $=$ multiply linear.}\\
 \textit{\color{coral}For E-field / amplitude use $20\log$ not $10\log$ (power $\propto$ E$^2$).}
-\end{ebox}
-
-\vspace{1pt}
-\shead{greenbg}{green}{POWER FLOW IDENTITIES}
-\begin{ebox}
-\[P_{\text{rad}} = S_{\max}\,\Omega_p\,R^2 = \tfrac{4\pi R^2 S_{\max}}{D}\,(\text{W})\]
-\[S_{\max} = \tfrac{P_{\text{rad}}\,D}{4\pi R^2}\,(\text{W/m}^2)\]
-\textit{Isotropic radiator: $S\!=\!P_{\text{rad}}/(4\pi R^2)$ (no $D$ factor).}
 \end{ebox}
 
 \vspace{1pt}
@@ -308,22 +277,6 @@ Double freq ($\lambda\!\to\!\lambda/2$) & $D_{\text{new}}\!=\!4D_{\text{old}}$ &
 \eq{HPBW (broadside, uniform)}{use $Nd$, not $(N{-}1)d$}
 \[\beta \approx 0.88\,\tfrac{\lambda}{Nd}\;(\text{rad}) = 50.8^\circ\cdot\tfrac{\lambda}{Nd}\]
 \textit{\color{coral}Grating lobes appear if $d\!>\!\lambda$ (broadside). Avoid.}
-\end{ebox}
-
-\vspace{1pt}
-\shead{graybg}{gray}{SYMBOL REFERENCE}
-\begin{ebox}
-$l$ --- antenna length (m); $\lambda\!=\!c/f$ (m); $c\!=\!3\!\times\!10^8$ m/s\\
-$I_0$ --- peak current (A); $\eta_0\!=\!120\pi\!\approx\!377\,\Omega$\\
-$k\!=\!2\pi/\lambda$ wavenumber (rad/m); $R$ obs.\ dist (m)\\
-$S(R,\theta)$ --- power density (W/m$^2$)\\
-$F(\theta)\!=\!S/S_{\max}$ --- normalized pattern (unitless)\\
-$\beta$ --- half-power beamwidth (rad or deg)\\
-$\Omega_p$ --- pattern solid angle (sr)\\
-$D\!=\!4\pi/\Omega_p$ --- directivity (unitless); $\xi$ rad.\ eff.; $G\!=\!\xi D$\\
-$A_e\!=\!\lambda^2 D/(4\pi)$ --- effective area (m$^2$); $A_p\!=\!l d$ phys.\ (m$^2$)\\
-$R_{\text{rad}}$ --- radiation resistance ($\Omega$); $R_{\text{loss}}$ loss res.\ ($\Omega$)\\
-$P_t, P_r$ --- TX / RX power (W); $G_t,G_r$ linear gains
 \end{ebox}
 
 \end{multicols}
