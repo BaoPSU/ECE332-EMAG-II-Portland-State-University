@@ -1,16 +1,22 @@
-# Focus: Rectangular Waveguides — Modes, Cutoff, Group Velocity
+# Focus: Rectangular Waveguides + Cavity Resonators, Modes, Cutoff, Group Velocity
 
 **Cheat sheet location:** Page 1 — `RECTANGULAR WAVEGUIDE — MODES`, `TABLE 8-3 — FULL FIELD COMPONENTS`, `CUTOFF FREQUENCY`, `ε_r FROM DISPERSION`, `GROUP VELOCITY & TRAVEL TIME`
 
 ---
 
-## What the instructor emphasized
+## What the instructor emphasized (Lecture 19 review)
 
-_(Drop bullets here)_
-
-- 
-- 
-- 
+- Dominant modes: **TE₁₀** for TE, **TM₁₁** for TM (slide 61)
+- Table 8-3 covers all field components for TE_mn, TM_mn, and TEM reference — **he provides this on the exam**
+- Cutoff wavenumber identity: k_c² = k² − β² = ω²με − β² (slide 59)
+- Phase velocity u_p > u_p0, group velocity u_g < u_p0, and u_p·u_g = u_p0² (slide 64)
+- ω-β diagrams: mode mn starts at ω = 2πf_mn at β = 0; TEM line is straight; modes approach TEM as f → ∞ (slide 65)
+- **Cavity resonators** (slides 67-68) — NEW topic, NOT on the cheat sheet:
+  - Cavity = waveguide with metal end-caps; supports only resonant modes
+  - f_mnp = (u_p0/2)·√((m/a)² + (n/b)² + (p/d)²)
+  - TM modes: m,n start at 1, p starts at 0
+  - TE modes: m,n start at 0, p starts at 1
+  - Quality factor Q ≈ f_mnp/Δf (Δf = bandwidth at f_mnp/√2 amplitude)
 
 ## Likely problem types
 
@@ -35,9 +41,12 @@ _(Drop bullets here)_
 
 - f_mn = (u_p0/2) √((m/a)² + (n/b)²)
 - u_p0 = c/√ε_r (hollow waveguide: u_p0 = c)
-- TE_10 cutoff: f_10 = u_p0/(2a) — dominant mode
+- TE_10 cutoff: f_10 = u_p0/(2a) — dominant mode (waveguide)
+- TM_11 dominant for TM
 - β = k √(1 − (f_c/f)²)
 - Z_TE = η/√(1−(f_c/f)²) > η ; Z_TM = η·√(1−(f_c/f)²) < η
+- **Cavity resonance:** f_mnp = (u_p0/2)·√((m/a)² + (n/b)² + (p/d)²)
+- **Quality factor:** Q ≈ f_mnp/Δf
 
 ## Practice — go back to
 
