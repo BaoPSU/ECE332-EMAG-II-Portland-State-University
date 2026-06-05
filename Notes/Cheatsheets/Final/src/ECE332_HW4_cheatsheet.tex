@@ -86,15 +86,7 @@ $=1$ & Full-wave & ARB, $D\!=\!2.41$, $R_{\text{rad}}\!=\!199\,\Omega$\\
 \[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\!\left[\tfrac{\cos\!\left(\tfrac{\pi l}{\lambda}\cos\theta\right)-\cos\!\left(\tfrac{\pi l}{\lambda}\right)}{\sin\theta}\right]^{\!2}\]
 \textit{\color{coral}At $\theta\!=\!0,\pi$: bracket is $0/0$. L'H\^opital $\Rightarrow$ $S\!=\!0$ (no axial radiation). TI-36X Pro alt: evaluate bracket at $\theta\!=\!0.001$ rad $\to$ tiny $\to 0$.}\\[1pt]
 \eq{Normalized pattern}{dimensionless}\ \ $F(\theta)\!=\!S(\theta)/S_{\max}$\\[1pt]
-
-\eq{Quarter-wave $l\!=\!\lambda/4$}{$\pi l/\lambda\!=\!\pi/4$, $\cos(\pi/4)\!=\!\sqrt{2}/2$}
-\[\tfrac{S(\theta)}{S_0}\!=\!\left[\tfrac{\cos(\tfrac{\pi}{4}\cos\theta)-\tfrac{\sqrt{2}}{2}}{\sin\theta}\right]^{\!2},\;S_0\!=\!\tfrac{15I_0^2}{\pi R^2}\]
-\[S_{\max} = S(\pi/2) = S_0\!\left(1-\tfrac{\sqrt{2}}{2}\right)^{\!2}\!\approx 0.0858\,S_0\]
-$D\!=\!1.64$, $R_{\text{rad}}\!=\!36.5\,\Omega$, $\theta_{\max}\!=\!\pi/2$.
-
-\eq{Half-wave $l\!=\!\lambda/2$}{$\pi l/\lambda\!=\!\pi/2$, shortcut form}
-\[S(\theta) = \tfrac{15 I_0^2}{\pi R^2}\tfrac{\cos^2(\tfrac{\pi}{2}\cos\theta)}{\sin^2\theta}\]
-$D\!=\!1.64$, $R_{\text{rad}}\!=\!73\,\Omega$, $\theta_{\max}\!=\!\pi/2$.
+\textit{\color{coral}For $\lambda/4$ or $\lambda/2$: plug $\pi l/\lambda$ from DIPOLE TYPE table into ARB formula. Symmetric dipoles: $\theta_{\max}\!=\!\pi/2$. $D, R_{\text{rad}}$ in COMMON DIPOLE PARAMS. $\lambda/4$ shortcut: $S_{\max}\!=\!(1\!-\!\sqrt{2}/2)^2 S_0\!\approx\!0.0858\,S_0$, $S_0\!=\!15I_0^2/\pi R^2$.}
 \end{ebox}
 
 \vspace{1pt}
