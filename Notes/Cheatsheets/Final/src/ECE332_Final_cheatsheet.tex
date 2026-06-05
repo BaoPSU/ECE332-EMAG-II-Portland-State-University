@@ -485,21 +485,21 @@ Type & $l$ & $D$ & $D_{\text{dB}}$ & $R_{\text{rad}}$ ($\Omega$)\\
 \rowcolor{rowB}Isotropic & N/A & 1 & 0 & ---\\
 Hertzian & $<\lambda/50$ & 1.5 & 1.76 & $80\pi^2(l/\lambda)^2$\\
 \rowcolor{rowB}Half-wave & $\lambda/2$ & 1.64 & 2.15 & $73.2$\\
-$\lambda/4$ monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
+Monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \rowcolor{rowB}Full-wave & $\lambda$ & 2.41 & 3.82 & 199\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{Half-wave: $P_{\text{rad}}\!=\!36.6 I_0^2$ W. $\lambda/4$ monopole (above ground): same patt.\ as half-wave but $P_{\text{rad}}, R_{\text{rad}}$ halved.}\\
+\textit{Half-wave: $P_{\text{rad}}\!=\!36.6 I_0^2$ W. Monopole ($\lambda/4$ above ground): same patt.\ as half-wave but $P_{\text{rad}}, R_{\text{rad}}$ halved.}\\
 \textit{\color{coral}Lossless antenna ($\xi\!=\!1$) $\Rightarrow$ $G\!=\!D$. So in Friis, use $G_t,G_r$ = these $D$ values (e.g.\ half-wave $G\!=\!1.64$).}
 \end{ebox}
 
 \vspace{1pt}
 \shead{amberbg}{amber}{EFFECTIVE AREA $A_e$}
 \begin{ebox}
-\eq{Definition}{antenna's RX cross section (m$^2$)}
+\eq{Definition}{antenna's RX cross section (m$^2$); $D$ from BEAM PARAMS or table above}
 \[A_e = \tfrac{\lambda^2 D}{4\pi}\;(\text{m}^2)\]
-\eq{Physical cross section}{wire dipole, diameter $d$; $l$ from COMMON DIPOLE PARAMS}
-\[A_p = l\,d\;\;\text{(any dipole)};\quad\text{e.g.\ half-wave: }(\lambda/2)d,\ \lambda/4: (\lambda/4)d\]
+\eq{Physical cross section}{wire dipole, diameter $d$; $l$ see table above}
+\[A_p = l\,d\;\;(\text{m}^2,\;\text{any dipole})\]
 \eq{Inverse: $D$ from $A_e$}{}
 \[D = \tfrac{4\pi A_e}{\lambda^2}\;(\text{unitless})\]
 \eq{Hertzian special case}{$D\!=\!1.5$}
