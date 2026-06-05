@@ -234,8 +234,13 @@ Monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \[P_r = G_tG_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t\,F_t(\theta_t,\phi_t)F_r(\theta_r,\phi_r)\]
 \textit{$F_t, F_r$ normalized patterns at the link directions; $F\!=\!1$ when aligned.}\\[1pt]
 \eq{Recipe}{}
-1.\ $\lambda\!=\!c/f$.\ \ 2.\ Convert dB gains to linear: $G\!=\!10^{G_{\text{dB}}/10}$.\\
-3.\ If TX is ``half-wave dipole'' use $G_t\!=\!1.64$.\ \ 4.\ Plug into Friis.\\[1pt]
+1.\ $\lambda\!=\!c/f$.\ \ 2.\ Convert any dB gain to linear: $G\!=\!10^{G_{\text{dB}}/10}$.\\
+3.\ Get $G_t, G_r$ by antenna type:\\
+\hspace*{4pt}\textbullet\ named dipole $\to$ COMMON DIPOLE PARAMS ($G\!=\!D$ lossless)\\
+\hspace*{4pt}\textbullet\ aperture / dish $\to$ APERTURE ANTENNAS ($G\!=\!D\!\approx\!4\pi A_p/\lambda^2$)\\
+\hspace*{4pt}\textbullet\ arbitrary pattern $F(\theta)$ $\to$ BEAM PARAMS ($G\!=\!\xi\!\cdot\!4\pi/\Omega_p$)\\
+\hspace*{4pt}\textbullet\ given in dB $\to$ dB$\leftrightarrow$LINEAR table\\
+4.\ Plug into Friis.\\[1pt]
 \textit{\color{coral}Use \emph{linear} $G$, not dB. Convert FIRST.}
 \end{ebox}
 
