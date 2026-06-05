@@ -418,7 +418,7 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \eq{Step 2 --- Beamwidth $\beta$ at threshold $X$}{any level, not just half-power}
 \[\text{Set }F(\theta_X)\!=\!X,\; \text{solve for }\theta_X;\; \beta\!=\!2\theta_X\;(\text{symmetric})\]
 \textit{Get $X$ from dB$\leftrightarrow$LINEAR table ($X\!=\!10^{\text{dB}/10}$).}\\
-\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X\ \Rightarrow\ \theta_X\!=\!\sqrt{-\ln X/a}$:}\\
+\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X\Rightarrow\theta_X\!=\!\sqrt{-\ln X/a}$:}\\
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}ll@{}}
 \toprule
 Threshold & Gauss.\ $\theta_X$\\
@@ -612,11 +612,11 @@ $S(R,\theta)$ --- pwr density (W/m$^2$)
 \shead{greenbg}{green}{BEAM}
 \begin{ebox}
 $F(\theta)\!=\!S/S_{\max}$ (unitless)\\
+$a$ --- coef.\ on $\theta^2$ in Gaussian\\
 $\beta$ --- HPBW (rad or $^\circ$)\\
 $\Omega_p$ --- pattern solid angle (sr)\\
 $D\!=\!4\pi/\Omega_p$ --- directivity\\
-$\xi$ --- rad.\ efficiency ($0{-}1$)\\
-$G\!=\!\xi D$ --- gain (unitless)\\
+$\xi$ --- rad.\ efficiency; $G\!=\!\xi D$\\
 $D_\text{dB}\!=\!10\log_{10}D$
 \end{ebox}
 \end{minipage}\hfill
