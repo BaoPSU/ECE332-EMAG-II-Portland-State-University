@@ -172,7 +172,7 @@ Other (use integral) & numerical\\
 \vspace{1pt}
 \shead{amberbg}{amber}{COMMON DIPOLE PARAMETERS}
 \begin{ebox}
-\textit{\color{coral}For Friis: each antenna's $G\!=\!D$ from its own row (lossless $\xi\!=\!1$). TX/RX can be different types.}\\[1pt]
+\textit{\color{coral}Lossless ($\xi\!=\!1$): $G\!=\!D$.}\\[1pt]
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{1.5pt}\begin{tabular}{@{}p{0.20\linewidth}p{0.18\linewidth}p{0.10\linewidth}p{0.12\linewidth}p{0.30\linewidth}@{}}
 \toprule
 Type & $l$ & $D$ & $D_{\text{dB}}$ & $R_{\text{rad}}$ ($\Omega$)\\
@@ -204,6 +204,7 @@ Monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 %-- Column 3 -----------------------------------
 \shead{pinkbg}{pink}{FRIIS TRANSMISSION FORMULA}
 \begin{ebox}
+\textit{\color{coral}For each antenna's $G$: if given by NAME (``half-wave dipole'' etc.) $\to$ COMMON DIPOLE PARAMS ($G\!=\!D$, lossless). Else (dB/linear value given) $\to$ use as given (convert dB $\to$ linear).}\\[1pt]
 \eq{Pwr density at RX, then RX pwr}{$G_t,G_r$ linear gains; $\lambda\!=\!c/f$}
 \[S_r = \tfrac{G_t P_t}{4\pi R^2}\;(\text{W/m}^2);\;\boxed{P_r = G_t G_r\!\left(\tfrac{\lambda}{4\pi R}\right)^{\!2}\!P_t}\;(\text{W})\]
 \textit{Equivalent: $P_r = S_r A_{e,r}$.}\\[1pt]
