@@ -407,30 +407,48 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \textit{Antenna formulas usually take $\theta$ in rad. RAD mode on calc.}
 \end{ebox}
 
+\vspace{1pt}
+\shead{pinkbg}{pink}{LINEAR ANTENNA ARRAY}
+\begin{ebox}
+\eq{Setup}{$N$ identical elements along axis, spacing $d$}
+\[\text{elem pos } z_i = id,\;i = 0,\ldots,N\!-\!1;\;A_i = a_i e^{j\psi_i}\]
+\textit{Equal phase ($\psi_i\!=\!0$) $\Rightarrow$ broadside beam ($\theta_\text{max}\!=\!\pi/2$).}\\
+\textit{Progressive phase $\psi_i\!=\!i\alpha$ $\Rightarrow$ steered beam at $\cos\theta_\text{max}\!=\!-\alpha/(kd)$.}\\[1pt]
+\eq{Pattern multiplication}{$S_e$ = single element pattern}
+\[S(R,\theta,\phi) = S_e(R,\theta,\phi)\,F_a(\theta)\]
+\eq{Array factor (general)}{$k\!=\!2\pi/\lambda$}
+\[F_a(\theta) = \left|\sum_{i=0}^{N-1} A_i\,e^{jkid\cos\theta}\right|^2\]
+\eq{Uniform $A_i\!=\!1$, equal phase}{closed form}
+\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)},\;\gamma\!=\!kd\cos\theta\]
+\textit{Peak: $F_a^{\max}\!=\!N^2$ at $\gamma\!=\!0$ (broadside, $\theta\!=\!\pi/2$). Normalize: $F_a^{\text{norm}}\!=\!F_a/N^2$.}\\[1pt]
+\eq{HPBW (broadside, uniform)}{use $Nd$, not $(N{-}1)d$}
+\[\beta \approx 0.88\,\tfrac{\lambda}{Nd}\;(\text{rad}) = 50.8^\circ\cdot\tfrac{\lambda}{Nd}\]
+\textit{\color{coral}Grating lobes appear if $d\!>\!\lambda$ (broadside). Avoid.}
+\end{ebox}
+
 \columnbreak
 
 %-- Column 2 -----------------------------------
 \shead{greenbg}{green}{BEAM PARAMETERS --- $\beta$, $\Omega_p$, $D$}
 \begin{ebox}
-\eq{Step 1 --- Normalize}{always start here}
+\eq{Normalize}{always start here}
 \[F(\theta) = S(\theta)/S_{\max}\;(\text{unitless})\]
 
-\eq{Step 2 --- Beamwidth $\beta$ at threshold $X$}{any level, not just half-power}
+\eq{Beamwidth $\beta$ at threshold $X$}{}
 \[\text{Set }F(\theta_X)\!=\!X,\; \text{solve for }\theta_X;\; \beta\!=\!2\theta_X\;(\text{symmetric})\]
-\textit{Get $X$ from dB$\leftrightarrow$LINEAR table ($X\!=\!10^{\text{dB}/10}$).}\\
-\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X$\,$\Rightarrow$\,$\beta\!=\!2\sqrt{-\ln X/a}$:}\\
-{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.58\linewidth}p{0.36\linewidth}@{}}
+\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X\Rightarrow\theta_X\!=\!\sqrt{-\ln X/a}$:}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.22\linewidth}p{0.30\linewidth}p{0.38\linewidth}@{}}
 \toprule
-Threshold & Gauss.\ $\beta\!=\!2\theta_X$\\
+Threshold & $X\!=\!10^{\text{dB}/10}$ & Gauss.\ $\theta_X$\\
 \midrule
-\rowcolor{rowB}HPBW ($-3$\,dB, $X\!=\!0.5$) & $2\sqrt{\ln 2/a}$\\
-$-6$ dB ($X\!=\!0.25$) & $2\sqrt{\ln 4/a}$\\
-\rowcolor{rowB}$-10$ dB ($X\!=\!0.1$) & $2\sqrt{\ln 10/a}$\\
-Null FNBW ($X\!=\!0$) & $2\cdot$(first zero of $F$)\\
+\rowcolor{rowB}HPBW ($-3$\,dB) & $0.5$ & $\sqrt{\ln 2/a}$\\
+$-6$ dB & $0.25$ & $\sqrt{\ln 4/a}$\\
+\rowcolor{rowB}$-10$ dB & $0.1$ & $\sqrt{\ln 10/a}$\\
+Null (FNBW) & $0$ & first zero of $F$\\
 \bottomrule
 \end{tabular}}}\par}
 
-\eq{Step 3 --- Pattern solid angle $\Omega_p$}{recognize pattern, look up}
+\eq{Pattern solid angle $\Omega_p$}{recognize pattern, look up}
 \[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\;\;\text{(sr)}\]
 \textit{No $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.46\linewidth}p{0.48\linewidth}@{}}
@@ -447,11 +465,11 @@ Other (use integral) & numerical\\
 \end{tabular}}}\par}
 \textit{\color{coral}TI-36X Pro: \texttt{[2nd][d/dx]} for $\int_\square^\square$, RAD mode, multiply by $2\pi$.}\\[1pt]
 
-\eq{Step 4 --- Directivity $D$}{always $D\!=\!4\pi/\Omega_p$; common shortcuts below}
+\eq{Directivity $D$}{always $D\!=\!4\pi/\Omega_p$; common shortcuts below}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
 \textit{Dipoles $\to$ COMMON DIPOLE PARAMS table. Aperture: $D\!\approx\!4\pi A_p/\lambda^2$. 2-axis HPBW: $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$. Circular: $D\!\approx\!4\pi/\beta^2$.}
 
-\eq{Step 5 --- Gain (if asked)}{$\xi\!=\!$ rad.\ eff., $0<\xi\le1$}
+\eq{Gain (if asked)}{$\xi\!=\!$ rad.\ eff., $0<\xi\le1$}
 \[G = \xi D\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
 \textit{Lossless / ideal antenna $\Rightarrow$ $G\!=\!D$.}
 \end{ebox}
@@ -486,25 +504,6 @@ $\lambda/4$ monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \eq{Hertzian special case}{$D\!=\!1.5$}
 \[A_e^{\text{Hertz}} = \tfrac{3\lambda^2}{8\pi} \approx 0.119\lambda^2\;(\text{m}^2)\]
 \textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$.}
-\end{ebox}
-
-\vspace{1pt}
-\shead{pinkbg}{pink}{LINEAR ANTENNA ARRAY}
-\begin{ebox}
-\eq{Setup}{$N$ identical elements along axis, spacing $d$}
-\[\text{elem pos } z_i = id,\;i = 0,\ldots,N\!-\!1;\;A_i = a_i e^{j\psi_i}\]
-\textit{Equal phase ($\psi_i\!=\!0$) $\Rightarrow$ broadside beam ($\theta_\text{max}\!=\!\pi/2$).}\\
-\textit{Progressive phase $\psi_i\!=\!i\alpha$ $\Rightarrow$ steered beam at $\cos\theta_\text{max}\!=\!-\alpha/(kd)$.}\\[1pt]
-\eq{Pattern multiplication}{$S_e$ = single element pattern}
-\[S(R,\theta,\phi) = S_e(R,\theta,\phi)\,F_a(\theta)\]
-\eq{Array factor (general)}{$k\!=\!2\pi/\lambda$}
-\[F_a(\theta) = \left|\sum_{i=0}^{N-1} A_i\,e^{jkid\cos\theta}\right|^2\]
-\eq{Uniform $A_i\!=\!1$, equal phase}{closed form}
-\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)},\;\gamma\!=\!kd\cos\theta\]
-\textit{Peak: $F_a^{\max}\!=\!N^2$ at $\gamma\!=\!0$ (broadside, $\theta\!=\!\pi/2$). Normalize: $F_a^{\text{norm}}\!=\!F_a/N^2$.}\\[1pt]
-\eq{HPBW (broadside, uniform)}{use $Nd$, not $(N{-}1)d$}
-\[\beta \approx 0.88\,\tfrac{\lambda}{Nd}\;(\text{rad}) = 50.8^\circ\cdot\tfrac{\lambda}{Nd}\]
-\textit{\color{coral}Grating lobes appear if $d\!>\!\lambda$ (broadside). Avoid.}
 \end{ebox}
 
 \columnbreak
