@@ -128,15 +128,15 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \eq{Step 2 --- Beamwidth $\beta$ at threshold $X$}{any level, not just half-power}
 \[\text{Set }F(\theta_X)\!=\!X,\; \text{solve for }\theta_X;\; \beta\!=\!2\theta_X\;(\text{symmetric})\]
 \textit{Get $X$ from dB$\leftrightarrow$LINEAR table ($X\!=\!10^{\text{dB}/10}$).}\\
-\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X\Rightarrow\theta_X\!=\!\sqrt{-\ln X/a}$:}\\
+\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X$\,$\Rightarrow$\,$\beta\!=\!2\sqrt{-\ln X/a}$:}\\
 {\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}ll@{}}
 \toprule
-Threshold & Gauss.\ $\theta_X$\\
+Threshold & Gauss.\ $\beta\!=\!2\theta_X$\\
 \midrule
-\rowcolor{rowB}HPBW ($-3$\,dB, $X\!=\!0.5$) & $\sqrt{\ln 2/a}$\\
-$-6$ dB ($X\!=\!0.25$) & $\sqrt{\ln 4/a}$\\
-\rowcolor{rowB}$-10$ dB ($X\!=\!0.1$) & $\sqrt{\ln 10/a}$\\
-Null FNBW ($X\!=\!0$) & first zero of $F$\\
+\rowcolor{rowB}HPBW ($-3$\,dB, $X\!=\!0.5$) & $2\sqrt{\ln 2/a}$\\
+$-6$ dB ($X\!=\!0.25$) & $2\sqrt{\ln 4/a}$\\
+\rowcolor{rowB}$-10$ dB ($X\!=\!0.1$) & $2\sqrt{\ln 10/a}$\\
+Null FNBW ($X\!=\!0$) & $2\cdot$(first zero of $F$)\\
 \bottomrule
 \end{tabular}}}\par}
 
