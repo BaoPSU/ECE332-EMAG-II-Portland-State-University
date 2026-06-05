@@ -410,20 +410,13 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \vspace{1pt}
 \shead{pinkbg}{pink}{LINEAR ANTENNA ARRAY}
 \begin{ebox}
-\eq{Setup}{$N$ identical elements along axis, spacing $d$}
-\[\text{elem pos } z_i = id,\;i = 0,\ldots,N\!-\!1;\;A_i = a_i e^{j\psi_i}\]
-\textit{Equal phase ($\psi_i\!=\!0$) $\Rightarrow$ broadside beam ($\theta_\text{max}\!=\!\pi/2$).}\\
-\textit{Progressive phase $\psi_i\!=\!i\alpha$ $\Rightarrow$ steered beam at $\cos\theta_\text{max}\!=\!-\alpha/(kd)$.}\\[1pt]
-\eq{Pattern multiplication}{$S_e$ = single element pattern}
-\[S(R,\theta,\phi) = S_e(R,\theta,\phi)\,F_a(\theta)\]
-\eq{Array factor (general)}{$k\!=\!2\pi/\lambda$}
-\[F_a(\theta) = \left|\sum_{i=0}^{N-1} A_i\,e^{jkid\cos\theta}\right|^2\]
-\eq{Uniform $A_i\!=\!1$, equal phase}{closed form}
-\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)},\;\gamma\!=\!kd\cos\theta\]
-\textit{Peak: $F_a^{\max}\!=\!N^2$ at $\gamma\!=\!0$ (broadside, $\theta\!=\!\pi/2$). Normalize: $F_a^{\text{norm}}\!=\!F_a/N^2$.}\\[1pt]
+\textit{$N$ identical elements along axis, spacing $d$, equal phase (broadside, $\theta_\text{max}\!=\!\pi/2$). Total pattern $S\!=\!S_e\!\cdot\!F_a$ ($S_e$ = single elem).}\\[1pt]
+\eq{Array factor (uniform, broadside)}{$k\!=\!2\pi/\lambda$, $\gamma\!=\!kd\cos\theta$}
+\[F_a(\theta) = \tfrac{\sin^2(N\gamma/2)}{\sin^2(\gamma/2)};\quad F_a^{\max}\!=\!N^2 \text{ at } \theta\!=\!\pi/2\]
+\eq{Normalize}{}\,$F_a^{\text{norm}}\!=\!F_a/N^2$\\[1pt]
 \eq{HPBW (broadside, uniform)}{use $Nd$, not $(N{-}1)d$}
 \[\beta \approx 0.88\,\tfrac{\lambda}{Nd}\;(\text{rad}) = 50.8^\circ\cdot\tfrac{\lambda}{Nd}\]
-\textit{\color{coral}Grating lobes appear if $d\!>\!\lambda$ (broadside). Avoid.}
+\textit{\color{coral}Grating lobes appear if $d\!>\!\lambda$. Avoid.}
 \end{ebox}
 
 \columnbreak
@@ -467,7 +460,7 @@ Other (use integral) & numerical\\
 
 \eq{Directivity $D$}{always $D\!=\!4\pi/\Omega_p$; common shortcuts below}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
-\textit{\color{coral}WORD TRAP: ``direction of max radiation'' = angle $\theta_\text{max}$ (rad/deg). ``directivity'' = unitless number $D$. Different things!}\\
+\textit{\color{coral}WORD TRAP: ``direction'' = $\theta_{\max}$ (rad); ``directivity'' = $D$ (unitless).}\\
 \textit{Dipoles $\to$ COMMON DIPOLE PARAMS table. Aperture: $D\!\approx\!4\pi A_p/\lambda^2$. 2-axis HPBW: $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$. Circular: $D\!\approx\!4\pi/\beta^2$.}
 
 \eq{Gain (if asked)}{$\xi\!=\!$ rad.\ eff., $0<\xi\le1$}
@@ -490,8 +483,7 @@ Monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \rowcolor{rowB}Full-wave & $\lambda$ & 2.41 & 3.82 & 199\\
 \bottomrule
 \end{tabular}}}\par}
-\textit{Half-wave: $P_{\text{rad}}\!=\!36.6 I_0^2$ W. Monopole ($\lambda/4$ above ground): same patt.\ as half-wave but $P_{\text{rad}}, R_{\text{rad}}$ halved.}\\
-\textit{\color{coral}Lossless antenna ($\xi\!=\!1$) $\Rightarrow$ $G\!=\!D$. So in Friis, use $G_t,G_r$ = these $D$ values (e.g.\ half-wave $G\!=\!1.64$).}
+\textit{Half-wave: $P_{\text{rad}}\!=\!36.6 I_0^2$ W. Monopole ($\lambda/4$ above ground): same patt.\ as half-wave but $P_{\text{rad}}, R_{\text{rad}}$ halved.}
 \end{ebox}
 
 \vspace{1pt}
@@ -503,9 +495,7 @@ Monopole & $\lambda/4$ (gnd) & 1.64 & 2.15 & $36.6$\\
 \[A_p = l\,d\;\;(\text{m}^2,\;\text{any dipole})\]
 \eq{Inverse: $D$ from $A_e$}{}
 \[D = \tfrac{4\pi A_e}{\lambda^2}\;(\text{unitless})\]
-\eq{Hertzian special case}{$D\!=\!1.5$}
-\[A_e^{\text{Hertz}} = \tfrac{3\lambda^2}{8\pi} \approx 0.119\lambda^2\;(\text{m}^2)\]
-\textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$. Antenna captures field over $\sim\!\lambda$.}
+\textit{\color{coral}Thin wire: $A_e\!\gg\!A_p$ (e.g., Hertzian $A_e\!=\!3\lambda^2/8\pi\!\approx\!0.119\lambda^2$).}
 \end{ebox}
 
 \columnbreak
@@ -622,7 +612,7 @@ $a$ --- coef.\ on $\theta^2$ in Gaussian\\
 $\beta$ --- HPBW (rad or $^\circ$)\\
 $\Omega_p$ --- pattern solid angle (sr)\\
 $D\!=\!4\pi/\Omega_p$ --- directivity\\
-$\xi$ --- rad.\ efficiency; $G\!=\!\xi D$\\
+$\xi$ rad.\ eff.; $G\!=\!\xi D$\\
 $D_\text{dB}\!=\!10\log_{10}D$;\,$D\!=\!10^{D_\text{dB}/10}$
 \end{ebox}
 \end{minipage}\hfill
