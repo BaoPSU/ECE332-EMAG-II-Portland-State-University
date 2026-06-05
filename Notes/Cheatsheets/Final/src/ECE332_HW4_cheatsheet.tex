@@ -125,22 +125,41 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \eq{Step 1 --- Normalize}{always start here}
 \[F(\theta) = S(\theta)/S_{\max}\;(\text{unitless})\]
 
-\eq{Step 2 --- HPBW $\beta$}{half-power beamwidth, full angular width at $-3$ dB}
-\[\text{Set }F(\theta)\!=\!0.5,\; \text{solve for }\theta\;\to\;\theta_{1/2}\]
-\[\beta = 2\theta_{1/2}\;(\text{symmetric beams, rad or }^\circ)\]
-\textit{\color{coral}Gaussian:}
-\[\color{coral}F(\theta_{1/2})\!=\!e^{-a\theta_{1/2}^2}\!=\!0.5\;\Rightarrow\;\theta_{1/2}\!=\!\sqrt{\ln 2/a}\]
+\eq{Step 2 --- Beamwidth $\beta$ at threshold $X$}{any level, not just half-power}
+\[\text{Set }F(\theta_X)\!=\!X,\; \text{solve for }\theta_X;\; \beta\!=\!2\theta_X\;(\text{symmetric})\]
+\textit{Get $X$ from dB$\leftrightarrow$LINEAR table ($X\!=\!10^{\text{dB}/10}$).}\\
+\textit{\color{coral}Gaussian $F\!=\!e^{-a\theta^2}\!=\!X\ \Rightarrow\ \theta_X\!=\!\sqrt{-\ln X/a}$:}\\
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}ll@{}}
+\toprule
+Threshold & Gauss.\ $\theta_X$\\
+\midrule
+\rowcolor{rowB}HPBW ($-3$\,dB, $X\!=\!0.5$) & $\sqrt{\ln 2/a}$\\
+$-6$ dB ($X\!=\!0.25$) & $\sqrt{\ln 4/a}$\\
+\rowcolor{rowB}$-10$ dB ($X\!=\!0.1$) & $\sqrt{\ln 10/a}$\\
+Null FNBW ($X\!=\!0$) & first zero of $F$\\
+\bottomrule
+\end{tabular}}}\par}
 
-\eq{Step 3 --- Pattern solid angle $\Omega_p$}{units: sr}
-\[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\]
-\textit{No $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}\\
-\textit{\color{coral}TI-36X Pro: \texttt{[2nd][d/dx]} for $\int_\square^\square$, set RAD mode, multiply result by $2\pi$.}\\
-\textit{\color{coral}Narrow-beam Gaussian shortcut ($\sin\theta\!\approx\!\theta$, $\to\!\infty$):}
-\[\color{coral}\Omega_p \approx \tfrac{\pi}{a} = \tfrac{\pi\,\theta_{1/2}^2}{\ln 2}\quad(F\!=\!e^{-a\theta^2})\]\\[1pt]
+\eq{Step 3 --- Pattern solid angle $\Omega_p$}{recognize pattern, look up}
+\[\Omega_p = \!\int_0^{2\pi}\!\!\int_0^{\pi}\!F(\theta)\sin\theta\,d\theta\,d\phi\;\;\text{(sr)}\]
+\textit{No $\phi$ dep.: $\Omega_p\!=\!2\pi\!\int_0^\pi\!F(\theta)\sin\theta\,d\theta$.}
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}ll@{}}
+\toprule
+Pattern $F(\theta)$ & $\Omega_p$ (sr)\\
+\midrule
+\rowcolor{rowB}Isotropic ($F\!=\!1$) & $4\pi\!\approx\!12.57$\\
+Hertzian $\sin^2\theta$ & $8\pi/3\!\approx\!8.38$\\
+\rowcolor{rowB}Half-wave dipole & $\approx 7.66$\\
+Narrow Gauss $e^{-a\theta^2}$ & $\pi/a\!=\!\pi\theta_{1/2}^2/\ln 2$\\
+\rowcolor{rowB}2-axis HPBW (aperture) & $\beta_{xz}\!\cdot\!\beta_{yz}$\\
+Other (use integral) & numerical\\
+\bottomrule
+\end{tabular}}}\par}
+\textit{\color{coral}TI-36X Pro: \texttt{[2nd][d/dx]} for $\int_\square^\square$, RAD mode, multiply by $2\pi$.}\\[1pt]
 
-\eq{Step 4 --- Directivity $D$}{}
+\eq{Step 4 --- Directivity $D$}{always $D\!=\!4\pi/\Omega_p$; common shortcuts below}
 \[D = \tfrac{4\pi}{\Omega_p}\quad(\text{unitless})\qquad D_{\text{dB}}\!=\!10\log_{10}D\]
-\textit{Alt.\ with two orthogonal HPBWs: $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$.}\\[1pt]
+\textit{Dipoles $\to$ COMMON DIPOLE PARAMS table. Aperture: $D\!\approx\!4\pi A_p/\lambda^2$. 2-axis HPBW: $D\!\approx\!4\pi/(\beta_{xz}\beta_{yz})$. Circular: $D\!\approx\!4\pi/\beta^2$.}
 
 \eq{Step 5 --- Gain (if asked)}{$\xi\!=\!$ rad.\ eff., $0<\xi\le1$}
 \[G = \xi D\qquad G_{\text{dB}}\!=\!10\log_{10}G\]
