@@ -145,6 +145,28 @@ For **auto-sized** columns (`c`, `l`, `r`) the `\setlength{\tabcolsep}{2pt}` wra
 
 Tables that still use `{\centering\begin{tabular}...\end{tabular}\par}` (without `\makebox`) will have rowcolor bleeding — convert them if it becomes visible.
 
+### Use `p{}` widths so tables FILL ~95% of the column
+
+Auto-sized `l`/`c`/`r` columns only take what their content needs — so a 2-column lookup with short content (e.g. `Threshold | Gauss. β`) ends up narrow and looks lost inside the ebox column. **Fill the box** by giving each column an explicit `p{X\linewidth}` width that sums to ≈ `0.94\linewidth` (leaves a hair of margin under the `0.98\linewidth` makebox).
+
+```latex
+% Bad — auto-sized, narrow:
+\begin{tabular}{@{}ll@{}}
+Threshold & β = 2θ_X\\
+HPBW (−3 dB) & 2√(ln 2/a)\\
+...
+\end{tabular}
+
+% Good — explicit p{} widths fill ~95% of the column:
+\begin{tabular}{@{}p{0.58\linewidth}p{0.36\linewidth}@{}}
+Threshold & β = 2θ_X\\
+HPBW (−3 dB, X=0.5) & 2√(ln 2/a)\\
+...
+\end{tabular}
+```
+
+Pick widths by eyeballing the longest entry per column. The two widths should sum to ≈ `0.94`. The `0.98\linewidth` makebox absorbs the rest as visual margin. For 3+ columns, scale proportionally so the total stays ≤ `0.94`.
+
 ---
 
 ## ebox Environment
