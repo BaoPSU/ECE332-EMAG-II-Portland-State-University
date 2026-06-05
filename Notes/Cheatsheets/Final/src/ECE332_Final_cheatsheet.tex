@@ -466,7 +466,8 @@ Other (use integral) & numerical\\
 
 \eq{Gain (if asked)}{$\xi\!=\!$ radiation efficiency (unitless), $0<\xi\le1$}
 \[G = \xi D\;(\text{unitless})\qquad G_{\text{dB}}\!=\!10\log_{10}G\;(\text{dB})\]
-\textit{Lossless / ideal antenna $\Rightarrow$ $G\!=\!D$.}
+\textit{Lossless / ideal antenna $\Rightarrow$ $G\!=\!D$.}\\[1pt]
+\textit{$\xi\!=\!\tfrac{R_{\text{rad}}}{R_{\text{rad}}+R_{\text{loss}}}\!=\!\tfrac{P_{\text{rad}}}{P_{\text{rad}}+P_{\text{loss}}}$;\;\;$R_{\text{rad}}\!=\!2P_{\text{rad}}/I_0^2$ ($\Omega$); $R_{\text{in}}\!=\!R_{\text{rad}}\!+\!R_{\text{loss}}$.}
 \end{ebox}
 
 \vspace{1pt}
@@ -550,6 +551,9 @@ $k_B\!=\!1.38{\times}10^{-23}$ J/K; $T_{\text{sys}}$ system noise temp (K); $B$ 
 \shead{tealbg}{teal}{APERTURE ANTENNAS (horn, dish)}
 \begin{ebox}
 \textit{$A_p$ physical aperture area (m$^2$); $A_e$ effective area (m$^2$, $\!=\!\lambda^2 D/4\pi$); $\beta_{xz},\beta_{yz}$ HPBWs in two planes (rad); $\ell, d$ aperture side / diameter (m).}\\[1pt]
+\textit{\color{coral}Far-field req.: $R\!\geq\!2d^2/\lambda$ ($d\!=\!$ largest aperture dim.).}\\[1pt]
+\eq{Pattern (rect., uniform illum.)}{peak at $\theta\!=\!0$ (broadside)}
+\[F(\theta) = \mathrm{sinc}^2\!\left(\tfrac{\pi\ell_x\sin\theta}{\lambda}\right);\;\;S_0\!=\!\tfrac{E_0^2 A_p^2}{2\eta_0\lambda^2 R^2}\]
 \eq{Directivity (any shape, uniform illum.)}{}
 \[D \approx \tfrac{4\pi A_p}{\lambda^2}\;(\text{unitless})\quad\Rightarrow\;A_e\!\approx\!A_p\]
 \eq{Directivity from beamwidths}{any aperture}
