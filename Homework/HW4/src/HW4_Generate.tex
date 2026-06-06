@@ -560,16 +560,33 @@ Convert to dB using the standard linear$\to$dB formula (from dB$\leftrightarrow$
 \textbf{(b) Area doubled $A_p \to 2A_p$ (5 pts)}
 
 \begin{goalbox}
-\goal{find new $D$ and $\beta$ using the scaling rules (from APERTURE ANTENNAS box, ``Scaling (any ratio)'' block):}
-\[D_{\text{new}} = D_{\text{old}} \cdot \tfrac{A_{p,\text{new}}}{A_{p,\text{old}}} \cdot \left(\tfrac{f_{\text{new}}}{f_{\text{old}}}\right)^{\!2},\quad \beta_{\text{new}} = \beta_{\text{old}} \cdot \sqrt{\tfrac{A_{p,\text{old}}}{A_{p,\text{new}}}} \cdot \tfrac{f_{\text{old}}}{f_{\text{new}}}\]
-\textit{Here $f$ unchanged, $A_p \to 2A_p$, so $D \propto A_p$ and $\beta \propto 1/\sqrt{A_p}$:}
-\[D_{\text{new}} = 2D_{\text{old}},\quad \beta_{\text{new}} = \beta_{\text{old}}/\sqrt{2}\]
-\need{$D_{\text{old}}$ and $\beta_{\text{old}}$ (from part a).}
+\goal{find new $D$ and $\beta$ by \emph{reading proportionalities} off the aperture formulas. Don't recompute --- just scale the part (a) answers.}
+\need{$D_{\text{old}}\!=\!4584$ and $\beta_{\text{old}}\!=\!3^\circ$ from part (a); know which variables change.}
 \end{goalbox}
 
-\textbf{Plug in:}
-\[D_{\text{new}} = 2(4584) = 9168 \;\Rightarrow\; \boxed{D_{\text{new}} = 39.6~\text{dB}}\]
+\textbf{Step 1 --- write the base formulas (APERTURE ANTENNAS box):}
+\[D \approx \tfrac{4\pi A_p}{\lambda^2}\;\;\;\text{and}\;\;\;\beta \approx \tfrac{1.02\,\lambda}{d}\;(\text{circular, diam.\ }d)\]
+For a circular aperture $A_p\!=\!\pi d^2/4$, so $d\!=\!2\sqrt{A_p/\pi}$. Substitute into $\beta$:
+\[\beta \approx \tfrac{1.02\,\lambda}{2\sqrt{A_p/\pi}} = \tfrac{0.904\,\lambda}{\sqrt{A_p}}\;\;\Rightarrow\;\;\beta \propto \tfrac{\lambda}{\sqrt{A_p}}\]
+
+\textbf{Step 2 --- strip the constants, keep proportionalities:}
+\[\boxed{D \propto \tfrac{A_p}{\lambda^2}}\;\;\;\text{and}\;\;\;\boxed{\beta \propto \tfrac{\lambda}{\sqrt{A_p}}}\]
+
+\textbf{Step 3 --- in part (b) only $A_p$ changes} ($f$ stays the same $\Rightarrow$ $\lambda$ stays the same, so anything with $\lambda$ drops out):
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item $D$ depends on $A_p$ \emph{linearly} $\Rightarrow$ doubling $A_p$ \emph{doubles} $D$:\ \ $D_\text{new}\!=\!2D_\text{old}$.
+\item $\beta$ depends on $1/\sqrt{A_p}$ $\Rightarrow$ doubling $A_p$ \emph{shrinks} $\beta$ by $\sqrt{2}$:\ \ $\beta_\text{new}\!=\!\beta_\text{old}/\sqrt{2}$.
+\end{itemize}
+
+\textit{\color{coral}Why $\sqrt{2}$ not $2$?\ Area $A_p\!=\!\pi d^2/4$ scales with diameter squared. Doubling the area only scales the diameter by $\sqrt{2}$, and $\beta$ follows the diameter not the area.}
+
+\textbf{Step 4 --- plug in part (a) values:}
+\[D_{\text{new}} = 2(4584) = 9168 \;\Rightarrow\; 10\log_{10}(9168) = \boxed{D_{\text{new}} = 39.6~\text{dB}}\]
 \[\beta_{\text{new}} = 3^\circ/\sqrt{2} = 3^\circ/1.414 = \boxed{2.12^\circ}\]
+
+\textit{Bookkeeping version (same answer, equivalent path)} --- the general ``Scaling (any ratio)'' block from the cheat sheet handles both $A_p$ and $f$ changing at once:
+\[D_{\text{new}} = D_{\text{old}} \cdot \tfrac{A_{p,\text{new}}}{A_{p,\text{old}}} \cdot \!\left(\tfrac{f_{\text{new}}}{f_{\text{old}}}\right)^{\!2},\quad \beta_{\text{new}} = \beta_{\text{old}} \cdot \sqrt{\tfrac{A_{p,\text{old}}}{A_{p,\text{new}}}} \cdot \tfrac{f_{\text{old}}}{f_{\text{new}}}\]
+For (b): $A_p$ ratio $= 2$, $f$ ratio $= 1$, so it collapses to $\times 2$ for $D$ and $\div\sqrt{2}$ for $\beta$. Same answer as Step 4.
 
 \vspace{6pt}
 \textbf{(c) Frequency doubled $f \to 2f$ ($\lambda \to \lambda/2$), same $A_p$ (5 pts)}
