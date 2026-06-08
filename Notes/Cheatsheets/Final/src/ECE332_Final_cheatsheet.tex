@@ -122,6 +122,8 @@ $R\!+\!T$ \tiny total & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\para
 \vspace{1pt}
 \shead{coralbg}{coral}{POWER REFLECTION \& TRANSMISSION}
 \begin{ebox}
+\eq{Avg power density of plane wave}{lossless; $|E_0|$ peak E-field amp.}
+\[S_\text{av} = \tfrac{|E_0|^2}{2\eta}\;(\text{W/m}^2)\]
 \eq{\% reflected}{always}\,$\%P_r = 100\,|\Gamma|^2$\\
 \eq{\% transmitted}{$\eta$-ratio matters!}\,$\%P_t = 100\,|\tau|^2\,\eta_1/\eta_2$\\
 \textit{Check: $\%P_r + \%P_t = 100$.}
@@ -130,17 +132,25 @@ $R\!+\!T$ \tiny total & $T\!=\!1\!-\!R$ & $T_\perp\!=\!1\!-\!R_\perp$ & $T_\para
 \columnbreak
 
 %-- Column 2 -----------------------------------
-\shead{tealbg}{teal}{SNELL'S LAW --- OBLIQUE INCIDENCE}
+\shead{tealbg}{teal}{ANGLES --- REFLECTION, TRANSMISSION, CRITICAL, BREWSTER}
 \begin{ebox}
-\eq{Single boundary}{angles from normal}
-\[\sin\theta_2 = \sin\theta_1\sqrt{\tfrac{\varepsilon_{r1}}{\varepsilon_{r2}}} = \sin\theta_1\,\tfrac{n_1}{n_2}\]
+\eq{Reflection angle}{always}\;$\theta_r = \theta_i$\;(from normal)\\[1pt]
+\eq{Transmission/refraction}{single boundary; angles from normal}
+\[\sin\theta_t = \sin\theta_i\sqrt{\tfrac{\varepsilon_{r1}}{\varepsilon_{r2}}} = \sin\theta_i\,\tfrac{n_1}{n_2}\]
 
 \eq{Multilayer chain}{stack of slabs $1\to2\to3\to4$}
 \[\sin\theta_{i+1} = \sin\theta_i\sqrt{\tfrac{\varepsilon_{r,i}}{\varepsilon_{r,i+1}}}\]
 
 \eq{Air--slabs--air shortcut}{outer media identical}
 \[\theta_{\text{exit}} = \theta_{\text{incident}}\]
-\textit{\color{coral}Snell only sets angles. Reflection/transmission \emph{magnitudes} need Fresnel coefficients (parallel vs perpendicular).}
+
+\eq{Critical angle $\theta_c$}{TIR when $n_1>n_2$; no transmitted wave}
+\[\sin\theta_c = \tfrac{n_2}{n_1} = \sqrt{\tfrac{\varepsilon_{r2}}{\varepsilon_{r1}}}\;\Rightarrow\;\theta_c = \arcsin\!\left(\tfrac{n_2}{n_1}\right)\]
+
+\eq{Brewster angle $\theta_B$ ($\parallel$-pol only)}{$\Gamma_\parallel\!=\!0$; nonmag}
+\[\tan\theta_B = \tfrac{n_2}{n_1} = \sqrt{\tfrac{\varepsilon_{r2}}{\varepsilon_{r1}}}\;\Rightarrow\;\theta_B = \arctan\!\left(\tfrac{n_2}{n_1}\right)\]
+\textit{\color{coral}At $\theta_B$: reflected wave is pure $\perp$-pol ($\parallel$ reflection = 0); transmitted has both.}\\
+\textit{\color{coral}Snell only sets \emph{angles}. Reflection/transmission \emph{magnitudes} need Fresnel coefficients ($\parallel$ vs $\perp$).}
 \end{ebox}
 
 \vspace{1pt}
@@ -243,6 +253,15 @@ TE$_{20}$ & $f_{20}=u_{p0}/a = 2f_{10}$\\
 \bottomrule
 \end{tabular}}}\par}
 \textit{Propagation requires $f>f_{mn}$. In $Z_\text{TE}$/$Z_\text{TM}$ and $u_g$, $f_c=f_{mn}$ of the excited mode.}
+\end{ebox}
+
+\vspace{1pt}
+\shead{coralbg}{coral}{CAVITY RESONATOR (guide closed both ends, length $d$)}
+\begin{ebox}
+\eq{Resonant frequencies}{$m,n,p$ = mode indices; standing wave in all 3 dims}
+\[f_{mnp} = \tfrac{c}{2\sqrt{\varepsilon_r}}\sqrt{\!\left(\tfrac{m}{a}\right)^{\!2}\!+\!\left(\tfrac{n}{b}\right)^{\!2}\!+\!\left(\tfrac{p}{d}\right)^{\!2}}\;(\text{Hz})\]
+\textit{TE$_{mnp}$: $p\!\ge\!1$, at least one of $m,n\!\ge\!1$. TM$_{mnp}$: $m,n\!\ge\!1$, $p\!\ge\!0$.}\\
+\textit{Dominant TE$_{101}$ when $a\!\ge\!d\!>\!b$:\ $f_{101}\!=\!\tfrac{c}{2\sqrt{\varepsilon_r}}\sqrt{1/a^2\!+\!1/d^2}$.}
 \end{ebox}
 
 \vspace{1pt}
@@ -544,7 +563,7 @@ $k_B\!=\!1.38{\times}10^{-23}$ J/K; $T_{\text{sys}}$ system noise temp (K); $B$ 
 \end{ebox}
 
 \vspace{1pt}
-\shead{tealbg}{teal}{APERTURE ANTENNAS (horn, dish)}
+\shead{tealbg}{teal}{APERTURE ANTENNAS (horn, dish; large aperture, $d\!\ge$ several $\lambda$)}
 \begin{ebox}
 \textit{$A_p$ physical aperture area (m$^2$); $A_e$ effective area (m$^2$, $\!=\!\lambda^2 D/4\pi$); $\beta_{xz},\beta_{yz}$ HPBWs in two planes (rad); $\ell, d$ aperture side / diameter (m).}\\[1pt]
 \textit{\color{coral}Far-field req.: $R\!\geq\!2d^2/\lambda$ ($d\!=\!$ largest aperture dim.).}\\[1pt]
