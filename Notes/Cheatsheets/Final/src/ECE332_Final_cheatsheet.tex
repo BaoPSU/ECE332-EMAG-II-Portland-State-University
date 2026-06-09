@@ -67,6 +67,7 @@ polarization for reflected/transmitted waves (at $\theta_B$) & ANGLES coral note
 \rowcolor{rowB}enclosing a waveguide on both sides w/ length ($f_{mnp}$) & CAVITY RES.\ (1,3)\\
 large aperture ($d\!\ge\!$ several $\lambda$) & APERTURE ANT.\ (2,3)\\
 \rowcolor{rowB}circular aperture (diam.\ $d$) & APERTURE ANT.\ HPBW tbl.\ (2,3)\\
+direction of max radiation ($\theta_{\max}$) & BEAM PARAMS (2,2)\\
 \bottomrule
 \end{tabular}}}\par}
 \end{ebox}
@@ -460,10 +461,25 @@ $^\circ$ & rad & $\sin\theta$ & $\cos\theta$ & $\sin^2\theta$ & $\cos^2\theta$\\
 \columnbreak
 
 %-- Column 2 -----------------------------------
-\shead{greenbg}{green}{BEAM PARAMETERS --- $\beta$, $\Omega_p$, $D$}
+\shead{greenbg}{green}{BEAM PARAMETERS --- $\theta_{\max}$, $\beta$, $\Omega_p$, $D$}
 \begin{ebox}
 \eq{Normalize}{always start here}
 \[F(\theta) = S(\theta)/S_{\max}\;(\text{unitless})\]
+
+\eq{Direction of max radiation $\theta_{\max}$}{angle where $F$ peaks; check 3 ways}
+\[\text{(1) Set }\tfrac{dF}{d\theta}\!=\!0;\;\;\text{(2) sample } F \text{ at endpoints + middle};\;\;\text{(3) inspect symmetry}\]
+{\centering\makebox[0.98\linewidth][c]{{\setlength{\tabcolsep}{2pt}\begin{tabular}{@{}p{0.50\linewidth}p{0.44\linewidth}@{}}
+\toprule
+Pattern type & $\theta_{\max}$\\
+\midrule
+\rowcolor{rowB}Hertzian, half-wave, $\lambda/4$ dipole, $\sin^k\theta$ & $\pi/2$ (broadside)\\
+Linear array (broadside, $\delta\!=\!0$) & $\pi/2$\\
+\rowcolor{rowB}Linear array (end-fire, $\delta\!=\!kd$) & $0$ or $\pi$\\
+Steered array (linear phase $\delta$) & $\arccos(\delta\lambda/2\pi d)$\\
+\rowcolor{rowB}Aperture (rect., uniform illum.) & $0$ (boresight)\\
+Arbitrary $F(\theta)$ & set $dF/d\theta\!=\!0$ or sample\\
+\bottomrule
+\end{tabular}}}\par}\\[1pt]
 
 \eq{Beamwidth $\beta$ at threshold $X$}{}
 \[\text{Set }F(\theta_X)\!=\!X,\; \text{solve for }\theta_X;\; \beta\!=\!2\theta_X\;(\text{symmetric})\]
